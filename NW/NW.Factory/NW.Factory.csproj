@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionFactory.cs" />
-    <Compile Include="DALFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,10 +64,6 @@
     <ProjectReference Include="..\NW.IDAL\NW.IDAL.csproj">
       <Project>{a443f2a7-85cd-4cad-aece-4aaf2f641d27}</Project>
       <Name>NW.IDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ＮＷ.DAL\NW.DAL.csproj">
-      <Project>{ba8ee75e-edf6-4401-8e6e-eebe21b3ed12}</Project>
-      <Name>NW.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

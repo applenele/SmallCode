@@ -5,11 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NW.Entity;
+using System.Data;
+using NW.Factory;
 
 namespace NW.DAL
 {
     public class UserDAL : IBaseDAL<User>, IUserDAL
     {
+
+        private IDbConnection _conn;
+        public IDbConnection Conn
+        {
+            get
+            {
+                return _conn = ConnectionFactory.CreateConnection();
+            }
+        }
+
+
         public int Delete(int id)
         {
             throw new NotImplementedException();

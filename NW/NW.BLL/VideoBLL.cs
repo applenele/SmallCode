@@ -1,4 +1,5 @@
-﻿using NW.Entity;
+﻿using NW.DAL;
+using NW.Entity;
 using NW.Factory;
 using NW.IBLL;
 using System;
@@ -13,7 +14,7 @@ namespace NW.BLL
     {
         public override void SetDAL()
         {
-            idal = DALFactory.GetVideoDAL();
+            idal = DBSessionFactory.GetDBSession().VideoDAL;
         }
     }
 }
