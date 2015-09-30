@@ -9,7 +9,7 @@ namespace NW.BLL
 {
     public　class BLLSessionFactory
     {
-        public BLLSession GetBLLSession()
+        public static BLLSession GetBLLSession()
         {
             BLLSession bllsession = CallContext.GetData(typeof(BLLSessionFactory).Name) as BLLSession;
             if (bllsession == null)
