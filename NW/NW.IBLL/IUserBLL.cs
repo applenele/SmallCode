@@ -9,5 +9,8 @@ namespace NW.IBLL
 {
     public interface IUserBLL:IBaseBLL<User>
     {
+        User GetUserByName(string  name);
+
+        User Login(string username, string password);
     }
 }

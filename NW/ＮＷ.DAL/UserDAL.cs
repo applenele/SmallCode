@@ -89,8 +89,33 @@ namespace NW.DAL
             }
         }
 
+        /// <summary>
+        /// 根据用户名得到用户
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public User GetUserByName(string name)
+        {
+            using (Conn)
+            {
+                string query = "SELECT * FROM User where Username=@Username";
+                return Conn.Query<User>(query, new { Username = name }).FirstOrDefault();
+            }
+        }
 
-
-
+        /// <summary>
+        /// 登陆
+        /// </summary>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public User Login(string username, string password)
+        {
+            using (Conn)
+            {
+                string query = "SELECT * FROM User where Username=@Username and Password = @Password";
+                return Conn.Query<User>(query, new { Username = username, Password = password }).FirstOrDefault();
+            }
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace NW.IDAL
 {
     public interface IUserDAL:IBaseDAL<User>
     {
-       　
+       User GetUserByName(string name);
+
+        User Login(string username, string password);
     }
 }
