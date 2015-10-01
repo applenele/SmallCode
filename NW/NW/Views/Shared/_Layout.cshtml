@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title - codeqiaokeli</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    codelqiaokeli
+                </a>
+            </div>
+            <nav id="bs-navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/Bolg">博客</a>
+                    </li>
+                    <li>
+                        <a href="/Talk">社区</a>
+                    </li>
+                    <li>
+                        <a href="/Course">课程</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="http://www.bootcss.com/" onclick="_hmt.push(['_trackEvent', 'docv3-navbar', 'click', 'V3导航-Bootstrap中文网'])" target="_blank">Bootstrap中文网</a></li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>
