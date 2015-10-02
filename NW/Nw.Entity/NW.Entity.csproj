@@ -7,8 +7,8 @@
     <ProjectGuid>{6CC21D52-4460-4556-AB5B-58E848CAF0BD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nw.Entity</RootNamespace>
-    <AssemblyName>Nw.Entity</AssemblyName>
+    <RootNamespace>NW.Entity</RootNamespace>
+    <AssemblyName>NW.Entity</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
