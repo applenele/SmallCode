@@ -52,7 +52,7 @@
     <Compile Include="VideoDAL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nw.Entity\NW.Entity.csproj">
+    <ProjectReference Include="..\NW.Entity\NW.Entity.csproj">
       <Project>{6cc21d52-4460-4556-ab5b-58e848caf0bd}</Project>
       <Name>NW.Entity</Name>
     </ProjectReference>
