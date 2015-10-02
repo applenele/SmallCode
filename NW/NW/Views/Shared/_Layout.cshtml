@@ -14,6 +14,8 @@
 
     <script src="~/Scripts/jquery-1.9.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/codeqiaokeli.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -36,7 +38,7 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/User/Login"  data-toggle="modal" data-target="#loginModal">登陆</a></li>
+                    <li><a href="/User/Login" data-toggle="modal" data-target="#loginModal">登陆</a></li>
                     <li><a href="/User/Register">注册</a></li>
                 </ul>
             </nav>
@@ -45,21 +47,20 @@
     <!-- Modal -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
-            <form action="/User/Login" method="post">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">用户登录</h4>
-                    </div>
-                    <div class="modal-body">
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                        <button type="button" class="btn btn-primary">登陆</button>
-                    </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">用户登录</h4>
                 </div>
-            </form>
+                <div class="modal-body">
+                    用户名：<input type="text" name="Username" id="txtUsername" value=" " /> <br />
+                    密码：<input type="password" name="Password" id="txtPassword" value=" " /> <br />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" id="btnLogin" class="btn btn-primary">登陆</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -74,8 +75,8 @@
             </p>
             <p>Powered By <a target="_blank" href="http://www.bootcss.com/" title="Bootstrap中文网">Bootstrap</a> | <a href="http://www.phpcms.cn/" target="_blank" title="nele">nele</a></p>
             @*<p>
-                <a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备14020662号-2</a>
-            </p>*@
+                    <a href="http://www.miibeian.gov.cn/" target="_blank">苏ICP备14020662号-2</a>
+                </p>*@
         </div>
     </footer>
 </body>

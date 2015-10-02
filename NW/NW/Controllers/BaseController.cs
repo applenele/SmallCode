@@ -11,7 +11,6 @@ namespace NW.Controllers
 {
     public class BaseController : Controller
     {
-        public BLLSessionFactory bllFactory = new BLLSessionFactory();
 
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
