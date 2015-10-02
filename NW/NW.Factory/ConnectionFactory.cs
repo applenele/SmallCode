@@ -23,7 +23,6 @@ namespace NW.Factory
                 conn = new MySqlConnection(connString);
                 CallContext.SetData(typeof(ConnectionFactory).Name, conn);
             }
-            conn.Open();
             return conn;
         }
     }

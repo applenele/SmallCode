@@ -1,6 +1,7 @@
 ﻿using NW.BLL;
 using NW.Entity;
 using NW.Entity.DataModels;
+using NW.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace NW.Controllers
             AjaxModel model = new AjaxModel();
             IBLL.IUserBLL bll = BLLSessionFactory.GetBLLSession().IUserBLL;
             User user = new User();
-            user = bll.Login(Username, Password);
+            Password = Encryt.GetMD5(Password.Trim());
+            user = bll.Login(Username.Trim(), Password);
             if (user == null)
             {
                 model.Data = user;

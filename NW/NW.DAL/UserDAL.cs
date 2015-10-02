@@ -113,7 +113,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "SELECT * FROM User where Username=@Username and Password = @Password";
+                string query = "SELECT * FROM User where Username = @Username and Password = @Password";
                 return Conn.Query<User>(query, new { Username = username, Password = password }).FirstOrDefault();
             }
         }

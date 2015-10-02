@@ -161,6 +161,10 @@
       <Project>{8a6616a5-d97b-4ab1-bfaa-64b40302da9d}</Project>
       <Name>NW.IBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NW.Utility\NW.Utility.csproj">
+      <Project>{ee1eddff-404d-40e9-9ba3-50d2ed1c2928}</Project>
+      <Name>NW.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
