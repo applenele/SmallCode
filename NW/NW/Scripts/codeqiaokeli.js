@@ -8,7 +8,7 @@
                 window.location.reload();
             }
             else {
-
+                $("#warning").html("用户名或者密码不正确！");
             }
         });
     });

@@ -38,8 +38,17 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/User/Login" data-toggle="modal" data-target="#loginModal">登陆</a></li>
-                    <li><a href="/User/Register">注册</a></li>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/User/Login" data-toggle="modal" data-target="#loginModal">登陆</a></li>
+                        <li><a href="/User/Register">注册</a></li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a href="">@ViewBag.CurrentUser.Username</a>
+                        </li>
+                    }
                 </ul>
             </nav>
         </div>
@@ -57,6 +66,7 @@
                     密码：<input type="password" name="Password" id="txtPassword" value=" " /> <br />
                 </div>
                 <div class="modal-footer">
+                    <span id="warning"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                     <button type="button" id="btnLogin" class="btn btn-primary">登陆</button>
                 </div>

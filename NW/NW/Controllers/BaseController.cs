@@ -17,7 +17,7 @@ namespace NW.Controllers
             base.Initialize(requestContext);
             if (requestContext.HttpContext.User.Identity.IsAuthenticated)
             {
-               CurrentUser = BLLSessionFactory.GetBLLSession().IUserBLL.GetUserByName(User.Identity.Name);
+               CurrentUser = BLLSessionFactory.GetBLLSession().IUserBLL.GetUserByName(User.Identity.Name.Trim());
             }
 
             ViewBag.CurrentUser = CurrentUser;

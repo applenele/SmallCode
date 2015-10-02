@@ -36,7 +36,7 @@ namespace NW.Controllers
             }
             else
             {
-                FormsAuthentication.SetAuthCookie(Username, false);
+                FormsAuthentication.SetAuthCookie(Username.Trim(), false);
                 model.Data = user;
                 model.Statu = "ok";
             }

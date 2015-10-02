@@ -98,7 +98,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "SELECT * FROM User where Username=@Username";
+                string query = "SELECT * FROM User where Username = @Username";
                 return Conn.Query<User>(query, new { Username = name }).FirstOrDefault();
             }
         }
