@@ -10,6 +10,10 @@ namespace NW.BLL
 {
     public abstract class BaseBLL<T> : IBaseBLL<T> where T : class, new()
     {
+        public BaseBLL()
+        {
+            SetDAL();
+        }
 
         protected IBaseDAL<T> idal;
 

@@ -54,7 +54,7 @@
         </div>
     </nav>
     <!-- Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -62,8 +62,14 @@
                     <h4 class="modal-title" id="myModalLabel">用户登录</h4>
                 </div>
                 <div class="modal-body">
-                    用户名：<input type="text" name="Username" id="txtUsername" value=" " /> <br />
-                    密码：<input type="password" name="Password" id="txtPassword" value=" " /> <br />
+                    <div class="form-group">
+                        <label> 用户名：</label>
+                        <input type="text" name="Username" id="txtUsername" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label> 密  码：</label>
+                        <input type="password" name="Password" id="txtPassword"  class="form-control"  />
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <span id="warning"></span>

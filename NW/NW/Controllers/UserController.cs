@@ -42,5 +42,33 @@ namespace NW.Controllers
             }
             return Json(model);
         }
+
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(string Username,string Password)
+        {
+            AjaxModel model = new AjaxModel();
+            User user = new Entity.User();
+            try
+            {
+                user.Username = Username.Trim();
+                user.Password = Encryt.GetMD5(Password.Trim());
+                user.Time = DateTime.Now;
+                IBLL.IUserBLL bll = BLLSessionFactory.GetBLLSession().IUserBLL;
+                bll.Insert(user);
+            }
+            catch
+            {
+                model.Statu = "err";
+                model.Msg = "注册用户出错请重试！";
+            }
+            return Json(model);
+        }
+
     }
 }
