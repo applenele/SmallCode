@@ -5,7 +5,7 @@
         var password = $("#txtPassword").val();
         $.post("/User/Login", { username: username, password: password }, function (data) {
             if (data.Statu == "ok") {
-                window.location.reload();
+                window.location.href = data.BackUrl;
             }
             else {
                 $("#warning").html("用户名或者密码不正确！");
@@ -35,10 +35,10 @@
         }
         $.post("/User/Register", { username: username, password: password }, function (data) {
             if (data.Statu == "ok") {
-                window.location.href = "/User/Login";
+                window.location.href = "/Home/Index";
             }
             else {
-                $(".warning").html("注册出现错误！");
+                $(".warning").html(data.Msg);
             }
         });
     });

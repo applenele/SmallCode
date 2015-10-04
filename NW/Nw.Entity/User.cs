@@ -34,7 +34,7 @@ namespace NW.Entity
 
         public string Photo { set; get; }
 
-        public string RoleAsInt { set; get; }
+        public int RoleAsInt { set; get; }
 
         public DateTime Time { set; get; }
 

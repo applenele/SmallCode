@@ -21,7 +21,7 @@ namespace NW.Controllers
         /// <param name="Password"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Login(string Username, string Password)
+        public ActionResult Login(string Username, string Password,string ReturnUrl)
         {
             AjaxModel model = new AjaxModel();
             IBLL.IUserBLL bll = BLLSessionFactory.GetBLLSession().IUserBLL;
@@ -39,6 +39,7 @@ namespace NW.Controllers
                 FormsAuthentication.SetAuthCookie(Username.Trim(), false);
                 model.Data = user;
                 model.Statu = "ok";
+                model.BackUrl = ReturnUrl;
             }
             return Json(model);
         }
@@ -50,17 +51,29 @@ namespace NW.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(string Username,string Password)
+        public ActionResult Register(string Username, string Password)
         {
             AjaxModel model = new AjaxModel();
             User user = new Entity.User();
             try
             {
-                user.Username = Username.Trim();
-                user.Password = Encryt.GetMD5(Password.Trim());
-                user.Time = DateTime.Now;
                 IBLL.IUserBLL bll = BLLSessionFactory.GetBLLSession().IUserBLL;
-                bll.Insert(user);
+                user = bll.GetUserByName(Username);
+                if (user != null)
+                {
+                    model.Statu = "err";
+                    model.Msg = "改用户名已经存在！";
+                }
+                else
+                {
+                    user = new Entity.User();
+                    user.Username = Username.Trim();
+                    user.Password = Encryt.GetMD5(Password.Trim());
+                    user.Time = DateTime.Now;
+                    bll.Insert(user);
+                    model.Statu = "ok";
+                    model.Msg = "注册用户成功！";
+                }
             }
             catch
             {
@@ -70,5 +83,10 @@ namespace NW.Controllers
             return Json(model);
         }
 
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
