@@ -21,7 +21,7 @@ namespace NW.Controllers
         /// <param name="Password"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Login(string Username, string Password,string ReturnUrl)
+        public ActionResult Login(string Username, string Password, string ReturnUrl)
         {
             AjaxModel model = new AjaxModel();
             IBLL.IUserBLL bll = BLLSessionFactory.GetBLLSession().IUserBLL;
@@ -39,7 +39,7 @@ namespace NW.Controllers
                 FormsAuthentication.SetAuthCookie(Username.Trim(), false);
                 model.Data = user;
                 model.Statu = "ok";
-                model.BackUrl = ReturnUrl;
+                model.BackUrl = ReturnUrl == null ? "/Home/Index" : ReturnUrl;
             }
             return Json(model);
         }

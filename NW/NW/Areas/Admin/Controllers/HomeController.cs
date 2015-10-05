@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace NW.Areas.Admin.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         // GET: Admin/Home
         public ActionResult Index()

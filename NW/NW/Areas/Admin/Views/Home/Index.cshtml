@@ -1,8 +1,71 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "后台首页";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="crumb-wrap">
+    <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span>欢迎来到codeqiaokeli管理页面。</span></div>
+</div>
+<div class="result-wrap">
+    <div class="result-title">
+        <h1>快捷操作</h1>
+    </div>
+    <div class="result-content">
+        <div class="short-wrap">
+            <a href="/Admin/Blog/Add"><i class="icon-font">&#xe005;</i>新增博文</a>
+            <a href="#"><i class="icon-font">&#xe048;</i>新增作品分类</a>
+            <a href="#"><i class="icon-font">&#xe041;</i>新增博客分类</a>
+            <a href="#"><i class="icon-font">&#xe01e;</i>作品评论</a>
+        </div>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-title">
+        <h1>系统基本信息</h1>
+    </div>
+    <div class="result-content">
+        <ul class="sys-info-list">
+            <li>
+                <label class="res-lab">操作系统</label><span class="res-info">WINNT</span>
+            </li>
+            <li>
+                <label class="res-lab">运行环境</label><span class="res-info">IIS/7+ (Win64) .Net/4.5+</span>
+            </li>
+            <li>
+                <label class="res-lab">运行方式</label><span class="res-info">IIS</span>
+            </li>
+            <li>
+                <label class="res-lab">静静设计-版本</label><span class="res-info">v-0.1</span>
+            </li>
+            <li>
+                <label class="res-lab">上传附件限制</label><span class="res-info">2M</span>
+            </li>
+            <li>
+                <label class="res-lab">北京时间</label><span class="res-info">@DateTime.Now</span>
+            </li>
+            <li>
+                <label class="res-lab">服务器域名/IP</label><span class="res-info">localhost [ 127.0.0.1 ]</span>
+            </li>
+            <li>
+                <label class="res-lab">Host</label><span class="res-info">127.0.0.1</span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-title">
+        <h1>使用帮助</h1>
+    </div>
+    <div class="result-content">
+        <ul class="sys-info-list">
+            <li>
+                <label class="res-lab">官方交流网站：</label><span class="res-info"><a href="/Home/Index" target="_blank">codeqiaokeli</a></span>
+            </li>
+            <li>
+                <label class="res-lab">官方交流QQ群：</label><span class="res-info"><a class="qq-link" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=4ba39c297a33fa548de56a257f6128c7c9e3dd14473e4c86557d93f2197c33e8"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="JS-前端开发" title="JS-前端开发"></a> </span>
+            </li>
+        </ul>
+    </div>
+</div>
 
