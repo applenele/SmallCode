@@ -29,7 +29,7 @@ namespace NW.BLL
             return idal.Delete(model) > 0 ? true : false;
         }
 
-        public IList<T> GetBookList()
+        public IList<T> GetList()
         {
             return idal.GetList();
         }
@@ -52,6 +52,11 @@ namespace NW.BLL
         public bool Update(T model)
         {
             return idal.Update(model) > 0 ? true : false;
+        }
+
+        public IList<T> GetListByPage(int page, int size)
+        {
+            return idal.GetListByPage(page, size);
         }
     }
 }

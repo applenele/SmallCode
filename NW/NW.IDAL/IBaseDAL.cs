@@ -31,5 +31,7 @@ namespace NW.IDAL
         /// <param name="id"></param>
         /// <returns></returns>
         T GetEntityWithRefence(int id);
+
+        List<T> GetListByPage(int page,int size);
     }
 }

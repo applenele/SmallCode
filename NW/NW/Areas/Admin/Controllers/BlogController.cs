@@ -1,4 +1,5 @@
 ﻿using NW.Entity;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace NW.Areas.Admin.Controllers
         // GET: Admin/Blog
         public ActionResult Index()
         {
-            return View();
+            return View(bllSession.IArticleBLL.GetList().ToPagedList(1,20));
         }
 
         #region 增加博文
@@ -58,7 +59,7 @@ namespace NW.Areas.Admin.Controllers
 
             }
             return View();
-        } 
+        }
         #endregion
     }
 }

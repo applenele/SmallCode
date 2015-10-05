@@ -86,5 +86,16 @@ namespace NW.DAL
                 return Conn.Execute(query, model);
             }
         }
+
+
+        public List<Video> GetListByPage(int page, int size)
+        {
+            int index = size * (page - 1);
+            using (Conn)
+            {
+                string query = "SELECT * FROM Video limit " + index + "," + size;
+                return Conn.Query<Video>(query).ToList();
+            }
+        }
     }
 }

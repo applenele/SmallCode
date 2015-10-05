@@ -117,5 +117,15 @@ namespace NW.DAL
                 return Conn.Query<User>(query, new { Username = username, Password = password }).FirstOrDefault();
             }
         }
+
+        public List<User> GetListByPage(int page,int size)
+        {
+            int index = size * (page - 1);
+            using (Conn)
+            {
+                string query = "SELECT * FROM User limit "+index+","+size;
+                return Conn.Query<User>(query).ToList();
+            }
+        }
     }
 }

@@ -86,5 +86,15 @@ namespace NW.DAL
                 return Conn.Execute(query, model);
             }
         }
+
+        public List<Article> GetListByPage(int page, int size)
+        {
+            int index = size * (page - 1);
+            using (Conn)
+            {
+                string query = "SELECT * FROM Article limit " + index + "," + size;
+                return Conn.Query<Article>(query).ToList();
+            }
+        }
     }
 }

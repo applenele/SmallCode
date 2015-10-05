@@ -16,10 +16,12 @@ namespace NW.IBLL
 
         bool Delete(int id);
 
-        IList<T> GetBookList();
+        IList<T> GetList();
 
         T GetEntity(int id);
 
         T GetEntityWithRefence(string id);
+
+        IList<T> GetListByPage(int page,int size);
     }
 }
