@@ -1,4 +1,5 @@
 ﻿using NW.Entity;
+using NW.Entity.ViewModels;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -96,6 +97,18 @@ namespace NW.Areas.Admin.Controllers
             {
                 return Content("err");
             }
+        }
+
+        /// <summary>
+        /// 后台博文预览
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult Show(int id)
+        {
+            Article article = new Article();
+            article = bllSession.IArticleBLL.GetEntity(id);
+            return View(new vArticle(article));
         }
     }
 }

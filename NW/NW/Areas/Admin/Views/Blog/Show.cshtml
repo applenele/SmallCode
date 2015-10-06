@@ -1,0 +1,48 @@
+﻿@model NW.Entity.ViewModels.vArticle
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/jscss/admin/design/">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">博文管理</a><span class="crumb-step">&gt;</span><span>博文预览</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <table class="insert-tab" width="100%">
+            <tbody>
+                <tr>
+                    <th width="120"><i class="require-red">*</i>分类：</th>
+                    <td>
+                       @Model.Category
+                    </td>
+                </tr>
+                <tr>
+                    <th><i class="require-red">*</i>标题：</th>
+                    <td>
+                        @Model.Title
+                    </td>
+                </tr>
+                <tr>
+                    <th>作者</th>
+                    <td>
+                        @Model.UserId
+                    </td>
+                </tr>
+                <tr>
+                    <th>时间</th>
+                    <td>
+                        @Model.Time
+                    </td>
+                </tr>
+                <tr>
+                    <th>内容：</th>
+                    <td>@MvcHtmlString.Create(@Model.Description)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
