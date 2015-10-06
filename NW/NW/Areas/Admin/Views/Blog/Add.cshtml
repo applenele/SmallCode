@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Add";
+﻿@{
+    ViewBag.Title = "博文增加";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <div class="crumb-wrap">
@@ -13,16 +12,18 @@
 <div class="result-wrap">
     <div class="result-content">
         <form action="/Admin/Blog/Add" method="post" name="frmAddBlog" enctype="multipart/form-data">
-             @Html.AntiForgeryToken()
-             <table class="insert-tab" width="100%">
+            @Html.AntiForgeryToken()
+            <table class="insert-tab" width="100%">
                 <tbody>
                     <tr>
                         <th width="120"><i class="require-red">*</i>分类：</th>
                         <td>
                             <select name="Category" id="Category" class="required">
                                 <option value="">请选择</option>
-                                <option value=".NET">.NET</option>
-                                <option value="JAVA">JAVA</option>
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Description">@item.Description</option>
+                                }
                             </select>
                         </td>
                     </tr>

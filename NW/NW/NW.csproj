@@ -129,6 +129,7 @@
     <Content Include="fonts\icomoon.woff" />
     <Content Include="Areas\Admin\Views\Blog\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Blog\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -145,6 +146,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
