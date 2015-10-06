@@ -57,8 +57,28 @@ namespace NW.DAL
             {
                 iVideoDAL = value;
             }
-        } 
+        }
         #endregion
+
+
+        #region ICategoryDAL
+        ICategoryDAL iCategoryDAL;
+        public ICategoryDAL CategoryDAL
+        {
+            get
+            {
+                if (iCategoryDAL == null)
+                    iCategoryDAL = new CategoryDAL();
+                return iCategoryDAL;
+            }
+            set
+            {
+                iCategoryDAL = value;
+            }
+        }
+        #endregion
+
+
 
     }
 }

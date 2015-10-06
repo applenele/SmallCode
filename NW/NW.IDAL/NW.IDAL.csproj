@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IArticleDAL.cs" />
     <Compile Include="IBaseDAL.cs" />
+    <Compile Include="ICategoryDAL.cs" />
     <Compile Include="IUserDAL.cs" />
     <Compile Include="IVideoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
