@@ -43,6 +43,7 @@
     <Compile Include="IArticleBLL.cs" />
     <Compile Include="IBaseBLL.cs" />
     <Compile Include="ICategoryBLL.cs" />
+    <Compile Include="IImageBLL.cs" />
     <Compile Include="IUserBLL.cs" />
     <Compile Include="IVideoBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -80,5 +80,22 @@ namespace NW.DAL
 
 
 
+        #region IImageDAL
+        IImageDAL iImageDAL;
+        public IImageDAL ImageDAL
+        {
+            get
+            {
+                if (iImageDAL == null)
+                    iImageDAL = new ImageDAL();
+                return iImageDAL;
+            }
+            set
+            {
+                iImageDAL = value;
+            }
+        }
+        #endregion
+
     }
 }

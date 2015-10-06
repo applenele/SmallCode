@@ -45,6 +45,7 @@
     <Compile Include="BLLSession.cs" />
     <Compile Include="BLLSessionFactory.cs" />
     <Compile Include="CategoryBLL.cs" />
+    <Compile Include="ImageBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserBLL.cs" />
     <Compile Include="VideoBLL.cs" />

@@ -62,7 +62,7 @@ namespace NW.BLL
         }
         #endregion
 
-        #region 得到video业务逻辑层
+        #region 得到category业务逻辑层
         ICategoryBLL iCategoryBLL;
         public ICategoryBLL ICategoryBLL
         {
@@ -78,6 +78,25 @@ namespace NW.BLL
             }
         }
         #endregion
+
+
+        #region 得到video业务逻辑层
+        IImageBLL iImageBLL;
+        public IImageBLL IImageBLL
+        {
+            get
+            {
+                if (iImageBLL == null)
+                    iImageBLL = new ImageBLL();
+                return iImageBLL;
+            }
+            set
+            {
+                iImageBLL = value;
+            }
+        }
+        #endregion
+
 
     }
 }
