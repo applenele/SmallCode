@@ -48,6 +48,7 @@
     <Compile Include="CategoryDAL.cs" />
     <Compile Include="DBSession.cs" />
     <Compile Include="DBSessionFactory.cs" />
+    <Compile Include="ImageDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserDAL.cs" />
     <Compile Include="VideoDAL.cs" />
