@@ -27,6 +27,8 @@ namespace NW.Areas.Admin.Controllers
                 }
                 where = where + "Title LIKE '%" + Key + "%'";
             }
+            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            ViewBag.Categories = categories;
             return View(bllSession.IArticleBLL.GetList(where).ToPagedList(1, 20));
         }
 

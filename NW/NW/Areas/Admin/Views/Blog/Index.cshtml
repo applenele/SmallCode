@@ -21,8 +21,10 @@
                     <td>
                         <select name="Category" id="">
                             <option value="">全部</option>
-                            <option value=".NET">.NET</option>
-                            <option value="JAVA">JAVA</option>
+                            @foreach (var item in ViewBag.Categories)
+                            {
+                                <option value="@item.Description">@item.Description</option>
+                            }
                         </select>
                     </td>
                     <th width="70">关键字:</th>
@@ -56,21 +58,21 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                        <td>@item.Id</td>
-                        <td title="@item.Title">
-                            <a target="_blank" href="#" title="发哥经典">@item.Title</a>
-                        </td>
-                        <td>@item.Browses</td>
-                        <td>@item.UserId</td>
-                        <td>@item.Time</td>
-                        <td>@item.Category</td>
-                        <td>
-                            <a class="link-update" href="#">修改</a>
-                            <a class="link-del" href="#">删除</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
+                    <td>@item.Id</td>
+                    <td title="@item.Title">
+                        <a target="_blank" href="#" title="发哥经典">@item.Title</a>
+                    </td>
+                    <td>@item.Browses</td>
+                    <td>@item.UserId</td>
+                    <td>@item.Time</td>
+                    <td>@item.Category</td>
+                    <td>
+                        <a class="link-update" href="#">修改</a>
+                        <a class="link-del" href="#">删除</a>
+                    </td>
+                </tr>
                 }
             </table>
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
