@@ -1,13 +1,15 @@
 ﻿@model NW.Entity.ViewModels.vArticle
 @{
-    ViewBag.Title = "Show";
+    ViewBag.Title = Model.Title;
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/markdown.css" rel="stylesheet" />
+
 <div class="crumb-wrap">
     <div class="crumb-list">
         <i class="icon-font">
         </i><a href="/jscss/admin/design/">首页</a>
-        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/jscss/admin/design/">博文管理</a><span class="crumb-step">&gt;</span><span>博文预览</span>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Blog/Index">博文管理</a><span class="crumb-step">&gt;</span><span>博文预览</span>
     </div>
 </div>
 <div class="result-wrap">
@@ -17,7 +19,7 @@
                 <tr>
                     <th width="120"><i class="require-red">*</i>分类：</th>
                     <td>
-                       @Model.Category
+                        @Model.Category
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +42,7 @@
                 </tr>
                 <tr>
                     <th>内容：</th>
-                    <td>@MvcHtmlString.Create(@Model.Description)</td>
+                    <td><div class="markdown-body">@MvcHtmlString.Create(@Model.Description)</div></td>
                 </tr>
             </tbody>
         </table>
