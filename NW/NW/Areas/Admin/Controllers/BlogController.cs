@@ -12,9 +12,22 @@ namespace NW.Areas.Admin.Controllers
     public class BlogController : BaseController
     {
         // GET: Admin/Blog
-        public ActionResult Index()
+        public ActionResult Index(string Category, string Key)
         {
-            return View(bllSession.IArticleBLL.GetList().ToPagedList(1,20));
+            string where = "";
+            if (!string.IsNullOrEmpty(Category))
+            {
+                where = where + "Category = '" + Category + "' ";
+            }
+            if (!string.IsNullOrEmpty(Key))
+            {
+                if (!string.IsNullOrEmpty(Category))
+                {
+                    where = where + " and ";
+                }
+                where = where + "Title LIKE '%" + Key + "%'";
+            }
+            return View(bllSession.IArticleBLL.GetList(where).ToPagedList(1, 20));
         }
 
         #region 增加博文

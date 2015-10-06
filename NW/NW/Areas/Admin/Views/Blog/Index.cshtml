@@ -14,20 +14,20 @@
 </div>
 <div class="search-wrap">
     <div class="search-content">
-        <form action="#" method="post">
+        <form action="/Admin/Blog/Index" method="get">
             <table class="search-tab">
                 <tr>
                     <th width="120">选择分类:</th>
                     <td>
-                        <select name="search-sort" id="">
+                        <select name="Category" id="">
                             <option value="">全部</option>
                             <option value=".NET">.NET</option>
                             <option value="JAVA">JAVA</option>
                         </select>
                     </td>
                     <th width="70">关键字:</th>
-                    <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
-                    <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                    <td><input class="common-text" placeholder="关键字" name="Key" type="text"></td>
+                    <td><input class="btn btn-primary btn2" name="sub" type="submit"></td>
                 </tr>
             </table>
         </form>
@@ -51,21 +51,21 @@
                     <th>点击</th>
                     <th>发布人</th>
                     <th>更新时间</th>
-                    <th>评论</th>
+                    <th>分类</th>
                     <th>操作</th>
                 </tr>
                 @foreach (var item in Model)
                 {
                     <tr>
                         <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
-                        <td>59</td>
+                        <td>@item.Id</td>
                         <td title="@item.Title">
                             <a target="_blank" href="#" title="发哥经典">@item.Title</a>
                         </td>
                         <td>@item.Browses</td>
                         <td>@item.UserId</td>
                         <td>@item.Time</td>
-                        <td></td>
+                        <td>@item.Category</td>
                         <td>
                             <a class="link-update" href="#">修改</a>
                             <a class="link-del" href="#">删除</a>

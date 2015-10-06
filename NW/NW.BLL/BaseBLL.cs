@@ -29,9 +29,9 @@ namespace NW.BLL
             return idal.Delete(model) > 0 ? true : false;
         }
 
-        public IList<T> GetList()
+        public IEnumerable<T> GetList(string whereStr)
         {
-            return idal.GetList();
+            return idal.GetList(whereStr);
         }
 
         public T GetEntity(int id)

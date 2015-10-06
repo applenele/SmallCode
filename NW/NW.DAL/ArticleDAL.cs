@@ -60,12 +60,21 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IList<Article> GetList()
+        public IEnumerable<Article> GetList(string whereStr)
         {
             using (Conn)
             {
-                string query = "SELECT * FROM Article order by Time desc";
-                return Conn.Query<Article>(query).ToList();
+                string query = "";
+                if (!string.IsNullOrEmpty(whereStr))
+                {
+                    query = "SELECT * FROM Article where " + whereStr + " order by Time desc";
+                }
+                else
+                {
+                    query = "SELECT * FROM Article order by Time desc";
+                }
+              
+                return Conn.Query<Article>(query);
             }
         }
 

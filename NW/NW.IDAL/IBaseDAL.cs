@@ -16,7 +16,7 @@ namespace NW.IDAL
 
         int Delete(int id);
 
-        IList<T> GetList();
+        IEnumerable<T> GetList(string whereStr);
 
         /// <summary>
         /// 根据主键获得实体

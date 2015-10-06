@@ -60,12 +60,20 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IList<Video> GetList()
+        public IEnumerable<Video> GetList(string whereStr)
         {
             using (Conn)
             {
-                string query = "SELECT * FROM Video";
-                return Conn.Query<Video>(query).ToList();
+                string query = "";
+                if (!string.IsNullOrEmpty(query))
+                {
+                    query = "SELECT * FROM Video where " + whereStr + " order by Time";
+                }
+                else
+                {
+                    query = "SELECT * FROM Video order by Time";
+                }
+                return Conn.Query<Video>(query);
             }
         }
 
@@ -93,7 +101,7 @@ namespace NW.DAL
             int index = size * (page - 1);
             using (Conn)
             {
-                string query = "SELECT * FROM Video where "+whereStr+" limit " + index + "," + size;
+                string query = "SELECT * FROM Video where " + whereStr + " limit " + index + "," + size;
                 return Conn.Query<Video>(query);
             }
         }

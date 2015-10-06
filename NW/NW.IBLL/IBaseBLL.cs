@@ -16,7 +16,7 @@ namespace NW.IBLL
 
         bool Delete(int id);
 
-        IList<T> GetList();
+        IEnumerable<T> GetList(string whereStr);
 
         T GetEntity(int id);
 

@@ -80,12 +80,20 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IList<User> GetList()
+        public IEnumerable<User> GetList(string whereStr)
         {
             using (Conn)
             {
-                string query = "SELECT * FROM User";
-                return Conn.Query<User>(query).ToList();
+                string query = "";
+                if (string.IsNullOrEmpty(query))
+                {
+                    query = "SELECT * FROM User where " + whereStr + " order by Time";
+                }
+                else
+                {
+                    query = "SELECT * FROM User order by Time";
+                }
+                return Conn.Query<User>(query);
             }
         }
 
@@ -123,7 +131,7 @@ namespace NW.DAL
             int index = size * (page - 1);
             using (Conn)
             {
-                string query = "SELECT * FROM User  where "+whereStr+" limit " + index + "," + size;
+                string query = "SELECT * FROM User  where " + whereStr + " limit " + index + "," + size;
                 return Conn.Query<User>(query);
             }
         }
