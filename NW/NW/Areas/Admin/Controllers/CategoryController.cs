@@ -21,12 +21,12 @@ namespace NW.Areas.Admin.Controllers
             return View(bllSession.ICategoryBLL.GetList(where).ToPagedList(1, 20));
         }
 
+        #region 增加分类
         [HttpGet]
         public ActionResult Add()
         {
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -52,6 +52,27 @@ namespace NW.Areas.Admin.Controllers
                 ModelState.AddModelError("", "你填写的信息有误!");
             }
             return View();
+        } 
+        #endregion
+
+
+        /// <summary>
+        /// 删除分类
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                bllSession.ICategoryBLL.Delete(id);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("err");
+            }
         }
     }
 }

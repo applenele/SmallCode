@@ -45,7 +45,7 @@
                 </tr>
                 @foreach (var item in Model)
                 {
-                    <tr>
+                    <tr id="@item.Id">
                         <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
                         <td>@item.Id</td>
                         <td title="@item.Description">
@@ -54,7 +54,7 @@
                         <td>@item.Time</td>
                         <td>
                             <a class="link-update" href="#">修改</a>
-                            <a class="link-del" href="#">删除</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/Category/Delete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>
                 }

@@ -78,5 +78,24 @@ namespace NW.Areas.Admin.Controllers
             return View();
         }
         #endregion
+
+        /// <summary>
+        /// 删除博文
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                bllSession.IArticleBLL.Delete(id);
+                return Content("ok");
+            }
+            catch
+            {
+                return Content("err");
+            }
+        }
     }
 }
