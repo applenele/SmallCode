@@ -34,6 +34,8 @@ namespace NW.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Add()
         {
+            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            ViewBag.Categories = categories;
             return View();
         }
 

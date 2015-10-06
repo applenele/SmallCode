@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NW.BLL
 {
-    public class CategoryDAL : BaseBLL<Category>, ICategoryBLL
+    public class CategoryBLL : BaseBLL<Category>, ICategoryBLL
     {
         public override void SetDAL()
         {

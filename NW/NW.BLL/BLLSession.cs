@@ -59,10 +59,25 @@ namespace NW.BLL
             {
                 iVideoBLL = value;
             }
-        } 
+        }
         #endregion
 
-
+        #region 得到video业务逻辑层
+        ICategoryBLL iCategoryBLL;
+        public ICategoryBLL ICategoryBLL
+        {
+            get
+            {
+                if (iCategoryBLL == null)
+                    iCategoryBLL = new CategoryBLL();
+                return iCategoryBLL;
+            }
+            set
+            {
+                iCategoryBLL = value;
+            }
+        }
+        #endregion
 
     }
 }
