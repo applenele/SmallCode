@@ -88,13 +88,13 @@ namespace NW.DAL
         }
 
 
-        public List<Video> GetListByPage(int page, int size)
+        public IEnumerable<Video> GetListByPage(int page, int size, string whereStr)
         {
             int index = size * (page - 1);
             using (Conn)
             {
-                string query = "SELECT * FROM Video limit " + index + "," + size;
-                return Conn.Query<Video>(query).ToList();
+                string query = "SELECT * FROM Video where "+whereStr+" limit " + index + "," + size;
+                return Conn.Query<Video>(query);
             }
         }
     }

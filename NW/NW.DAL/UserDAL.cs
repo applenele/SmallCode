@@ -118,13 +118,13 @@ namespace NW.DAL
             }
         }
 
-        public List<User> GetListByPage(int page,int size)
+        public IEnumerable<User> GetListByPage(int page, int size, string whereStr)
         {
             int index = size * (page - 1);
             using (Conn)
             {
-                string query = "SELECT * FROM User limit "+index+","+size;
-                return Conn.Query<User>(query).ToList();
+                string query = "SELECT * FROM User  where "+whereStr+" limit " + index + "," + size;
+                return Conn.Query<User>(query);
             }
         }
     }

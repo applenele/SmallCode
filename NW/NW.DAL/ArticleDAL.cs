@@ -64,7 +64,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "SELECT * FROM Article";
+                string query = "SELECT * FROM Article order by Time desc";
                 return Conn.Query<Article>(query).ToList();
             }
         }
@@ -87,13 +87,21 @@ namespace NW.DAL
             }
         }
 
-        public List<Article> GetListByPage(int page, int size)
+        public IEnumerable<Article> GetListByPage(int page, int size, string whereStr)
         {
             int index = size * (page - 1);
             using (Conn)
             {
-                string query = "SELECT * FROM Article limit " + index + "," + size;
-                return Conn.Query<Article>(query).ToList();
+                string query = "";
+                if (!string.IsNullOrEmpty(whereStr))
+                {
+                    query = "SELECT * FROM Article where " + whereStr + " order by Time desc limit " + index + "," + size;
+                }
+                else
+                {
+                    query = "SELECT * FROM Article order by Time desc limit " + index + "," + size;
+                }
+                return Conn.Query<Article>(query);
             }
         }
     }

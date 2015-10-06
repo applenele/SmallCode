@@ -32,6 +32,6 @@ namespace NW.IDAL
         /// <returns></returns>
         T GetEntityWithRefence(int id);
 
-        List<T> GetListByPage(int page,int size);
+        IEnumerable<T> GetListByPage(int page,int size,string whereStr);
     }
 }
