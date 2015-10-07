@@ -145,6 +145,7 @@
     <Content Include="Areas\Admin\Views\Image\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Image\Show.cshtml" />
     <Content Include="Areas\Admin\Views\Log\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Log\Show.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
