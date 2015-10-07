@@ -5,13 +5,16 @@
 }
 
 <div class="container top-1-8">
-     <article class="inner-box">
-         <div class="article-header">
-             <h2>@Model.Title</h2>
-         </div>
-         <div class="article-content">
-              @Html.Sanitized(Model.Description)
-         </div>
-     </article>
+    <article class="inner-box">
+        <div class="article-header">
+            <h2> <a href="/Blog/Show/@Model.Id">@Model.Title</a></h2>
+            <div>
+                作者:<span>@Model.Username</span> | 发表时间:<span>@Model.Time</span> | 分类:<span>@Model.Category</span> | 点击率:<span>@Model.Browses</span>
+            </div>
+        </div>
+        <div class="article-content">
+            @Html.Sanitized(Model.Description)
+        </div>
+    </article>
 </div>
 

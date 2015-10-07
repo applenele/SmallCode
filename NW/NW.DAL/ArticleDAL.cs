@@ -46,12 +46,11 @@ namespace NW.DAL
 
         public Article GetEntity(int id)
         {
-            Article article;
-            string query = "SELECT * FROM Article WHERE Id = @Id";
+            string query = "SELECT * FROM Article a left join User u on a.UserId = u.Id where a.Id = @Id";
             using (Conn)
             {
-                article = Conn.Query<Article>(query, new { Id = id }).SingleOrDefault();
-                return article;
+                var data = Conn.Query<Article, User, Article>(query,(article, user) => { article.User = user; return article; }, new { Id = id });
+                return data.FirstOrDefault();
             }
         }
 
@@ -73,8 +72,8 @@ namespace NW.DAL
                 {
                     query = "SELECT * FROM Article a left join User u on a.UserId = u.Id order by a.Time desc";
                 }
-              
-                var data =  Conn.Query<Article,User,Article>(query, (article, user) => { article.User = user; return article; });
+
+                var data = Conn.Query<Article, User, Article>(query, (article, user) => { article.User = user; return article; });
                 return data;
             }
         }

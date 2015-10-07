@@ -13,7 +13,7 @@ namespace NW.Controllers
     public class BlogController : BaseController
     {
         // GET: Blog
-        public ActionResult Index(int page=1)
+        public ActionResult Index(int page = 1)
         {
             List<vArticle> articles = new List<vArticle>();
             var query = bllSession.IArticleBLL.GetList("");
@@ -32,6 +32,8 @@ namespace NW.Controllers
         {
             var article = new Article();
             article = bllSession.IArticleBLL.GetEntity(id);
+            article.Browses = article.Browses + 1;
+            bllSession.IArticleBLL.Update(article);
             return View(new vArticle(article));
         }
     }
