@@ -36,7 +36,6 @@
     <form name="myform" id="myform" method="post">
         <div class="result-title">
             <div class="result-list">
-                <a href="/Admin/Log/Add"><i class="icon-font"></i>新增博文</a>
                 <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                 <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
             </div>
@@ -66,7 +65,7 @@
                         <td>@item.Type</td>
                         <td>@item.Description</td>
                         <td>
-                            <a class="link-update" href="">修改</a>
+                            <a class="link-update" href="/Admin/Log/Show/@item.Id">详情</a>
                             <a class="link-del" href="javascript:deleteDialog('/Admin/Log/Delete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>

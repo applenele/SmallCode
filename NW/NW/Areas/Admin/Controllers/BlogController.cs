@@ -56,6 +56,8 @@ namespace NW.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Add(string Title, string Description, string Category)
         {
+            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            ViewBag.Categories = categories;
             if (ModelState.IsValid)
             {
                 try
@@ -115,5 +117,59 @@ namespace NW.Areas.Admin.Controllers
             article = bllSession.IArticleBLL.GetEntity(id);
             return View(new vArticle(article));
         }
+
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Article article = new Article();
+            article = bllSession.IArticleBLL.GetEntity(id);
+            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            ViewBag.Categories = categories;
+            return View(article);
+        }
+
+        #region 修改博文
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Article model)
+        {
+            Article _article = new Article();
+            _article = bllSession.IArticleBLL.GetEntity(model.Id);
+            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            ViewBag.Categories = categories;
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Article article = new Article();
+                    article = bllSession.IArticleBLL.GetEntity(model.Id);
+                    article.Category = model.Category;
+                    article.Title = model.Title;
+                    article.Description = model.Description;
+                    bool result = bllSession.IArticleBLL.Update(article);
+                    if (result)
+                    {
+                        return Redirect("/Admin/Blog/Show/" + model.Id);
+                    }
+                    else
+                    {
+                        log.Error(new LogContent("修改博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                        ModelState.AddModelError("", "修改博文出错");
+                    }
+                }
+                catch
+                {
+                    log.Error(new LogContent("修改博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    ModelState.AddModelError("", "修改博文出错");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "填写数据有误");
+            }
+            return View(_article);
+        } 
+        #endregion
     }
 }
