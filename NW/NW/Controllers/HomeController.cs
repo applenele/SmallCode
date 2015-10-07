@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NW.Log4net;
+using NW.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,7 @@ namespace NW.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            log.Info(new LogContent("test", "记录", HttpHelper.GetIPAddress()));
             return View();
         }
     }

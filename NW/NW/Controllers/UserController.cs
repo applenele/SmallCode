@@ -1,6 +1,7 @@
 ﻿using NW.BLL;
 using NW.Entity;
 using NW.Entity.DataModels;
+using NW.Log4net;
 using NW.Utility;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace NW.Controllers
                 model.Data = user;
                 model.Statu = "ok";
                 model.BackUrl = ReturnUrl == null ? "/Home/Index" : ReturnUrl;
+                log.Info(new LogContent("产品展示出错","记录", HttpHelper.GetIPAddress()));
             }
             return Json(model);
         }
