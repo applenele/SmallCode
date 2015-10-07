@@ -21,5 +21,7 @@ namespace NW.Entity
         public string Category { set; get; }
 
         public int UserId { set; get; }
+
+        public User User { set; get; }
     }
 }

@@ -23,6 +23,8 @@ namespace NW.Entity.ViewModels
 
         public int UserId { set; get; }
 
+        public string Username { set; get; }
+
         public vArticle(Article model)
         {
             Markdown mark = new Markdown();
@@ -33,6 +35,7 @@ namespace NW.Entity.ViewModels
             this.Browses = model.Browses;
             this.Category = model.Category;
             this.UserId = model.UserId;
+            this.Username = model.User.Username;
         }
     }
 }

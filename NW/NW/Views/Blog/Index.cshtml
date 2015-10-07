@@ -9,10 +9,13 @@
     @foreach (var item in Model)
     {
         <article class="inner-box">
-            <div class="article-header">
+            <div class="entry-header">
                 <h2> <a href="/Blog/Show/@item.Id">@item.Title</a></h2>
+                <div>
+                    作者:<span>@item.Username</span> | 发表时间:<span>@item.Time</span> | 分类:<span>@item.Category</span> | 点击率:<span>@item.Browses</span>
+                </div>
             </div>
-            <div class="article-content">
+            <div class="entry-content">
                @Html.Sanitized(@item.Description)
             </div>
         </article>

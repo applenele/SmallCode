@@ -53,10 +53,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nw.Entity\NW.Entity.csproj">
-      <Project>{6cc21d52-4460-4556-ab5b-58e848caf0bd}</Project>
-      <Name>NW.Entity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NW.IBLL\NW.IBLL.csproj">
       <Project>{8a6616a5-d97b-4ab1-bfaa-64b40302da9d}</Project>
       <Name>NW.IBLL</Name>
