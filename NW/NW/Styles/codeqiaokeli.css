@@ -17,3 +17,12 @@
     margin: 100px 0 40px 0;
     text-align: center;
 }
+
+
+.inner-box {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+}
