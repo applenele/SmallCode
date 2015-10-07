@@ -1,4 +1,7 @@
 ﻿using NW.Entity;
+using NW.Entity.DataModels;
+using NW.Log4net;
+using NW.Utility;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -44,6 +47,7 @@ namespace NW.Areas.Admin.Controllers
                 }
                 catch
                 {
+                    log.Error(new LogContent("增加分类出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                     ModelState.AddModelError("", "增加分类出错!");
                 }
             }
@@ -71,6 +75,7 @@ namespace NW.Areas.Admin.Controllers
             }
             catch
             {
+                log.Error(new LogContent("删除分类出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 return Content("err");
             }
         }

@@ -12,6 +12,8 @@ namespace NW.Areas.Admin.Controllers
     {
         public readonly BLLSession bllSession = BLLSessionFactory.GetBLLSession();
 
+        public readonly log4net.ILog log = log4net.LogManager.GetLogger("myLogger");
+
         protected override void Initialize(System.Web.Routing.RequestContext requestContext)
         {
             base.Initialize(requestContext);

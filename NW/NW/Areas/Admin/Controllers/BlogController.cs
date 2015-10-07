@@ -1,5 +1,8 @@
 ﻿using NW.Entity;
+using NW.Entity.DataModels;
 using NW.Entity.ViewModels;
+using NW.Log4net;
+using NW.Utility;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -69,6 +72,7 @@ namespace NW.Areas.Admin.Controllers
                 }
                 catch
                 {
+                    log.Error(new LogContent("增加博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                     ModelState.AddModelError("", "增加出现异常");
                 }
             }
@@ -95,6 +99,7 @@ namespace NW.Areas.Admin.Controllers
             }
             catch
             {
+                log.Error(new LogContent("删除博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 return Content("err");
             }
         }

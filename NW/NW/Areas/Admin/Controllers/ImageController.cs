@@ -1,4 +1,6 @@
 ﻿using NW.Entity;
+using NW.Entity.DataModels;
+using NW.Log4net;
 using NW.Utility;
 using PagedList;
 using System;
@@ -38,6 +40,7 @@ namespace NW.Areas.Admin.Controllers
             }
             catch
             {
+                log.Error(new LogContent("删除图片出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 return Content("err");
             }
         }
@@ -84,6 +87,7 @@ namespace NW.Areas.Admin.Controllers
                 }
                 catch
                 {
+                    log.Error(new LogContent("增加图片出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                     ModelState.AddModelError("", "增加图片出错！");
                 }
             }

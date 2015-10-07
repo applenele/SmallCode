@@ -22,6 +22,6 @@ namespace NW.Entity
 
         public string Exception { set; get; }
 
-        public int Ip { set; get; }
+        public string Ip { set; get; }
     }
 }
