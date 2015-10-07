@@ -31,12 +31,25 @@ namespace NW.Areas.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             try
             {
-                bllSession.IImageBLL.Delete(id);
-                return Content("ok");
+                Image image = new Image();
+                image = bllSession.IImageBLL.GetEntity(id);
+                var phicyPath = HostingEnvironment.MapPath(image.Path);
+                System.IO.File.Delete(phicyPath);
+                bool result = bllSession.IImageBLL.Delete(id);
+                if (result)
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    log.Error(new LogContent(image.Title+"删除图片出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    return Content("err");
+                }
             }
             catch
             {
