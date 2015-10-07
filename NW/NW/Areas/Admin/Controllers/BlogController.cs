@@ -154,13 +154,13 @@ namespace NW.Areas.Admin.Controllers
                     }
                     else
                     {
-                        log.Error(new LogContent("修改博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                        log.Error(new LogContent(_article.Title +"修改博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                         ModelState.AddModelError("", "修改博文出错");
                     }
                 }
                 catch
                 {
-                    log.Error(new LogContent("修改博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    log.Error(new LogContent(_article.Title+"修改博文出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                     ModelState.AddModelError("", "修改博文出错");
                 }
             }

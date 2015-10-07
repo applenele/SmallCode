@@ -80,6 +80,59 @@ namespace NW.Areas.Admin.Controllers
             }
         }
 
-      
+
+        #region 修改分类
+        /// <summary>
+        /// 修改分类
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Category category = new Category();
+            category = bllSession.ICategoryBLL.GetEntity(id);
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Category model)
+        {
+            Category _category = new Category();
+            _category = bllSession.ICategoryBLL.GetEntity(model.Id);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Category category = new Category();
+                    category = bllSession.ICategoryBLL.GetEntity(model.Id);
+                    category.Description = model.Description;
+                    bool result = bllSession.ICategoryBLL.Update(category);
+                    if (result)
+                    {
+                        return Redirect("/Admin/Category/Index/");
+                    }
+                    else
+                    {
+                        log.Error(new LogContent(_category.Description + "修改分类出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                        ModelState.AddModelError("", "修改分类出错");
+                    }
+                }
+                catch
+                {
+                    log.Error(new LogContent(_category.Description + "修改分类出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    ModelState.AddModelError("", "修改分类出错");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "填写数据有误");
+            }
+            return View(_category);
+        }
+
+        #endregion
+
     }
 }

@@ -49,11 +49,11 @@
                         <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
                         <td>@item.Id</td>
                         <td title="@item.Description">
-                            <a target="_blank" href="#" title="发哥经典">@item.Description</a>
+                            <a target="_blank" href="#" title="@item.Description">@item.Description</a>
                         </td>
                         <td>@item.Time</td>
                         <td>
-                            <a class="link-update" href="#">修改</a>
+                            <a class="link-update" href="/Admin/Category/Edit/@item.Id">修改</a>
                             <a class="link-del" href="javascript:deleteDialog('/Admin/Category/Delete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>
