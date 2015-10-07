@@ -41,7 +41,7 @@ namespace NW.Controllers
                 model.Data = user;
                 model.Statu = "ok";
                 model.BackUrl = ReturnUrl == null ? "/Home/Index" : ReturnUrl;
-                log.Info(new LogContent("产品展示出错","记录", HttpHelper.GetIPAddress()));
+                log.Info(new LogContent(Username+":登陆", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
             return Json(model);
         }

@@ -80,7 +80,7 @@ namespace NW.BLL
         #endregion
 
 
-        #region 得到video业务逻辑层
+        #region 得到image业务逻辑层
         IImageBLL iImageBLL;
         public IImageBLL IImageBLL
         {
@@ -97,6 +97,23 @@ namespace NW.BLL
         }
         #endregion
 
+
+        #region 得到log业务逻辑层
+        ILogBLL iLogBLL;
+        public ILogBLL ILogBLL
+        {
+            get
+            {
+                if (iLogBLL == null)
+                    iLogBLL = new LogBLL();
+                return iLogBLL;
+            }
+            set
+            {
+                iLogBLL = value;
+            }
+        }
+        #endregion
 
     }
 }

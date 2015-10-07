@@ -14,7 +14,7 @@ namespace NW.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            log.Info(new LogContent("test", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+           
             return View();
         }
     }

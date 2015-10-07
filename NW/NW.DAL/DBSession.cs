@@ -97,5 +97,22 @@ namespace NW.DAL
         }
         #endregion
 
+        #region ILogDAL
+        ILogDAL iLogDAL;
+        public ILogDAL LogDAL
+        {
+            get
+            {
+                if (iLogDAL == null)
+                    iLogDAL = new LogDAL();
+                return iLogDAL;
+            }
+            set
+            {
+                iLogDAL = value;
+            }
+        }
+        #endregion
+
     }
 }
