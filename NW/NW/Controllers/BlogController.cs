@@ -1,4 +1,5 @@
-﻿using NW.Entity.ViewModels;
+﻿using NW.Entity;
+using NW.Entity.ViewModels;
 using NW.Utility;
 using PagedList;
 using System;
@@ -24,6 +25,14 @@ namespace NW.Controllers
             }
             var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 20, totalCount);
             return View(articleAsIPagedList);
+        }
+
+        [HttpGet]
+        public ActionResult Show(int id)
+        {
+            var article = new Article();
+            article = bllSession.IArticleBLL.GetEntity(id);
+            return View(new vArticle(article));
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿@model NW.Entity.ViewModels.vArticle
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container top-1-8">
+     <article class="inner-box">
+         <div class="article-header">
+             <h2>@Model.Title</h2>
+         </div>
+         <div class="article-content">
+              @Html.Sanitized(Model.Description)
+         </div>
+     </article>
+</div>
+
