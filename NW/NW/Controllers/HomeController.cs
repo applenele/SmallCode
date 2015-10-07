@@ -1,4 +1,5 @@
-﻿using NW.Log4net;
+﻿using NW.Entity.DataModels;
+using NW.Log4net;
 using NW.Utility;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace NW.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            log.Info(new LogContent("test", "记录", HttpHelper.GetIPAddress()));
+            log.Info(new LogContent("test", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             return View();
         }
     }
