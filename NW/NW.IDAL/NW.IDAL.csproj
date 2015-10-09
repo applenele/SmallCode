@@ -45,6 +45,7 @@
     <Compile Include="ICategoryDAL.cs" />
     <Compile Include="IImageDAL.cs" />
     <Compile Include="ILogDAL.cs" />
+    <Compile Include="IReplyDAL.cs" />
     <Compile Include="IUserDAL.cs" />
     <Compile Include="IVideoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
