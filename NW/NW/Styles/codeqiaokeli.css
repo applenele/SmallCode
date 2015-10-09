@@ -1,5 +1,5 @@
 ﻿body {
-    background-color:#F0F0F0;
+    background-color: #F0F0F0;
 }
 
 
@@ -28,11 +28,26 @@
     border-radius: 4px;
 }
 
-.entry-header {
+.article-header-sub {
+    list-style: none;
+    height:30px;
+    margin-left:-40px;
+}
 
+    .article-header-sub li {
+        float: left;
+        margin-right:20px;
+    }
+
+.article-content {
+    margin-top: 10px;
 }
 
 
 .top-1-8 {
-   margin-top:80px;
+    margin-top: 80px;
+}
+
+.clear {
+    clear: both;
 }

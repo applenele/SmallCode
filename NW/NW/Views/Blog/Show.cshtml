@@ -9,7 +9,13 @@
         <div class="article-header">
             <h2> <a href="/Blog/Show/@Model.Id">@Model.Title</a></h2>
             <div>
-                作者:<span>@Model.Username</span> | 发表时间:<span>@Model.Time</span> | 分类:<span>@Model.Category</span> | 点击率:<span>@Model.Browses</span>
+                <ul class="article-header-sub">
+                    <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>@Model.Username</span></li>
+                    <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span>@Model.Time</span></li>
+                    <li><span class="glyphicon glyphicon-filter" aria-hidden="true"></span><span>@Model.Category</span></li>
+                    <li><span class="glyphicon glyphicon-fire" aria-hidden="true"></span><span>@Model.Browses</span></li>
+                </ul>
+                <div class="clear"></div>
             </div>
         </div>
         <div class="article-content">
