@@ -41,7 +41,12 @@ namespace NW.DAL
 
         public Reply GetEntity(int id)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id where r.Id = @Id";
+            using (Conn)
+            {
+                var data = Conn.Query<Reply, User,Reply>(query, (reply, user) => { reply.User = user; return reply; }, new { Id = id });
+                return data.FirstOrDefault();
+            }
         }
 
         public Reply GetEntityWithRefence(int id)

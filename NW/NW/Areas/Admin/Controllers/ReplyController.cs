@@ -15,5 +15,11 @@ namespace NW.Areas.Admin.Controllers
         {
             return View(bllSession.IReplyBLL.GetReplyAllFather("").ToPagedList(page,20));
         }
+
+        public ActionResult Show(int id)
+        {
+            Reply reply = bllSession.IReplyBLL.GetEntity(id);
+            return View(reply);
+        }
     }
 }

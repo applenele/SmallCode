@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<NW.Entity.Reply>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "评论管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -57,7 +57,7 @@
                         <td>@item.FatherId</td>
                         <td>@item.Description</td>
                         <td>
-                            <a class="link-update" href="/Admin/Log/Show/@item.Id">详情</a>
+                            <a class="link-update" href="/Admin/Reply/Show/@item.Id">详情</a>
                             <a class="link-del" href="javascript:deleteDialog('/Admin/Log/Delete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>

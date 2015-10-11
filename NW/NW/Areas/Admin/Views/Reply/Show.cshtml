@@ -1,0 +1,50 @@
+﻿@model NW.Entity.Reply
+@{
+    ViewBag.Title = "评论展示";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+ 
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/jscss/admin/design/">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Blog/Index">博文管理</a><span class="crumb-step">&gt;</span><span>博文预览</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <table class="insert-tab" width="100%">
+            <tbody>
+                <tr>
+                    <th width="120">用户：</th>
+                    <td>
+                        @Model.User.Username
+                    </td>
+                </tr>
+                <tr>
+                    <th>时间：</th>
+                    <td>
+                        @Model.Time
+                    </td>
+                </tr>
+                <tr>
+                    <th>博客</th>
+                    <td>
+                        @Model.BlogId
+                    </td>
+                </tr>
+                <tr>
+                    <th>父评论</th>
+                    <td>
+                        @Model.FatherId
+                    </td>
+                </tr>
+                <tr>
+                    <th>内容：</th>
+                    <td><div class="markdown-body">@MvcHtmlString.Create(@Model.Description)</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
