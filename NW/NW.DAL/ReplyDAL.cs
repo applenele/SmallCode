@@ -56,11 +56,11 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Reply r left join User u on a.UserId = u.Id left join Reply rr on r.Id = rr.FatherId  where FatherId =null " + whereStr + "  order by  a.Time desc";
+                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId  where r.FatherId is null " + whereStr + "  order by  r.Time desc";
                 }
                 else
                 {
-                    query = "SELECT * FROM Reply r left join User u on a.UserId = u.Id where FatherId =null order by a.Time desc";
+                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId  where r.FatherId is null order by r.Time desc";
                 }
                 Reply lookup = null;
                 var data = Conn.Query<Reply, User, Reply, Reply>(query,
