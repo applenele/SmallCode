@@ -23,8 +23,6 @@ namespace NW.Entity
         public int UserId { set; get; }
 
         public User User { set; get; }
-
-
          
     }
 }
