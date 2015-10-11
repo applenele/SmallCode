@@ -24,15 +24,23 @@
         </div>
     </article>
 
-    <article>
+    <div class="inner-box">
         <form action="/Blog/Reply/@Model.Id" method="post">
-            @Html.AntiForgeryToken();
+            @Html.AntiForgeryToken()
             内容：
             <textarea name="Description">
             
             </textarea>
             <input type="submit"   value="评论" />
         </form>
-    </article>
+    </div>
+    <div class="inner-box">
+        <table>
+            @foreach(var item in Model)
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
 </div>
 

@@ -51,7 +51,7 @@ namespace NW.Controllers
             reply.UserId = CurrentUser.Id;
             reply.Description = Description;
             bllSession.IReplyBLL.Insert(reply);
-            return Redirect("/Blog/Show" + id);
+            return Redirect("/Blog/Show/" + id);
         }
     }
 }

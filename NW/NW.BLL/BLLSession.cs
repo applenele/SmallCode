@@ -115,5 +115,22 @@ namespace NW.BLL
         }
         #endregion
 
+
+        #region 得到reply业务逻辑层
+        IReplyBLL iReplyBLL;
+        public IReplyBLL IReplyBLL
+        {
+            get
+            {
+                if (iReplyBLL == null)
+                    iReplyBLL = new ReplyBLL();
+                return iReplyBLL;
+            }
+            set
+            {
+                iReplyBLL = value;
+            }
+        }
+        #endregion
     }
 }
