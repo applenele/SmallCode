@@ -28,9 +28,9 @@
     <div class="inner-box">
         <form action="/Blog/Reply/@Model.Id" method="post">
             @Html.AntiForgeryToken()
-            内容：
-            <textarea name="Description"></textarea>
-            <input type="submit" value="评论" />
+            评论：
+            <textarea name="Description" class="form-control"></textarea> <br/>
+            <input type="submit" class="btn btn-default" value="评论" />
         </form>
     </div>
     <div class="inner-box">
