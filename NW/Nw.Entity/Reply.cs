@@ -8,6 +8,11 @@ namespace NW.Entity
 {
     public class Reply
     {
+
+        public Reply()
+        {
+            Children = new List<Reply>();
+        }
         public int Id { set; get; }
 
         public int UserId { set; get; }

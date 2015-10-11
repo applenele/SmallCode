@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿
+$(document).ready(function () {
 
     $("#btnLogin").click(function () {
         var username = $("#txtUsername").val();
@@ -41,6 +42,11 @@
                 $(".warning").html(data.Msg);
             }
         });
+    });
+
+    $(".btnReReply").click(function () {
+        $(".rereply").hide();
+        $(this).parent(".reply-content-rbtn").children(".rereply").show();
     });
 
 });

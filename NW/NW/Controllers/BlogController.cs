@@ -41,7 +41,7 @@ namespace NW.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult Reply(int id,string Description)
+        public ActionResult Reply(int id,string Description,int? FatherId)
         {
             if (CurrentUser == null)
             {
@@ -50,7 +50,7 @@ namespace NW.Controllers
             Reply reply = new Reply();
             reply.Time = DateTime.Now;
             reply.BlogId = id;
-            
+            reply.FatherId = FatherId;
             reply.UserId = CurrentUser.Id;
             reply.Description = Description;
             bllSession.IReplyBLL.Insert(reply);
