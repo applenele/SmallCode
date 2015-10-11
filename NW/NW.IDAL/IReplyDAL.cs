@@ -9,5 +9,6 @@ namespace NW.IDAL
 {
     public interface  IReplyDAL:IBaseDAL<Reply>
     {
+        IEnumerable<Reply> GetReplyAllFather(string whereStr);
     }
 }

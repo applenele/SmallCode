@@ -60,11 +60,11 @@ namespace NW.DAL
                 }
                 else
                 {
-                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId LEFT JOIN User uu on rr.UserId = uu.Id  where r.FatherId is null and "+whereStr+" order by r.Time desc";
+                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId LEFT JOIN User uu on rr.UserId = uu.Id  where r.FatherId is null and " + whereStr + " order by r.Time desc";
                 }
                 Reply lookup = null;
-                var data = Conn.Query<Reply, User, Reply,User, Reply>(query,
-                    (reply, user, child,_user) =>
+                var data = Conn.Query<Reply, User, Reply, User, Reply>(query,
+                    (reply, user, child, _user) =>
                     {
                         reply.User = user;
                         if (lookup == null || lookup.Id != reply.Id)
@@ -86,6 +86,40 @@ namespace NW.DAL
         public IEnumerable<Reply> GetListByPage(int page, int size, string whereStr)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Reply> GetReplyAllFather(string whereStr)
+        {
+            using (Conn)
+            {
+                string query = "";
+                if (string.IsNullOrEmpty(whereStr))
+                {
+                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId LEFT JOIN User uu on rr.UserId = uu.Id  order by r.Time desc";
+                }
+                else
+                {
+                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId LEFT JOIN User uu on rr.UserId = uu.Id  where " + whereStr + " order by r.Time desc";
+                }
+                Reply lookup = null;
+                var data = Conn.Query<Reply, User, Reply, User, Reply>(query,
+                    (reply, user, child, _user) =>
+                    {
+                        reply.User = user;
+                        if (lookup == null || lookup.Id != reply.Id)
+                        {
+                            lookup = reply;
+                        }
+                        if (child != null)
+                        {
+                            child.User = _user;
+                            lookup.Children.Add(child);
+                        }
+                        return lookup;
+                    }).Distinct();
+
+                return data;
+            }
         }
 
         public int Insert(Reply model)

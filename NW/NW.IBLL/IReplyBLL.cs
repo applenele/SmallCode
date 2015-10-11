@@ -9,5 +9,6 @@ namespace NW.IBLL
 {
     public interface IReplyBLL:IBaseBLL<Reply>
     {
+        IEnumerable<Reply> GetReplyAllFather(string whereStr);
     }
 }
