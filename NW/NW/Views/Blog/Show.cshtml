@@ -29,18 +29,19 @@
         <form action="/Blog/Reply/@Model.Id" method="post">
             @Html.AntiForgeryToken()
             内容：
-            <textarea name="Description">
-            
-            </textarea>
-            <input type="submit"   value="评论" />
+            <textarea name="Description"></textarea>
+            <input type="submit" value="评论" />
         </form>
     </div>
     <div class="inner-box">
-        <table>
+        <table border="1" class="replyList">
             @foreach (var item in ViewBag.Replies as List<Reply>)
             {
                 <tr>
-                    <td>@item.User.Username</td>
+                    <td class="user">
+                        <img src="@item.User.Photo" width="60" height="60" alt="@item.User.Username" /> <br/>
+                        <a href="/User/Show/@item.UserId">@item.User.Username</a>
+                    </td>
                     <td>@item.Description</td>
                 </tr>
             }
