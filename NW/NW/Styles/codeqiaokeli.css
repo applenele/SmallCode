@@ -66,8 +66,15 @@
         margin: 20px auto;
     }
 
-        .replyList tr .user {
+        .replyList tr .reply-user {
             text-align: center;
             padding:3px;
             width: 100px;
+        }
+        .replyList tr .reply-content {
+            padding:5px;
+        }
+
+        .replyList tr .reply-content .reply-content-description {
+            margin-top:10px;
         }
