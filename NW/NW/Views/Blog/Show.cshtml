@@ -40,8 +40,10 @@
             {
                 <tr>
                     <td class="reply-user">
-                        <img src="@item.User.Photo" width="60" height="60" alt="@item.User.Username" /> <br />
-                        <a href="/User/Show/@item.UserId">@item.User.Username</a>
+                        <div><a href="/User/Show/@item.UserId">@item.User.Username</div>
+                        <div>
+                            <img src="@item.User.Photo" width="60" height="60" alt="@item.User.Username" /> <br />
+                        </div>
                     </td>
                     <td class="reply-content">
                         <div class="reply-content-sub">
@@ -51,12 +53,17 @@
                         <div class="reply-content-children">
                             @if (item.Children != null)
                             {
-                                <table>
+                                <table border="1" class="reReplyList">
                                     @foreach (var _item in @item.Children)
                                     {
                                         <tr>
+                                            <td style="text-align:center;">
+                                                <img src="@_item.User.Photo" width="30" height="30" alt="@_item.User.Username" /> <br />
+                                                @_item.User.Username
+                                            </td>
                                             <td>
-                                                @_item.UserId
+                                                时间：@_item.Time <br />
+                                                @_item.Description
                                             </td>
                                         </tr>
                                     }

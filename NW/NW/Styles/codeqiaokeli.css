@@ -66,9 +66,13 @@
         margin: 20px auto;
     }
 
+        .replyList tr td {
+            vertical-align: top;
+        }
+
         .replyList tr .reply-user {
-            text-align: center;
-            padding: 3px;
+            text-align:center;
+            padding: 10px 0;
             width: 100px;
         }
 
@@ -83,3 +87,13 @@
             .replyList tr .reply-content .reply-content-rbtn {
                 margin-top: 10px;
             }
+
+
+.reReplyList {
+    padding: 5px;
+}
+
+    .reReplyList tr td {
+         vertical-align: top;
+        padding: 3px;
+    }

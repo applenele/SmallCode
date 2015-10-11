@@ -60,19 +60,24 @@ namespace NW.DAL
                 }
                 else
                 {
-                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId  where r.FatherId is null order by r.Time desc";
+                    query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id left join Reply rr on r.Id = rr.FatherId LEFT JOIN User uu on rr.UserId = uu.Id  where r.FatherId is null order by r.Time desc";
                 }
                 Reply lookup = null;
-                var data = Conn.Query<Reply, User, Reply, Reply>(query,
-                    (reply, user, father) =>
+                var data = Conn.Query<Reply, User, Reply,User, Reply>(query,
+                    (reply, user, child,_user) =>
                     {
                         reply.User = user;
                         if (lookup == null || lookup.Id != reply.Id)
+                        {
                             lookup = reply;
-                        if (father != null)
-                            lookup.Children.Add(father);
+                        }
+                        if (child != null)
+                        {
+                            child.User = _user;
+                            lookup.Children.Add(child);
+                        }
                         return lookup;
-                    });
+                    }).Distinct();
 
                 return data;
             }
