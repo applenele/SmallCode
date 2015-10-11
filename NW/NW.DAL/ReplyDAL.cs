@@ -51,7 +51,31 @@ namespace NW.DAL
 
         public IEnumerable<Reply> GetList(string whereStr)
         {
-            throw new NotImplementedException();
+            using (Conn)
+            {
+                string query = "";
+                if (!string.IsNullOrEmpty(whereStr))
+                {
+                    query = "SELECT * FROM Reply r left join User u on a.UserId = u.Id left join Reply rr on r.Id = rr.FatherId  where FatherId =null " + whereStr + "  order by  a.Time desc";
+                }
+                else
+                {
+                    query = "SELECT * FROM Reply r left join User u on a.UserId = u.Id where FatherId =null order by a.Time desc";
+                }
+                Reply lookup = null;
+                var data = Conn.Query<Reply, User, Reply, Reply>(query,
+                    (reply, user, father) =>
+                    {
+                        reply.User = user;
+                        if (lookup == null || lookup.Id != reply.Id)
+                            lookup = reply;
+                        if (father != null)
+                            lookup.Children.Add(father);
+                        return lookup;
+                    });
+
+                return data;
+            }
         }
 
         public IEnumerable<Reply> GetListByPage(int page, int size, string whereStr)
@@ -63,7 +87,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Reply(UserId,Description,FatherId,Time)VALUES(@UserId,@Description,@FatherId,@Time)";
+                string query = "INSERT INTO Reply(UserId,BlogId,Description,FatherId,Time)VALUES(@UserId,@BlogId,@Description,@FatherId,@Time)";
                 return Conn.Execute(query, model);
             }
         }
@@ -72,7 +96,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Reply SET  UserId=@UserId,Description=@Description,FatherId=@FatherId,Time=@Time WHERE Id =@Id";
+                string query = "UPDATE Reply SET  UserId=@UserId,BlogId = @BlogId,Description=@Description,FatherId=@FatherId,Time=@Time WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }

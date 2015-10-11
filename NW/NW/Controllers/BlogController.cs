@@ -36,5 +36,22 @@ namespace NW.Controllers
             bllSession.IArticleBLL.Update(article);
             return View(new vArticle(article));
         }
+
+        [ValidateAntiForgeryToken]
+        public ActionResult Reply(int id,string Description)
+        {
+            if (CurrentUser == null)
+            {
+                return Redirect("/Shared/Info?msg=请先登录");
+            }
+            Reply reply = new Reply();
+            reply.Time = DateTime.Now;
+            reply.BlogId = id;
+            
+            reply.UserId = CurrentUser.Id;
+            reply.Description = Description;
+            bllSession.IReplyBLL.Insert(reply);
+            return Redirect("/Blog/Show" + id);
+        }
     }
 }

@@ -7,6 +7,7 @@
 <div class="container top-1-8">
     <article class="inner-box">
         <div class="article-header">
+            <input type="hidden" value="@Model.Id" id="blogId" />
             <h2> <a href="/Blog/Show/@Model.Id">@Model.Title</a></h2>
             <div>
                 <ul class="article-header-sub">
@@ -21,6 +22,17 @@
         <div class="article-content">
             @Html.Sanitized(Model.Description)
         </div>
+    </article>
+
+    <article>
+        <form action="/Blog/Reply/@Model.Id" method="post">
+            @Html.AntiForgeryToken();
+            内容：
+            <textarea name="Description">
+            
+            </textarea>
+            <input type="submit"   value="评论" />
+        </form>
     </article>
 </div>
 

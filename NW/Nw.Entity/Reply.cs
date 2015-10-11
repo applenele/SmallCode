@@ -12,10 +12,16 @@ namespace NW.Entity
 
         public int UserId { set; get; }
 
+        public int BlogId { set; get; }
+
         public string Description { set; get; }
 
         public int? FatherId { set; get; }
 
         public DateTime Time { set; get; }
+
+        public virtual User User { set; get; }
+
+        public virtual List<Reply> Children { set; get; }
     }
 }

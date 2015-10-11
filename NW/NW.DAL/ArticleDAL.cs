@@ -74,6 +74,7 @@ namespace NW.DAL
                 }
 
                 var data = Conn.Query<Article, User, Article>(query, (article, user) => { article.User = user; return article; });
+              
                 return data;
             }
         }

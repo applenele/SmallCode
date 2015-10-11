@@ -114,5 +114,23 @@ namespace NW.DAL
         }
         #endregion
 
+        #region IReplyDAL
+        IReplyDAL iReplyDAL;
+        public IReplyDAL ReplyDAL
+        {
+            get
+            {
+                if (iReplyDAL == null)
+                    iReplyDAL = new ReplyDAL();
+                return iReplyDAL;
+            }
+            set
+            {
+                iReplyDAL = value;
+            }
+        }
+        #endregion
+
+
     }
 }
