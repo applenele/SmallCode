@@ -34,6 +34,9 @@ namespace NW.Controllers
             article = bllSession.IArticleBLL.GetEntity(id);
             article.Browses = article.Browses + 1;
             bllSession.IArticleBLL.Update(article);
+            List<Reply> replies = new List<Entity.Reply>();
+            replies = bllSession.IReplyBLL.GetList("").ToList();
+            ViewBag.Replies = replies;
             return View(new vArticle(article));
         }
 

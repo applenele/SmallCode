@@ -1,4 +1,5 @@
 ﻿@model NW.Entity.ViewModels.vArticle
+@using NW.Entity;
 @{
     ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -36,10 +37,13 @@
     </div>
     <div class="inner-box">
         <table>
-            @foreach(var item in Model)
-            <tr>
-                <td></td>
-            </tr>
+            @foreach (var item in ViewBag.Replies as List<Reply>)
+            {
+                <tr>
+                    <td>@item.User.Username</td>
+                    <td>@item.Description</td>
+                </tr>
+            }
         </table>
     </div>
 </div>
