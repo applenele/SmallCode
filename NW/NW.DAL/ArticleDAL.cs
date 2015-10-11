@@ -66,7 +66,7 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Article a where " + whereStr + " left join User u on a.UserId = u.Id order by a.Time desc";
+                    query = "SELECT * FROM Article a left join User u on a.UserId = u.Id  where " + whereStr + "  order by  a.Time desc";
                 }
                 else
                 {
