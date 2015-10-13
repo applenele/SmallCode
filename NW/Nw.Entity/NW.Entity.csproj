@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Article.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Course.cs" />
     <Compile Include="DataModels\AjaxModel.cs" />
     <Compile Include="DataModels\CommonEnum.cs" />
     <Compile Include="Image.cs" />
