@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ArticleDAL.cs" />
     <Compile Include="CategoryDAL.cs" />
+    <Compile Include="CourseDAL.cs" />
     <Compile Include="DBSession.cs" />
     <Compile Include="DBSessionFactory.cs" />
     <Compile Include="ImageDAL.cs" />
