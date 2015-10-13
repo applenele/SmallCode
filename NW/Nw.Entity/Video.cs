@@ -10,6 +10,8 @@ namespace NW.Entity
     {
         public int Id { set; get; }
 
+        public int CourseId { set; get; }
+
         public string Title { set; get; }
         public string Category { set; get; }
 
