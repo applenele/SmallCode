@@ -43,6 +43,7 @@
     <Compile Include="IArticleBLL.cs" />
     <Compile Include="IBaseBLL.cs" />
     <Compile Include="ICategoryBLL.cs" />
+    <Compile Include="ICourseBLL.cs" />
     <Compile Include="IImageBLL.cs" />
     <Compile Include="ILogBLL.cs" />
     <Compile Include="IReplyBLL.cs" />

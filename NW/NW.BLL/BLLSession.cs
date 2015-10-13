@@ -132,5 +132,23 @@ namespace NW.BLL
             }
         }
         #endregion
+
+
+        #region 得到Course业务逻辑层
+        ICourseBLL iCourseBLL;
+        public ICourseBLL ICourseBLL
+        {
+            get
+            {
+                if (iCourseBLL == null)
+                    iCourseBLL = new CourseBLL();
+                return iCourseBLL;
+            }
+            set
+            {
+                iCourseBLL = value;
+            }
+        }
+        #endregion
     }
 }
