@@ -19,5 +19,7 @@ namespace NW.Entity
         public string Category { get; set; }
 
         public string Cover { get; set; }
+
+        public string Lecturer { set; get; }
     }
 }

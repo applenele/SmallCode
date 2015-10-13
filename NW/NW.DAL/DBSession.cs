@@ -132,5 +132,22 @@ namespace NW.DAL
         #endregion
 
 
+
+        #region iCourseDAL
+        ICourseDAL iCourseDAL;
+        public ICourseDAL CourseDAL
+        {
+            get
+            {
+                if (iCourseDAL == null)
+                    iCourseDAL = new CourseDAL();
+                return iCourseDAL;
+            }
+            set
+            {
+                iCourseDAL = value;
+            }
+        }
+        #endregion
     }
 }
