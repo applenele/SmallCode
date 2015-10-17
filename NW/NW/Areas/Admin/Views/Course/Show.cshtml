@@ -1,0 +1,62 @@
+﻿@model NW.Entity.Course
+@{
+    ViewBag.Title = "课程展示";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/Admin/Home/">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Course/Index">课程管理</a><span class="crumb-step">&gt;</span><span>课程预览</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <table class="insert-tab" width="100%">
+            <tbody>
+                <tr>
+                    <th width="120">分类：</th>
+                    <td>
+                        @Model.Category
+                    </td>
+                </tr>
+                <tr>
+                    <th>标题：</th>
+                    <td>
+                        @Model.Title
+                    </td>
+                </tr>
+                <tr>
+                    <th>封面：</th>
+                    <td>
+                        <img src="@Model.Cover" alt="@Model.Title" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>主讲人</th>
+                    <td>
+                        @Model.Lecturer
+                    </td>
+                </tr>
+                <tr>
+                    <th>时间</th>
+                    <td>
+                        @Model.Time
+                    </td>
+                </tr>
+                <tr>
+                    <th>浏览量</th>
+                    <td>
+                        @Model.Browses
+                    </td>
+                </tr>
+                <tr>
+                    <th>内容：</th>
+                    <td><div class="markdown-body">@MvcHtmlString.Create(@Model.Description)</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

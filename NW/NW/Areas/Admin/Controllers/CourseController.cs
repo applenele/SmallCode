@@ -21,7 +21,7 @@ namespace NW.Areas.Admin.Controllers
         /// <param name="page"></param>
         /// <returns></returns>
         // GET: Admin/Course
-        public ActionResult Index(string Category, string Key,int page=1)
+        public ActionResult Index(string Category, string Key, int page = 1)
         {
             string where = "";
             if (!string.IsNullOrEmpty(Category))
@@ -52,13 +52,13 @@ namespace NW.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Add(string Category,string Title,string Lecturer,string Cover,string Description)
+        public ActionResult Add(string Category, string Title, string Lecturer, string Cover, string Description)
         {
             List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
             ViewBag.Categories = categories;
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("","数据填写错误！");
+                ModelState.AddModelError("", "数据填写错误！");
             }
             else
             {
@@ -88,7 +88,9 @@ namespace NW.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Show(int id)
         {
-            return View();
+            Course course = new Course();
+            course = bllSession.ICourseBLL.GetEntity(id);
+            return View(course);
         }
     }
 }
