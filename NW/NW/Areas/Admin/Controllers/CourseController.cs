@@ -84,5 +84,11 @@ namespace NW.Areas.Admin.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Show(int id)
+        {
+            return View();
+        }
     }
 }
