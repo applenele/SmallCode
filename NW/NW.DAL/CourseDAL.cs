@@ -65,11 +65,11 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Course  where " + whereStr + "  order by  a.Time desc";
+                    query = "SELECT * FROM Course  where " + whereStr + "  order by Time desc";
                 }
                 else
                 {
-                    query = "SELECT * FROM Course order by a.Time desc";
+                    query = "SELECT * FROM Course order by Time desc";
                 }
 
                 var data = Conn.Query<Course>(query);

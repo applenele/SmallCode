@@ -21,5 +21,7 @@ namespace NW.Entity
         public string Cover { get; set; }
 
         public string Lecturer { set; get; }
+
+        public int Browses { set; get; }
     }
 }
