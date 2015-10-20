@@ -60,6 +60,8 @@ namespace NW.Areas.Admin.Controllers
                     model.Path = "/Videos/"+model.CourseId+"/" + random + Path.GetExtension(file.FileName);
                     model.UserId = CurrentUser.Id;
                     model.Time = DateTime.Now;
+                    model.Browses = 0;
+                    model.ContentType = file.ContentType;
                     bllSession.IVideoBLL.Insert(model);
 
                     return Redirect("/Admin/Course/Show/"+model.CourseId);

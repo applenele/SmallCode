@@ -36,6 +36,8 @@ namespace NW.Entity
 
         public int Browses { set; get; }
 
+        public string ContentType { set; get; }
+
         public virtual Course Course { set; get; }
 
         public virtual User User { set; get; }
