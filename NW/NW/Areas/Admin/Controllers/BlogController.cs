@@ -54,6 +54,7 @@ namespace NW.Areas.Admin.Controllers
         /// <returns></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Add(string Title, string Description, string Category)
         {
             List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
@@ -132,6 +133,7 @@ namespace NW.Areas.Admin.Controllers
         #region 修改博文
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit(Article model)
         {
             Article _article = new Article();
