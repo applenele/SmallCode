@@ -8,11 +8,18 @@ namespace NW.Entity
 {
     public class Video
     {
+        public Video()
+        {
+            User = new User();
+            Course = new Course();
+        }
+
         public int Id { set; get; }
 
         public int CourseId { set; get; }
 
         public string Title { set; get; }
+
         public string Category { set; get; }
 
         public string Path { set; get; }
@@ -27,6 +34,9 @@ namespace NW.Entity
 
         public int AuthorityAsInt { set; get; }
 
+        public virtual Course Course { set; get; }
+
+        public virtual User User { set; get; }
     }
 
     public enum Authority { 免费观看, 会员观看 }

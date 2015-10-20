@@ -105,6 +105,9 @@ namespace NW.Areas.Admin.Controllers
         {
             Course course = new Course();
             course = bllSession.ICourseBLL.GetEntity(id);
+            List<Video> videos = new List<Video>();
+            videos = bllSession.IVideoBLL.GetList("CourseId="+id).ToList();
+            ViewBag.Videos = videos;
             return View(course);
         }
 

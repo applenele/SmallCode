@@ -46,13 +46,17 @@ namespace NW.DAL
 
         public Video GetEntity(int id)
         {
-            Video video;
-            string query = "SELECT * FROM Video WHERE Id = @Id";
+            Video video =null;
+            string query = "SELECT * FROM Video as v left join Course as c on v.CourseId =c.Id WHERE v.Id = @Id";
             using (Conn)
             {
-                video = Conn.Query<Video>(query, new { Id = id }).SingleOrDefault();
-                return video;
+                video = Conn.Query<Video, Course, Video>(query, (_video, course) =>
+                {
+                    _video.Course = course;
+                    return _video;
+                }, new { Id = id }).FirstOrDefault();
             }
+            return video;
         }
 
         public Video GetEntityWithRefence(int id)
@@ -67,13 +71,17 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(query))
                 {
-                    query = "SELECT * FROM Video where " + whereStr + " order by Time";
+                    query = "SELECT * FROM Video as v left join Course  as c on v.CourseId =c.Id  where " + whereStr + " order by v.Time";
                 }
                 else
                 {
-                    query = "SELECT * FROM Video order by Time";
+                    query = "SELECT * FROM Video as v left join Course  as c on v.CourseId =c.Id  order by v.Time";
                 }
-                return Conn.Query<Video>(query);
+                return Conn.Query<Video,Course,Video>(query,(video,course)=>
+                {
+                    video.Course = course;
+                    return video; 
+                }).Distinct();
             }
         }
 

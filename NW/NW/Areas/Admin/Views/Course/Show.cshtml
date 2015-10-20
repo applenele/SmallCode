@@ -1,4 +1,5 @@
 ﻿@model NW.Entity.Course
+@using NW.Entity;
 @{
     ViewBag.Title = "课程展示";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -56,6 +57,33 @@
                     <td><div class="markdown-body">@MvcHtmlString.Create(@Model.Description)</div></td>
                 </tr>
             </tbody>
+        </table>
+
+        <h2>视屏列表 <a href="/Admin/Video/Add">增加视屏</a></h2>
+        <table class="result-tab">
+            <tr>
+                <th>ID</th>
+                <th>课程</th>
+                <th>标题</th>
+                <th>分类</th>
+                <th>添加时间</th>
+                <th>权限</th>
+                <th>操作</th>
+            </tr>
+
+            @foreach (var item in ViewBag.Videos as List<Video>)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Course.Title</td>
+                    <td>@item.Title</td>
+                    <td>@item.Category</td>
+                    <td>@item.Time</td>
+                    <td>@item.AuthorityAsInt</td>
+                    <td><a href="/Admin/Video/Delete/@item.Id">删除</a>|<a href="/Admin/Video/Edit">修改</a></td>
+                </tr>
+            }
+
         </table>
     </div>
 </div>

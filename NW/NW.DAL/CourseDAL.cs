@@ -45,7 +45,7 @@ namespace NW.DAL
 
         public Course GetEntity(int id)
         {
-            string query = "SELECT * FROM Course where Id=@Id";
+            string query = "SELECT * FROM Course  where Id=@Id";
             using (Conn)
             {
                 var data = Conn.Query<Course>(query, new { Id = id });
