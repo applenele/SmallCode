@@ -59,8 +59,8 @@
             </tbody>
         </table>
 
-        <h2>视屏列表 <a href="/Admin/Video/Add">增加视屏</a></h2>
-        <table class="result-tab">
+        <h2>视屏列表 <a href="/Admin/Video/Add?CourseId=@Model.Id">增加视屏</a></h2>
+        <table class="result-tab" style="width:100%;">
             <tr>
                 <th>ID</th>
                 <th>课程</th>
@@ -79,7 +79,16 @@
                     <td>@item.Title</td>
                     <td>@item.Category</td>
                     <td>@item.Time</td>
-                    <td>@item.AuthorityAsInt</td>
+                    <td>
+                        @if (item.AuthorityAsInt == 0)
+                        {
+                            <span>免费观看</span>
+                        }
+                        else
+                        {
+                            <span>会员观看</span>
+                        }
+                    </td>
                     <td><a href="/Admin/Video/Delete/@item.Id">删除</a>|<a href="/Admin/Video/Edit">修改</a></td>
                 </tr>
             }

@@ -154,6 +154,7 @@
     <Content Include="Areas\Admin\Views\Course\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Course\Show.cshtml" />
     <Content Include="Areas\Admin\Views\Course\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Video\Add.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -178,6 +179,7 @@
     <Compile Include="Areas\Admin\Controllers\LogController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReplyController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\VideoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
@@ -217,6 +219,7 @@
     <Folder Include="Areas\Admin\Views\Base\" />
     <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Models\" />
+    <Folder Include="Videos\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Image\" />

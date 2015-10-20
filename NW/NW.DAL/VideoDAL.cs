@@ -89,7 +89,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Video(Title,Description,Time,Browses,Category,UserId,Path,Secret,AuthorityAsInt)VALUES(@Title,@Description,@Time,@Browses,@Category,@UserId,@Path,@Secret,@AuthorityAsInt)";
+                string query = "INSERT INTO Video(CourseId,Title,Description,Time,Browses,Category,UserId,Path,AuthorityAsInt)VALUES(@CourseId,@Title,@Description,@Time,@Browses,@Category,@UserId,@Path,@AuthorityAsInt)";
                 return Conn.Execute(query, model);
             }
         }
@@ -98,7 +98,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE User SET Title=@Title,Description=@Description,Time=@Time,Browses=@Browses,Category=@Category,UserId=@UserId,Path=@Path,Secret=@Secret,AuthorityAsInt=@AuthorityAsInt WHERE Id =@Id";
+                string query = "UPDATE User SET CourseId=@CourseId ,Title=@Title,Description=@Description,Time=@Time,Browses=@Browses,Category=@Category,UserId=@UserId,Path=@Path,AuthorityAsInt=@AuthorityAsInt WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }

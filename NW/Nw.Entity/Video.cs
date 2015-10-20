@@ -34,6 +34,8 @@ namespace NW.Entity
 
         public int AuthorityAsInt { set; get; }
 
+        public int Browses { set; get; }
+
         public virtual Course Course { set; get; }
 
         public virtual User User { set; get; }

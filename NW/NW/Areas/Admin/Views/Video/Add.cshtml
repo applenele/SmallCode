@@ -1,0 +1,73 @@
+﻿@using NW.Entity;
+@{
+    Course course = ViewBag.Course;
+    ViewBag.Title = "视屏增加";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/Admin/Home/Index">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Course/Index/">课程管理</a><span class="crumb-step">&gt;</span><span>新增视屏</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <form action="/Admin/Video/Add" method="post" name="frmAddVideo" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <table class="insert-tab" width="100%">
+                <tbody>
+                    <tr>
+                        <th>课程 <input type="hidden" name="CourseId" value="@course.Id" /></th>
+                        <td>@course.Title</td>
+                    </tr>
+                    <tr>
+                        <th width="120"><i class="require-red">*</i>分类：</th>
+                        <td>
+                            <select name="Category" id="Category" class="required">
+                                <option value="">请选择</option>
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <option value="@item.Description">@item.Description</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><i class="require-red">*</i>标题：</th>
+                        <td>
+                            <input class="common-text required" id="Title" name="Title" size="50" value="" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>描述：</th>
+                        <td><textarea name="Description" class="common-textarea" id="Description" cols="30" style="width: 98%;" rows="10"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th>观看权限：</th>
+                        <td>
+                            <select name="AuthorityAsInt">
+                                <option value="0">免费观看</option>
+                                <option value="1">会员观看</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>视屏文件：</th>
+                        <td>
+                            <input type="file" name="file" value="选择视屏文件" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                            <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
