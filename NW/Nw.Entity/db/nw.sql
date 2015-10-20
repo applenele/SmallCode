@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50540
 File Encoding         : 65001
 
-Date: 2015-10-20 23:31:17
+Date: 2015-10-21 02:03:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -55,7 +55,7 @@ CREATE TABLE `course` (
   `Lecturer` varchar(255) DEFAULT NULL,
   `Browses` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for image
@@ -68,13 +68,13 @@ CREATE TABLE `image` (
   `Path` varchar(255) DEFAULT NULL,
   `Time` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for log
+-- Table structure for logs
 -- ----------------------------
-DROP TABLE IF EXISTS `log`;
-CREATE TABLE `log` (
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Time` datetime DEFAULT NULL,
   `Thread` varchar(255) DEFAULT NULL,
@@ -84,7 +84,7 @@ CREATE TABLE `log` (
   `Exception` varchar(255) DEFAULT NULL,
   `Ip` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for reply
@@ -135,5 +135,7 @@ CREATE TABLE `video` (
   `Description` text,
   `UserId` int(11) NOT NULL,
   `AuthorityAsInt` int(1) NOT NULL DEFAULT '0',
+  `Browses` int(11) NOT NULL DEFAULT '0',
+  `ContentType` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
