@@ -96,7 +96,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Article SET  Title=@Title,Description=@Description,Time=@Time,Browses=@Browses,Category=@Category,Cover=@Cover,Lecturer = @Lecturer WHERE Id =@Id";
+                string query = "UPDATE Course SET  Title=@Title,Description=@Description,Browses=@Browses,Category=@Category,Cover=@Cover,Lecturer = @Lecturer WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }
