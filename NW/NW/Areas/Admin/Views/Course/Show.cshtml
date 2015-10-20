@@ -73,7 +73,7 @@
 
             @foreach (var item in ViewBag.Videos as List<Video>)
             {
-                <tr>
+                <tr id="@item.Id">
                     <td>@item.Id</td>
                     <td>@item.Course.Title</td>
                     <td>@item.Title</td>
@@ -89,7 +89,7 @@
                             <span>会员观看</span>
                         }
                     </td>
-                    <td><a href="/Admin/Video/Delete/@item.Id">删除</a>|<a href="/Admin/Video/Edit">修改</a></td>
+                    <td><a href="javascript:deleteDialog('/Admin/Video/Delete/@item.Id',@item.Id)">删除</a>|<a href="/Admin/Video/Edit">修改</a></td>
                 </tr>
             }
 

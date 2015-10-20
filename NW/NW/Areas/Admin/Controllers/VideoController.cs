@@ -76,5 +76,38 @@ namespace NW.Areas.Admin.Controllers
             }
             return View();
         }
+
+
+        /// <summary>
+        ///  删除视屏
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                Video video = new Video();
+                video = bllSession.IVideoBLL.GetEntity(id);
+                var phicyPath = HostingEnvironment.MapPath(video.Path);
+                System.IO.File.Delete(phicyPath);
+                bool result = bllSession.IVideoBLL.Delete(id);
+                if (result)
+                {
+                    return Content("ok");
+                }
+                else
+                {
+                    return Content("err");
+                }
+            }
+            catch
+            {
+                log.Error(new LogContent("删除视屏出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                return Content("err");
+            }
+          
+        }
     }
 }
