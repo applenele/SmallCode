@@ -1,18 +1,20 @@
-﻿@{
-    ViewBag.Title = "课程增加";
+﻿@model NW.Entity.Course
+@{
+    ViewBag.Title = "课程修改";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 <div class="crumb-wrap">
     <div class="crumb-list">
         <i class="icon-font">
         </i><a href="/Admin/Home/Index">首页</a>
-        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Course/Index/">课程管理</a><span class="crumb-step">&gt;</span><span>新增课程</span>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Course/Index/">课程管理</a><span class="crumb-step">&gt;</span><span>修改课程</span>
     </div>
 </div>
 <div class="result-wrap">
     <div class="result-content">
-        <form action="/Admin/Course/Add" method="post" name="frmAddCourse" enctype="multipart/form-data">
+        <form action="/Admin/Course/Edit" method="post" name="frmEditCourse" enctype="multipart/form-data">
             @Html.AntiForgeryToken()
+            <input type="hidden"  name="Id" value="@Model.Id"/>
             <table class="insert-tab" width="100%">
                 <tbody>
                     <tr>
@@ -22,7 +24,7 @@
                                 <option value="">请选择</option>
                                 @foreach (var item in ViewBag.Categories)
                                 {
-                                    <option value="@item.Description">@item.Description</option>
+                                    <option value="@item.Description" @(Model.Category == item.Description ? "selected" : "")>@item.Description</option>
                                 }
                             </select>
                         </td>
@@ -30,24 +32,26 @@
                     <tr>
                         <th><i class="require-red">*</i>标题：</th>
                         <td>
-                            <input class="common-text required" id="Title" name="Title" size="50" value="" type="text">
+                            <input class="common-text required" id="Title" name="Title" size="50" value="@Model.Title" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th><i class="require-red">*</i>主讲人：</th>
                         <td>
-                            <input class="common-text required" id="Lecturer" name="Lecturer" size="50" value="" type="text">
+                            <input class="common-text required" id="Lecturer" name="Lecturer" size="50" value="@Model.Lecturer" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th><i class="require-red">*</i>封面：</th>
                         <td>
-                            <input class="common-text required" id="Cover" name="Cover" size="50" value="" type="text">
+                            <input class="common-text required" id="Cover" name="Cover" size="50" value="@Model.Cover" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th>描述：</th>
-                        <td><textarea name="Description" class="common-textarea" id="Description" cols="30" style="width: 98%;" rows="10"></textarea></td>
+                        <td>
+                            <textarea name="Description" class="common-textarea" id="Description" cols="30" style="width: 98%;" rows="10">@Model.Description</textarea>
+                        </td>
                     </tr>
                     <tr>
                         <th></th>
@@ -61,4 +65,3 @@
         </form>
     </div>
 </div>
-

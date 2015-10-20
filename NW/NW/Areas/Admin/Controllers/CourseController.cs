@@ -41,6 +41,7 @@ namespace NW.Areas.Admin.Controllers
             return View(bllSession.ICourseBLL.GetList(where).ToPagedList(page, 20));
         }
 
+
         [HttpGet]
         public ActionResult Add()
         {
@@ -49,6 +50,15 @@ namespace NW.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 增加课程
+        /// </summary>
+        /// <param name="Category"></param>
+        /// <param name="Title"></param>
+        /// <param name="Lecturer"></param>
+        /// <param name="Cover"></param>
+        /// <param name="Description"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
@@ -85,6 +95,11 @@ namespace NW.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 展示课程
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Show(int id)
         {
@@ -93,6 +108,12 @@ namespace NW.Areas.Admin.Controllers
             return View(course);
         }
 
+
+        /// <summary>
+        ///  删除课程
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Delete(int id)
         {
@@ -100,6 +121,67 @@ namespace NW.Areas.Admin.Controllers
             return Content("ok");
         }
 
-         
+        /// <summary>
+        /// 修改课程界面
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            ///获取课程
+            var course = bllSession.ICourseBLL.GetEntity(id);
+            ///分类
+            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            ViewBag.Categories = categories;
+            return View(course);
+        }
+
+
+        /// <summary>
+        ///  执行增加课程
+        /// </summary>
+        /// <param name="Category"></param>
+        /// <param name="Title"></param>
+        /// <param name="Lecturer"></param>
+        /// <param name="Cover"></param>
+        /// <param name="Description"></param>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Edit(string Category, string Title, string Lecturer, string Cover, string Description,int Id)
+        {
+            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            ViewBag.Categories = categories;
+            ///获取课程
+            Course course = new Course();
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "数据填写错误！");
+            }
+            else
+            {
+                course.Title = Title;
+                course.Category = Category;
+                course.Lecturer = Lecturer;
+                course.Description = Description;
+                course.Cover = Cover;
+                course.Id = Id;
+                try
+                {
+                    bllSession.ICourseBLL.Update(course);
+                    return Redirect("/Admin/Course/Index");
+                }
+                catch
+                {
+                    log.Error(new LogContent("修改课程出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    ModelState.AddModelError("", "修改出现异常");
+                }
+            }
+            return View(course);
+        }
+
     }
 }

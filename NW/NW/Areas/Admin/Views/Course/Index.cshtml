@@ -63,13 +63,13 @@
                         <td title="@item.Title">
                             <a href="/Admin/Course/Show/@item.Id" title="@item.Title">@item.Title</a>
                         </td>
-                        <td><img src="@item.Cover" alt="@item.Title" /></td>
+                        <td><img src="@item.Cover" alt="@item.Title" width="60" height="60" /></td>
                         <td>@item.Category</td>
                         <td>@item.Time</td>
                         <td>@item.Lecturer</td>
                         <td>
-                            <a class="link-update" href="/Admin/Blog/Edit/@item.Id">修改</a>
-                            <a class="link-del" href="javascript:deleteDialog('/Admin/Blog/Delete/@item.Id',@item.Id)">删除</a>
+                            <a class="link-update" href="/Admin/Course/Edit/@item.Id">修改</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/Course/Delete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>
                 }

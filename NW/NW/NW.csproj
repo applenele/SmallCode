@@ -153,6 +153,7 @@
     <Content Include="Areas\Admin\Views\Course\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Course\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Course\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\Course\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
