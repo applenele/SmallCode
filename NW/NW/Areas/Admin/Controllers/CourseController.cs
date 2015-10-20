@@ -92,5 +92,14 @@ namespace NW.Areas.Admin.Controllers
             course = bllSession.ICourseBLL.GetEntity(id);
             return View(course);
         }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            bllSession.ICourseBLL.Delete(id);
+            return Content("ok");
+        }
+
+         
     }
 }
