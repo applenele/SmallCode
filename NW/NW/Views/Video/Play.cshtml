@@ -9,7 +9,12 @@
             <h2>@Model.Title</h2>
         </div>
         <div>
-          
+            <video   style="visibility: visible; " controls>
+                <source src="http://localhost:55470/@Model.Path" type="video/mp4">
+                <div>
+                    <h3>您的浏览器不支持我们的视频 ：）</h3>
+                </div>
+            </video>
         </div>
         <div>
             @Model.Description
