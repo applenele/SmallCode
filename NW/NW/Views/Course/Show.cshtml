@@ -1,0 +1,22 @@
+﻿@model NW.Entity.Course
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="inner-box top-1-8">
+        <div>
+            <h2>@Model.Title</h2>
+            <div>发表时间：@Model.Time  浏览量： @Model.Browses  主讲人：@Model.Lecturer</div>
+        </div>
+        <div>
+            @Model.Description
+        </div>
+
+        <div>
+        </div>
+    </div>
+</div>
+
+

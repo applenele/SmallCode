@@ -206,6 +206,7 @@
     <Content Include="Views\Blog\Show.cshtml" />
     <Content Include="Views\Talk\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
+    <Content Include="Views\Course\Show.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,4 +1,5 @@
-﻿
+﻿@model PagedList.IPagedList<NW.Entity.Course>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "课程";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,5 +12,20 @@
             <h3 id="h3">感谢关注！该模块暂时未开通</h3>
         </hgroup>
     </header>
+    
+    @foreach (var item in Model)
+    {
+        <div class="inner-box">
+             <div>
+                <h2><a href="/Course/Show/@item.Id">@item.Title</a></h2>
+                 发表时间：@item.Time  浏览量： @item.Browses  主讲人：@item.Lecturer
+             </div>
+             <div class="top-info-wrap">
+                   @item.Description
+             </div>
+        </div>
+    }
+
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </div>
 
