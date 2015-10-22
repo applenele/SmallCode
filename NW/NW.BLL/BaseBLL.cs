@@ -39,9 +39,9 @@ namespace NW.BLL
             return idal.GetEntity(id);
         }
 
-        public T GetEntityWithRefence(string id)
+        public T GetEntityWithRefence(int id)
         {
-            throw new NotImplementedException();
+            return idal.GetEntityWithRefence(id);
         }
 
         public bool Insert(T model)

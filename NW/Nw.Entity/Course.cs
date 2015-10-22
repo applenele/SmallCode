@@ -8,7 +8,13 @@ namespace NW.Entity
 {
     public class Course
     {
-        public int  Id { get; set; }
+
+        public Course()
+        {
+            Videos = new List<Video>();
+        }
+
+        public int Id { get; set; }
 
         public string Title { get; set; }
 
@@ -23,5 +29,7 @@ namespace NW.Entity
         public string Lecturer { set; get; }
 
         public int Browses { set; get; }
+
+        public virtual List<Video> Videos { set; get; }
     }
 }

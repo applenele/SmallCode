@@ -22,7 +22,7 @@ namespace NW.Controllers
         public ActionResult Show(int id)
         {
             Course course = new Course();
-            course = bllSession.ICourseBLL.GetEntity(id);
+            course = bllSession.ICourseBLL.GetEntityWithRefence(id);
             return View(course);
         }
     }

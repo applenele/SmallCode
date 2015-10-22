@@ -20,7 +20,7 @@ namespace NW.IBLL
 
         T GetEntity(int id);
 
-        T GetEntityWithRefence(string id);
+        T GetEntityWithRefence(int id);
 
         IEnumerable<T> GetListByPage(int page,int size,string whereStr);
     }

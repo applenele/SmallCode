@@ -55,7 +55,22 @@ namespace NW.DAL
 
         public Course GetEntityWithRefence(int id)
         {
-            throw new NotImplementedException();
+            string query = "SELECT * FROM Course c LEFT JOIN video v on c.Id = v.CourseId where c.Id=@Id";
+            Course lookup = null;
+            using (Conn)
+            {
+                var data = Conn.Query<Course,Video,Course>(query,
+                    (course,video)=>
+                    {
+                        if (lookup == null || lookup.Id != course.Id)
+                            lookup = course;
+                        if (video != null)
+                            lookup.Videos.Add(video);
+                        return lookup;
+                    }
+                , new { Id = id });
+                return data.FirstOrDefault();
+            }
         }
 
         public IEnumerable<Course> GetList(string whereStr)
