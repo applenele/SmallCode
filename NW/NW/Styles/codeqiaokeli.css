@@ -97,3 +97,9 @@
          vertical-align: top;
         padding: 3px;
     }
+
+
+.videoList {
+  margin-top:20px;
+  line-height:30px;
+}

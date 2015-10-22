@@ -159,6 +159,24 @@
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ckplayer\ckplayer.js" />
+    <Content Include="Scripts\ckplayer\ckplayer.swf" />
+    <Content Include="Scripts\ckplayer\ckplayer.xml" />
+    <Content Include="Scripts\ckplayer\language.xml" />
+    <Content Include="Scripts\ckplayer\related.xml" />
+    <Content Include="Scripts\ckplayer\share.xml" />
+    <Content Include="Scripts\ckplayer\share\feixin.png" />
+    <Content Include="Scripts\ckplayer\share\google.png" />
+    <Content Include="Scripts\ckplayer\share\kaixin001.png" />
+    <Content Include="Scripts\ckplayer\share\msn.png" />
+    <Content Include="Scripts\ckplayer\share\qq.png" />
+    <Content Include="Scripts\ckplayer\share\qq2.png" />
+    <Content Include="Scripts\ckplayer\share\qzone.png" />
+    <Content Include="Scripts\ckplayer\share\rr.png" />
+    <Content Include="Scripts\ckplayer\share\sina.png" />
+    <Content Include="Scripts\ckplayer\share\sohu.png" />
+    <Content Include="Scripts\ckplayer\share\tianya.png" />
+    <Content Include="Scripts\ckplayer\style.swf" />
     <Content Include="Scripts\codeqiaokeli.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
@@ -186,6 +204,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TalkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -207,6 +226,7 @@
     <Content Include="Views\Talk\Index.cshtml" />
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Show.cshtml" />
+    <Content Include="Views\Video\Play.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
