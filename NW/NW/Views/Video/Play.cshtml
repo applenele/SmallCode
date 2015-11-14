@@ -8,16 +8,21 @@
         <div>
             <h2>@Model.Title</h2>
         </div>
-        <div>
-            <video   style="visibility: visible; " controls>
-                <source src="http://localhost:55470/@Model.Path" type="video/mp4">
-                <div>
-                    <h3>您的浏览器不支持我们的视频 ：）</h3>
-                </div>
-            </video>
+        <div style="width:800px;margin:10px auto;">
+            <div id="a1"></div>
+            <script type="text/javascript" src="~/Scripts/ckplayer/ckplayer.js" charset="utf-8"></script>
+            <script type="text/javascript">
+                var flashvars = {
+                    f: '@Model.Path',
+                    c: 0
+                };
+                var params = { bgcolor: '#FFF', allowFullScreen: true, allowScriptAccess: 'always', wmode: 'transparent' };
+                var video = ['@Model.Path'];
+                CKobject.embed('/Scripts/ckplayer/ckplayer.swf', 'a1', 'ckplayer_a1', '800', '600', false, flashvars, video, params);
+            </script>
         </div>
-        <div>
-            @Model.Description
-        </div>
+    </div>
+    <div class="inner-box">
+          @Model.Description
     </div>
 </div>
