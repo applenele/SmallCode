@@ -20,11 +20,7 @@ namespace NW.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(Key))
             {
-                if (!string.IsNullOrEmpty(Key))
-                {
-                    where = where + " and ";
-                }
-                where = where + "Title Username '%" + Key + "%'";
+                where = where + "Username LIKE '%" + Key + "%'";
             }
             return View(bllSession.IUserBLL.GetList(where).ToPagedList(1, 20));
         }
