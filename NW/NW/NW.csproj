@@ -156,6 +156,8 @@
     <Content Include="Areas\Admin\Views\Course\Show.cshtml" />
     <Content Include="Areas\Admin\Views\Course\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Video\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\admin.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -227,7 +229,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Areas\Admin\Views\User\" />
     <Folder Include="Models\" />
     <Folder Include="Videos\" />
     <Folder Include="Views\Admin\" />

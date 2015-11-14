@@ -85,7 +85,7 @@ namespace NW.DAL
             using (Conn)
             {
                 string query = "";
-                if (string.IsNullOrEmpty(query))
+                if (!string.IsNullOrEmpty(query))
                 {
                     query = "SELECT * FROM User where " + whereStr + " order by Time";
                 }
