@@ -25,6 +25,8 @@ namespace NW.Controllers
         {
             Video video = new Video();
             video = bllSession.IVideoBLL.GetEntity(id);
+            video.Browses = video.Browses + 1;
+            bllSession.IVideoBLL.Update(video);
             return View(video);
         }
     }

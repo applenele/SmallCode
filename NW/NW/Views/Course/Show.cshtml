@@ -14,15 +14,20 @@
             @Model.Description
         </div>
 
-        <div  class="videoList">
-              @foreach (var item in Model.Videos)
-              {
-                  <div>
-                      <a href="/Video/Play/@item.Id">@item.Title</a>
-                  </div>
-              }
+        <div class="videoList">
+            @if (Model.Videos.Count > 0)
+            {
+                foreach (var item in Model.Videos)
+                {
+                    <div>
+                        <a href="/Video/Play/@item.Id">@item.Title</a> <span>发布时间：@item.Time</span> <span>播放次数：@item.Browses</span>
+                    </div>
+                }
+            }
+            else
+            {
+                <text>暂无视屏</text>
+            }
         </div>
     </div>
 </div>
-
-
