@@ -41,6 +41,8 @@ namespace NW.Controllers
         }
 
         [ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Reply(int id,string Description,int? FatherId)
         {
             if (CurrentUser == null)

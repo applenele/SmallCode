@@ -4,7 +4,7 @@
     ViewBag.Title = Model.Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
 <div class="container top-1-8">
     <article class="inner-box">
         <div class="article-header">
@@ -29,7 +29,7 @@
         <form action="/Blog/Reply/@Model.Id" method="post">
             @Html.AntiForgeryToken()
             评论：
-            <textarea name="Description" class="form-control" rows="3"></textarea> <br />
+            <textarea name="Description" id="Description" class="form-control" rows="3"></textarea> <br />
             <input type="submit" class="btn btn-default" value="评论" />
         </form>
     </div>
@@ -52,8 +52,8 @@
                                 <div class="reply-content-sub">
                                     时间:@item.Time
                                 </div>
-                                <div class="reply-content-description">@item.Description</div>
-                                @if (item.Children.Count>0)
+                                <div class="reply-content-description">@Html.Raw(@item.Description)</div>
+                                @if (item.Children.Count > 0)
                                 {
                                     <div class="reply-content-children border-left">
                                         <table border="0" class="reReplyList">
@@ -88,7 +88,7 @@
                                             @Html.AntiForgeryToken()
                                             <input type="hidden" name="FatherId" value="@item.Id" />
                                             评论：
-                                            <textarea name="Description" class="form-control" rows="3"></textarea> <br />
+                                            <textarea name="Description" id="Description" class="form-control" rows="3"></textarea> <br />
                                             <input type="submit" class="btn btn-default" value="评论" />
                                         </form>
                                     </div>
@@ -106,3 +106,11 @@
     </div>
 </div>
 
+<script>
+    CKEDITOR.replace('Description',
+  {
+      toolbar: 'Basic',
+      width: "100%",
+      height: "80px"
+  });
+</script>
