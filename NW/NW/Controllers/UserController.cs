@@ -90,5 +90,13 @@ namespace NW.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult Show(int id)
+        {
+            User user = new Entity.User();
+            user = bllSession.IUserBLL.GetEntity(id);
+            return View(user);
+        }
     }
 }
