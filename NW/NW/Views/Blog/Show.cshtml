@@ -35,64 +35,74 @@
     </div>
 
     <div class="inner-box">
-        @if (ViewBag.Replies.Count > 0)
-        {
-            <table border="1" class="replyList">
-                @foreach (var item in ViewBag.Replies as List<Reply>)
+        <div class="block">
+            @if (ViewBag.Replies.Count > 0)
+            {
+                <table class="replyList">
+                    @foreach (var item in ViewBag.Replies as List<Reply>)
                 {
-                    <tr>
-                        <td class="reply-user">
-                            <div><a href="/User/Show/@item.UserId">@item.User.Username</div>
-                            <div>
-                                <img src="@item.User.Photo" width="60" height="60" alt="@item.User.Username" /> <br />
-                            </div>
-                        </td>
-                        <td class="reply-content">
-                            <div class="reply-content-sub">
-                                时间:@item.Time
-                            </div>
-                            <div class="reply-content-description">@item.Description</div>
-                            <div class="reply-content-children">
-                                @if (item.Children != null)
-                                {
-                                    <table border="1" class="reReplyList">
-                                        @foreach (var _item in @item.Children)
-                                        {
-                                            <tr>
-                                                <td style="text-align:center;">
-                                                    <img src="@_item.User.Photo" width="30" height="30" alt="@_item.User.Username" /> <br />
-                                                    @_item.User.Username
-                                                </td>
-                                                <td>
-                                                    时间：@_item.Time <br />
-                                                    @_item.Description
-                                                </td>
-                                            </tr>
-                                        }
-                                    </table>
-                                }
-                            </div>
-                            <div class="reply-content-rbtn">
-                                <a href="javascript:void(0)" class="btnReReply">回复</a>
-                                <div class="rereply" style="display:none;">
-                                    <form action="/Blog/Reply/@Model.Id" method="post">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="FatherId" value="@item.Id" />
-                                        评论：
-                                        <textarea name="Description" class="form-control" rows="3"></textarea> <br />
-                                        <input type="submit" class="btn btn-default" value="评论" />
-                                    </form>
+                        <tr>
+                            <td class="reply-user">
+                                <div><a href="/User/Show/@item.UserId">@item.User.Username</div>
+                                <div>
+                                    <img src="@item.User.Photo" class="face face-1" alt="@item.User.Username" /> <br />
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </table>
-        }
-        else
-        {
-            <text>暂无评论</text>
-        }
+                            </td>
+                            <td class="reply-content">
+                                <div class="reply-content-sub">
+                                    时间:@item.Time
+                                </div>
+                                <div class="reply-content-description">@item.Description</div>
+                                @if (item.Children.Count>0)
+                                {
+                                    <div class="reply-content-children border-left">
+                                        <table border="0" class="reReplyList">
+                                            @foreach (var _item in @item.Children)
+                                            {
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <a href="/User/Show/@_item.UserId">
+                                                            @if (string.IsNullOrEmpty(_item.User.Photo))
+                                                            {
+                                                                <img src="~/Images/user-default.png" class="face face-1-1" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="@_item.User.Photo" class="face face-1-1" alt="@_item.User.Username" /> <br />
+                                                            }
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <span class="user">@_item.User.Username</span> 时间：@_item.Time <br />
+                                                        @_item.Description
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </table>
+                                    </div>
+                                }
+                                <div class="reply-content-rbtn">
+                                    <a href="javascript:void(0)" class="btnReReply">回复</a>
+                                    <div class="rereply" style="display:none;">
+                                        <form action="/Blog/Reply/@Model.Id" method="post">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="FatherId" value="@item.Id" />
+                                            评论：
+                                            <textarea name="Description" class="form-control" rows="3"></textarea> <br />
+                                            <input type="submit" class="btn btn-default" value="评论" />
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+            else
+            {
+                <text>暂无评论</text>
+            }
+        </div>
     </div>
 </div>
 
