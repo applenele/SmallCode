@@ -193,6 +193,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
+    <Compile Include="Controllers\DemandController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TalkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -219,6 +220,7 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Show.cshtml" />
     <Content Include="Views\Video\Play.cshtml" />
+    <Content Include="Views\Demand\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

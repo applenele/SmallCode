@@ -49,6 +49,7 @@
     <Compile Include="Course.cs" />
     <Compile Include="DataModels\AjaxModel.cs" />
     <Compile Include="DataModels\CommonEnum.cs" />
+    <Compile Include="Demand.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

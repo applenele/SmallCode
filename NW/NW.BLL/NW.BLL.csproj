@@ -46,6 +46,7 @@
     <Compile Include="BLLSessionFactory.cs" />
     <Compile Include="CategoryBLL.cs" />
     <Compile Include="CourseBLL.cs" />
+    <Compile Include="DemandBLL.cs" />
     <Compile Include="ImageBLL.cs" />
     <Compile Include="LogBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

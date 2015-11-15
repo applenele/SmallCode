@@ -44,6 +44,7 @@
     <Compile Include="IBaseDAL.cs" />
     <Compile Include="ICategoryDAL.cs" />
     <Compile Include="ICourseDAL.cs" />
+    <Compile Include="IDemandDAL.cs" />
     <Compile Include="IImageDAL.cs" />
     <Compile Include="ILogDAL.cs" />
     <Compile Include="IReplyDAL.cs" />
