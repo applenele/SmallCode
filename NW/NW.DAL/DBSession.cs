@@ -149,5 +149,22 @@ namespace NW.DAL
             }
         }
         #endregion
+
+        #region iDemandDAL
+        IDemandDAL iDemandDAL;
+        public IDemandDAL DemandDAL
+        {
+            get
+            {
+                if (DemandDAL == null)
+                    iDemandDAL = new DemandDAL();
+                return iDemandDAL;
+            }
+            set
+            {
+                iDemandDAL = value;
+            }
+        }
+        #endregion
     }
 }

@@ -150,5 +150,22 @@ namespace NW.BLL
             }
         }
         #endregion
+
+        #region 得到Demand业务逻辑层
+        IDemandBLL iDemandBLL;
+        public IDemandBLL IDemandBLL
+        {
+            get
+            {
+                if (IDemandBLL == null)
+                    IDemandBLL = new DemandBLL();
+                return IDemandBLL;
+            }
+            set
+            {
+                IDemandBLL = value;
+            }
+        }
+        #endregion
     }
 }
