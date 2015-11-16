@@ -1,6 +1,7 @@
 ﻿using NW.BLL;
 using NW.Entity;
 using NW.IBLL;
+using NW.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,28 @@ namespace NW.Controllers
 
 
         public User CurrentUser { get; set; }
+
+        public ActionResult Message(string msg)
+        {
+            return Redirect("/Shared/Info?mag=" + msg);
+        }
+
+        [NonAction]
+        [Obsolete] 
+        protected ActionResult Prompt(Prompt prompt)
+        {
+            Response.StatusCode = prompt.StatusCode;
+            return View("Info", prompt);
+        }
+
+        [NonAction]
+        protected ActionResult Prompt(Action<Prompt> setupPrompt)
+        {
+            Prompt prompt = new Prompt();
+            setupPrompt(prompt);
+            Response.StatusCode = prompt.StatusCode;
+            return View("Info", prompt);
+        }
 
     }
 }

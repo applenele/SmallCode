@@ -391,6 +391,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TalkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
@@ -400,6 +401,7 @@
     <Compile Include="Log4net\CustomLayout.cs" />
     <Compile Include="Log4net\LogContent.cs" />
     <Compile Include="Log4net\ObjectPatternConverter.cs" />
+    <Compile Include="Models\PromptMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -417,6 +419,7 @@
     <Content Include="Views\Course\Show.cshtml" />
     <Content Include="Views\Video\Play.cshtml" />
     <Content Include="Views\User\Show.cshtml" />
+    <Content Include="Views\Shared\Info.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -427,7 +430,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Models\" />
     <Folder Include="Videos\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Base\" />
