@@ -149,5 +149,58 @@ namespace NW.DAL
             }
         }
         #endregion
+
+        #region iPlateforumDAL
+        IPlateforumDAL iPlateforumDAL;
+        public IPlateforumDAL PlateforumDAL
+        {
+            get
+            {
+                if (iPlateforumDAL == null)
+                    iPlateforumDAL = new PlateforumDAL();
+                return iPlateforumDAL;
+            }
+            set
+            {
+                iPlateforumDAL = value;
+            }
+        }
+        #endregion
+
+
+        #region iReplyforumDAL
+        IReplyforumDAL iReplyforumDAL;
+        public IReplyforumDAL ReplyforumDAL
+        {
+            get
+            {
+                if (iReplyforumDAL == null)
+                    iReplyforumDAL = new ReplyforumDAL();
+                return iReplyforumDAL;
+            }
+            set
+            {
+                iReplyforumDAL = value;
+            }
+        }
+        #endregion
+
+
+        #region iTopicforumDAL
+        ITopicforumDAL iTopicforumDAL;
+        public ITopicforumDAL TopicforumDAL
+        {
+            get
+            {
+                if (iTopicforumDAL == null)
+                    iTopicforumDAL = new TopicforumDAL();
+                return iTopicforumDAL;
+            }
+            set
+            {
+                iTopicforumDAL = value;
+            }
+        }
+        #endregion
     }
 }

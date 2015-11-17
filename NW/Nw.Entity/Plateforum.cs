@@ -9,7 +9,7 @@ namespace NW.Entity
     /// <summary>
     /// 论坛板块表
     /// </summary>
-    class Plateforum
+    public class Plateforum
     {
         public int Id { get; set; }
 

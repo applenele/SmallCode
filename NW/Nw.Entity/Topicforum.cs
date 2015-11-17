@@ -9,7 +9,7 @@ namespace NW.Entity
     /// <summary>
     /// 论坛主题表
     /// </summary>
-    class Topicforum
+    public class Topicforum
     {
         public int Id { get; set; }
 
