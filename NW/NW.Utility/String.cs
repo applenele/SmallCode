@@ -183,5 +183,13 @@ namespace NW.Utility
 
             return sUrlList;
         }
+
+        public static string EmailHtml(string email)
+        {
+            string encrytMail = Encryt.AESEncrypt(email);
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"<div>欢迎注册codeqiaokeli <a href=\" http://localhost:55470/User/EmailVerify?encryt={encrytMail}\"> 点击继续完成注册</a></div>");
+            return sb.ToString();
+        }
     }
 }

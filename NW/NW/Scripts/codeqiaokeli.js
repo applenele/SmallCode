@@ -18,6 +18,7 @@ $(document).ready(function () {
         var username = $("#txtRegisterUsername").val();
         var password = $("#txtRegisterPassword").val();
         var confirm = $("#txtConfirm").val();
+        var email = $("#txtEmail").val()
         if (username == "") {
             $(".warning").html("用户名不能为空！");
             return;
@@ -34,7 +35,7 @@ $(document).ready(function () {
             $(".warning").html("两次输入密码不一致！");
             return;
         }
-        $.post("/User/Register", { username: username, password: password }, function (data) {
+        $.post("/User/RegisterDetail", { username: username, password: password,email:email }, function (data) {
             if (data.Statu == "ok") {
                 window.location.href = "/Home/Index";
             }

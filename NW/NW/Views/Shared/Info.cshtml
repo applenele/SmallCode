@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-    <h2>提示</h2>
-    <div>@Model.Title</div>
-    <div><a href="@Model.RedirectUrl">@Model.Details</a></div>
+    <div class="inner-box">
+        <h2>@Model.Title</h2>
+        <div>@Model.Details</div>
+        <div><a href="@Model.RedirectUrl">@Model.RedirectText</a></div>
+    </div>
 </div>

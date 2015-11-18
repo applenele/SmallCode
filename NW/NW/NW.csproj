@@ -411,7 +411,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\RegisterDetail.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\Show.cshtml" />
     <Content Include="Views\Talk\Index.cshtml" />
@@ -420,6 +420,8 @@
     <Content Include="Views\Video\Play.cshtml" />
     <Content Include="Views\User\Show.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
+    <Content Include="Views\User\Test.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

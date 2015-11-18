@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "用户注册";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>用户注册</h2>
+<form action="/" method="post">
+    <div style="margin:0 auto; width:400px;">
+        <div>
+            <label> Email：</label>
+            <input type="text" name="Email" id="txtEmail" value="@ViewBag.Email"  readonly="readonly" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> 用户名：</label>
+            <input type="text" name="Username" id="txtRegisterUsername" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> 密  码：</label>
+            <input type="password" name="Password" id="txtRegisterPassword" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label> 密码重复：</label>
+            <input type="password" name="Password" id="txtConfirm" class="form-control" />
+        </div>
+        <button type="button" id="btnRegister" class="btn btn-primary">注册</button>
+        <button type="reset" class="btn btn-default" id="btnRegister">重置</button>
+        <p class="warning"></p>
+    </div>
+</form>
+
+

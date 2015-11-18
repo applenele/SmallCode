@@ -51,6 +51,5 @@ namespace NW.Controllers
             Response.StatusCode = prompt.StatusCode;
             return View("Info", prompt);
         }
-
     }
 }
