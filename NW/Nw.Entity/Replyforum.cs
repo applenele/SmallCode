@@ -11,6 +11,11 @@ namespace NW.Entity
     /// </summary>
     public class Replyforum
     {
+        public Replyforum()
+        {
+            Children = new List<Replyforum>();
+        }
+
         public int Id { get; set; }
 
         public int TopicId { get; set; }
@@ -25,6 +30,8 @@ namespace NW.Entity
 
         public virtual User User { get; set; }
 
-        public int FatherId { get; set; }
+        public int? FatherId { get; set; }
+
+        public virtual List<Replyforum> Children { get; set; }
     }
 }

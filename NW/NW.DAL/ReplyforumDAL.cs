@@ -13,6 +13,14 @@ namespace NW.DAL
 {
     public class ReplyforumDAL : IBaseDAL<Replyforum>, IReplyforumDAL
     {
+        private IDbConnection _conn;
+        public IDbConnection Conn
+        {
+            get
+            {
+                return _conn = ConnectionFactory.CreateConnection();
+            }
+        }
         public int Delete(int id)
         {
             throw new NotImplementedException();
