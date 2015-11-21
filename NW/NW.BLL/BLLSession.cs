@@ -151,6 +151,58 @@ namespace NW.BLL
         }
         #endregion
 
+        #region 得到Plateforum业务逻辑层
+        IPlateforumBLL iPlateforumBLL;
+        public IPlateforumBLL IPlateforumBLL
+        {
+            get
+            {
+                if (iPlateforumBLL == null)
+                    iPlateforumBLL = new PlateforumBLL();
+                return iPlateforumBLL;
+            }
+            set
+            {
+                iPlateforumBLL = value;
+            }
+        }
+        #endregion
+
+        #region 得到Replyforum业务逻辑层
+        IReplyforumBLL iReplyforumBLL;
+        public IReplyforumBLL IReplyforumBLL
+        {
+            get
+            {
+                if (iReplyforumBLL == null)
+                    iReplyforumBLL = new ReplyforumBLL();
+                return iReplyforumBLL;
+            }
+            set
+            {
+                iReplyforumBLL = value;
+            }
+        }
+        #endregion
+
+
+        #region 得到Topicforum业务逻辑层
+        ITopicforumBLL iTopicforumBLL;
+        public ITopicforumBLL ITopicforumBLL
+        {
+            get
+            {
+                if (iTopicforumBLL == null)
+                    iTopicforumBLL = new TopicforumBLL();
+                return iTopicforumBLL;
+            }
+            set
+            {
+                iTopicforumBLL = value;
+            }
+        }
+        #endregion
+
         #region 得到Demand业务逻辑层
         IDemandBLL iDemandBLL;
         public IDemandBLL IDemandBLL

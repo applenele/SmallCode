@@ -1,9 +1,11 @@
 ﻿using NW.BLL;
 using NW.Entity;
 using NW.IBLL;
+using NW.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
@@ -29,5 +31,34 @@ namespace NW.Controllers
 
         public User CurrentUser { get; set; }
 
+        public ActionResult Message(string msg)
+        {
+            return Redirect("/Shared/Info?mag=" + msg);
+
+            Action<int, int> c = (a, b) => Console.WriteLine(a + b);
+
+            c(1, 2);
+        }
+
+
+        // Copyright (c) Harbin Code Comb Technology Co., Ltd. All rights reserved.
+        // These functions are refered to https://github.com/codecomb/extensions
+        // Licensed under the Apache License, Version 2.0. See License in the project root for license information.
+        [NonAction]
+        [Obsolete] 
+        protected ActionResult Prompt(Prompt prompt)
+        {
+            Response.StatusCode = prompt.StatusCode;
+            return View("Info", prompt);
+        }
+
+        [NonAction]
+        protected ActionResult Prompt(Action<Prompt> setupPrompt)
+        {
+            Prompt prompt = new Prompt();
+            setupPrompt(prompt);
+            Response.StatusCode = prompt.StatusCode;
+            return View("Info", prompt);
+        }
     }
 }

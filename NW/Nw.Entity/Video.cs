@@ -43,5 +43,5 @@ namespace NW.Entity
         public virtual User User { set; get; }
     }
 
-    public enum Authority { 免费观看, 会员观看 }
+    public enum Authority { 免费观看, 打赏观看, 会员观看 }
 }

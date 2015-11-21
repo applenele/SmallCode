@@ -35,17 +35,25 @@ namespace NW.Controllers
             article.Browses = article.Browses + 1;
             bllSession.IArticleBLL.Update(article);
             List<Reply> replies = new List<Entity.Reply>();
-            replies = bllSession.IReplyBLL.GetList("r.BlogId = "+id).ToList();
+            replies = bllSession.IReplyBLL.GetList("r.BlogId = " + id).ToList();
             ViewBag.Replies = replies;
             return View(new vArticle(article));
         }
 
         [ValidateAntiForgeryToken]
-        public ActionResult Reply(int id,string Description,int? FatherId)
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult Reply(int id, string Description, int? FatherId)
         {
             if (CurrentUser == null)
             {
-                return Redirect("/Shared/Info?msg=请先登录");
+                return Prompt(x =>
+                {
+                    x.Title = "请先登录";
+                    x.RedirectText = "返回上一页";
+                    x.Details = "返回上一页";
+                    x.RedirectUrl = "/Blog/Show/" + id;
+                });
             }
             Reply reply = new Reply();
             reply.Time = DateTime.Now;

@@ -52,8 +52,11 @@
     <Compile Include="DemandDAL.cs" />
     <Compile Include="ImageDAL.cs" />
     <Compile Include="LogDAL.cs" />
+    <Compile Include="PlateforumDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyDAL.cs" />
+    <Compile Include="ReplyforumDAL.cs" />
+    <Compile Include="TopicforumDAL.cs" />
     <Compile Include="UserDAL.cs" />
     <Compile Include="VideoDAL.cs" />
   </ItemGroup>

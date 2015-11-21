@@ -48,8 +48,11 @@
     <Compile Include="IImageBLL.cs" />
     <Compile Include="ILogBLL.cs" />
     <Compile Include="IReplyBLL.cs" />
+    <Compile Include="IReplyforumBLL.cs" />
+    <Compile Include="ITopicforumBLL.cs" />
     <Compile Include="IUserBLL.cs" />
     <Compile Include="IVideoBLL.cs" />
+    <Compile Include="IPlateforumBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
