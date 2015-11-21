@@ -21,5 +21,9 @@ namespace NW.Entity
         public DateTime ReviewTime { set; get; }
 
         public float Price { set; get; }
+
+        public int VideoId { set; get; }
+
+        public Video Video { set; get; }
     }
 }
