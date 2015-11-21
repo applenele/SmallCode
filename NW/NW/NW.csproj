@@ -160,6 +160,7 @@
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckplayer\ckplayer.js" />
@@ -174,6 +175,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Styles\codeqiaokeli.css" />
     <Content Include="Styles\common.css" />
+    <Content Include="Styles\demand.css" />
     <Content Include="Styles\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -221,6 +223,7 @@
     <Content Include="Views\Course\Show.cshtml" />
     <Content Include="Views\Video\Play.cshtml" />
     <Content Include="Views\Demand\Index.cshtml" />
+    <Content Include="Views\Shared\_Demand_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
