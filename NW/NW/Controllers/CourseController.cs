@@ -23,6 +23,8 @@ namespace NW.Controllers
         {
             Course course = new Course();
             course = bllSession.ICourseBLL.GetEntityWithRefence(id);
+            course.Browses = course.Browses + 1;
+            bllSession.ICourseBLL.Update(course);
             return View(course);
         }
     }
