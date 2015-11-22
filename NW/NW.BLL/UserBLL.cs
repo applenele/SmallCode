@@ -12,6 +12,11 @@ namespace NW.BLL
 {
     public class UserBLL : BaseBLL<User>, IUserBLL
     {
+        public User GetUserByEmail(string email)
+        {
+            return DBSessionFactory.GetDBSession().UserDAL.GetUserByEmail(email);
+        }
+
         public User GetUserByName(string name)
         {
             return DBSessionFactory.GetDBSession().UserDAL.GetUserByName(name);

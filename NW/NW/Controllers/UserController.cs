@@ -58,7 +58,20 @@ namespace NW.Controllers
         {
             if (RegexHelper.IsEmail(email))
             {
-                return SendMail(email);
+                if (bllSession.IUserBLL.GetUserByEmail(email) != null)
+                {
+                    return Prompt(x =>
+                    {
+                        x.Details = "该邮箱已经存在！";
+                        x.Title = "注册失败！";
+                        x.RedirectText = "返回重新注册！";
+                        x.RedirectUrl = "/User/Register";
+                    });
+                }
+                else
+                {
+                    return SendMail(email);
+                }
             }
             else
             {
@@ -76,7 +89,20 @@ namespace NW.Controllers
         public ActionResult RegisterDetail(string email)
         {
             ViewBag.Email = email;
-            return View("RegisterDetail");
+            if (bllSession.IUserBLL.GetUserByEmail(email) != null)
+            {
+                return Prompt(x =>
+                {
+                    x.Details = "该邮箱已经存在！";
+                    x.Title = "注册失败！";
+                    x.RedirectText = "返回重新注册！";
+                    x.RedirectUrl = "/User/Register";
+                });
+            }
+            else
+            {
+                return View("RegisterDetail");
+            }
         }
 
         [HttpPost]
@@ -86,23 +112,31 @@ namespace NW.Controllers
             User user = new Entity.User();
             try
             {
-                IBLL.IUserBLL bll = BLLSessionFactory.GetBLLSession().IUserBLL;
-                user = bll.GetUserByName(Username);
-                if (user != null)
+                if (bllSession.IUserBLL.GetUserByEmail(Email) != null)
                 {
                     model.Statu = "err";
-                    model.Msg = "改用户名已经存在！";
+                    model.Msg = "该邮箱已经存在！";
                 }
                 else
                 {
-                    user = new Entity.User();
-                    user.Username = Username.Trim();
-                    user.Password = Encryt.GetMD5(Password.Trim());
-                    user.Time = DateTime.Now;
-                    user.Email = Email;
-                    bll.Insert(user);
-                    model.Statu = "ok";
-                    model.Msg = "注册用户成功！";
+                    IBLL.IUserBLL bll = BLLSessionFactory.GetBLLSession().IUserBLL;
+                    user = bll.GetUserByName(Username);
+                    if (user != null)
+                    {
+                        model.Statu = "err";
+                        model.Msg = "该用户名已经存在！";
+                    }
+                    else
+                    {
+                        user = new Entity.User();
+                        user.Username = Username.Trim();
+                        user.Password = Encryt.GetMD5(Password.Trim());
+                        user.Time = DateTime.Now;
+                        user.Email = Email;
+                        bll.Insert(user);
+                        model.Statu = "ok";
+                        model.Msg = "注册用户成功！";
+                    }
                 }
             }
             catch
