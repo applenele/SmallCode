@@ -66,11 +66,11 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Notification where " + whereStr + " order by CreatedTime desc";
+                    query = "SELECT * FROM Notification where " + whereStr + " order by  Priority asc,CreatedTime desc";
                 }
                 else
                 {
-                    query = "SELECT * FROM Notification order by CreatedTime desc";
+                    query = "SELECT * FROM Notification order by Priority asc,CreatedTime desc";
                 }
                 return Conn.Query<Notification>(query);
             }

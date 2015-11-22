@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NW.Entity;
 
 namespace NW.Controllers
 {
@@ -14,7 +15,10 @@ namespace NW.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
+            List<Notification> notifications = new List<Notification>();
+            string str = "IsShow = true";
+            notifications = bllSession.INotificationBLL.GetList(str).Take(5).ToList();
+            ViewBag.Notifications = notifications;
             return View();
         }
     }

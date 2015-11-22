@@ -1,4 +1,4 @@
-﻿
+﻿@using NW.Entity;
 @{
     ViewBag.Title = "首页";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,10 +15,13 @@
     <div id="main">
         <div id="notice">
             <h3>公告</h3>
-            <div class="alert alert-info">
-                <span style="color:green;">祝贺：CodeRoad工作室 正式上线！</span>&nbsp;&nbsp;
-                <a style="font-weight:bold;color:red;text-decoration:underline;" href="http://weibo.com/nele0716/" target="_blank">Lenny微博</a>&nbsp;&nbsp;
-            </div>
+            @foreach (var item in ViewBag.Notifications as List<Notification>)
+            {
+                <div class="alert alert-info">
+                    <span style="color:green;">@item.Description</span>&nbsp;&nbsp; <span style="color:green;">@item.CreatedTime</span>&nbsp;&nbsp;
+                    <a style="font-weight:bold;color:red;text-decoration:underline;" href="http://weibo.com/nele0716/" target="_blank">Lenny微博</a>&nbsp;&nbsp;
+                </div>
+            }
         </div>
 
     </div>
