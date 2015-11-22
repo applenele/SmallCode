@@ -59,6 +59,7 @@
     <Compile Include="User.cs" />
     <Compile Include="Video.cs" />
     <Compile Include="ViewModels\vArticle.cs" />
+    <Compile Include="ViewModels\vForum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
