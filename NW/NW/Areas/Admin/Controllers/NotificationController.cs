@@ -24,6 +24,11 @@ namespace NW.Areas.Admin.Controllers
             return View(bllSession.INotificationBLL.GetList(where).ToPagedList(page, 20));
         }
 
+        #region 增加通告
+        /// <summary>
+        /// 增加通告
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Add()
         {
@@ -65,6 +70,7 @@ namespace NW.Areas.Admin.Controllers
             }
             return View();
         }
+        #endregion
 
         /// <summary>
         /// 删除
@@ -86,6 +92,46 @@ namespace NW.Areas.Admin.Controllers
             }
         }
 
+        #region 修改通告
+        /// <summary>
+        /// 修改通告
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Notification notification = new Notification();
+            notification = bllSession.INotificationBLL.GetEntity(id);
+            return View(notification);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Notification model)
+        {
+            try
+            {
+                Notification notification = new Notification();
+                notification = bllSession.INotificationBLL.GetEntity(model.Id);
+                if (notification != null)
+                {
+                    notification.Description = model.Description;
+                    notification.Priority = model.Priority;
+                    notification.IsShow = model.IsShow;
+
+                    bllSession.INotificationBLL.Update(notification);
+                    return Redirect("/Admin/Notification/Index");
+                }
+            }
+            catch
+            {
+                log.Error(new LogContent("修改通告失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                ModelState.AddModelError("", "修改通告失败");
+            }
+            return View();
+        }
+        #endregion
 
     }
 }

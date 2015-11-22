@@ -1,7 +1,7 @@
 ﻿@model PagedList.IPagedList<NW.Entity.Notification>
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "通告管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -54,9 +54,10 @@
                             <a href="/Admin/Notification/Show/@item.Id" title="@item.CreatedTime">@item.CreatedTime</a>
                         </td>
                         <td>@item.Priority</td>
-                        <td>@(item.IsShow==true?"是":"否")</td>
+                        <td>@(item.IsShow == true ? "是" : "否")</td>
                         <td>
                             <a class="link-update" href="/Admin/Notification/Show/@item.Id">详情</a>
+                            <a class="link-update" href="/Admin/Notification/Edit/@item.Id">修改</a>
                             <a class="link-del" href="javascript:deleteDialog('/Admin/Notification/Delete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>
@@ -66,4 +67,3 @@
         </div>
     </form>
 </div>
-
