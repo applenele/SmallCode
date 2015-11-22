@@ -14,7 +14,7 @@ namespace NW.Areas.Admin.Controllers
     public class LogController : BaseController
     {
         // GET: Admin/Log
-        public ActionResult Index(string Type,string Key)
+        public ActionResult Index(string Type,string Key,int page=1)
         {
             string where = "";
             if (!string.IsNullOrEmpty(Type))
@@ -29,7 +29,7 @@ namespace NW.Areas.Admin.Controllers
                 }
                 where = where + "Description LIKE '%" + Key + "%'";
             }
-            return View(bllSession.ILogBLL.GetList(where).ToPagedList(1, 20));
+            return View(bllSession.ILogBLL.GetList(where).ToPagedList(page, 20));
         }
 
         /// <summary>

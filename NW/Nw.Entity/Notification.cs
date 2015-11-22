@@ -11,7 +11,7 @@ namespace NW.Entity
     /// </summary>
     public class Notification
     {
-        public int ID { set; get; }
+        public int Id { set; get; }
 
         public DateTime CreatedTime { set; get; }
 
