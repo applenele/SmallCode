@@ -1,13 +1,301 @@
 ﻿
 @{
-    ViewBag.Title = "论坛";
+    ViewBag.Title = "信息显示";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
-    <header id="header">
-        <hgroup>
-            <h1 id="h1">codeqiaokeli 编程学习</h1>
-            <h3 id="h3">感谢关注！该模块暂时未开通</h3>
-        </hgroup>
-    </header>
+<div class="container_wrap wrap_990 clearfix">
+    <div class="plateinfor">
+        <input id="cuserId" value="@(ViewBag.CurrentUser==null?"":ViewBag.CurrentUser.ID)" type="hidden" />
+        <input id="sid" value="@ViewBag.SID" type="hidden" />
+        <input type="hidden" id="plateID" value="@plate.ID" />
+        <a href="/Bbs/Forum/@topic.PlateID" class="platename">@topic.Plate.Title</a>
+        @if (ViewBag.CurrentUser == null || ViewBag.IsCollected == false)
+            {
+            <span class="attention" id="btnAddCollect">
+                ＋关注
+            </span>
+        }
+        else
+        {
+            <span class="noattention" id="btnCancelCollect">取消关注</span>
+        }
+        已有<span class="num">@ViewBag.Collections</span>人关注
+        <a id="go_add_theme" class="btn sendtheme">+发表新主题</a>
+    </div>
+    <div class="contain_left fr">
+        <div class="left_wrap person">
+            <div class="con">
+                <div class="personLayer_msg">
+                    <a href="/User/PersonalShow/@user.ID" class="user_head">
+                        @if (user.Picture == null)
+                        {
+                            <img src="/Images/userphoto.png" class="user_pic"
+                                 alt=@user.UserName />
+                        }
+                        else
+                        {
+                            <img src="/User/ShowPicture/@ViewBag.user.ID" class="user_pic"
+                                 alt=@user.UserName />
+                        }
+                    </a>
+                    <div class="user_msg">
+                        <span>
+                            <a href="/User/PersonalShow/@user.ID " class=" user_name" u-id="@user.ID">@user.UserName</a>
+                        </span>
+                        @if (user.RealName != null)
+                        {
+                            <p>
+                                <span class="txt">@user.RealName</span>
+                            </p>
+                        }
+
+                    </div>
+                </div>
+                <ol class="clearfix">
+                    <li>
+                        <span class="txt">@user.Integration</span>
+                        <span class="txt">积分</span>
+                    </li>
+
+                    <li class="integral">
+                        <span class="txt">@ViewBag.utopiccount</span>
+                        <span class="txt">主题数</span>
+                    </li>
+                    <li>
+                        <span class="txt">@ViewBag.count</span>
+                        <span class="txt">回复数</span>
+                    </li>
+
+                </ol>
+                <div>
+                    <a href="/User/PersonalShow/@user.ID " class="btn">Ta的主页</a>
+                    <!--<span class="btn btn-blue J_sendmsg"></span>-->
+                </div>
+            </div>
+        </div>
+        <div class="left_wrap">
+            <div class="con">
+                <div class="hotspot">
+                    <h3>最近发表</h3>
+                    <ul class="clearfix">
+                        @foreach (var item in ViewBag.topics as IEnumerable<Topic>)
+                        {
+                            <li>
+                                <a href="/Bbs/Show/@item.ID">@item.Title</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contain_right clearfix fl">
+        <div class="filtrate invitation">
+            <div class="invitation_con">
+                <div class="J_stamp">
+                    @if (topic.Browses > 100)
+                    {
+                        <img src="~/images/Topic_Hot.png">
+                    }
+                    else if (topic.IsOfficeIdentified)
+                    {
+                        <img src="~/images/Topic_OfficeIdentified.png">
+                    }
+                    else if (topic.Top)
+                    {
+                        <img src="~/images/Topic_Top.png">
+                    }
+                    else if ((topic.Replies.Count() + topic.Browses) > 500)
+                    {
+                        <img src="~/images/Topic_Hot.png">
+                    }
+                </div>
+                <h1>
+                    <span></span>
+                    <span></span>
+                    <span class="name">@topic.Title</span><br />
+
+                </h1>
+                <p class="txt">
+                    @if (topic.Top)
+                    {
+                        <span class="marktxt">置顶</span>
+                    }
+                    else
+                    {
+                        <span class="marktxt"></span>
+                    }
+                    <a href="/User/PersonalShow/@user.ID" class="name">
+                        @if (user.RealName == null)
+                        {
+                            @user.UserName
+                        }
+                        else
+                        {
+                            @user.RealName
+                        }
+                    </a>
+                    <span class="time">@topic.Time.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                    @if (topic.LastReply != null)
+                    {
+                        <span class="lastreply">最后回复:@Convert.ToDateTime(topic.LastReply).ToString("yyyy-MM-dd HH:mm:ss")</span>
+                    }
+                    <span class="f_r"><i class="msg"></i>@ViewBag.count</span>
+                    <span class="f_r"><i class="see"></i>@topic.Browses</span>
+                    <span class="f_r report" id="report">举报</span>
+                    <input type="hidden" value="@topic.ID" id="topicId" />
+                </p>
+                <div class="invitation_content">
+                    @Html.Raw(@topic.Content)
+                </div>
+            </div>
+            <div id="replyBox">
+
+                <div class="faster_reply">
+                    <div style="float:left">
+                        @if (ViewBag.CurrentUser != null)
+                        {
+                            if (ViewBag.CurrentUser.Picture == null)
+                            {
+                                <img src="/Images/userphoto.png" class="user_head" />
+                            }
+                            else
+                            {
+                                <img src="/User/ShowPicture/@ViewBag.CurrentUser.ID" class="user_head" />
+                            }
+                        }
+                        else
+                        {
+                            <img src="/Images/userphoto.png" class="user_head" />
+                        }
+                    </div>
+                    <div style="margin-left:66px">
+
+                        <input type="hidden" id="topicid" value="@topic.ID">
+                        <script id="container" name="content" type="text/plain">
+                        </script>
+                        <div class="session3 clearfix">
+                            <input type="button" id="btnReplySub" value="发表评论" class="button yellow w-1 h-s-4" />
+                        </div>
+
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="~/Scripts/ueditor/ueditor.config.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <script type="text/javascript" src="~/Scripts/ueditor/ueditor.all.js"></script>
+                        <!-- 实例化编辑器 -->
+                        <script type="text/javascript">
+                            var ue = UE.getEditor('container', { initialFrameWidth: 584, initialFrameHeigh: 250 });
+                        </script>
+                    </div>
+                </div>
+            </div>
+            <div id="replyBox2" style="display:none;">
+                <input type="hidden" value="" id="fid" />
+                <div class="faster_reply">
+                    <div style="float:left">
+                        @if (ViewBag.CurrentUser != null)
+                        {
+                            if (ViewBag.CurrentUser.Picture == null)
+                            {
+                                <img src="/Images/userphoto.png" class="user_head" />
+                            }
+                            else
+                            {
+                                <img src="/User/ShowPicture/@ViewBag.CurrentUser.ID" class="user_head" />
+                            }
+                        }
+                        else
+                        {
+                            <img src="/Images/userphoto.png" class="user_head" />
+                        }
+                    </div>
+                    <div style="margin-left:66px">
+                        <input type="hidden" id="topicid" value="@topic.ID">
+                        <input type="text" id="replyContent" />
+                        <div class="session3 clearfix">
+                            <input type="button" id="btnReplySub2" value="发表评论" class="button yellow w-1 h-s-4" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="reply" id="comment_top">
+            <div class="reply_con">
+                <div class="reply_title clearfix">
+                    <h3>精彩评论</h3>
+                    <span class="replay_num">@ViewBag.count</span>
+                    <div class="nonstop">
+                    </div>
+                </div>
+                <ul class="reply_list clearfix" id="reply">
+                    <!-- top post list-->
+                    @if (Model.Count() != 0)
+                    {
+                        foreach (var reply in Model)
+                        {
+                            <li class="reply_list_item clearfix" post-id="369651146" id="1" float-id="1" u-id="78540183">
+                                <div class="reply_list_img">
+                                    @if (reply.User.Picture == null)
+                                    {
+                                        <img src="/Images/userphoto.png" class="user_head" />
+                                    }
+                                    else
+                                    {
+                                        <img src="/User/ShowPicture/@reply.UserID" class="user_head" />
+                                    }
+                                </div>
+
+                                <div class="reply_list_con">
+                                    <div class="auth_msg clearfix">
+                                        <a href="/User/PersonalShow/@reply.User.ID" class="auth_name"
+                                           target="_blank">@reply.User.UserName</a>
+                                        <span class="at"> 发表于</span>
+                                        <span class="time">@reply.Time.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                        <a class="only_read_auth">只看该作者</a>
+                                    </div>
+                                    <div class="reply_txt">
+                                        <p>
+                                            <span style="color: rgb(51, 51, 51);font-family: arial, Microsoft Yahei, Hiragino Sans GB, sans-serif; line-height: 28px;background-color: rgb(255, 255, 255);">
+                                                @Html.Sanitized(@reply.Content)
+                                            </span>
+                                        </p>
+                                    </div>
+                                    @foreach (var item in reply.Children)
+                                    {
+                                        <div class="reply_talk clearfix">
+                                            <span class="frameem"></span><i class="triangle"></i>
+                                            <ul class="clearfix">
+                                                <li class="clearfix" data-value="1452169">
+                                                    <div>
+                                                        <a href="/User/PersonalShow/@item.UserID" class="user_name" target="_blank">@item.User.UserName</a>
+                                                        <i class="vip_icon "></i>
+                                                        @Html.CleanHtml(@item.Content)
+                                                        <span class="time">@item.Time</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    }
+                                    <p class="replay_bu">
+                                        <a href="javascript:void(0)"
+                                           class="replay_btn">回复</a>
+                                        <input class="fid" value="@reply.ID" type="hidden" />
+
+                                    </p>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="replyBoxReady" style="margin-top:10px;margin-bottom:10px;position:relative;"></div>
+                            </li>
+                        }
+                    }
+                </ul>
+
+            </div>
+            <div class="base_widget_paging">
+                @Html.MakePager()
+            </div>
+        </div>
+    </div>
 </div>

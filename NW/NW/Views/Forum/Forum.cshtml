@@ -1,15 +1,242 @@
 ﻿
 @{
-    ViewBag.Title = "论坛";
+    ViewBag.Title = "板块展示";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
-    <header id="header">
-        <hgroup>
-            <h1 id="h1">codeqiaokeli 编程学习</h1>
-            <h3 id="h3">感谢关注！该模块暂时未开通</h3>
-        </hgroup>
-    </header>
+<input type="hidden" name="name" id="cuserId" value="@((ViewBag.CurrentUser!=null && ViewBag.CurrentUser.UserType==UserType.User)?ViewBag.CurrentUser.ID:"")" />
+<input id="cuserId" value="@(ViewBag.CurrentUser==null?"":ViewBag.CurrentUser.ID)" type="hidden" />
+<input type="hidden" id="plateID" value="@plate.ID" />
+<div class="container_wrap wrap_990 clearfix contain_plate">
+    <div class="contain_header">
+        <div class="wrap">
+            @if (plate.Picture == null)
+            {
+                <img src="/Images/logo.jpg" />
+            }
+            else
+            {
+                <img src="/Bbs/ShowForumPicture/@plate.ID" />
+            }
+        </div>
+        <div class="contain_header_con">
+            <div>
+                <a href="/Bbs/forum/@plate.ID">
+                    <h2 f-id="6">@plate.Title</h2>
+                </a>
+                @if (ViewBag.CurrentUser == null || ViewBag.IsCollected == false)
+                {
+                    <span class="attention" id="btnAddCollect">
+                        ＋关注
+                    </span>
+                }
+                else
+                {
+                    <span class="noattention">已关注</span>
+                }
+                已有<span class="num">@ViewBag.Collections</span>人关注
+            </div>
+            <div>
+                <span class="intro">@plate.Description</span>
+            </div>
+        </div>
+        <a id="go_add_theme" class="btn">+发表新主题</a>
+    </div>
+    <div class="contain_left fr">
+        <div class="left_wrap ">
+            <div class="con">
+                <div class="hotspot">
+                    <h3>公告</h3>
+                    <ul class="announcement clearfix">
+                        <li style="list-style:none;">@plate.Description</li>
+                    </ul>
+                    <h4>版主:</h4>
+
+                    <ul class="moderator_wrap">
+                        <li>
+                            @if (user != null)
+                            {
+                                <a href="/User/PersonalShow/@user.ID">
+                                    <img src="/User/ShowPicture/@user.ID" class="head">
+                                    @(user.RealName == null ? user.UserName : user.RealName)
+                                </a>
+                            }
+                            else
+                            {
+                                <span>暂无</span>
+                            }
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div id="mibbs_sign">
+            <div class="mibbs_con" style="margin-bottom:10px;">
+                <input id="sid" value="@ViewBag.SID" type="hidden" />
+                <a class="mibbs_signpanel JD_sign " id="JD_sign">
+                    <div class="font" id="sign_font">签到</div>
+                    <span class="nums" id="sign_nums"></span>
+                    <div class="fblock">
+                        <div class="all" id="sign_all"></div>
+                        <div class="line" id="sign_line">
+                            <span style="font-size:12px;">签到看排名</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="left_wrap">
+            <div class="sidebarplate">
+                <div class="sidebarplate_tab">
+                    <div class="tab">
+                        <span class="on" id="tab_span_1">版块推荐</span>
+                        <span class="" id="tab_span_2">板块列表</span>
+                    </div>
+                </div>
+                <div>
+                    <ul class="on" id="tab_ul_1">
+                        @foreach (Plate item in ViewBag.NewForums)
+                        {
+                            <li><a href="/Bbs/PlateShow/@item.ID" target="_blank"><span>@item.Title</span></a></li>
+                        }
+
+                    </ul>
+                    <ul class="" id="tab_ul_2">
+                        @foreach (Plate item in ViewBag.ForumList)
+                        {
+                            <li><a href="/Bbs/Forum/@item.ID" target="_blank"><span>@item.Title</span></a></li>
+                        }
+                        @if (ViewBag.ForumList.Count > 7)
+                        {
+                            <li><a href="/Bbs/PlateList" target="_blank" style="color:black"><span>更多</span></a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="left_wrap">
+            <div class="con">
+                <ul class="xm_index_info">
+                    <li><span class="num">@ViewBag.PlatesToDayNum</span><span class="txt">今日版块发帖数</span></li>
+                    <li><span class="num">@ViewBag.PlatesYesterDayNum</span><span class="txt">昨日版块发帖数</span></li>
+                    <li><span class="num">@ViewBag.PlatesNum</span><span class="txt">版块总发帖数</span></li>
+                    <li><span class="num">@ViewBag.TopicsNum</span><span class="txt">论坛总发帖数</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="contain_right clearfix fl">
+        <div class="theme">
+            <div class="theme_con">
+                <div class="screen clearfix">
+                    <div class="dropdown_text_middle alltime">
+                        <span>@ViewBag.DownTime</span><i></i>
+                        <ul class="selectlist" style="display: none;">
+                            <li><a href="/Bbs/Forum/@plate.ID?Time=0&&Publish=@ViewBag.DownPublshSelect&&p=@ViewBag.Page" data-value="0">全部时间</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID?Time=1&&Publish=@ViewBag.DownPublshSelect&&p=@ViewBag.Page" data-value="1">一天</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID?Time=2&&Publish=@ViewBag.DownPublshSelect&&p=@ViewBag.Page" data-value="2">两天</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID?Time=7&&Publish=@ViewBag.DownPublshSelect&&p=@ViewBag.Page" data-value="7">一周</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID?Time=31&&Publish=@ViewBag.DownPublshSelect&&p=@ViewBag.Page" data-value="31">一个月</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID?Time=92&&Publish=@ViewBag.DownPublshSelect&&p=@ViewBag.Page" data-value="92">三个月</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown_text_middle lastpublish">
+                        <span data-value="0">@ViewBag.DownPublish</span><i></i>
+                        <ul class="selectlist">
+                            <li><a href="/Bbs/Forum/@plate.ID?Publish=Time&&Time=@ViewBag.DownTimeSelect&&p=@ViewBag.Page" data-value="send">发贴时间</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID?Publish=Browse&&Time=@ViewBag.DownTimeSelect&&p=@ViewBag.Page" data-value="replies">浏览数</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID?Publish=Replies&&Time=@ViewBag.DownTimeSelect&&p=@ViewBag.Page" data-value="views">回复数</a></li>
+                            <li><a href="/Bbs/Forum/@plate.ID" data-value="0">默认排序</a></li>
+                        </ul>
+                    </div>
+                    <script>
+                        $(".dropdown_text_middle span").click(function () {
+                            if ($(this).parent().children("ul").is(':hidden')) {
+                                $(this).parent().children("ul").show();
+                            }
+                            else {
+                                $(this).parent().children("ul").hide();
+                            }
+                        });
+                    </script>
+                    <a href="/Bbs/Forum/@plate.ID?Publish=&&Time=0&&p=0&&Rule=1" class="essence screen_btn @(ViewBag.Rule==1?"visted":"")">精华</a>
+                    <a href="/Bbs/Forum/@plate.ID?Publish=&&Time=0&&p=0&&Rule=0" class="screen_btn  @(ViewBag.Rule==2?"visted":"")">最新</a>
+                </div>
+                <ul class="themelistcon clearfix">
+                    @if (Model.Count() != 0)
+                    {
+                        foreach (Topic item in Model)
+                        {
+                            <li class="theme_list clearfix" u-id="@item.UserID" t-id="@plate.ID">
+                                <div class="theme_list_img">
+                                    <a href="/User/PersonalShow/@item.UserID" class="headportrait" target="_blank">
+                                        <img class="user_head" src="/User/ShowPicture/@item.UserID">
+                                    </a>
+                                </div>
+                                <div class="theme_list_con">
+                                    <div class="title">
+                                        @if ((item.Browses + item.Replies.Count()) > 500)
+                                        {
+                                            <a href="/Bbs/Show/@item.ID" class="title_name title_show" target="_blank">@item.Title</a>
+                                        }
+                                        else if (item.Browses > 100)
+                                        {
+                                            <a href="/Bbs/Show/@item.ID" class="title_name title_hot" target="_blank">@item.Title</a>
+                                        }
+                                        else if (item.Top)
+                                        {
+                                            <a href="/Bbs/Show/@item.ID" class="title_name title_top" target="_blank">@item.Title</a>
+                                        }
+                                        else if (item.IsOfficeIdentified)
+                                        {
+                                            <a href="/Bbs/Show/@item.ID" class="title_name title_office" target="_blank">@item.Title</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/Bbs/Show/@item.ID" class="title_name" target="_blank">@item.Title</a>
+                                        }
+
+                                        @if (item.Browses > 100)
+                                        {
+                                            <img class="stamp" src="/images/Hot.png" />
+                                        }
+                                        @if (item.IsOfficeIdentified)
+                                        {
+                                            <img class="stamp" src="~/images/Office.png" />
+                                        }
+                                        @if (item.Top)
+                                        {
+                                            <img class="stamp" src="~/images/Top.png" />
+                                        }
+                                        @if ((item.Browses + item.Replies.Count()) > 500)
+                                        {
+                                            <img class="stamp" src="~/images/Show.png" />
+                                        }
+                                    </div>
+                                    <div class="auth_msg clearfix">
+                                        <a href="/Bbs/Forum/@item.PlateID" class="user_name" target="_blank">@item.Plate.Title</a>
+                                        <span class="vipnum vipnum_1"></span>
+                                        <span class="time txt">
+                                            @item.Time
+                                        </span>
+                                        @if (item.Top)
+                                        {
+                                            <span class="stick txt">·置顶</span>
+                                        }
+                                        <span class="bbs-numb msg"><i></i>@item.Replies.Count()</span>
+                                        <span class="bbs-numb view"><i></i>@item.Browses</span>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+                <div class="base_widget_paging">
+                    @Html.MakePager()
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
