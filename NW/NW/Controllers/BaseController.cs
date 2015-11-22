@@ -34,10 +34,6 @@ namespace NW.Controllers
         public ActionResult Message(string msg)
         {
             return Redirect("/Shared/Info?mag=" + msg);
-
-            Action<int, int> c = (a, b) => Console.WriteLine(a + b);
-
-            c(1, 2);
         }
 
 

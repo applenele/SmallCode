@@ -1,7 +1,9 @@
-﻿
+﻿@using NW.Entity
+@using NW.Entity.DataModels;
 @{
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = @ViewBag.CurrentUser as User;
 }
 
 <div class="container top-1-8">
@@ -9,9 +11,16 @@
         <div class="inner-box col-lg-8">
             <h2>我的打赏</h2>
         </div>
-        <div class="inner-box col-lg-3" style="margin-left:10px;"></div>
+        <div class="inner-box col-lg-3 left-0-1 center-block">
+            <img src="@user.Photo" class="face-1 face" />
+            <ul class="list-group top-0-1">
+                <li class="list-group-item">@user.Username</li>
+                <li class="list-group-item">@user.Email</li>
+                <li class="list-group-item">@CommonString.RoleDisplay[user.RoleAsInt]</li>
+            </ul>
+        </div>
     </div>
-   
+
 </div>
 
 
