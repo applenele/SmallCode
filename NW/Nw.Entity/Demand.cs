@@ -16,7 +16,7 @@ namespace NW.Entity
 
         public DateTime DateTime { set; get; }
 
-        public int IsDo { set; get; }
+        public int State { set; get; }
 
         public DateTime ReviewTime { set; get; }
 
