@@ -13,5 +13,9 @@ namespace NW.Controllers
         {
             return View();
         }
+        public ActionResult GoDemand()
+        {
+            return View();
+        }
     }
 }
