@@ -3,38 +3,11 @@
     ViewBag.Title = "板块列表";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="main container">
-    <div class="top">
-        <h3 class="left-border">板块列表</h3>
-        @foreach (var item in plates)
-        {
-            <div class="left right-2 top20 pitem">
-                <a href="/User/Forum/@item.ID">
-                    @if (item.Picture == null)
-                    {
-                        <img src="/Images/logo.jpg" class="pic-hover">
-                    }
-                    else
-                    {
-                        <img src="/Bbs/ShowForumPicture/@item.ID" class="pic-hover">
-                    }
-                </a>
-                <p>
-                    <a href="/User/Forum/@item.ID">@item.Title</a>
-                </p>
-                <p>
-                    @item.Description
-                </p>
-                <p>
-                    @item.Time.ToString("yyy-M-d H:mm:s")
-                </p>
-                <p>
-                    <span class="browse"><i class="see"></i>@item.Browses</span>
-                    <span class="browse"><i class="msg"></i>@item.Collect</span>
-                </p>
-            </div>
-        }
-        <div class="clr"></div>
-    </div>
+<div class="container">
+    <header id="header">
+        <hgroup>
+            <h1 id="h1">codeqiaokeli 编程学习</h1>
+            <h3 id="h3">感谢关注！</h3>
+        </hgroup>
+    </header>
 </div>
-
