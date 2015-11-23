@@ -181,6 +181,7 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
+    <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\ckeditor\build-config.js" />
@@ -382,6 +383,7 @@
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Styles\codeqiaokeli.css" />
     <Content Include="Styles\common.css" />
+    <Content Include="Styles\demand.css" />
     <Content Include="Styles\main.css" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -403,6 +405,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
+    <Compile Include="Controllers\DemandController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -430,6 +433,8 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Show.cshtml" />
     <Content Include="Views\Video\Play.cshtml" />
+    <Content Include="Views\Demand\Index.cshtml" />
+    <Content Include="Views\Shared\_Demand_Layout.cshtml" />
     <Content Include="Views\User\Show.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\User\Test.cshtml" />

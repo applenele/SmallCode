@@ -151,7 +151,6 @@ namespace NW.BLL
         }
         #endregion
 
-
         #region 得到Plateforum业务逻辑层
         IPlateforumBLL iPlateforumBLL;
         public IPlateforumBLL IPlateforumBLL
@@ -204,7 +203,6 @@ namespace NW.BLL
         }
         #endregion
 
-
         #region 得到INotificationBLL业务逻辑层
         INotificationBLL iNotificationBLL;
         public INotificationBLL INotificationBLL
@@ -218,6 +216,23 @@ namespace NW.BLL
             set
             {
                 iNotificationBLL = value;
+            }
+        }
+        #endregion
+
+        #region 得到Demand业务逻辑层
+        IDemandBLL iDemandBLL;
+        public IDemandBLL IDemandBLL
+        {
+            get
+            {
+                if (IDemandBLL == null)
+                    IDemandBLL = new DemandBLL();
+                return IDemandBLL;
+            }
+            set
+            {
+                IDemandBLL = value;
             }
         }
         #endregion

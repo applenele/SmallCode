@@ -49,6 +49,7 @@
     <Compile Include="CourseDAL.cs" />
     <Compile Include="DBSession.cs" />
     <Compile Include="DBSessionFactory.cs" />
+    <Compile Include="DemandDAL.cs" />
     <Compile Include="ImageDAL.cs" />
     <Compile Include="LogDAL.cs" />
     <Compile Include="NotificationDAL.cs" />
