@@ -433,7 +433,7 @@
     <Content Include="Views\Course\Index.cshtml" />
     <Content Include="Views\Course\Show.cshtml" />
     <Content Include="Views\Video\Play.cshtml" />
-    <Content Include="Views\Demand\Index.cshtml" />
+    <Content Include="Views\Demand\GoDemand.cshtml" />
     <Content Include="Views\Shared\_Demand_Layout.cshtml" />
     <Content Include="Views\User\Show.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
@@ -443,6 +443,7 @@
     <Content Include="Views\Forum\Add.cshtml" />
     <Content Include="Views\Forum\Forum.cshtml" />
     <Content Include="Views\Forum\PlateList.cshtml" />
+    <Content Include="Views\Demand\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
