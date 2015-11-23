@@ -1,6 +1,4 @@
 ﻿using NW.Entity;
-using NW.Entity.ViewModels;
-using NW.Utility;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -13,15 +11,21 @@ namespace NW.Controllers
     public class ForumController : BaseController
     {
         [HttpGet]
-        public ActionResult Index(int theme_nav = 1, int p = 0)
+        public ActionResult Index(int page = 1)
         {
-            return View();
+            List <Topicforum> topicforums = new List<Topicforum>();
+            topicforums = bllSession.ITopicforumBLL.GetList("").ToList();
+            return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page,10));
         }
 
         [HttpGet]
-        public ActionResult Show(int id = 0, int p = 0)
+        public ActionResult Show(int id)
         {
-            return View();
+            Topicforum topicforum = new Topicforum();
+            topicforum = bllSession.ITopicforumBLL.GetEntity(id);
+            topicforum.Browses = topicforum.Browses + 1;
+            bllSession.ITopicforumBLL.Update(topicforum);
+            return View(topicforum);
         }
 
         /// <summary>

@@ -63,11 +63,11 @@ namespace NW.DAL
             {
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + "order by a.Time desc"; 
+                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + "order by t.Time desc"; 
                 }
                 else
                 {
-                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id order by a.Time desc";
+                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id order by t.Time desc";
                 }
                 var data = Conn.Query<Topicforum, User, Topicforum>(query, (topicforum, user) => { topicforum.User = user; return topicforum; });
                 return data;
@@ -76,7 +76,20 @@ namespace NW.DAL
 
         public IEnumerable<Topicforum> GetListByPage(int page, int size, string whereStr)
         {
-            throw new NotImplementedException();
+            int index = size * (page - 1);
+            using (Conn)
+            {
+                string query = "";
+                if (!string.IsNullOrEmpty(whereStr))
+                {
+                    query = "SELECT * FROM Topicforum where " + whereStr + "order by Time desc limit " + index + "," + size;
+                }
+                else
+                {
+                    query = "SELECT * FROM Topicforum order by Time desc limit " + index + "," + size;
+                }
+                return Conn.Query<Topicforum>(query);
+            }
         }
 
         public int Insert(Topicforum model)
@@ -92,7 +105,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Topicforum SET (Title,Content,Top,Time,LastReply,Reward,Report,IsShow,IsClose,IsOfficeIdentified)VALUES(@Title,@Content,@Top,@Time,@LastReply,@Reward,@Report,@IsShow,@IsClose,@IsOfficeIdentified)";
+                string query = "UPDATE Topicforum SET Title=@Title,Content=@Content,Top=@Top,Time=@Time,LastReply=@LastReply,Reward=@Reward,Report=@Report,IsShow=@IsShow,IsClose=@IsClose,IsOfficeIdentified=@IsOfficeIdentified";
                 return Conn.Execute(query, model);
             }
         }
