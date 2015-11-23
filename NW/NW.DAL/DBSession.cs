@@ -203,6 +203,23 @@ namespace NW.DAL
         }
         #endregion
 
+        #region INotificationDAL
+        INotificationDAL iNotificationDAL;
+        public INotificationDAL NotificationDAL
+        {
+            get
+            {
+                if (iNotificationDAL == null)
+                    iNotificationDAL = new NotificationDAL();
+                return iNotificationDAL;
+            }
+            set
+            {
+                iNotificationDAL = value;
+            }
+        }
+        #endregion
+
         #region iDemandDAL
         IDemandDAL iDemandDAL;
         public IDemandDAL DemandDAL

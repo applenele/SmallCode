@@ -135,5 +135,19 @@ namespace NW.DAL
                 return Conn.Query<User>(query);
             }
         }
+
+        /// <summary>
+        /// 根据邮箱获取用户
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public User GetUserByEmail(string email)
+        {
+            using (Conn)
+            {
+                string query = "SELECT * FROM User where Email = @Email";
+                return Conn.Query<User>(query, new { Email = email }).FirstOrDefault();
+            }
+        }
     }
 }

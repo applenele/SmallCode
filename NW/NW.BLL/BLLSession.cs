@@ -203,6 +203,23 @@ namespace NW.BLL
         }
         #endregion
 
+        #region 得到INotificationBLL业务逻辑层
+        INotificationBLL iNotificationBLL;
+        public INotificationBLL INotificationBLL
+        {
+            get
+            {
+                if (iNotificationBLL == null)
+                    iNotificationBLL = new NotificationBLL();
+                return iNotificationBLL;
+            }
+            set
+            {
+                iNotificationBLL = value;
+            }
+        }
+        #endregion
+
         #region 得到Demand业务逻辑层
         IDemandBLL iDemandBLL;
         public IDemandBLL IDemandBLL

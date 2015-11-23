@@ -1,0 +1,16 @@
+﻿@model NW.Entity.Topicforum
+@{
+    ViewBag.Title = "信息显示";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="inner-box top-1-8">
+        <div>
+            <h2>@Model.Title</h2>
+            <div>发表时间：@Model.Time  浏览量： @Model.Browses  举报：@Model.Report</div>
+        </div>
+        <div>
+            @Model.Content
+        </div>
+    </div>
+</div>

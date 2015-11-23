@@ -52,6 +52,7 @@
     <Compile Include="DemandDAL.cs" />
     <Compile Include="ImageDAL.cs" />
     <Compile Include="LogDAL.cs" />
+    <Compile Include="NotificationDAL.cs" />
     <Compile Include="PlateforumDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyDAL.cs" />

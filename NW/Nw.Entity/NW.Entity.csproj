@@ -52,6 +52,7 @@
     <Compile Include="Demand.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Log.cs" />
+    <Compile Include="Notification.cs" />
     <Compile Include="Plateforum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reply.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="User.cs" />
     <Compile Include="Video.cs" />
     <Compile Include="ViewModels\vArticle.cs" />
+    <Compile Include="ViewModels\vForum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

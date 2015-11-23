@@ -12,5 +12,7 @@ namespace NW.IDAL
        User GetUserByName(string name);
 
         User Login(string username, string password);
+
+        User GetUserByEmail(string email);
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="IUserBLL.cs" />
     <Compile Include="IVideoBLL.cs" />
     <Compile Include="IPlateforumBLL.cs" />
+    <Compile Include="INotificationBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

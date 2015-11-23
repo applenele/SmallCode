@@ -47,6 +47,7 @@
     <Compile Include="IDemandDAL.cs" />
     <Compile Include="IImageDAL.cs" />
     <Compile Include="ILogDAL.cs" />
+    <Compile Include="INotificationDAL.cs" />
     <Compile Include="IPlateforumDAL.cs" />
     <Compile Include="IReplyDAL.cs" />
     <Compile Include="IReplyforumDAL.cs" />

@@ -1,0 +1,69 @@
+﻿@model PagedList.IPagedList<NW.Entity.Notification>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "通告管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font"></i>
+        <a href="/Admin/Home/Index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">通告管理</span>
+    </div>
+</div>
+<div class="search-wrap">
+    <div class="search-content">
+        <form action="/Admin/Notification/Index" method="get">
+            <table class="search-tab">
+                <tr>
+                    <th width="70">关键字:</th>
+                    <td><input class="common-text" placeholder="关键字" name="Key" type="text"></td>
+                    <td><input class="btn btn-primary btn2" name="sub" type="submit"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="result-wrap">
+    <form name="myform" id="myform" method="post">
+        <div class="result-title">
+            <div class="result-list">
+                <a href="/Admin/Notification/Add"><i class="icon-font"></i>新增通告</a>
+                <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+            </div>
+        </div>
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
+                    <th>ID</th>
+                    <th>内容</th>
+                    <th>创建时间</th>
+                    <th>优先级</th>
+                    <th>是否显示</th>
+                    <th>操作</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr id="@item.Id">
+                        <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
+                        <td>@item.Id</td>
+                        <td>@item.Description</td>
+                        <td title="@item.CreatedTime">
+                            <a href="/Admin/Notification/Show/@item.Id" title="@item.CreatedTime">@item.CreatedTime</a>
+                        </td>
+                        <td>@item.Priority</td>
+                        <td>@(item.IsShow == true ? "是" : "否")</td>
+                        <td>
+                            <a class="link-update" href="/Admin/Notification/Show/@item.Id">详情</a>
+                            <a class="link-update" href="/Admin/Notification/Edit/@item.Id">修改</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/Notification/Delete/@item.Id',@item.Id)">删除</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </form>
+</div>
