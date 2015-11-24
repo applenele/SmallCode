@@ -9,11 +9,52 @@
 
 <div class="container top-1-8">
     <div class="row ">
-        <div class="inner-box col-lg-8">
-            <h2>我的打赏</h2>
+        <div class="col-lg-8">
+            <div class="inner-box ">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (user.Id == Model.Id)
+                    {
+                        <h2>我的打赏</h2>
+                    }
+                    else
+                    {
+                        <h2>我的打赏</h2>
+                    }
+                }
+                else
+                {
+                    <h2>TA的打赏</h2>
+                }
+            </div>
+            <div class="inner-box">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (user.Id == Model.Id)
+                    {
+                        <h2>我的预约</h2>
+                    }
+                    else
+                    {
+                        <h2>TA的预约</h2>
+                    }
+                }
+                else
+                {
+                    <h2>TA的预约</h2>
+                }
+            </div>
         </div>
         <div class="inner-box col-lg-3 left-0-1 center-block">
-            <img src="@Model.Photo" class="face-1 face" />
+            @if (!string.IsNullOrEmpty(Model.Photo))
+            {
+                <img src="@Model.Photo" class="face-1 face" />
+            }
+            else
+            {
+                <img src="~/Images/user-default.png" class="face-1 face" />
+            }
+
             <ul class="list-group top-0-1">
                 <li class="list-group-item">@Model.Username</li>
                 <li class="list-group-item">@Model.Email</li>
@@ -33,7 +74,7 @@
             </ul>
             @if (User.Identity.IsAuthenticated)
             {
-                if (user.Id== Model.Id)
+                if (user.Id == Model.Id)
                 {
                     <a href="/User/Edit/@Model.Id">修改个人资料</a>
                 }
