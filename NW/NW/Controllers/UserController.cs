@@ -6,9 +6,11 @@ using NW.Utility;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
+using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.Security;
 
@@ -209,5 +211,52 @@ namespace NW.Controllers
             return View();
         }
 
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            return View(CurrentUser);
+        }
+
+        public ActionResult Edit(User model, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                try
+                {
+                    string random = DateHelper.GetTimeStamp();
+                    string root = "~/UserPhoto/";
+                    var phicyPath = HostingEnvironment.MapPath(root);
+                    if (!Directory.Exists(phicyPath))
+                    {
+                        Directory.CreateDirectory(phicyPath);
+                    }
+                    file.SaveAs(phicyPath + random + Path.GetExtension(file.FileName));
+
+                    User user = new Entity.User();
+                    user = bllSession.IUserBLL.GetEntity(model.Id);
+                    user.Phone = model.Phone;
+                    user.QQ = model.QQ;
+                    user.Remark = model.Remark;
+                    user.Program = model.Program;
+                    user.Address = model.Address;
+                    user.Photo = "/UserPhoto/" + random + Path.GetExtension(file.FileName);
+
+                    bllSession.IUserBLL.Update(user);
+                    log.Info(new LogContent(model.Username+"用户修改了资料", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    return Redirect("/User/Show/"+model.Id);
+                }
+                catch
+                {
+                    log.Error(new LogContent("用户修改资料出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    ModelState.AddModelError("", "用户修改资料出错！");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "你没有选择图片，请选择图片");
+            }
+            return View();
+        }
     }
 }

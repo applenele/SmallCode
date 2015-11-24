@@ -1,0 +1,64 @@
+﻿@model NW.Entity.User
+@{
+    ViewBag.Title = "用户修改";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="inner-box container top-1-8">
+    <form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <fieldset>
+            <legend>用户修改</legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="txtUsername">用户名</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="txtUsername" type="text" readonly="readonly" name="Username" value="@Model.Username" />
+                </div>
+                <label class="col-sm-2 control-label" for="txtEmail">邮箱</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="txtEmail" type="text" readonly="readonly" name="Email" value="@Model.Email" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="txtPhone">电话</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="txtPhone" type="text" name="Phone" value="@Model.Phone" />
+                </div>
+                <label class="col-sm-2 control-label" for="txtQQ">QQ</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="txtQQ" type="text" name="QQ" value="@Model.QQ" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="txtAddress">住址</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="txtAddress" type="text" name="Address" value="@Model.Address" />
+                </div>
+                <label class="col-sm-2 control-label" for="txtProgram">编程方向</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="txtProgram" type="text" name="Program" value="@Model.Program" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="txtPhoto">图像</label>
+                <div class="col-sm-4">
+                    <input type="file" name="file" value=" " />
+                </div>
+                <label class="col-sm-2 control-label" for="txtRemark">备注</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="txtRemark" type="text" name="Remark" value="@Model.Remark" />
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.ValidationSummary()
+                <div class="col-sm-4">
+                    <input type="submit" name="Sub" value="保存" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="reset" name="Res" value="清除" />
+                </div>
+                @Html.ValidationSummary()
+            </div>
+        </fieldset>
+    </form>
+</div>
+

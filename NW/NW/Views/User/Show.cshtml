@@ -17,7 +17,20 @@
                 <li class="list-group-item">@user.Username</li>
                 <li class="list-group-item">@user.Email</li>
                 <li class="list-group-item">@CommonString.RoleDisplay[user.RoleAsInt]</li>
+                @if (!string.IsNullOrEmpty(user.Program))
+                {
+                    <li class="list-group-item">@user.Program</li>
+                }
+                @if (!string.IsNullOrEmpty(user.QQ))
+                {
+                    <li class="list-group-item">@user.QQ</li>
+                }
+                @if (!string.IsNullOrEmpty(user.Remark))
+                {
+                    <li class="list-group-item">@user.Remark</li>
+                }
             </ul>
+            <a href="/User/Edit/@user.Id">修改个人资料</a>
         </div>
     </div>
 
