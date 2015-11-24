@@ -211,7 +211,12 @@ namespace NW.Controllers
             return View();
         }
 
-
+        #region 修改用户信息
+        /// <summary>
+        /// 修改用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -220,9 +225,11 @@ namespace NW.Controllers
 
         public ActionResult Edit(User model, HttpPostedFileBase file)
         {
-            if (file != null)
+            try
             {
-                try
+                User user = new Entity.User();
+                user = bllSession.IUserBLL.GetEntity(model.Id);
+                if (file != null)
                 {
                     string random = DateHelper.GetTimeStamp();
                     string root = "~/UserPhoto/";
@@ -232,31 +239,26 @@ namespace NW.Controllers
                         Directory.CreateDirectory(phicyPath);
                     }
                     file.SaveAs(phicyPath + random + Path.GetExtension(file.FileName));
-
-                    User user = new Entity.User();
-                    user = bllSession.IUserBLL.GetEntity(model.Id);
-                    user.Phone = model.Phone;
-                    user.QQ = model.QQ;
-                    user.Remark = model.Remark;
-                    user.Program = model.Program;
-                    user.Address = model.Address;
                     user.Photo = "/UserPhoto/" + random + Path.GetExtension(file.FileName);
+                }
+                user.Phone = model.Phone;
+                user.QQ = model.QQ;
+                user.Remark = model.Remark;
+                user.Program = model.Program;
+                user.Address = model.Address;
 
-                    bllSession.IUserBLL.Update(user);
-                    log.Info(new LogContent(model.Username+"用户修改了资料", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
-                    return Redirect("/User/Show/"+model.Id);
-                }
-                catch
-                {
-                    log.Error(new LogContent("用户修改资料出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
-                    ModelState.AddModelError("", "用户修改资料出错！");
-                }
+                bllSession.IUserBLL.Update(user);
+                log.Info(new LogContent(model.Username + "用户修改了资料", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return Redirect("/User/Show/" + model.Id);
             }
-            else
+            catch
             {
-                ModelState.AddModelError("", "你没有选择图片，请选择图片");
+                log.Error(new LogContent("用户修改资料出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                ModelState.AddModelError("", "用户修改资料出错！");
             }
             return View();
         }
+
+        #endregion
     }
 }

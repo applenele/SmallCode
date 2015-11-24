@@ -1,5 +1,6 @@
 ﻿@using NW.Entity
 @using NW.Entity.DataModels;
+@model NW.Entity.User
 @{
     ViewBag.Title = "Show";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,25 +13,31 @@
             <h2>我的打赏</h2>
         </div>
         <div class="inner-box col-lg-3 left-0-1 center-block">
-            <img src="@user.Photo" class="face-1 face" />
+            <img src="@Model.Photo" class="face-1 face" />
             <ul class="list-group top-0-1">
-                <li class="list-group-item">@user.Username</li>
-                <li class="list-group-item">@user.Email</li>
-                <li class="list-group-item">@CommonString.RoleDisplay[user.RoleAsInt]</li>
-                @if (!string.IsNullOrEmpty(user.Program))
+                <li class="list-group-item">@Model.Username</li>
+                <li class="list-group-item">@Model.Email</li>
+                <li class="list-group-item">@CommonString.RoleDisplay[Model.RoleAsInt]</li>
+                @if (!string.IsNullOrEmpty(Model.Program))
                 {
-                    <li class="list-group-item">@user.Program</li>
+                    <li class="list-group-item">@Model.Program</li>
                 }
-                @if (!string.IsNullOrEmpty(user.QQ))
+                @if (!string.IsNullOrEmpty(Model.QQ))
                 {
-                    <li class="list-group-item">@user.QQ</li>
+                    <li class="list-group-item">@Model.QQ</li>
                 }
-                @if (!string.IsNullOrEmpty(user.Remark))
+                @if (!string.IsNullOrEmpty(Model.Remark))
                 {
-                    <li class="list-group-item">@user.Remark</li>
+                    <li class="list-group-item">@Model.Remark</li>
                 }
             </ul>
-            <a href="/User/Edit/@user.Id">修改个人资料</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (user.Id== Model.Id)
+                {
+                    <a href="/User/Edit/@Model.Id">修改个人资料</a>
+                }
+            }
         </div>
     </div>
 
