@@ -84,7 +84,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Plateforum(Title,Picture,Description,Time)VALUES(@Title,@Picture,@Description,@Time)";
+                string query = "INSERT INTO Plateforum(Title,Picture,Description,Time,Report,IsClose)VALUES(@Title,@Picture,@Description,@Time,@Report,@IsClose)";
                 return Conn.Execute(query, model);
             }
         }
