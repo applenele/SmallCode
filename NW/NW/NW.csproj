@@ -181,6 +181,8 @@
     <Content Include="Areas\Admin\Views\Notification\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ForumShow.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\PlateEdit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />

@@ -31,7 +31,7 @@ namespace NW.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(Plateforum model,HttpPostedFileBase file)
+        public ActionResult Add(Plateforum model, HttpPostedFileBase file)
         {
             if (file != null)
             {
@@ -49,12 +49,12 @@ namespace NW.Areas.Admin.Controllers
                     {
                         Directory.CreateDirectory(phicyPath);
                     }
-                  
+
                     file.SaveAs(phicyPath + random + Path.GetExtension(file.FileName));
                     plate.Picture = "/Pictures/" + random + Path.GetExtension(file.FileName);
                     bllSession.IPlateforumBLL.Insert(plate);
 
-                    log.Info(new LogContent(CurrentUser.Username+"增加了论坛板块", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    log.Info(new LogContent(CurrentUser.Username + "增加了论坛板块", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
                     return Redirect("/Admin/Forum/Index");
                 }
                 catch
@@ -66,6 +66,81 @@ namespace NW.Areas.Admin.Controllers
             else
             {
                 ModelState.AddModelError("", "你没有选择图片，请选择图片");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult ForumShow(int id)
+        {
+            Plateforum plate = new Plateforum();
+            plate = bllSession.IPlateforumBLL.GetEntity(id);
+            return View(plate);
+        }
+
+        [HttpPost]
+        public ActionResult DeletePlate(int id)
+        {
+            try
+            {
+                bllSession.IPlateforumBLL.Delete(id);
+                log.Info(new LogContent(CurrentUser.Username + ":删除板块"+id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return Content("ok");
+            }
+            catch (Exception ex)
+            {
+                log.Error(new LogContent(CurrentUser.Username + ":删除板块"+id+"失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()),ex);
+                return Content("err");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult PlateEdit(int id)
+        {
+            Plateforum plate = new Plateforum();
+            plate = bllSession.IPlateforumBLL.GetEntity(id);
+            return View(plate);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PlateEdit(Plateforum model, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    Plateforum plate = new Plateforum();
+                    plate = bllSession.IPlateforumBLL.GetEntity(model.Id);
+                    plate.Title = model.Title;
+                    plate.Description = model.Description;
+                    plate.IsClose = model.IsClose;
+
+                    if (file != null)
+                    {
+                        string root = "~/Pictures/";
+                        string random = DateHelper.GetTimeStamp();
+                        var phicyPath = HostingEnvironment.MapPath(root);
+                        var filePath = HostingEnvironment.MapPath(plate.Picture);
+                        if (System.IO.File.Exists(filePath))
+                        {
+                            System.IO.File.Delete(filePath);
+                        }
+                        if (!Directory.Exists(phicyPath))
+                        {
+                            Directory.CreateDirectory(phicyPath);
+                        }
+                        file.SaveAs(phicyPath + random + Path.GetExtension(file.FileName));
+                        plate.Picture = "/Pictures/" + random + Path.GetExtension(file.FileName);
+                    }
+                    bllSession.IPlateforumBLL.Update(plate);
+                    log.Info(new LogContent(CurrentUser.Username + ":修改板块了" + model.Id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    return Redirect("/Admin/Forum/ForumShow/"+model.Id);
+                }
+                catch(Exception ex)
+                {
+                    log.Error(new LogContent(CurrentUser.Username + ":修改板块" + model.Id + "失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()), ex);
+                }
             }
             return View();
         }

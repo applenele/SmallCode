@@ -50,7 +50,7 @@
                             <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
                             <td>@item.Id</td>
                             <td title="@item.Title">
-                                <a target="_blank" href="#" title="@item.Title">@item.Title</a>
+                                <a target="_blank" href="/Admin/Forum/ForumShow/@item.Id" title="@item.Title">@item.Title</a>
                             </td>
                             <td>
                                 <img src="@item.Picture" alt="@item.Title" class="face-1-1" />
@@ -59,7 +59,7 @@
                             <td>@item.IsClose</td>
                             <td>@item.Browses</td>
                             <td>
-                                <a class="link-update" href="/Admin/Forum/Edit/@item.Id">修改</a>
+                                <a class="link-update" href="/Admin/Forum/PlateEdit/@item.Id">修改</a>
                                 <a class="link-del" href="javascript:deleteDialog('/Admin/Category/Delete/@item.Id',@item.Id)">删除</a>
                             </td>
                         </tr>
