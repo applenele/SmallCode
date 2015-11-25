@@ -2,6 +2,7 @@
 using NW.Entity.DataModels;
 using NW.Log4net;
 using NW.Utility;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,7 @@ namespace NW.Areas.Admin.Controllers
             return View();
         }
 
+        #region 板块相关
         [HttpGet]
         public ActionResult Add()
         {
@@ -84,12 +86,12 @@ namespace NW.Areas.Admin.Controllers
             try
             {
                 bllSession.IPlateforumBLL.Delete(id);
-                log.Info(new LogContent(CurrentUser.Username + ":删除板块"+id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                log.Info(new LogContent(CurrentUser.Username + ":删除板块" + id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
                 return Content("ok");
             }
             catch (Exception ex)
             {
-                log.Error(new LogContent(CurrentUser.Username + ":删除板块"+id+"失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()),ex);
+                log.Error(new LogContent(CurrentUser.Username + ":删除板块" + id + "失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()), ex);
                 return Content("err");
             }
         }
@@ -135,9 +137,9 @@ namespace NW.Areas.Admin.Controllers
                     }
                     bllSession.IPlateforumBLL.Update(plate);
                     log.Info(new LogContent(CurrentUser.Username + ":修改板块了" + model.Id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
-                    return Redirect("/Admin/Forum/ForumShow/"+model.Id);
+                    return Redirect("/Admin/Forum/ForumShow/" + model.Id);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     log.Error(new LogContent(CurrentUser.Username + ":修改板块" + model.Id + "失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()), ex);
                 }
@@ -145,5 +147,19 @@ namespace NW.Areas.Admin.Controllers
             return View();
         }
 
+        #endregion
+
+        /// <summary>
+        /// 主题管理
+        /// </summary>
+        /// <param name="id">板块ID</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult TopicManage(int id,string Key,int page=1)
+        {
+            string where = "";
+            /// todo
+            return View(bllSession.ICategoryBLL.GetList(where).ToPagedList(page, 20));
+        }
     }
 }
