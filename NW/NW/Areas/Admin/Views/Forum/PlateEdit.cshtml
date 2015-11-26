@@ -1,0 +1,56 @@
+﻿@model NW.Entity.Plateforum
+@{
+    ViewBag.Title = "板块修改";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/Admin/Home/Inedx">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Forum/Index">论坛管理</a><span class="crumb-step">&gt;</span><span>修改板块</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <form action="/Admin/Forum/PlateEdit" method="post" name="frmAddForum" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <table class="insert-tab" width="100%">
+                <tbody>
+                    <tr>
+                        <th><i class="require-red">*</i>标题：</th>
+                        <td>
+                            <input class="common-text required" id="Title" name="Title" size="50" value="@Model.Title" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>描述：</th>
+                        <td><textarea name="Description" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10">@Model.Description</textarea></td>
+                    </tr>
+                    <tr>
+                        <th><i class="require-red">*</i>选择图片：</th>
+                        <td><input class="common-text required" id="file" name="file" size="50" type="file"> </td>
+                    </tr>
+                    <tr>
+                        <th>是否开启：</th>
+                        <td>
+                            <select name="IsClose">
+                                <option value="true" @(Model.IsClose==true?"selected":"")>是</option>
+                                <option value="false" @(Model.IsClose==false?"selected":"")>否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                            <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,71 @@
+﻿@using NW.Entity;
+@{
+    ViewBag.Title = "论坛管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font"></i>
+        <a href="/Admin/Home/Index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">论坛管理</span>&gt;<span class="crumb-name">板块管理</span>
+    </div>
+</div>
+<div class="search-wrap">
+    <div class="search-content">
+        <form action="/Admin/Forum/Index" method="get">
+            <table class="search-tab">
+                <tr>
+                    <th width="70">关键字:</th>
+                    <td><input class="common-text" placeholder="关键字" name="Key" type="text"></td>
+                    <td><input class="btn btn-primary btn2" name="sub" type="submit" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="result-wrap">
+    <form name="myform" id="myform" method="post">
+        <div class="result-title">
+            <div class="result-list">
+                <a href="/Admin/Forum/Add"><i class="icon-font"></i>新增板块</a>
+                <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+            </div>
+        </div>
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
+                    <th>ID</th>
+                    <th>标题</th>
+                    <th>图片</th>
+                    <th>时间</th>
+                    <th>状态</th>
+                    <th>浏览量</th>
+                    <th>操作</th>
+                </tr>
+                @foreach (var item in ViewBag.Plates as List<Plateforum>)
+                {
+                    <tr id="@item.Id">
+                        <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
+                        <td>@item.Id</td>
+                        <td title="@item.Title">
+                            <a target="_blank" href="/Admin/Forum/ForumShow/@item.Id" title="@item.Title">@item.Title</a>
+                        </td>
+                        <td>
+                            <img src="@item.Picture" alt="@item.Title" class="face-1-1" />
+                        </td>
+                        <td>@item.Time</td>
+                        <td>@item.IsClose</td>
+                        <td>@item.Browses</td>
+                        <td>
+                            <a class="link-update" href="/Admin/Forum/PlateEdit/@item.Id">修改</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/Category/Delete/@item.Id',@item.Id)">删除</a>
+                            <a class="link-update" href="/Admin/Forum/TopicManage/@item.Id">主题管理</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </form>
+</div>
