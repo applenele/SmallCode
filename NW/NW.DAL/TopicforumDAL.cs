@@ -63,7 +63,7 @@ namespace NW.DAL
             {
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + "order by t.Time desc"; 
+                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + "order by t.Time desc";
                 }
                 else
                 {

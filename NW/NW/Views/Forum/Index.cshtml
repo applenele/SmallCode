@@ -1,4 +1,5 @@
 ﻿@model PagedList.IPagedList<NW.Entity.Topicforum>
+@using NW.Models;
 @using PagedList.Mvc
 @{
     ViewBag.Title = "论坛";
@@ -11,6 +12,13 @@
             <h3 id="h3">感谢关注！</h3>
         </hgroup>
     </header>
+    <select>
+        @foreach (var item in ViewBag.plateforums)
+        {
+            <option value="item.Title">item.Title</option>
+        }
+    </select>
+
     @foreach (var item in Model)
     {
         <div class="inner-box">
