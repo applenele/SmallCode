@@ -37,8 +37,11 @@ namespace NW.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Add(int id = 0)
+        public ActionResult Add()
         {
+            List<Plateforum> plateforum = new List<Plateforum>();
+            plateforum = bllSession.IPlateforumBLL.GetList("").ToList();
+            ViewBag.plateforumlist = plateforum;
             return View();
         }
 
