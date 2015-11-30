@@ -13,8 +13,11 @@ namespace NW.Controllers
         [HttpGet]
         public ActionResult Index(int page = 1)
         {
-            List <Topicforum> topicforums = new List<Topicforum>();
+            List<Topicforum> topicforums = new List<Topicforum>();
+            List<Plateforum> plateforums = new List<Plateforum>();
             topicforums = bllSession.ITopicforumBLL.GetList("").ToList();
+            plateforums = bllSession.IPlateforumBLL.GetList("").ToList();
+            ViewBag.plateforums = plateforums;
             return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page,10));
         }
 
@@ -34,8 +37,11 @@ namespace NW.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Add(int id = 0)
+        public ActionResult Add()
         {
+            List<Plateforum> plateforum = new List<Plateforum>();
+            plateforum = bllSession.IPlateforumBLL.GetList("").ToList();
+            ViewBag.plateforumlist = plateforum;
             return View();
         }
 

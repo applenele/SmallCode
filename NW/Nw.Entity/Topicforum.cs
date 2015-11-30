@@ -27,6 +27,10 @@ namespace NW.Entity
 
         public virtual User User{ get; set; }
 
+        public int PlateforumId { get; set; }
+
+        public virtual Plateforum Plateforum { set; get; }
+
         public int Reward { get; set; }
 
         public int Browses { get; set; }
