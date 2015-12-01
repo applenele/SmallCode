@@ -63,7 +63,7 @@ namespace NW.DAL
             {
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + "order by t.Time desc"; 
+                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + "order by t.Time desc";
                 }
                 else
                 {
@@ -105,7 +105,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Topicforum SET Title=@Title,Content=@Content,Top=@Top,Time=@Time,LastReply=@LastReply,Reward=@Reward,Report=@Report,IsShow=@IsShow,IsClose=@IsClose,IsOfficeIdentified=@IsOfficeIdentified";
+                string query = "UPDATE Topicforum SET Title=@Title,Content=@Content,Top=@Top,Time=@Time,LastReply=@LastReply,Reward=@Reward,Browses=@Browses,Report=@Report,IsShow=@IsShow,IsClose=@IsClose,IsOfficeIdentified=@IsOfficeIdentified WHERE Id = @Id";
                 return Conn.Execute(query, model);
             }
         }

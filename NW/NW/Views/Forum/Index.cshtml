@@ -11,6 +11,14 @@
             <h3 id="h3">感谢关注！</h3>
         </hgroup>
     </header>
+    <select>
+        <option value="">请选择模块</option>
+        @foreach (var item in ViewBag.plateforums)
+        {
+            <option value="@item.Title">@item.Title</option>
+        }
+    </select>
+    <a href="/Forum/Add">我要发布</a>
     @foreach (var item in Model)
     {
         <div class="inner-box">
