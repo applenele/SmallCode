@@ -10,7 +10,11 @@ namespace NW.Entity
     {
         public int Id { get; set; }
 
+        public string Title { set; get; }
+
         public string Text { set; get; }
+
+        public int Vote { set; get; }
 
         public int UserId { set; get; }
 

@@ -15,7 +15,7 @@ namespace NW.Controllers
             demands = bllSession.IDemandBLL.GetList("").ToList();
             return View(bllSession.IDemandBLL.GetList("").ToPagedList(page,10));
         }
-        public ActionResult GoDemand()
+        public ActionResult Push()
         {
             return View();
         }

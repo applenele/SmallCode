@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.40)
-# Date: 2015-12-04 22:27:21
+# Date: 2015-12-04 23:03:48
 # Generator: MySQL-Front 5.3  (Build 4.120)
 
 /*!40101 SET NAMES utf8 */;
@@ -84,6 +84,8 @@ CREATE TABLE `demand` (
   `ReviewTime` varchar(255) DEFAULT NULL COMMENT '审核时间',
   `VideoId` int(11) DEFAULT NULL COMMENT '视频id',
   `Text` text COMMENT '要求',
+  `Title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `Vote` int(11) DEFAULT NULL COMMENT '投票数',
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='需求';
 
