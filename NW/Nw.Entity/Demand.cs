@@ -10,6 +10,8 @@ namespace NW.Entity
     {
         public int Id { get; set; }
 
+        public string Text { set; get; }
+
         public int UserId { set; get; }
 
         public virtual User User { set; get; }

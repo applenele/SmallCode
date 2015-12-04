@@ -11,7 +11,9 @@ namespace NW.Controllers
         // GET: Demand
         public ActionResult Index()
         {
-            return View();
+            List<Demand> demands = new List<Demand>();
+            demands = bllSession.IDemandBLL.GetList("").ToList();
+            return View(bllSession.IDemandBLL.GetList("").ToPagedList(page,10));
         }
         public ActionResult GoDemand()
         {

@@ -1,8 +1,13 @@
-﻿
+﻿# Host: localhost  (Version: 5.5.40)
+# Date: 2015-12-04 22:27:21
+# Generator: MySQL-Front 5.3  (Build 4.120)
 
--- ----------------------------
--- Table structure for article
--- ----------------------------
+/*!40101 SET NAMES utf8 */;
+
+#
+# Structure for table "article"
+#
+
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -15,9 +20,17 @@ CREATE TABLE `article` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for category
--- ----------------------------
+#
+# Data for table "article"
+#
+
+/*!40000 ALTER TABLE `article` DISABLE KEYS */;
+/*!40000 ALTER TABLE `article` ENABLE KEYS */;
+
+#
+# Structure for table "category"
+#
+
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -26,9 +39,17 @@ CREATE TABLE `category` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for course
--- ----------------------------
+#
+# Data for table "category"
+#
+
+/*!40000 ALTER TABLE `category` DISABLE KEYS */;
+/*!40000 ALTER TABLE `category` ENABLE KEYS */;
+
+#
+# Structure for table "course"
+#
+
 DROP TABLE IF EXISTS `course`;
 CREATE TABLE `course` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -42,9 +63,17 @@ CREATE TABLE `course` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for demand
--- ----------------------------
+#
+# Data for table "course"
+#
+
+/*!40000 ALTER TABLE `course` DISABLE KEYS */;
+/*!40000 ALTER TABLE `course` ENABLE KEYS */;
+
+#
+# Structure for table "demand"
+#
+
 DROP TABLE IF EXISTS `demand`;
 CREATE TABLE `demand` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -54,12 +83,21 @@ CREATE TABLE `demand` (
   `Price` float DEFAULT NULL COMMENT '价格',
   `ReviewTime` varchar(255) DEFAULT NULL COMMENT '审核时间',
   `VideoId` int(11) DEFAULT NULL COMMENT '视频id',
+  `Text` text COMMENT '要求',
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='需求';
 
--- ----------------------------
--- Table structure for image
--- ----------------------------
+#
+# Data for table "demand"
+#
+
+/*!40000 ALTER TABLE `demand` DISABLE KEYS */;
+/*!40000 ALTER TABLE `demand` ENABLE KEYS */;
+
+#
+# Structure for table "image"
+#
+
 DROP TABLE IF EXISTS `image`;
 CREATE TABLE `image` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -70,9 +108,17 @@ CREATE TABLE `image` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for logs
--- ----------------------------
+#
+# Data for table "image"
+#
+
+/*!40000 ALTER TABLE `image` DISABLE KEYS */;
+/*!40000 ALTER TABLE `image` ENABLE KEYS */;
+
+#
+# Structure for table "logs"
+#
+
 DROP TABLE IF EXISTS `logs`;
 CREATE TABLE `logs` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -86,9 +132,17 @@ CREATE TABLE `logs` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for notification
--- ----------------------------
+#
+# Data for table "logs"
+#
+
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+
+#
+# Structure for table "notification"
+#
+
 DROP TABLE IF EXISTS `notification`;
 CREATE TABLE `notification` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -99,9 +153,17 @@ CREATE TABLE `notification` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for plateforum
--- ----------------------------
+#
+# Data for table "notification"
+#
+
+/*!40000 ALTER TABLE `notification` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notification` ENABLE KEYS */;
+
+#
+# Structure for table "plateforum"
+#
+
 DROP TABLE IF EXISTS `plateforum`;
 CREATE TABLE `plateforum` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -115,9 +177,17 @@ CREATE TABLE `plateforum` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for reply
--- ----------------------------
+#
+# Data for table "plateforum"
+#
+
+/*!40000 ALTER TABLE `plateforum` DISABLE KEYS */;
+/*!40000 ALTER TABLE `plateforum` ENABLE KEYS */;
+
+#
+# Structure for table "reply"
+#
+
 DROP TABLE IF EXISTS `reply`;
 CREATE TABLE `reply` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -129,9 +199,17 @@ CREATE TABLE `reply` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for replyforum
--- ----------------------------
+#
+# Data for table "reply"
+#
+
+/*!40000 ALTER TABLE `reply` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reply` ENABLE KEYS */;
+
+#
+# Structure for table "replyforum"
+#
+
 DROP TABLE IF EXISTS `replyforum`;
 CREATE TABLE `replyforum` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -143,9 +221,17 @@ CREATE TABLE `replyforum` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for topicforum
--- ----------------------------
+#
+# Data for table "replyforum"
+#
+
+/*!40000 ALTER TABLE `replyforum` DISABLE KEYS */;
+/*!40000 ALTER TABLE `replyforum` ENABLE KEYS */;
+
+#
+# Structure for table "topicforum"
+#
+
 DROP TABLE IF EXISTS `topicforum`;
 CREATE TABLE `topicforum` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -164,9 +250,17 @@ CREATE TABLE `topicforum` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for user
--- ----------------------------
+#
+# Data for table "topicforum"
+#
+
+/*!40000 ALTER TABLE `topicforum` DISABLE KEYS */;
+/*!40000 ALTER TABLE `topicforum` ENABLE KEYS */;
+
+#
+# Structure for table "user"
+#
+
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -184,9 +278,17 @@ CREATE TABLE `user` (
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for video
--- ----------------------------
+#
+# Data for table "user"
+#
+
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+
+#
+# Structure for table "video"
+#
+
 DROP TABLE IF EXISTS `video`;
 CREATE TABLE `video` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
@@ -203,3 +305,10 @@ CREATE TABLE `video` (
   `ContentType` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "video"
+#
+
+/*!40000 ALTER TABLE `video` DISABLE KEYS */;
+/*!40000 ALTER TABLE `video` ENABLE KEYS */;

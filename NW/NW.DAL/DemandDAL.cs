@@ -85,7 +85,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Demand(UserId,DateTime,State) VALUES(@UserId,@DateTime,0)";
+                string query = "INSERT INTO Demand(Text,UserId,DateTime,State) VALUES(@Text,@UserId,@DateTime,0)";
                 return Conn.Execute(query, model);
             }
         }

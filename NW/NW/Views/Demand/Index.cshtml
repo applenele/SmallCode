@@ -1,8 +1,23 @@
-﻿
+﻿model PagedList.IPagedList<NW.Entity.Demand>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Demand_Layout.cshtml";
 }
 
-<h2>Index</h2>
+                              <div class="container">
+                                  <header id="header">
+                                      <hgroup>
+                                          <h1 id="h1">codeqiaokeli 编程学习</h1>
+                                          <h3 id="h3">感谢关注！</h3>
+                                      </hgroup>
+                                  </header>
+
+                                  @foreach (var item in Model)
+    {
+                                      
+    }
+
+                                  @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                              </div>
 
