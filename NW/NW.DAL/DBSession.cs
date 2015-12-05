@@ -226,7 +226,7 @@ namespace NW.DAL
         {
             get
             {
-                if (DemandDAL == null)
+                if (iDemandDAL == null)
                     iDemandDAL = new DemandDAL();
                 return iDemandDAL;
             }
