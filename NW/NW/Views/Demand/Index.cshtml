@@ -1,57 +1,57 @@
 ﻿@model PagedList.IPagedList<NW.Entity.Demand>
 @using PagedList.Mvc;
-@using NW.Utility;
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Demand_Layout.cshtml";
-}
-                          <div class="container">
-                                  <header id="header">
-                                      <hgroup>
-                                          <h1 id="h1">codeqiaokeli 编程学习</h1>
-                                          <h3 id="h3">感谢关注！</h3>
-                                      </hgroup>
-                                  </header>
-                              <div class="demand-header col-lg-12 col-md-12 col-12 row">
-                                  <div class="col-lg-6 col-md-6 col-sm-12">
-                                      <button class="btn btn-success">提交课程需求</button>
-                                  </div>
-                                  <div class="col-lg-6 col-md-6 col-sm-12 demand-info-text">
-                                      <p></p>
-                                      <p></p>
-                                  </div>
-                              </div>
-                              <div class="demand-body col-lg-12 col-md-12 col-12 row">
-                                  @foreach (var item in Model)
-                                  {
-                                      <div class="col-lg-3 col-md-4 col-sm-6 demand-body-one">
-                                          <p class="demand-info">
-                                              <span class="col-lg-6 col-md-8 col-10 text-center demand-info-title">@item.Text</span>
-                                              @if (item.State == 0)
-                                              {
-                                                  <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-1">讨论中</span>
-                                              }
-                                              else if (item.State == 1)
-                                              {
-                                                  <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-2">制作中</span>
-                                              }
-                                              else if (item.State == 2)
-                                              {
-                                                  <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-3">完成</span>
-                                              }
-                                          </p>
+    @using NW.Utility;
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_Demand_Layout.cshtml";
+    }
+    <div class="container">
+        <header id="header">
+            <hgroup>
+                <h1 id="h1">codeqiaokeli 编程学习</h1>
+                <h3 id="h3">感谢关注！</h3>
+            </hgroup>
+        </header>
+        <div class="demand-header col-lg-12 col-md-12 col-12 row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <button class="btn btn-success">提交课程需求</button>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 demand-info-text">
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+        <div class="demand-body col-lg-12 col-md-12 col-12 row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 demand-body-one">
+                    <p class="demand-info">
+                        <span class="col-lg-6 col-md-8 col-10 text-center demand-info-title">@item.Text</span>
+                        @if (item.State == 0)
+                        {
+                            <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-1">讨论中</span>
+                        }
+                        else if (item.State == 1)
+                        {
+                            <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-2">制作中</span>
+                        }
+                        else if (item.State == 2)
+                        {
+                            <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-3">完成</span>
+                        }
+                    </p>
 
-                                          <p class="demand-info">
+                    <p class="demand-info">
 
-                                              <span class="col-lg-6 col-md-6 col-sm-6 text-center demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
-                                              <span class="col-lg-6 col-md-6 col-sm-6 text-center demand-info-vote glyphicon glyphicon-thumbs-up" id="demand-info-vote"></span>
-                                          </p>
-                                          <p class="demand-text text-left">@item.Text</p>
-                                      </div>
-                                  }
-                              </div>
-                          @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-                          </div>
+                        <span class="col-lg-6 col-md-6 col-sm-6 text-center demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
+                        <span class="col-lg-6 col-md-6 col-sm-6 text-center demand-info-vote glyphicon glyphicon-thumbs-up" id="demand-info-vote"></span>
+                    </p>
+                    <p class="demand-text text-left">@item.Text</p>
+                </div>
+            }
+        </div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
 
 
 
