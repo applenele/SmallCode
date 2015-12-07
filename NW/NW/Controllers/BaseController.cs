@@ -1,7 +1,10 @@
 ﻿using NW.BLL;
 using NW.Entity;
+using NW.Entity.DataModels;
 using NW.IBLL;
+using NW.Log4net;
 using NW.Models;
+using NW.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +58,19 @@ namespace NW.Controllers
             setupPrompt(prompt);
             Response.StatusCode = prompt.StatusCode;
             return View("Info", prompt);
+        }
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (CurrentUser != null)
+            {
+                log.Info(new LogContent(CurrentUser.Username+":访问了" + Request.Url, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
+            else
+            {
+                log.Info(new LogContent("游客访问了" + Request.Url, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
+            base.OnActionExecuting(filterContext);
         }
     }
 }
