@@ -69,19 +69,34 @@ namespace NW.Controllers
         /// </summary>
         /// <param name="title"></param>
         /// <param name="classify"></param>
-        /// <param name="conten"></param>
+        /// <param name="content"></param>
         /// <returns></returns>
         [ValidateAntiForgeryToken]
         [HttpPost]
         [ValidateInput(false)]  //允许特殊字符提交/
-        public ActionResult Add(string title, int classify, string conten)
+        public ActionResult Add(string title, int classify, string content)
         {
+            Topicforum topicforum = new Topicforum();
+            User user = new User();
             string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
             if (!string.IsNullOrEmpty(Username))
             {
+                user = bllSession.IUserBLL.GetUserByName("Username");
+                int userId = user.Id;
+
+                topicforum.Title = title;
+                topicforum.Content = content;
+                topicforum.PlateforumId = classify;
+                topicforum.Time = DateTime.Now;
+                topicforum.UserId = userId;
+
                 log.Info(new LogContent(Username + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return View();
             }
-            return View();
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }     
         }
 
         /// <summary>
