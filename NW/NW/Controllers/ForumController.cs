@@ -22,8 +22,11 @@ namespace NW.Controllers
             topicforums = bllSession.ITopicforumBLL.GetList("").ToList();
             plateforums = bllSession.IPlateforumBLL.GetList("").ToList();
             ViewBag.plateforums = plateforums;
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page,10));
         }
 
@@ -34,8 +37,11 @@ namespace NW.Controllers
             topicforum = bllSession.ITopicforumBLL.GetEntity(id);
             topicforum.Browses = topicforum.Browses + 1;
             bllSession.ITopicforumBLL.Update(topicforum);
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户访问了帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户访问了帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View(topicforum);
         }
 
@@ -50,8 +56,11 @@ namespace NW.Controllers
             List<Plateforum> plateforum = new List<Plateforum>();
             plateforum = bllSession.IPlateforumBLL.GetList("").ToList();
             ViewBag.plateforumlist = plateforum;
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户访问准备发布新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户访问准备发布新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
@@ -67,8 +76,11 @@ namespace NW.Controllers
         [ValidateInput(false)]  //允许特殊字符提交/
         public ActionResult Add(string title, int classify, string conten)
         {
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
@@ -84,8 +96,11 @@ namespace NW.Controllers
         [ValidateInput(false)]
         public ActionResult ReplyAdd(string content, int cid, int id, int? fatherID)
         {
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户回复了帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户回复了帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
@@ -96,8 +111,11 @@ namespace NW.Controllers
         [HttpGet]
         public ActionResult Forum(int id, int Time = 0, string Publish = "", int Rule = 0, int p = 0)
         {
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户访问板块展示页面", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户访问板块展示页面", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
@@ -109,8 +127,11 @@ namespace NW.Controllers
         [Authorize]
         public ActionResult Sign()
         {
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户签到", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户签到", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
@@ -121,8 +142,11 @@ namespace NW.Controllers
         [HttpPost]
         public ActionResult SignInfo()
         {
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户查看了签到信息", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户查看了签到信息", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
@@ -134,8 +158,11 @@ namespace NW.Controllers
         [Authorize]
         public ActionResult Report(int id)
         {
-            char Username = FormsAuthentication.FormsCookieName.Single();
-            log.Info(new LogContent(Username + "用户举报", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            string Username = FormsAuthentication.FormsCookieName.SingleOrDefault().ToString();
+            if (!string.IsNullOrEmpty(Username))
+            {
+                log.Info(new LogContent(Username + "用户举报", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
