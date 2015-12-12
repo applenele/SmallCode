@@ -21,7 +21,7 @@ function closeDialog() {
 
 function postDelete(url, id) {
     $.post(url, function (data) {
-        if (data == 'ok' || data == 'OK'){
+        if (data == 'ok' || data == 'OK') {
             $('#' + id).remove();
             popMsg('删除成功');
         }
@@ -43,3 +43,42 @@ function deleteDialog(url, id) {
     $('body').append(dom);
     setTimeout(function () { dom.addClass('active'); }, 10);
 }
+
+$(document).ready(function () {
+    $(".allChoose").click(function () {
+        if ($('.allChoose').is(':checked')) {
+            $(".choose").prop("checked", true);
+        } else {
+            $(".choose").prop("checked", false);
+        }
+    });
+
+    $("#batchDelLogs").click(function () {
+        var ids = "";
+        $(".choose").each(function () {
+            if ($(this).is(':checked')) {
+                ids = ids + "," + $(this).val();
+            }
+        });
+        if (ids == "") {
+            popMsg("请选择要删除的对象！");
+        } else {
+            ids = ids.substring(1, ids.length);
+            $(".mask").show();
+            $.ajax({
+                url: "/Admin/Log/MutiDelete",
+                method: "post",
+                data: { ids: ids },
+                success: function (data) {
+                    popMsg("批量删除成功！");
+                },
+                error: function (data) {
+                    popMsg("批量删除失败！");
+                },
+                complete: function (data) {
+                    $(".mask").hide();
+                }
+            })
+        }
+    });
+});

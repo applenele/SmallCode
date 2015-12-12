@@ -330,3 +330,25 @@
         visibility: hidden;
         transition: margin 0.2s linear, opacity 0.2s linear, visibility 0.2s linear;
     }
+
+.mask {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    _position: absolute;
+    top: 0;
+    z-index: 1000;
+    text-align: center;
+    line-height: 600px;
+}
+
+.opacity {
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    background-color: #000;
+}
+
+.hide {
+    display: none;
+}
+
