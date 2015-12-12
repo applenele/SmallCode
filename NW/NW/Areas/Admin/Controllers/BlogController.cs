@@ -16,7 +16,7 @@ namespace NW.Areas.Admin.Controllers
     public class BlogController : BaseController
     {
         // GET: Admin/Blog
-        public ActionResult Index(string Category, string Key)
+        public ActionResult Index(string Category, string Key,int page=1)
         {
             string where = "";
             if (!string.IsNullOrEmpty(Category))
@@ -31,9 +31,9 @@ namespace NW.Areas.Admin.Controllers
                 }
                 where = where + "Title LIKE '%" + Key + "%'";
             }
-            List<Category> categories = bllSession.ICategoryBLL.GetList("").ToList();
+            List<Category> categories = bllSession.ICategoryBLL.GetList(where).ToList();
             ViewBag.Categories = categories;
-            return View(bllSession.IArticleBLL.GetList(where).ToPagedList(1, 20));
+            return View(bllSession.IArticleBLL.GetList(where).ToPagedList(page, 20));
         }
 
         #region 增加博文
