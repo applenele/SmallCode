@@ -64,21 +64,25 @@ $(document).ready(function () {
             popMsg("请选择要删除的对象！");
         } else {
             ids = ids.substring(1, ids.length);
+            var arr = ids.split(',');
             $(".mask").show();
             $.ajax({
                 url: "/Admin/Log/MutiDelete",
                 method: "post",
                 data: { ids: ids },
-                success: function (data) {
+                success: function(data) {
                     popMsg("批量删除成功！");
+                    for (var i = 0; i < arr.length; i++) {
+                        $("tr[id=" + arr[i]+ "]").remove();
+                    }
                 },
-                error: function (data) {
+                error: function(data) {
                     popMsg("批量删除失败！");
                 },
-                complete: function (data) {
+                complete: function(data) {
                     $(".mask").hide();
                 }
-            })
+            });
         }
     });
 });
