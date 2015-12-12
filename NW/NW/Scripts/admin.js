@@ -53,8 +53,9 @@ $(document).ready(function () {
         }
     });
 
-    $("#batchDelLogs").click(function () {
+    $("#batchDel").click(function () {
         var ids = "";
+        var url = $(this).attr("data-del");
         $(".choose").each(function () {
             if ($(this).is(':checked')) {
                 ids = ids + "," + $(this).val();
@@ -67,7 +68,7 @@ $(document).ready(function () {
             var arr = ids.split(',');
             $(".mask").show();
             $.ajax({
-                url: "/Admin/Log/MutiDelete",
+                url: url,
                 method: "post",
                 data: { ids: ids },
                 success: function (data) {

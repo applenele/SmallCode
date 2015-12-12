@@ -5,24 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
-    <header id="header">
-        <hgroup>
-            <h1 id="h1">codeqiaokeli 编程学习</h1>
-            <h3 id="h3">感谢关注！</h3>
-        </hgroup>
-    </header>
-    
+<div class="container top-1-8">
     @foreach (var item in Model)
     {
         <div class="inner-box">
-             <div>
+            <div>
                 <h2><a href="/Course/Show/@item.Id">@item.Title</a></h2>
-                 发表时间：@item.Time  浏览量： @item.Browses  主讲人：@item.Lecturer
-             </div>
-             <div class="top-info-wrap">
-                   @item.Description
-             </div>
+                发表时间：@item.Time  浏览量： @item.Browses  主讲人：@item.Lecturer
+            </div>
+            <div class="top-info-wrap">
+                @item.Description
+            </div>
         </div>
     }
 

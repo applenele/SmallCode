@@ -9,13 +9,12 @@ using System.Web.Mvc;
 
 namespace NW.Areas.Admin.Controllers
 {
-    [Authorize]
     public class HomeController : BaseController
     {
         // GET: Admin/Home
         public ActionResult Index()
         {
-           // log.Info(new LogContent("admin area test", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            // log.Info(new LogContent("admin area test", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             return View();
         }
     }

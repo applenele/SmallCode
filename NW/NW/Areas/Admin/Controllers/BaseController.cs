@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace NW.Areas.Admin.Controllers
 {
+    [Authorize]
     public class BaseController : Controller
     {
         public readonly BLLSession bllSession = BLLSessionFactory.GetBLLSession();
