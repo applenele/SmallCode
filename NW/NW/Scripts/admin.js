@@ -70,19 +70,38 @@ $(document).ready(function () {
                 url: "/Admin/Log/MutiDelete",
                 method: "post",
                 data: { ids: ids },
-                success: function(data) {
+                success: function (data) {
                     popMsg("批量删除成功！");
                     for (var i = 0; i < arr.length; i++) {
-                        $("tr[id=" + arr[i]+ "]").remove();
+                        $("tr[id=" + arr[i] + "]").remove();
                     }
                 },
-                error: function(data) {
+                error: function (data) {
                     popMsg("批量删除失败！");
                 },
-                complete: function(data) {
+                complete: function (data) {
                     $(".mask").hide();
                 }
             });
         }
+    });
+
+    $("#btnBackUp").click(function () {
+        $(".mask").show();
+        $.ajax({
+            url: "/Admin/Db/Backup",
+            method: "post",
+            dataType: "json",
+            success: function (data) {
+                popMsg(data.Msg);
+            },
+            error: function (data) {
+                popMsg("备份失败！");
+            },
+            complete: function (data) {
+                $(".mask").hide();
+            }
+        });
+
     });
 });
