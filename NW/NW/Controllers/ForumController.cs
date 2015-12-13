@@ -23,10 +23,14 @@ namespace NW.Controllers
             plateforums = bllSession.IPlateforumBLL.GetList("").ToList();
             ViewBag.plateforums = plateforums;
 
-            string userName = CurrentUser.Username;
-            if (!string.IsNullOrEmpty(userName))
+            if (!Request.IsAuthenticated)
             {
-                log.Info(new LogContent(userName + "用户访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                log.Info(new LogContent("游客访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
+                log.Info(new LogContent("游客访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
             return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page,10));
         }
@@ -39,9 +43,13 @@ namespace NW.Controllers
             topicforum.Browses = topicforum.Browses + 1;
             bllSession.ITopicforumBLL.Update(topicforum);
 
-            string userName = CurrentUser.Username;
-            if (!string.IsNullOrEmpty(userName))
+            if (!Request.IsAuthenticated)
             {
+                log.Info(new LogContent("游客访问了帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
                 log.Info(new LogContent(userName + "用户访问了帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
             return View(topicforum);
@@ -55,13 +63,13 @@ namespace NW.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            string userName = CurrentUser.Username;
-            if (string.IsNullOrEmpty(userName))
+            if (!Request.IsAuthenticated)
             {
                 return RedirectToAction("Login", "User");
             }
             else
             {
+                string userName = CurrentUser.Username;
                 List<Plateforum> plateforum = new List<Plateforum>();
                 plateforum = bllSession.IPlateforumBLL.GetList("").ToList();
                 ViewBag.plateforumlist = plateforum;
@@ -123,9 +131,9 @@ namespace NW.Controllers
         [ValidateInput(false)]
         public ActionResult ReplyAdd(string content, int cid, int id, int? fatherID)
         {
-            string userName = CurrentUser.Username;
-            if (!string.IsNullOrEmpty(userName))
+            if (!Request.IsAuthenticated)
             {
+                string userName = CurrentUser.Username;
                 log.Info(new LogContent(userName + "用户回复了帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
             return View();
@@ -138,11 +146,6 @@ namespace NW.Controllers
         [HttpGet]
         public ActionResult Forum(int id, int Time = 0, string Publish = "", int Rule = 0, int p = 0)
         {
-            string userName = CurrentUser.Username;
-            if (!string.IsNullOrEmpty(userName))
-            {
-                log.Info(new LogContent(userName + "用户访问板块展示页面", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
-            }
             return View();
         }
 
@@ -154,9 +157,13 @@ namespace NW.Controllers
         [Authorize]
         public ActionResult Sign()
         {
-            string userName = CurrentUser.Username;
-            if (!string.IsNullOrEmpty(userName))
+            if (!Request.IsAuthenticated)
             {
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
                 log.Info(new LogContent(userName + "用户签到", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
             return View();
@@ -169,9 +176,13 @@ namespace NW.Controllers
         [HttpPost]
         public ActionResult SignInfo()
         {
-            string userName = CurrentUser.Username;
-            if (!string.IsNullOrEmpty(userName))
+            if (!Request.IsAuthenticated)
             {
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
                 log.Info(new LogContent(userName + "用户查看了签到信息", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
             return View();
@@ -185,9 +196,13 @@ namespace NW.Controllers
         [Authorize]
         public ActionResult Report(int id)
         {
-            string userName = CurrentUser.Username;
-            if (!string.IsNullOrEmpty(userName))
+            if (!Request.IsAuthenticated)
             {
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
                 log.Info(new LogContent(userName + "用户举报", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
             return View();
@@ -210,6 +225,15 @@ namespace NW.Controllers
         [HttpGet]
         public ActionResult CollectForum(int id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
+                log.Info(new LogContent(userName + "用户添加了收藏", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
@@ -218,15 +242,38 @@ namespace NW.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpGet]
         public ActionResult CancelCollectForum(int id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
+                log.Info(new LogContent(userName + "用户取消了收藏", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
+        /// <summary>
+        /// 显示收藏
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult CollectShow(int id)
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                string userName = CurrentUser.Username;
+                log.Info(new LogContent(userName + "用户访问了收藏列表", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            }
             return View();
         }
 
