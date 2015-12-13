@@ -14,7 +14,7 @@ namespace NW.Areas.Admin.Controllers
     public class LogController : BaseController
     {
         // GET: Admin/Log
-        public ActionResult Index(string Type,string Key,int page=1)
+        public ActionResult Index(string Type, string Key, int page = 1)
         {
             string where = "";
             if (!string.IsNullOrEmpty(Type))
@@ -58,6 +58,26 @@ namespace NW.Areas.Admin.Controllers
             Log log = new Log();
             log = bllSession.ILogBLL.GetEntity(id);
             return View(log);
+        }
+
+        [HttpPost]
+        public ContentResult MutiDelete(string ids)
+        {
+            try
+            {
+                string[] idsStrArr = ids.Split(',');
+                foreach (var id in idsStrArr)
+                {
+                    bllSession.ILogBLL.Delete(Convert.ToInt32(id));
+                }
+                log.Info(new LogContent(CurrentUser.Username + "批量删除日志" + ids, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return Content("ok");
+            }
+            catch (Exception)
+            {
+                log.Error(new LogContent(CurrentUser.Username + "批量删除日志出错" + ids, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                throw;
+            }
         }
     }
 }

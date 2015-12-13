@@ -21,7 +21,7 @@ function closeDialog() {
 
 function postDelete(url, id) {
     $.post(url, function (data) {
-        if (data == 'ok' || data == 'OK'){
+        if (data == 'ok' || data == 'OK') {
             $('#' + id).remove();
             popMsg('删除成功');
         }
@@ -43,3 +43,66 @@ function deleteDialog(url, id) {
     $('body').append(dom);
     setTimeout(function () { dom.addClass('active'); }, 10);
 }
+
+$(document).ready(function () {
+    $(".allChoose").click(function () {
+        if ($('.allChoose').is(':checked')) {
+            $(".choose").prop("checked", true);
+        } else {
+            $(".choose").prop("checked", false);
+        }
+    });
+
+    $("#batchDel").click(function () {
+        var ids = "";
+        var url = $(this).attr("data-del");
+        $(".choose").each(function () {
+            if ($(this).is(':checked')) {
+                ids = ids + "," + $(this).val();
+            }
+        });
+        if (ids == "") {
+            popMsg("请选择要删除的对象！");
+        } else {
+            ids = ids.substring(1, ids.length);
+            var arr = ids.split(',');
+            $(".mask").show();
+            $.ajax({
+                url: url,
+                method: "post",
+                data: { ids: ids },
+                success: function (data) {
+                    popMsg("批量删除成功！");
+                    for (var i = 0; i < arr.length; i++) {
+                        $("tr[id=" + arr[i] + "]").remove();
+                    }
+                },
+                error: function (data) {
+                    popMsg("批量删除失败！");
+                },
+                complete: function (data) {
+                    $(".mask").hide();
+                }
+            });
+        }
+    });
+
+    $("#btnBackUp").click(function () {
+        $(".mask").show();
+        $.ajax({
+            url: "/Admin/Db/Backup",
+            method: "post",
+            dataType: "json",
+            success: function (data) {
+                popMsg(data.Msg);
+            },
+            error: function (data) {
+                popMsg("备份失败！");
+            },
+            complete: function (data) {
+                $(".mask").hide();
+            }
+        });
+
+    });
+});

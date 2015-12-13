@@ -47,24 +47,23 @@ namespace NW.Areas.Admin.Controllers
             Course course = new Course();
             course = bllSession.ICourseBLL.GetEntity(model.CourseId);
             ViewBag.Course = course;
-
             if (file != null)
             {
                 try
                 {
                     string random = DateHelper.GetTimeStamp();
-                    string root = "~/Videos/"+model.CourseId+"/";
+                    string root = "~/Videos/" + model.CourseId + "/";
                     var phicyPath = HostingEnvironment.MapPath(root);
                     Directory.CreateDirectory(phicyPath);
                     file.SaveAs(phicyPath + random + Path.GetExtension(file.FileName));
-                    model.Path = "/Videos/"+model.CourseId+"/" + random + Path.GetExtension(file.FileName);
+                    model.Path = "/Videos/" + model.CourseId + "/" + random + Path.GetExtension(file.FileName);
                     model.UserId = CurrentUser.Id;
                     model.Time = DateTime.Now;
                     model.Browses = 0;
                     model.ContentType = file.ContentType;
                     bllSession.IVideoBLL.Insert(model);
-
-                    return Redirect("/Admin/Course/Show/"+model.CourseId);
+                    log.Info(new LogContent(CurrentUser.Username + "增加了视屏", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    return Redirect("/Admin/Course/Show/" + model.CourseId);
                 }
                 catch
                 {
@@ -74,7 +73,12 @@ namespace NW.Areas.Admin.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "你没有选择图片，请选择视屏文件");
+                model.UserId = CurrentUser.Id;
+                model.Time = DateTime.Now;
+                model.Browses = 0;
+                bllSession.IVideoBLL.Insert(model);
+                log.Info(new LogContent(CurrentUser.Username+"增加了网盘链接视屏", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return Redirect("/Admin/Course/Show/" + model.CourseId);
             }
             return View();
         }
@@ -109,7 +113,7 @@ namespace NW.Areas.Admin.Controllers
                 log.Error(new LogContent("删除视屏出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 return Content("err");
             }
-          
+
         }
     }
 }

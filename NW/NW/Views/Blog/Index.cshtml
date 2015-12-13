@@ -20,6 +20,7 @@
             </div>
         </article>
     }
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 </div>
 
 
