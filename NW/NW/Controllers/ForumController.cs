@@ -32,9 +32,14 @@ namespace NW.Controllers
                 string userName = CurrentUser.Username;
                 log.Info(new LogContent("游客访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
-            return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page,10));
+            return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page, 10));
         }
 
+        /// <summary>
+        /// 主题显示
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Show(int id)
         {
@@ -63,19 +68,11 @@ namespace NW.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            if (!Request.IsAuthenticated)
-            {
-                return RedirectToAction("Login", "User");
-            }
-            else
-            {
-                string userName = CurrentUser.Username;
-                List<Plateforum> plateforum = new List<Plateforum>();
-                plateforum = bllSession.IPlateforumBLL.GetList("").ToList();
-                ViewBag.plateforumlist = plateforum;
+            List<Plateforum> plateforum = new List<Plateforum>();
+            plateforum = bllSession.IPlateforumBLL.GetList("").ToList();
+            ViewBag.plateforumlist = plateforum;
 
-                log.Info(new LogContent(userName + "用户访问准备发布新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
-            }
+            log.Info(new LogContent("用户访问发布主题页面", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             return View();
         }
 
@@ -116,7 +113,7 @@ namespace NW.Controllers
                 log.Error(new LogContent("用户发布主题出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 ModelState.AddModelError("", "用户发布主题出错！");
             }
-            return View();
+           return View();
         }
 
         /// <summary>
@@ -144,7 +141,7 @@ namespace NW.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult Forum(int id, int Time = 0, string Publish = "", int Rule = 0, int p = 0)
+        public ActionResult ForumShow(int id, int Time = 0, string Publish = "", int Rule = 0, int p = 0)
         {
             return View();
         }

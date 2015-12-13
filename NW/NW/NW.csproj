@@ -530,10 +530,13 @@
     <Content Include="Views\Forum\Show.cshtml" />
     <Content Include="Views\Forum\Add.cshtml" />
     <Content Include="Views\Forum\Forum.cshtml" />
-    <Content Include="Views\Forum\PlateList.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Scripts\ueditor\asp\config.json" />
     <Content Include="Scripts\ueditor\asp\README.md" />
+    <Content Include="Views\Forum\ForumShow.cshtml" />
+    <Content Include="Views\Forum\SignInfo.cshtml" />
+    <Content Include="Views\Forum\CollectShow.cshtml" />
+    <Content Include="Views\Forum\PlateList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

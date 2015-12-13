@@ -6,7 +6,7 @@
 <div class="container">
     <span>发布新的主题</span>
     @using (Html.BeginForm("Add", "Forum", FormMethod.Post, new { id = "myform" }))
-    {
+            {
         @Html.AntiForgeryToken()
         <div style="margin-top:100px;width:500px;height:auto">
             <input type="text" placeholder="标题" name="title" id="posttitle">
@@ -42,11 +42,17 @@
     <script type="text/javascript">
         var ue = UE.getEditor('container', { initialFrameHeight: 320 });
     </script>
-    <script>
+    @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        <script>
+            alert("请先登录!");
+        </script>
+    }
+    @*<script>
         var user = $("#hdusername").val();
         if (user == undefined) {
             alert("请先登录，再进行发布！")
-            // CastMsg("请先登录，再进行发布！");
+            CastMsg("请先登录，再进行发布！");
         }
-    </script>
+    </script>*@
 </div>
