@@ -36,3 +36,18 @@ div[data-role="editor-toolbar"] {
 .dropdown-menu a {
   cursor: pointer;
 }
+
+.demand-header
+{
+
+}
+.demand-body
+{
+    margin-top:20px;
+}
+.demand-body .demand-body-one
+{
+    margin-bottom:10px;
+    padding:5px;
+    border:1px #808080 dashed;
+}
