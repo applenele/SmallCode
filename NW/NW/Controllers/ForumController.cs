@@ -88,6 +88,7 @@ namespace NW.Controllers
         [ValidateInput(false)]  //允许特殊字符提交/
         public ActionResult Add(string title, int classify, string content)
         {
+            AjaxModel model = new AjaxModel();
             try
             {
                 Topicforum topicForum = new Topicforum();
@@ -102,10 +103,13 @@ namespace NW.Controllers
                     topicForum.Time = DateTime.Now;
                     topicForum.UserId = userId;
 
-                    bllSession.ITopicforumBLL.Insert(topicForum);
-
-                    log.Info(new LogContent(userName + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
-                    return RedirectToAction("Index", "Forum");
+                    bool success = bllSession.ITopicforumBLL.Insert(topicForum);
+                    if (success)
+                    {
+                        model.Statu = "ok";
+                        model.BackUrl = "Forum/Index";
+                        log.Info(new LogContent(userName + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    }
                 }
             }
             catch
@@ -113,7 +117,7 @@ namespace NW.Controllers
                 log.Error(new LogContent("用户发布主题出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 ModelState.AddModelError("", "用户发布主题出错！");
             }
-           return View();
+            return Json(model);
         }
 
         /// <summary>

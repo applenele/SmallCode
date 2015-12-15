@@ -9,7 +9,7 @@
             {
         @Html.AntiForgeryToken()
         <div style="margin-top:100px;width:500px;height:auto">
-            <input type="text" placeholder="标题" name="title" id="posttitle">
+            <input type="text" placeholder="标题" name="title" id="platetitle">
             <select name="classify" id="plateforumId" class="classify">
                 @*@if (ViewBag.plateforumId != 0)
                       {
@@ -27,7 +27,8 @@
         </div>
         <div>
             <span>@Html.ValidationSummary(true)</span>
-            <input type="button" onclick="validateEditor" value="发布帖子">
+            <input type="button" id="submitFrom" value="发布帖子">
+            @*<input type="submit" value="发布帖子">*@
         </div>
     }
     <!-- 加载编辑器的容器 -->
@@ -48,11 +49,11 @@
             alert("请先登录!");
         </script>
     }
-    <script>
+    @*<script>
         var user = $("#hdusername").val();
         if (user == undefined) {
             alert("请先登录，再进行发布！")
             CastMsg("请先登录，再进行发布！");
         }
-    </script>
+    </script>*@
 </div>
