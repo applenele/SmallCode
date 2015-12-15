@@ -45,6 +45,7 @@ namespace NW.Areas.Admin.Controllers
                     plate.Time = DateTime.Now;
                     plate.Description = model.Description;
                     plate.IsClose = model.IsClose;
+                    plate.Browses = 0;
                     string root = "~/Pictures/";
                     var phicyPath = HostingEnvironment.MapPath(root);
                     if (!Directory.Exists(phicyPath))
