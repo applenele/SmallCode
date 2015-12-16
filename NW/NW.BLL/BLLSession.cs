@@ -226,13 +226,13 @@ namespace NW.BLL
         {
             get
             {
-                if (IDemandBLL == null)
-                    IDemandBLL = new DemandBLL();
-                return IDemandBLL;
+                if (iDemandBLL == null)
+                    iDemandBLL = new DemandBLL();
+                return iDemandBLL;
             }
             set
             {
-                IDemandBLL = value;
+                iDemandBLL = value;
             }
         }
         #endregion
