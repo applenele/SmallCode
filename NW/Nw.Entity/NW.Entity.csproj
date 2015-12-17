@@ -62,6 +62,8 @@
     <Compile Include="Topicforum.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Video.cs" />
+    <Compile Include="ViewModels\SideArticleCalendar.cs" />
+    <Compile Include="ViewModels\SideArticleCategory.cs" />
     <Compile Include="ViewModels\vArticle.cs" />
     <Compile Include="ViewModels\vForum.cs" />
   </ItemGroup>

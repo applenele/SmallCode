@@ -1,26 +1,59 @@
 ﻿@model PagedList.IPagedList<NW.Entity.ViewModels.vArticle>
+@using NW.Entity
+@using NW.Entity.ViewModels
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "博客首页";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container" style="margin-top:80px;">
-    @foreach (var item in Model)
-    {
-        <article class="inner-box">
-            <div class="entry-header">
-                <h2> <a href="/Blog/Show/@item.Id">@item.Title</a></h2>
-                <div>
-                    作者:<span>@item.Username</span> | 发表时间:<span>@item.Time</span> | 分类:<span>@item.Category</span> | 点击率:<span>@item.Browses</span>
+<div class="container ">
+    <div class="row" style="margin-top: 80px;">
+        <div class="col-md-9">
+            @foreach (var item in Model)
+            {
+                <article class="inner-box">
+                    <div class="entry-header">
+                        <h2>
+                            <a href="/Blog/Show/@item.Id">@item.Title</a>
+                        </h2>
+                        <div>
+                            作者:<span>@item.Username</span> | 发表时间:<span>@item.Time</span> | 分类:<span>@item.Category</span> | 点击率:<span>@item.Browses</span>
+                        </div>
+                    </div>
+                    <div class="entry-content">
+                        @Html.Sanitized(@item.Sumamry)
+                    </div>
+                </article>
+            }
+            @Html.PagedListPager(Model, page => Url.Action("Index?" + @ViewBag.AttachUrl, new { page }))
+        </div>
+        <aside class="col-md-3">
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Category</h3>
                 </div>
-            </div>
-            <div class="entry-content">
-               @Html.Sanitized(@item.Sumamry)
-            </div>
-        </article>
-    }
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                <div id="categories" class="list-group">
+                    @foreach (var item in ViewBag.Categories as List<SideArticleCategory>)
+                    {
+                        <a class="list-group-item" href="/Blog/Index?Category=@item.Description">@item.Description (@item.Count)</a>
+                    }
+                </div>
+            </section>
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Calendar</h3>
+                </div>
+                <div id="recent_posts" class="list-group">
+                    @foreach (var item in ViewBag.Calendars as List<SideArticleCalendar>)
+                    {
+                        <a class="list-group-item" href="/Blog/Index?Date=@item.DateShow.ToString("yyyy-MM-dd") ">@item.DateShow.ToString("yyyy-MM-dd") (@item.Count)</a>
+                    }
+                </div>
+            </section>
+        </aside>
+    </div>
 </div>
+
 
 
