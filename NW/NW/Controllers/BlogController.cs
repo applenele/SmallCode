@@ -26,7 +26,7 @@ namespace NW.Controllers
             if (!string.IsNullOrEmpty(Date))
             {
                 attachUrl = "Date = " + Date;
-                whereStr = whereStr + " DATE_FORMAT(a.Time,'%Y-%m-%d') = '" + Date + "'";
+                whereStr = whereStr + " DATE_FORMAT(a.Time,'%Y-%m') = '" + Date + "'";
             }
             var query = bllSession.IArticleBLL.GetList(whereStr);
             int totalCount = 0;

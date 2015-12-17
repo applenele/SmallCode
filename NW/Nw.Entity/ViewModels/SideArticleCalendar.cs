@@ -14,5 +14,7 @@ namespace NW.Entity.ViewModels
         public DateTime DateShow { set; get; }
 
         public int Count { set; get; }
+
+        public string DateDisplay { set; get; }
     }
 }

@@ -47,7 +47,7 @@
                 <div id="recent_posts" class="list-group">
                     @foreach (var item in ViewBag.Calendars as List<SideArticleCalendar>)
                     {
-                        <a class="list-group-item" href="/Blog/Index?Date=@item.DateShow.ToString("yyyy-MM-dd") ">@item.DateShow.ToString("yyyy-MM-dd") (@item.Count)</a>
+                        <a class="list-group-item" href="/Blog/Index?Date=@Convert.ToDateTime(@item.DateDisplay).ToString("yyyy-MM") ">@item.DateDisplay (@item.Count)</a>
                     }
                 </div>
             </section>

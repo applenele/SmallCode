@@ -48,8 +48,8 @@ namespace NW.Utility
 
             Sides = bllSession.IArticleBLL.GetList("")
                 .Select(a => a.Time)
-                .GroupBy(a => a.Date)
-                .Select(g => (new SideArticleCalendar() { DateShow = g.Key, Count = g.Count() }))
+                .GroupBy(a => a.GetDateTimeFormats('y')[0])
+                .Select(g => (new SideArticleCalendar() { DateDisplay = g.Key, Count = g.Count() }))
                 .ToList();
             return Sides;
         }
