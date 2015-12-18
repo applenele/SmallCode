@@ -89,16 +89,15 @@ namespace NW.DAL
                 return Conn.Execute(query, model);
             }
         }
-
         public int Update(Demand model)
         {
             using (Conn)
             {
-                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,@VideoId WHERE Id =@Id";
+                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,VideoID=@VideoId,Vote=@Vote WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }
-        public int UpdateNum(Demand model)
+        public int UpdateVote(Demand model)
         {
             using (Conn)
             {
