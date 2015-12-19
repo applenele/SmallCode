@@ -25,16 +25,15 @@
                 @*}*@
             </select>
         </div>
+            <!-- 加载编辑器的容器 -->
+        <script id="container" name="content" type="text/plain">
+            这里写你的初始化内容
+        </script>
         <div>
             <span>@Html.ValidationSummary(true)</span>
-            <input type="button" id="submitFrom" value="发布帖子">
-            @*<input type="submit" value="发布帖子">*@
+            <input type="submit" id="submit" value="发布帖子">
         </div>
     }
-    <!-- 加载编辑器的容器 -->
-    <script id="container" name="content" type="text/plain">
-        这里写你的初始化内容
-    </script>
     <!-- 配置文件 -->
     <script type="text/javascript" src="~/Scripts/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -50,10 +49,10 @@
         </script>
     }
     @*<script>
-        var user = $("#hdusername").val();
-        if (user == undefined) {
-            alert("请先登录，再进行发布！")
-            CastMsg("请先登录，再进行发布！");
-        }
-    </script>*@
+            var user = $("#hdusername").val();
+            if (user == undefined) {
+                alert("请先登录，再进行发布！")
+                CastMsg("请先登录，再进行发布！");
+            }
+        </script>*@
 </div>

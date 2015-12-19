@@ -83,12 +83,11 @@ namespace NW.Controllers
         /// <param name="classify"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [HttpPost]
         [ValidateInput(false)]  //允许特殊字符提交/
         public ActionResult Add(string title, int classify, string content)
         {
-            AjaxModel model = new AjaxModel();
             try
             {
                 Topicforum topicForum = new Topicforum();
@@ -99,17 +98,19 @@ namespace NW.Controllers
                 {
                     topicForum.Title = title;
                     topicForum.Content = content;
-                    topicForum.PlateforumId = classify;
+                    topicForum.Top = false;
                     topicForum.Time = DateTime.Now;
+                    topicForum.LastReply = DateTime.Now;
                     topicForum.UserId = userId;
+                    topicForum.Reward = 0;
+                    topicForum.IsShow = true;
+                    topicForum.IsClose = false;
+                    topicForum.IsOfficeIdentified = false;
+                    topicForum.PlateforumId = classify;
+                    
 
-                    bool success = bllSession.ITopicforumBLL.Insert(topicForum);
-                    if (success)
-                    {
-                        model.Statu = "ok";
-                        model.BackUrl = "Forum/Index";
-                        log.Info(new LogContent(userName + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
-                    }
+                    bllSession.ITopicforumBLL.Insert(topicForum);
+                    log.Info(new LogContent(userName + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
                 }
             }
             catch
@@ -117,7 +118,7 @@ namespace NW.Controllers
                 log.Error(new LogContent("用户发布主题出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 ModelState.AddModelError("", "用户发布主题出错！");
             }
-            return Json(model);
+            return RedirectToAction("Index","Forum");
         }
 
         /// <summary>

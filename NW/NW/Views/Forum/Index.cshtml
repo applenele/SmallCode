@@ -6,28 +6,24 @@
 }
 <div class="container">
     <header id="header">
-        <hgroup>
-            <h1 id="h1">SmallCode 编程学习</h1>
-            <h3 id="h3">感谢关注！</h3>
-        </hgroup>
     </header>
-    <select>
-        <option value="">请选择模块</option>
-        @foreach (var item in ViewBag.plateforums)
+    <div class="inner-box">
+        <span>热门板块：</span>
+        @foreach (var item in ViewBag.Plateforums)
         {
-            <option value="@item.Title">@item.Title</option>
+            <a href="#">@item.Title</a>
         }
-    </select>
-    <a href="/Forum/Add">我要发布</a>
+    </div>
+    <a href="/Forum/Add"><strong>我要发布</strong></a>
     @foreach (var item in Model)
     {
         <div class="inner-box">
             <div>
                 <h2><a href="/Forum/Show/@item.Id">@item.Title</a></h2>
-                发表时间：@item.Time  浏览量： @item.Browses  举报：@item.Report
+                作者：@item.User.Username 所属板块：@item.Plateforum.Title  发表时间：@item.Time  浏览量： @item.Browses  举报：@item.Report
             </div>
             <div class="top-info-wrap">
-                @item.Content
+                @Html.Raw(@item.Content)
             </div>
         </div>
     }
