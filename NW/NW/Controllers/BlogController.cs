@@ -13,17 +13,34 @@ namespace NW.Controllers
     public class BlogController : BaseController
     {
         // GET: Blog
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1, string Category = "", string Date = "")
         {
+            string attachUrl = "";
             List<vArticle> articles = new List<vArticle>();
-            var query = bllSession.IArticleBLL.GetList("");
+            string whereStr = "";
+            if (!string.IsNullOrEmpty(Category))
+            {
+                attachUrl = "Category = " + Category;
+                whereStr = whereStr + "Category = '" + Category + "'";
+            }
+            if (!string.IsNullOrEmpty(Date))
+            {
+                attachUrl = "Date = " + Date;
+                whereStr = whereStr + " DATE_FORMAT(a.Time,'%Y-%m') = '" + Date + "'";
+            }
+            var query = bllSession.IArticleBLL.GetList(whereStr);
             int totalCount = 0;
-            PagerHelper.DoPage(ref query, page, 10, ref totalCount);
+            PagerHelper.DoPage(ref query, page, 20, ref totalCount);
             foreach (var item in query)
             {
                 articles.Add(new vArticle(item));
             }
             var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 20, totalCount);
+            List<SideArticleCategory> Categories = SideHelper.GetSideCategoryCategories();
+            List<SideArticleCalendar> Calendars = SideHelper.GetSideArticleCalendars();
+            ViewBag.Categories = Categories;
+            ViewBag.Calendars = Calendars;
+            ViewBag.AttachUrl = attachUrl;
             return View(articleAsIPagedList);
         }
 

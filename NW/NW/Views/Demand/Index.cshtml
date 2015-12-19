@@ -1,124 +1,54 @@
-﻿@using PagedList.Mvc;
-@{
-    ViewBag.Title = "我要约";
-    Layout = "~/Views/Shared/_Demand_Layout.cshtml";
-}
-
-<div class="container">
-    <header id="header">
-        <hgroup>
-            <h1 id="h1">SmallCode 编程学习</h1>
-            <h3 id="h3">感谢关注！</h3>
-        </hgroup>
-    </header>
-    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
-        <div class="btn-group">
-            <a title="" class="btn dropdown-toggle" data-original-title="Font" data-toggle="dropdown"><i class="icon-font"></i><b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a style="font-family:'Serif'" data-edit="fontName Serif">Serif</a></li>
-                <li><a style="font-family:'Sans'" data-edit="fontName Sans">Sans</a></li>
-                <li><a style="font-family:'Arial'" data-edit="fontName Arial">Arial</a></li>
-                <li><a style="font-family:'Arial Black'" data-edit="fontName Arial Black">Arial Black</a></li>
-                <li><a style="font-family:'Courier'" data-edit="fontName Courier">Courier</a></li>
-                <li><a style="font-family:'Courier New'" data-edit="fontName Courier New">Courier New</a></li>
-                <li><a style="font-family:'Comic Sans MS'" data-edit="fontName Comic Sans MS">Comic Sans MS</a></li>
-                <li><a style="font-family:'Helvetica'" data-edit="fontName Helvetica">Helvetica</a></li>
-                <li><a style="font-family:'Impact'" data-edit="fontName Impact">Impact</a></li>
-                <li><a style="font-family:'Lucida Grande'" data-edit="fontName Lucida Grande">Lucida Grande</a></li>
-                <li><a style="font-family:'Lucida Sans'" data-edit="fontName Lucida Sans">Lucida Sans</a></li>
-                <li><a style="font-family:'Tahoma'" data-edit="fontName Tahoma">Tahoma</a></li>
-                <li><a style="font-family:'Times'" data-edit="fontName Times">Times</a></li>
-                <li><a style="font-family:'Times New Roman'" data-edit="fontName Times New Roman">Times New Roman</a></li>
-                <li><a style="font-family:'Verdana'" data-edit="fontName Verdana">Verdana</a></li>
-            </ul>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn dropdown-toggle" data-original-title="Font Size" data-toggle="dropdown"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
-                <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
-                <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
-            </ul>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Bold (Ctrl/Cmd+B)" data-edit="bold"><i class="icon-bold"></i></a>
-            <a title="" class="btn" data-original-title="Italic (Ctrl/Cmd+I)" data-edit="italic"><i class="icon-italic"></i></a>
-            <a title="" class="btn" data-original-title="Strikethrough" data-edit="strikethrough"><i class="icon-strikethrough"></i></a>
-            <a title="" class="btn" data-original-title="Underline (Ctrl/Cmd+U)" data-edit="underline"><i class="icon-underline"></i></a>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Bullet list" data-edit="insertunorderedlist"><i class="icon-list-ul"></i></a>
-            <a title="" class="btn" data-original-title="Number list" data-edit="insertorderedlist"><i class="icon-list-ol"></i></a>
-            <a title="" class="btn" data-original-title="Reduce indent (Shift+Tab)" data-edit="outdent"><i class="icon-indent-left"></i></a>
-            <a title="" class="btn" data-original-title="Indent (Tab)" data-edit="indent"><i class="icon-indent-right"></i></a>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Align Left (Ctrl/Cmd+L)" data-edit="justifyleft"><i class="icon-align-left"></i></a>
-            <a title="" class="btn" data-original-title="Center (Ctrl/Cmd+E)" data-edit="justifycenter"><i class="icon-align-center"></i></a>
-            <a title="" class="btn" data-original-title="Align Right (Ctrl/Cmd+R)" data-edit="justifyright"><i class="icon-align-right"></i></a>
-            <a title="" class="btn" data-original-title="Justify (Ctrl/Cmd+J)" data-edit="justifyfull"><i class="icon-align-justify"></i></a>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn dropdown-toggle" data-original-title="Hyperlink" data-toggle="dropdown"><i class="icon-link"></i></a>
-            <div class="dropdown-menu input-append">
-                <input class="span2" type="text" placeholder="URL" data-edit="createLink">
-                <button class="btn" type="button">Add</button>
+﻿@model PagedList.IPagedList<NW.Entity.Demand>
+@using PagedList.Mvc;
+    @using NW.Utility;
+    @{
+        ViewBag.Title = "我要约";
+        Layout = "~/Views/Shared/_Demand_Layout.cshtml";
+    }
+    <div class="container">
+        <header id="header">
+            <hgroup>
+                <h1 id="h1">codeqiaokeli 编程学习</h1>
+                <h3 id="h3">感谢关注！</h3>
+            </hgroup>
+        </header>
+        <div class="demand-header col-lg-12 col-md-12 col-12 row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <button class="btn btn-success">提交课程需求</button>
             </div>
-            <a title="" class="btn" data-original-title="Remove Hyperlink" data-edit="unlink"><i class="icon-cut"></i></a>
+            <div class="col-lg-6 col-md-6 col-sm-12 demand-info-text">
+                <p></p>
+                <p></p>
+            </div>
         </div>
+        <div class="demand-body col-lg-12 col-md-12 col-12 row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 demand-body-one">
+                    <p class="demand-info">
+                        <span class="col-lg-6 col-md-8 col-10 text-center demand-info-title">@item.Text</span>
+                        @if (item.State == 0)
+                        {
+                            <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-1">讨论中</span>
+                        }
+                        else if (item.State == 1)
+                        {
+                            <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-2">制作中</span>
+                        }
+                        else if (item.State == 2)
+                        {
+                            <span class="col-lg-6 col-md-4 col-sm-2 text-right demand-info-state state-3">完成</span>
+                        }
+                    </p>
 
-        <div class="btn-group">
-            <a title="" class="btn" id="pictureBtn" data-original-title="Insert picture (or just drag &amp; drop)"><i class="icon-picture"></i></a>
-            <input style="left: 0px; top: 0px; width: 40px; height: 30px; position: absolute; opacity: 0;" type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
+                    <p class="demand-info">
+
+                        <span class="col-lg-6 col-md-6 col-sm-6 text-center demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
+                        <span class="col-lg-6 col-md-6 col-sm-6 text-center demand-info-vote glyphicon glyphicon-thumbs-up" id="demand-info-vote"></span>
+                    </p>
+                    <p class="demand-text text-left">@item.Text</p>
+                </div>
+            }
         </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Undo (Ctrl/Cmd+Z)" data-edit="undo"><i class="icon-undo"></i></a>
-            <a title="" class="btn" data-original-title="Redo (Ctrl/Cmd+Y)" data-edit="redo"><i class="icon-repeat"></i></a>
-        </div>
-        <input id="voiceBtn" style="display: none;" type="text" data-edit="inserttext" x-webkit-speech="">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
     </div>
-    <div id="editor-text" contenteditable="true">
-        Go ahead…
-    </div>
-    <script>
-  $(function(){
-    function initToolbarBootstrapBindings() {
-      var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-            'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-            'Times New Roman', 'Verdana'],
-            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-      $.each(fonts, function (idx, fontName) {
-          fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
-      });
-      $('a[title]').tooltip({container:'body'});
-    	$('.dropdown-menu input').click(function() {return false;})
-		    .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
-        .keydown('esc', function () {this.value='';$(this).change();});
-
-      $('[data-role=magic-overlay]').each(function () {
-        var overlay = $(this), target = $(overlay.data('target'));
-        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-      });
-      if ("onwebkitspeechchange"  in document.createElement("input")) {
-        var editorOffset = $('#editor').offset();
-        $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
-      } else {
-        $('#voiceBtn').hide();
-      }
-	};
-	function showErrorAlert (reason, detail) {
-		var msg='';
-		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
-		else {
-			console.log("error uploading file", reason, detail);
-		}
-		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+
-		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
-	};
-    initToolbarBootstrapBindings();
-    $('#editor-text').wysiwyg({ fileUploadError: showErrorAlert });
-    window.prettyPrint && prettyPrint();
-  });
-    </script>
-</div>
-

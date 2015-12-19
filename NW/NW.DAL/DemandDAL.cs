@@ -85,7 +85,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Demand(UserId,DateTime,Style) VALUES(@UserId,@DateTime,0)";
+                string query = "INSERT INTO Demand(Title,Text,UserId,DateTime,State) VALUES(@Title,@Text,@UserId,@DateTime,0)";
                 return Conn.Execute(query, model);
             }
         }
@@ -94,7 +94,15 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Demand SET Style=@Style,Price=@Price,ReviewTime=@ReviewTime,@VideoId WHERE Id =@Id";
+                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,@VideoId WHERE Id =@Id";
+                return Conn.Execute(query, model);
+            }
+        }
+        public int UpdateNum(Demand model)
+        {
+            using (Conn)
+            {
+                string query = "UPDATE Demand SET Vote=@Vote WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }
