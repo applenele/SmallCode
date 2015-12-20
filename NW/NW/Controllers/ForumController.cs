@@ -83,7 +83,7 @@ namespace NW.Controllers
         /// <param name="classify"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         [HttpPost]
         [ValidateInput(false)]  //允许特殊字符提交/
         public ActionResult Add(string title, int classify, string content)

@@ -12,26 +12,26 @@
             <input type="text" placeholder="标题" name="title" id="platetitle">
             <select name="classify" id="plateforumId" class="classify">
                 @*@if (ViewBag.plateforumId != 0)
-                      {
-                         <option value="@ViewBag.plateforumId">@ViewBag.ptitle</option>
-                     }
-                     else
-                    {*@
-                <option value="请选择模块">请选择模块</option>
-                @foreach (var plateforumlist in ViewBag.plateforumlist)
                 {
-                    <option value="@plateforumlist.Id">@plateforumlist.Title</option>
+                    <option value="@ViewBag.plateforumId">@ViewBag.ptitle</option>
                 }
+                else
+                {*@
+                    <option value="">请选择模块</option>
+                    @foreach (var plateforumlist in ViewBag.plateforumlist)
+                    {
+                        <option value="@plateforumlist.Id">@plateforumlist.Title</option>
+                    }
                 @*}*@
             </select>
         </div>
             <!-- 加载编辑器的容器 -->
         <script id="container" name="content" type="text/plain">
-            这里写你的初始化内容
+
         </script>
         <div>
             <span>@Html.ValidationSummary(true)</span>
-            <input type="submit" id="submit" value="发布帖子">
+            <input type="button" onclick="submitForm()" value="发布帖子">
         </div>
     }
     <!-- 配置文件 -->
