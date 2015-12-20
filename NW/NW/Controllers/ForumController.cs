@@ -19,7 +19,6 @@ namespace NW.Controllers
         {
             List<Topicforum> topicforums = new List<Topicforum>();
             List<Plateforum> plateforums = new List<Plateforum>();
-            topicforums = bllSession.ITopicforumBLL.GetList("").ToList();
             plateforums = bllSession.IPlateforumBLL.GetList("").ToList();
             ViewBag.plateforums = plateforums;
 
@@ -32,7 +31,15 @@ namespace NW.Controllers
                 string userName = CurrentUser.Username;
                 log.Info(new LogContent("游客访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
-            return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page, 10));
+            var query = bllSession.ITopicforumBLL.GetList("");
+            int totalCount = 0;
+            PagerHelper.DoPage(ref query, page, 20, ref totalCount);
+            foreach (var item in query)
+            {
+                topicforums.Add(item);
+            }
+            var plateforumsAsPageList = new StaticPagedList<Topicforum>(topicforums, page, 20, totalCount);
+            return View(plateforumsAsPageList);
         }
 
         /// <summary>
