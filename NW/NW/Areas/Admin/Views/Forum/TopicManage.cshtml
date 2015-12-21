@@ -4,8 +4,6 @@
     ViewBag.Title = "主题管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-
 <div class="crumb-wrap">
     <div class="crumb-list">
         <i class="icon-font"></i>
@@ -14,10 +12,11 @@
 </div>
 <div class="search-wrap">
     <div class="search-content">
-        <form action="/Admin/TopicManage/Index" method="get">
+        <form action="/Admin/Forum/TopicManage" method="get">
             <table class="search-tab">
                 <tr>
                     <th width="70">关键字:</th>
+                    <input type="hidden" name="id" value="@ViewBag.PlateId" />
                     <td><input class="common-text" placeholder="关键字" name="Key" type="text"></td>
                     <td><input class="btn btn-primary btn2" name="sub" type="submit" /></td>
                 </tr>

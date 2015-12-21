@@ -16,12 +16,14 @@ namespace NW.Areas.Admin.Controllers
     public class ForumController : BaseController
     {
         // GET: Admin/Forum
-        public ActionResult Index()
+        public ActionResult Index(string Key, int page = 1)
         {
-            List<Plateforum> plates = new List<Plateforum>();
-            plates = bllSession.IPlateforumBLL.GetList("").ToList();
-            ViewBag.Plates = plates;
-            return View();
+            string where = "";
+            if (!string.IsNullOrEmpty(Key))
+            {
+                where = " Title like '%" + Key + "%' ";
+            }
+            return View(bllSession.IPlateforumBLL.GetList(where).ToPagedList(page, 20));
         }
 
         #region 板块相关
@@ -183,6 +185,10 @@ namespace NW.Areas.Admin.Controllers
         public ActionResult TopicManage(int id, string Key, int page = 1)
         {
             string where = "PlateforumId = " + id;
+            if (!string.IsNullOrEmpty(Key))
+            {
+                where = where + " and Title like  '%" + Key + "%' ";
+            }
             ViewBag.PlateId = id;
             return View(bllSession.ITopicforumBLL.GetList(where).ToPagedList(page, 20));
         }
