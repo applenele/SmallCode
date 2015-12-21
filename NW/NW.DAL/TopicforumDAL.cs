@@ -63,7 +63,7 @@ namespace NW.DAL
             {
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + "order by t.Time desc";
+                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id WHERE " + whereStr + " order by t.Time desc";
                 }
                 else
                 {
@@ -96,7 +96,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Topicforum(Title,Content,Top,Time,LastReply,UserId,Reward,Report)VALUES(@Title,@Content,@Top,@Time,@LastReply,@UserId,@Reward,@Report)";
+                string query = "INSERT INTO Topicforum(Title,Content,PlateforumId,Top,Time,LastReply,UserId,Reward,Report,Browses)VALUES(@Title,@Content,@PlateforumId,@Top,@Time,@LastReply,@UserId,@Reward,@Report,@Browses)";
                 return Conn.Execute(query, model);
             }
         }

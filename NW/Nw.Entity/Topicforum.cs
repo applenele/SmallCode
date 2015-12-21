@@ -21,7 +21,7 @@ namespace NW.Entity
 
         public DateTime Time { get; set; }
 
-        public DateTime LastReply { get; set; }
+        public DateTime? LastReply { get; set; }
 
         public int UserId { get; set; }
 
