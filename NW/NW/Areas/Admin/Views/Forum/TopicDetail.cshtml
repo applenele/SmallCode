@@ -13,44 +13,44 @@
 </div>
 <div class="result-wrap">
     <div class="result-content">
-        <table class="insert-tab" width="100%">
+        <table class="detail-table">
             <tbody>
                 <tr>
-                    <th class="row-title">标题</th>
+                    <td class="row-title">标题</td>
                     <td>
                         @Model.Title
                     </td>
                 </tr>
                 <tr>
-                    <th class="row-title">描述</th>
+                    <td class="row-title">描述</td>
                     <td>@Model.Content</td>
                 </tr>
                 <tr>
-                    <th class="row-title">是否置顶</th>
+                    <td class="row-title">是否置顶</td>
                     <td>
                         <text>@(Model.Top ? "是" : "否")</text>
                     </td>
                 </tr>
                 <tr>
-                    <th class="row-title">是否显示</th>
+                    <td class="row-title">是否显示</td>
                     <td>
                         <text>@(Model.IsShow ? "是" : "否")</text>
                     </td>
                 </tr>
                 <tr>
-                    <th class="row-title">是否开启</th>
+                    <td class="row-title">是否开启</td>
                     <td>
                         <text>@(Model.IsClose ? "是" : "否")</text>
                     </td>
                 </tr>
             <tr>
-                <th class="row-title">是否官方认证</th>
+                <td class="row-title">是否官方认证</td>
                 <td>
                     <text>@(Model.IsOfficeIdentified ? "是" : "否")</text>
                 </td>
             </tr>
                 <tr>
-                    <th></th>
+                    <td></td>
                     <td>
                         <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
                     </td>
