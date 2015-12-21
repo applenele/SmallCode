@@ -11,8 +11,27 @@
             <h3 id="h3">感谢关注！</h3>
         </hgroup>
     </header>
-    <div class="row">
-        
+    <div class="row demand_show col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+        <div class="panel panel-default">
+            <div class="panel-heading demand_show">@Model.Title
+                    @if (Model.State == 0)
+                    {
+                        <span class="pull-right demand-info-state state-1">讨论中</span>
+                    }
+                    else if (Model.State == 1)
+                    {
+                        <span class="pull-right demand-info-state state-2">制作中</span>
+                    }
+                    else if (Model.State == 2)
+                    {
+                        <span class="pull-right demand-info-state state-3">完成</span>
+                    }
+                </p>
+            </div>
+            <div class="panel-body">
+                <p style="text-indent: 2em;">@Model.Text</p>
+            </div>
+        </div>
     </div>
 </div>
 

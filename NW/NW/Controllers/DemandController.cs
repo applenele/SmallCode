@@ -90,7 +90,7 @@ namespace NW.Controllers
         public ActionResult Show(int id)
         {
             Demand demand = new Demand();
-            demand = bllSession.IDemandBLL.GetEntityWithRefence(id);
+            demand = bllSession.IDemandBLL.GetEntity(id);
             return View(demand);
         }
         //点赞
