@@ -544,6 +544,7 @@
     <Content Include="Views\Forum\CollectShow.cshtml" />
     <Content Include="Views\Forum\PlateList.cshtml" />
     <Content Include="Views\Demand\Index.cshtml" />
+    <Content Include="Views\Base\NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -557,7 +558,6 @@
     <Folder Include="Areas\Admin\Views\Db\" />
     <Folder Include="Videos\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Base\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>
