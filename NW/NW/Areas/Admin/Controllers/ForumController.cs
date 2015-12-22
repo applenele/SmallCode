@@ -16,12 +16,14 @@ namespace NW.Areas.Admin.Controllers
     public class ForumController : BaseController
     {
         // GET: Admin/Forum
-        public ActionResult Index()
+        public ActionResult Index(string Key, int page = 1)
         {
-            List<Plateforum> plates = new List<Plateforum>();
-            plates = bllSession.IPlateforumBLL.GetList("").ToList();
-            ViewBag.Plates = plates;
-            return View();
+            string where = "";
+            if (!string.IsNullOrEmpty(Key))
+            {
+                where = " Title like '%" + Key + "%' ";
+            }
+            return View(bllSession.IPlateforumBLL.GetList(where).ToPagedList(page, 20));
         }
 
         #region 板块相关
@@ -31,6 +33,12 @@ namespace NW.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        ///  板块增加
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Add(Plateforum model, HttpPostedFileBase file)
@@ -73,6 +81,11 @@ namespace NW.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 板块展示
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult ForumShow(int id)
         {
@@ -81,6 +94,11 @@ namespace NW.Areas.Admin.Controllers
             return View(plate);
         }
 
+        /// <summary>
+        /// 板块删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult DeletePlate(int id)
         {
@@ -97,6 +115,11 @@ namespace NW.Areas.Admin.Controllers
             }
         }
 
+        /// <summary>
+        /// 板块编辑
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult PlateEdit(int id)
         {
@@ -150,17 +173,156 @@ namespace NW.Areas.Admin.Controllers
 
         #endregion
 
+
+
+        #region 主题管理
         /// <summary>
         /// 主题管理
         /// </summary>
         /// <param name="id">板块ID</param>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult TopicManage(int id,string Key,int page=1)
+        public ActionResult TopicManage(int id, string Key, int page = 1)
         {
-            string where = "";
-            /// todo
-            return View(bllSession.ICategoryBLL.GetList(where).ToPagedList(page, 20));
+            string where = "PlateforumId = " + id;
+            if (!string.IsNullOrEmpty(Key))
+            {
+                where = where + " and Title like  '%" + Key + "%' ";
+            }
+            ViewBag.PlateId = id;
+            return View(bllSession.ITopicforumBLL.GetList(where).ToPagedList(page, 20));
         }
+
+        /// <summary>
+        /// 主题的增加
+        /// </summary>
+        /// <param name="id">板块的id</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult TopicAdd(int id)
+        {
+            ViewBag.PlateId = id;
+            return View();
+        }
+
+        /// <summary>
+        /// 增加主题
+        /// </summary>
+        /// <param name="model">主题相关数据</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TopicAdd(Topicforum model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.Browses = 0;
+                    model.Reward = 1;
+                    model.Time = DateTime.Now;
+                    model.UserId = CurrentUser.Id;
+                    model.Report = 0;
+                    bllSession.ITopicforumBLL.Insert(model);
+                    log.Info(new LogContent(CurrentUser.Username + ":增加了板块：" + model.PlateforumId + "的主题:" + model.Title, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    return Redirect("/Admin/Forum/TopicManage/" + model.PlateforumId);
+                }
+                catch (Exception ex)
+                {
+                    log.Error(new LogContent(CurrentUser.Username + ":增加了板块：" + model.PlateforumId + "的主题出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()), ex);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "数据填写错误");
+            }
+            return View();
+        }
+
+        /// <summary>
+        /// 删除主题
+        /// </summary>
+        /// <param name="id">主题ID</param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult TopicDelete(int id)
+        {
+            try
+            {
+                bllSession.ITopicforumBLL.Delete(id);
+                log.Info(new LogContent(CurrentUser.Username + ":删除主题" + id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return Content("ok");
+            }
+            catch (Exception ex)
+            {
+                log.Error(new LogContent(CurrentUser.Username + ":删除主题" + id + "失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()), ex);
+                return Content("err");
+            }
+        }
+
+        /// <summary>
+        ///  编辑主题
+        /// </summary>
+        /// <param name="id">主题ID</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult TopicEdit(int id)
+        {
+            var topic = bllSession.ITopicforumBLL.GetEntity(id);
+            return View(topic);
+        }
+
+        /// <summary>
+        ///  主题修改
+        /// </summary>
+        /// <param name="model">主题相关数据</param>
+        /// <returns></returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TopicEdit(Topicforum model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var topic = bllSession.ITopicforumBLL.GetEntity(model.Id);
+                    topic.Title = model.Title;
+                    topic.Content = model.Content;
+                    topic.IsShow = model.IsShow;
+                    topic.Top = model.Top;
+                    topic.IsClose = model.IsClose;
+                    topic.IsOfficeIdentified = model.IsOfficeIdentified;
+                    bllSession.ITopicforumBLL.Update(topic);
+                    log.Info(new LogContent(CurrentUser.Username + ":修改板块：" + topic.PlateforumId + "的主题:" + model.Title, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    return Redirect("/Admin/Forum/TopicManage/" + topic.PlateforumId);
+                }
+                catch (Exception ex)
+                {
+                    log.Error(new LogContent(CurrentUser.Username + ":修改了板块：" + model.PlateforumId + "的主题出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()), ex);
+                    ModelState.AddModelError("", "修改板块出错，请重试！");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "数据填写错误");
+            }
+            return View();
+        }
+
+        /// <summary>
+        /// 显示主题详情
+        /// </summary>
+        /// <param name="id">主题ID</param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult TopicDetail(int id)
+        {
+            var topic = bllSession.ITopicforumBLL.GetEntity(id);
+            return View(topic);
+        }
+
+        #endregion
+
+
     }
 }

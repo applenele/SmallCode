@@ -1,4 +1,5 @@
-﻿@using NW.Entity;
+﻿@model PagedList.IPagedList<NW.Entity.Plateforum>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "论坛管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -44,7 +45,7 @@
                     <th>浏览量</th>
                     <th>操作</th>
                 </tr>
-                @foreach (var item in ViewBag.Plates as List<Plateforum>)
+                @foreach (var item in Model)
                 {
                     <tr id="@item.Id">
                         <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
@@ -60,12 +61,13 @@
                         <td>@item.Browses</td>
                         <td>
                             <a class="link-update" href="/Admin/Forum/PlateEdit/@item.Id">修改</a>
-                            <a class="link-del" href="javascript:deleteDialog('/Admin/Category/Delete/@item.Id',@item.Id)">删除</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/Forum/DeletePlate/@item.Id',@item.Id)">删除</a>
                             <a class="link-update" href="/Admin/Forum/TopicManage/@item.Id">主题管理</a>
                         </td>
                     </tr>
                 }
             </table>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
     </form>
 </div>

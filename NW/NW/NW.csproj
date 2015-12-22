@@ -187,6 +187,9 @@
     <Content Include="Areas\Admin\Views\Forum\ForumShow.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\PlateEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\TopicManage.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\TopicAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\TopicEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\TopicDetail.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
@@ -388,6 +391,7 @@
     <Content Include="Scripts\ckplayer\share.xml" />
     <Content Include="Scripts\ckplayer\style.swf" />
     <Content Include="Scripts\codeqiaokeli.js" />
+    <Content Include="Scripts\common.js" />
     <Content Include="Scripts\ForumBase.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />

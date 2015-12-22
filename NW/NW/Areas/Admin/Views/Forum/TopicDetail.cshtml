@@ -1,0 +1,61 @@
+﻿@model NW.Entity.Topicforum
+@{
+    ViewBag.Title = Model.Title + " - 主题详情";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/Admin/Home/Inedx">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Forum/Index">论坛管理</a><span class="crumb-step">&gt;</span><span>主题详情</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <table class="detail-table">
+            <tbody>
+                <tr>
+                    <td class="row-title">标题</td>
+                    <td>
+                        @Model.Title
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">描述</td>
+                    <td>@Model.Content</td>
+                </tr>
+                <tr>
+                    <td class="row-title">是否置顶</td>
+                    <td>
+                        <text>@(Model.Top ? "是" : "否")</text>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">是否显示</td>
+                    <td>
+                        <text>@(Model.IsShow ? "是" : "否")</text>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">是否开启</td>
+                    <td>
+                        <text>@(Model.IsClose ? "是" : "否")</text>
+                    </td>
+                </tr>
+            <tr>
+                <td class="row-title">是否官方认证</td>
+                <td>
+                    <text>@(Model.IsOfficeIdentified ? "是" : "否")</text>
+                </td>
+            </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

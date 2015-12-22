@@ -4,8 +4,6 @@
     ViewBag.Title = "主题管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
-
-
 <div class="crumb-wrap">
     <div class="crumb-list">
         <i class="icon-font"></i>
@@ -14,10 +12,11 @@
 </div>
 <div class="search-wrap">
     <div class="search-content">
-        <form action="/Admin/TopicManage/Index" method="get">
+        <form action="/Admin/Forum/TopicManage" method="get">
             <table class="search-tab">
                 <tr>
                     <th width="70">关键字:</th>
+                    <input type="hidden" name="id" value="@ViewBag.PlateId" />
                     <td><input class="common-text" placeholder="关键字" name="Key" type="text"></td>
                     <td><input class="btn btn-primary btn2" name="sub" type="submit" /></td>
                 </tr>
@@ -29,7 +28,7 @@
     <form name="myform" id="myform" method="post">
         <div class="result-title">
             <div class="result-list">
-                <a href="/Admin/Category/Add"><i class="icon-font"></i>新增主题</a>
+                <a href="/Admin/Forum/TopicAdd/@ViewBag.PlateId"><i class="icon-font"></i>新增主题</a>
                 <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                 <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
             </div>
@@ -50,13 +49,14 @@
                         <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
                         <td>@item.Id</td>
                         <td title="@item.Title">
-                            <a target="_blank" href="#" title="@item.Title">@item.Title</a>
+                            <a target="_blank" href="/Admin/Forum/TopicDetail/@item.Id" title="@item.Title">@item.Title</a>
                         </td>
                         <td>@item.Time</td>
                         <td>@item.User.Username</td>
                         <td>
-                            <a class="link-update" href="/Admin/Category/Edit/@item.Id">修改</a>
-                            <a class="link-del" href="javascript:deleteDialog('/Admin/Category/Delete/@item.Id',@item.Id)">删除</a>
+                            <a class="link-del" href="/Admin/Forum/TopicDetail/@item.Id">显示详情</a>
+                            <a class="link-update" href="/Admin/Forum/TopicEdit/@item.Id">修改</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/Forum/TopicDelete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>
                 }

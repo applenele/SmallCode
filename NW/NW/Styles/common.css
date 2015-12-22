@@ -706,3 +706,43 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
     width: 60px;
     height: 60px;
 }
+
+
+
+.w-0-6 {
+    width: 60px !important;
+}
+
+.w-0-8 {
+    width: 80px !important;
+}
+
+.w-1 {
+    width: 100px !important;
+}
+
+.w-2 {
+    width: 200px !important;
+}
+
+.w-3 {
+    width: 300px !important;
+}
+
+.detail-table td {
+    padding: 16px 10px;
+    border: 1px solid #ddd;
+}
+
+table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.row-title {
+    background-color: #f0f0f0;
+    width: 180px;
+    vertical-align: middle;
+}
