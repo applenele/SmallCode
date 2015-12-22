@@ -14,15 +14,16 @@ namespace NW.Areas.Admin.Controllers
     public class UserController : BaseController
     {
         // GET: Admin/User
-        public ActionResult Index(string Key)
+        public ActionResult Index(string Key, int page = 1)
         {
             string where = "";
-
+            int onlineCount = (int)HttpContext.Application["OnLineUserCount"];
             if (!string.IsNullOrEmpty(Key))
             {
                 where = where + "Username LIKE '%" + Key + "%'";
             }
-            return View(bllSession.IUserBLL.GetList(where).ToPagedList(1, 20));
+            ViewBag.OnlineCount = onlineCount;
+            return View(bllSession.IUserBLL.GetList(where).ToPagedList(page, 20));
         }
 
         /// <summary>

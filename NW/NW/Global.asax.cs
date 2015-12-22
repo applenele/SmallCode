@@ -15,6 +15,8 @@ namespace NW
     {
         protected void Application_Start()
         {
+            Application["OnLineUserCount"] = 0;
+
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
@@ -59,7 +61,20 @@ namespace NW
             IController controller = new BaseController();
             controller.Execute(new RequestContext(new HttpContextWrapper(Context), routeData)); //执行构造的访问
         }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            Application.Lock();
+            Application["OnLineUserCount"] = Convert.ToInt32(Application["OnLineUserCount"]) + 1;
+            Application.UnLock();
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            Application.Lock();
+            Application["OnLineUserCount"] = Convert.ToInt32(Application["OnLineUserCount"]) - 1;
+            Application.UnLock();
+        }
+
     }
-
-
 }
