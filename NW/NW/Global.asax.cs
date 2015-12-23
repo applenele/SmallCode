@@ -76,5 +76,13 @@ namespace NW
             Application.UnLock();
         }
 
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            //Response.End();
+            // Response.StatusCode = 404;
+            // Response.SuppressContent = true;
+            // Context.ApplicationInstance.CompleteRequest();
+        }
     }
 }
