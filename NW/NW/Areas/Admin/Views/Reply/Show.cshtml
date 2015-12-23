@@ -4,7 +4,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
- 
+
 <div class="crumb-wrap">
     <div class="crumb-list">
         <i class="icon-font">
@@ -42,7 +42,15 @@
                 </tr>
                 <tr>
                     <th>内容：</th>
-                    <td><div class="markdown-body">@MvcHtmlString.Create(@Model.Description)</div></td>
+                    <td>
+                        <div class="markdown-body">@MvcHtmlString.Create(@Model.Description)</div>
+                    </td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>
+                        <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                    </td>
                 </tr>
             </tbody>
         </table>

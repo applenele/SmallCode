@@ -60,6 +60,11 @@ namespace NW.Areas.Admin.Controllers
             return View(log);
         }
 
+        /// <summary>
+        /// 日志批量删除
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
         [HttpPost]
         public ContentResult MutiDelete(string ids)
         {
@@ -79,5 +84,6 @@ namespace NW.Areas.Admin.Controllers
                 throw;
             }
         }
+
     }
 }

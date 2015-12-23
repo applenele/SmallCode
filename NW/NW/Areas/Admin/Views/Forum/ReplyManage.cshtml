@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<NW.Entity.Replyforum>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "主题管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font"></i>
+        <a href="/Admin/Home/Index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">主题管理</span><span class="crumb-step">&gt;</span><span class="crumb-name">回复管理</span>
+    </div>
+</div>
+<div class="search-wrap">
+    <div class="search-content">
+
+    </div>
+</div>
+<div class="result-wrap">
+    <form name="myform" id="myform" method="post">
+        <div class="result-title">
+            <div class="result-list">
+                <a id="batchDel" href="javascript:void(0)" data-del="/Admin/Forum/ReplyMutiDelete"><i class="icon-font"></i>批量删除</a>
+                <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+            </div>
+        </div>
+        <div class="result-content">
+            <table class="result-tab" width="100%">
+                <tr>
+                    <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
+                    <th>ID</th>
+                    <th>主题</th>
+                    <th width="30%">内容</th>
+                    <th>时间</th>
+                    <th>父节点</th>
+                    <th>创建者</th>
+                    <th>操作</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr id="@item.Id">
+                        <td class="tc"><input name="id[]" value="@item.Id" class="choose" type="checkbox"></td>
+                        <td>@item.Id</td>
+                        <td>@item.TopicId</td>
+                        <td title="@item.Id">
+                            <a target="_blank" href="/Admin/Forum/ReplyDetail/@item.Id" title="@item.Id">@item.Content</a>
+                        </td>
+                        <td>@item.Time</td>
+                        <td>@item.FatherId</td>
+                        <td>@item.User.Username</td>
+                        <td>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/Forum/ReplyDelete/@item.Id',@item.Id)">删除</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("ReplyManage", new { page }))
+        </div>
+    </form>
+</div>
+
