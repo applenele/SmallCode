@@ -220,6 +220,23 @@ namespace NW.BLL
         }
         #endregion
 
+        #region 得到Sensitive业务逻辑层
+        ISensitiveBLL iSensitiveBLL;
+        public ISensitiveBLL ISensitiveBLL
+        {
+            get
+            {
+                if (iSensitiveBLL == null)
+                    iSensitiveBLL = new SensitiveBLL();
+                return iSensitiveBLL;
+            }
+            set
+            {
+                iSensitiveBLL = value;
+            }
+        }
+        #endregion
+
         #region 得到Demand业务逻辑层
         IDemandBLL iDemandBLL;
         public IDemandBLL IDemandBLL
