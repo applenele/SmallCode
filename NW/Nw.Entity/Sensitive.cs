@@ -10,8 +10,10 @@ namespace NW.Entity
     {
         public int Id { get; set; }
 
+        //敏感词名称
         public string Name { set; get; }
 
+        //是否锁定，默认为1,0表示锁定，1表示不锁定
         public int Lock { set; get; }
 
     }

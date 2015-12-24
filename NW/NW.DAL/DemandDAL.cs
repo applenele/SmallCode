@@ -46,13 +46,14 @@ namespace NW.DAL
         public Demand GetEntity(int id)
         {
             Demand Demand;
-            string query = "SELECT * FROM Demand WHERE Id = @Id";
+            string query = "SELECT * FROM Demand d LEFT JOIN user u on u.Id = d.UserId where d.Id=@Id";
             using (Conn)
             {
                 Demand = Conn.Query<Demand>(query, new { Id = id }).SingleOrDefault();
                 return Demand;
             }
         }
+
 
         public Demand GetEntityWithRefence(int id)
         {
@@ -93,7 +94,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,VideoID=@VideoId,Vote=@Vote WHERE Id =@Id";
+                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,CourseId=@CourseId,Vote=@Vote WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }
