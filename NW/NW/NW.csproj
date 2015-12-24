@@ -529,7 +529,6 @@
     <Content Include="Views\Course\Show.cshtml" />
     <Content Include="Views\Video\Play.cshtml" />
     <Content Include="Views\Demand\Push.cshtml" />
-    <Content Include="Views\Shared\_Demand_Layout.cshtml" />
     <Content Include="Views\User\Show.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\User\Test.cshtml" />
