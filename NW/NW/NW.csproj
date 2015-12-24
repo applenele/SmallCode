@@ -545,6 +545,7 @@
     <Content Include="Views\Forum\CollectShow.cshtml" />
     <Content Include="Views\Forum\PlateList.cshtml" />
     <Content Include="Views\Demand\Index.cshtml" />
+    <Content Include="Views\Demand\Show.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

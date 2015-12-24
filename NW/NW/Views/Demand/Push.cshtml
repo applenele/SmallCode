@@ -1,7 +1,7 @@
 ﻿@using PagedList.Mvc;
 @{
     ViewBag.Title = "我要约";
-    Layout = "~/Views/Shared/_Demand_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
@@ -11,114 +11,104 @@
             <h3 id="h3">感谢关注！</h3>
         </hgroup>
     </header>
-    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
-        <div class="btn-group">
-            <a title="" class="btn dropdown-toggle" data-original-title="Font" data-toggle="dropdown"><i class="icon-font"></i><b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a style="font-family:'Serif'" data-edit="fontName Serif">Serif</a></li>
-                <li><a style="font-family:'Sans'" data-edit="fontName Sans">Sans</a></li>
-                <li><a style="font-family:'Arial'" data-edit="fontName Arial">Arial</a></li>
-                <li><a style="font-family:'Arial Black'" data-edit="fontName Arial Black">Arial Black</a></li>
-                <li><a style="font-family:'Courier'" data-edit="fontName Courier">Courier</a></li>
-                <li><a style="font-family:'Courier New'" data-edit="fontName Courier New">Courier New</a></li>
-                <li><a style="font-family:'Comic Sans MS'" data-edit="fontName Comic Sans MS">Comic Sans MS</a></li>
-                <li><a style="font-family:'Helvetica'" data-edit="fontName Helvetica">Helvetica</a></li>
-                <li><a style="font-family:'Impact'" data-edit="fontName Impact">Impact</a></li>
-                <li><a style="font-family:'Lucida Grande'" data-edit="fontName Lucida Grande">Lucida Grande</a></li>
-                <li><a style="font-family:'Lucida Sans'" data-edit="fontName Lucida Sans">Lucida Sans</a></li>
-                <li><a style="font-family:'Tahoma'" data-edit="fontName Tahoma">Tahoma</a></li>
-                <li><a style="font-family:'Times'" data-edit="fontName Times">Times</a></li>
-                <li><a style="font-family:'Times New Roman'" data-edit="fontName Times New Roman">Times New Roman</a></li>
-                <li><a style="font-family:'Verdana'" data-edit="fontName Verdana">Verdana</a></li>
-            </ul>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn dropdown-toggle" data-original-title="Font Size" data-toggle="dropdown"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-                <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
-                <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
-                <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
-            </ul>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Bold (Ctrl/Cmd+B)" data-edit="bold"><i class="icon-bold"></i></a>
-            <a title="" class="btn" data-original-title="Italic (Ctrl/Cmd+I)" data-edit="italic"><i class="icon-italic"></i></a>
-            <a title="" class="btn" data-original-title="Strikethrough" data-edit="strikethrough"><i class="icon-strikethrough"></i></a>
-            <a title="" class="btn" data-original-title="Underline (Ctrl/Cmd+U)" data-edit="underline"><i class="icon-underline"></i></a>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Bullet list" data-edit="insertunorderedlist"><i class="icon-list-ul"></i></a>
-            <a title="" class="btn" data-original-title="Number list" data-edit="insertorderedlist"><i class="icon-list-ol"></i></a>
-            <a title="" class="btn" data-original-title="Reduce indent (Shift+Tab)" data-edit="outdent"><i class="icon-indent-left"></i></a>
-            <a title="" class="btn" data-original-title="Indent (Tab)" data-edit="indent"><i class="icon-indent-right"></i></a>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Align Left (Ctrl/Cmd+L)" data-edit="justifyleft"><i class="icon-align-left"></i></a>
-            <a title="" class="btn" data-original-title="Center (Ctrl/Cmd+E)" data-edit="justifycenter"><i class="icon-align-center"></i></a>
-            <a title="" class="btn" data-original-title="Align Right (Ctrl/Cmd+R)" data-edit="justifyright"><i class="icon-align-right"></i></a>
-            <a title="" class="btn" data-original-title="Justify (Ctrl/Cmd+J)" data-edit="justifyfull"><i class="icon-align-justify"></i></a>
-        </div>
-        <div class="btn-group">
-            <a title="" class="btn dropdown-toggle" data-original-title="Hyperlink" data-toggle="dropdown"><i class="icon-link"></i></a>
-            <div class="dropdown-menu input-append">
-                <input class="span2" type="text" placeholder="URL" data-edit="createLink">
-                <button class="btn" type="button">Add</button>
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="Title" class="col-sm-2 control-label">标题</label>
+            <div class="col-sm-7">
+                <input type="email" class="form-control" id="Title" placeholder="标题">
             </div>
-            <a title="" class="btn" data-original-title="Remove Hyperlink" data-edit="unlink"><i class="icon-cut"></i></a>
+            <div class="col-sm-3">
+                <p class="text-primary" id="title-warning-text">标题最多25个字</p>
+            </div>
         </div>
-
-        <div class="btn-group">
-            <a title="" class="btn" id="pictureBtn" data-original-title="Insert picture (or just drag &amp; drop)"><i class="icon-picture"></i></a>
-            <input style="left: 0px; top: 0px; width: 40px; height: 30px; position: absolute; opacity: 0;" type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
+        <div class="form-group">
+            <label for="Text" class="col-sm-2 control-label">需求</label>
+            <div class="col-sm-7">
+                <textarea class="form-control" rows="3" id="Text"></textarea>
+            </div>
+            <div class="col-sm-3">
+                <p class="text-primary" id="text-warning-text"></p>
+            </div>
         </div>
-        <div class="btn-group">
-            <a title="" class="btn" data-original-title="Undo (Ctrl/Cmd+Z)" data-edit="undo"><i class="icon-undo"></i></a>
-            <a title="" class="btn" data-original-title="Redo (Ctrl/Cmd+Y)" data-edit="redo"><i class="icon-repeat"></i></a>
+        <div class="form-group">
+            <div class="col-sm-1 col-sm-offset-2">
+                <button type="button" class="btn btn-success" id="sumbit">提交</button>
+            </div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-info" id="reset">重置</button>
+            </div>
+            <div class="col-sm-4">
+                <p id="warning-text"></p>
+            </div>
         </div>
-        <input id="voiceBtn" style="display: none;" type="text" data-edit="inserttext" x-webkit-speech="">
-    </div>
-    <div id="editor-text" contenteditable="true">
-        Go ahead…
-    </div>
-    <script>
-  $(function(){
-    function initToolbarBootstrapBindings() {
-      var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
-            'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
-            'Times New Roman', 'Verdana'],
-            fontTarget = $('[title=Font]').siblings('.dropdown-menu');
-      $.each(fonts, function (idx, fontName) {
-          fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
-      });
-      $('a[title]').tooltip({container:'body'});
-    	$('.dropdown-menu input').click(function() {return false;})
-		    .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
-        .keydown('esc', function () {this.value='';$(this).change();});
-
-      $('[data-role=magic-overlay]').each(function () {
-        var overlay = $(this), target = $(overlay.data('target'));
-        overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
-      });
-      if ("onwebkitspeechchange"  in document.createElement("input")) {
-        var editorOffset = $('#editor').offset();
-        $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
-      } else {
-        $('#voiceBtn').hide();
-      }
-	};
-	function showErrorAlert (reason, detail) {
-		var msg='';
-		if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
-		else {
-			console.log("error uploading file", reason, detail);
-		}
-		$('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+
-		 '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
-	};
-    initToolbarBootstrapBindings();
-    $('#editor-text').wysiwyg({ fileUploadError: showErrorAlert });
-    window.prettyPrint && prettyPrint();
-  });
-    </script>
+    </form>
 </div>
-
+<script>
+    $("#sumbit").click(function () {
+        var title = $("#Title").val();
+        var text = $("#Text").val();
+        var tf=1;
+        $("#title-warning-text").html("");
+        $("#text-warning-text").html("");
+        if (title.length == 0)
+        {
+            $("#title-warning-text").attr("class", "text-warning");
+            $("#title-warning-text").html("请输入标题");
+            tf=0;
+        }
+        else if (title.length > 25)
+        {
+            $("#title-warning-text").attr("class", "text-warning");
+            $("#title-warning-text").html("标题过长，请重新输入");
+            tf = 0;
+        }
+        else if (text.length == 0)
+        {
+            $("#text-warning-text").attr("class", "text-warning");
+            $("#text-warning-text").html("请填写需求");
+            tf = 0;
+        }
+        else
+        {
+            if(tf==1)
+            {
+                $("#title-warning-text").attr("class","text-primary");
+                $("#title-warning-text").html("标题最多25个字");
+                $("#text-warning-text").attr("class", "text-primary");
+                $.ajax({
+                    type: 'POST',
+                    url: "/Demand/Save",
+                    data: { Title: title, Text: text },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.Statu == "ok") {
+                            $("#warning-text").attr("class", "text-success");
+                            location.href = data.BackUrl;
+                        }
+                        else if (data.Statu == "err") {
+                            $("#warning-text").attr("class", "text-warning");
+                        }
+                        else if (data.Statu == "go_login") {
+                            $("#warning-text").attr("class", "text-danger");
+                            $('#loginModal').modal('show')
+                        }
+                        else if (data.Statu == "text")
+                        {
+                            $("#text-warning-text").attr("class", "text-warning");
+                            $("#text-warning-text").html(data.Data);
+                        }
+                        else if (data.Statu == "title") {
+                            $("#title-warning-text").attr("class", "text-warning");
+                            $("#title-warning-text").html(data.Data);
+                        }
+                        $("#warning-text").html(data.Msg);
+                    },
+                    error: function () {
+                        $("#warning-text").addClass("text-danger");
+                        $("#warning-text").html("网络异常，请稍后重试");
+                    }
+                });
+            }
+        }
+    });
+</script>
