@@ -38,6 +38,7 @@
             <div class="result-list">
                 <a id="batchDel" href="javascript:void(0)" data-del="/Admin/Log/MutiDelete"><i class="icon-font"></i>批量删除</a>
                 <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+                共：@Model.TotalItemCount 条数据
             </div>
         </div>
         <div class="result-content">
@@ -49,7 +50,7 @@
                     <th>线程</th>
                     <th>级别</th>
                     <th>类型</th>
-                    <th>描述</th>
+                    <th style="width: 55%;">描述</th>
                     <th>操作</th>
                 </tr>
                 @foreach (var item in Model)
@@ -72,6 +73,7 @@
                 }
             </table>
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
         </div>
     </form>
 </div>
