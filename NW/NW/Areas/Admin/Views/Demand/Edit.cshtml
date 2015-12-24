@@ -1,0 +1,47 @@
+﻿@model NW.Entity.Demand
+@{
+    ViewBag.Title = "约课修改";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/Admin/Home/Index">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Demand/Index/">约课管理</a><span class="crumb-step">&gt;</span><span>修改约课</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <form action="/Admin/Demand/Edit" method="post" name="frmEditDemand">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <table class="insert-tab" width="100%">
+                <tbody>
+                    <tr>
+                        <th>标题：</th>
+                        <td>
+                            @Model.Title
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>状态：</th>
+                        <td>
+                            <select name="State">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
+                            <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

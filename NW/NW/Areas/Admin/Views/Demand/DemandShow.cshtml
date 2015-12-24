@@ -1,0 +1,83 @@
+﻿@model NW.Entity.Demand
+@using NW.Entity;
+@{
+    ViewBag.Title = "约课展示";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/Admin/Home/">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Course/Index">约课管理</a><span class="crumb-step">&gt;</span><span>约课预览</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <table class="insert-tab" width="100%">
+            <tbody>
+                <tr>
+                    <th width="120">用户ID：</th>
+                    <td>
+                        @Model.UserId
+                    </td>
+                </tr>
+                <tr>
+                    <th>用户名称：</th>
+                    <td>
+                        @Model.UserId
+                    </td>
+                </tr>
+                <tr>
+                    <th>标题：</th>
+                    <td>
+                        @Model.Title
+                    </td>
+                </tr>
+                <tr>
+                    <th>内容</th>
+                    <td>
+                        @Model.Text
+                    </td>
+                </tr>
+                <tr>
+                    <th>时间</th>
+                    <td>
+                        @Model.DateTime
+                    </td>
+                </tr>
+                <tr>
+                    <th>状态</th>
+                    <td>
+                        @Model.State
+                    </td>
+                </tr>
+                <tr>
+                    <th>价格：</th>
+                    <td>
+                        @Model.Price
+                    </td>
+                </tr>
+                <tr>
+                    <th>处理时间：</th>
+                    <td>
+                        @Model.ReviewTime
+                    </td>
+                </tr>
+                <tr>
+                    <th>投票：</th>
+                    <td>
+                        @Model.Vote
+                    </td>
+                </tr>
+                <tr>
+                    <th>课程ID：</th>
+                    <td>
+                        @Model.VideoId
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
