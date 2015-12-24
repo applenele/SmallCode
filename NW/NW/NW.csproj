@@ -190,6 +190,7 @@
     <Content Include="Areas\Admin\Views\Forum\TopicAdd.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\TopicEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\TopicDetail.cshtml" />
+    <Content Include="Areas\Admin\Views\Forum\ReplyManage.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />

@@ -86,5 +86,37 @@ namespace NW.Controllers
             log.Error(new LogContent(Request.Url + filterContext.Exception.Message, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
             base.OnException(filterContext);
         }
+
+        /// <summary>
+        /// 未找到页面
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NotFound()
+        {
+            return Prompt(x =>
+            {
+                x.Title = "你访问的页面不存在！";
+                x.Details = "你访问的页面不存在！";
+                x.RedirectText = "返回首页！";
+                x.RedirectUrl = "/Home/Index";
+                x.StatusCode = 404;
+            });
+        }
+
+        /// <summary>
+        /// 访问你的页面出错
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Error()
+        {
+            return Prompt(x =>
+            {
+                x.Title = "出问题啦！";
+                x.Details = "出问题啦！";
+                x.RedirectText = "返回首页！";
+                x.RedirectUrl = "/Home/Index";
+                x.StatusCode = 500;
+            });
+        }
     }
 }

@@ -173,8 +173,6 @@ namespace NW.Areas.Admin.Controllers
 
         #endregion
 
-
-
         #region 主题管理
         /// <summary>
         /// 主题管理
@@ -323,6 +321,65 @@ namespace NW.Areas.Admin.Controllers
 
         #endregion
 
+        #region 主题回复管理
+        /// <summary>
+        /// 主题回复管理
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult ReplyManage(int id, int page = 1)
+        {
+            ViewBag.TopicId = id;
+            return View(bllSession.IReplyforumBLL.GetList("").ToPagedList(page, 20));
+        }
 
+        /// <summary>
+        /// 删除主题回复
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult ReplyDelete(int id)
+        {
+            try
+            {
+                bllSession.IReplyforumBLL.Delete(id);
+                log.Info(new LogContent(CurrentUser.Username + ":删除主题回复" + id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return Content("ok");
+            }
+            catch (Exception ex)
+            {
+                log.Error(new LogContent(CurrentUser.Username + ":删除主题回复" + id + "失败", LogType.异常.ToString(), HttpHelper.GetIPAddress()), ex);
+                return Content("err");
+            }
+        }
+
+        /// <summary>
+        /// 主题回复批量删除
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ContentResult ReplyMutiDelete(string ids)
+        {
+            try
+            {
+                string[] idsStrArr = ids.Split(',');
+                foreach (var id in idsStrArr)
+                {
+                    bllSession.IReplyforumBLL.Delete(Convert.ToInt32(id));
+                }
+                log.Info(new LogContent(CurrentUser.Username + "批量删除主题回复" + ids, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                return Content("ok");
+            }
+            catch (Exception)
+            {
+                log.Error(new LogContent(CurrentUser.Username + "批量删除主题回复" + ids, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                throw;
+            }
+        }
+
+        #endregion
     }
 }
