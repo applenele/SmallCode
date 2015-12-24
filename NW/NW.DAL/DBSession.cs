@@ -236,5 +236,22 @@ namespace NW.DAL
             }
         }
         #endregion
+
+        #region iSensitiveDAL
+        ISensitiveDAL iSensitiveDAL;
+        public ISensitiveDAL SensitiveDAL
+        {
+            get
+            {
+                if (iSensitiveDAL == null)
+                    iSensitiveDAL = new SensitiveDAL();
+                return iSensitiveDAL;
+            }
+            set
+            {
+                iSensitiveDAL = value;
+            }
+        }
+        #endregion
     }
 }

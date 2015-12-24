@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReplyBLL.cs" />
     <Compile Include="ReplyforumBLL.cs" />
+    <Compile Include="SensitiveBLL.cs" />
     <Compile Include="TopicforumBLL.cs" />
     <Compile Include="UserBLL.cs" />
     <Compile Include="VideoBLL.cs" />

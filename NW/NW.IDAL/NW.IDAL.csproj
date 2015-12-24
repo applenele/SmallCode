@@ -51,6 +51,7 @@
     <Compile Include="IPlateforumDAL.cs" />
     <Compile Include="IReplyDAL.cs" />
     <Compile Include="IReplyforumDAL.cs" />
+    <Compile Include="ISensitiveDAL.cs" />
     <Compile Include="ITopicforumDAL.cs" />
     <Compile Include="IUserDAL.cs" />
     <Compile Include="IVideoDAL.cs" />
