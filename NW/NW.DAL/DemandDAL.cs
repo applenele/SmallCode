@@ -45,12 +45,11 @@ namespace NW.DAL
 
         public Demand GetEntity(int id)
         {
-            Demand Demand;
             string query = "SELECT * FROM Demand d LEFT JOIN user u on u.Id = d.UserId where d.Id=@Id";
             using (Conn)
             {
-                Demand = Conn.Query<Demand>(query, new { Id = id }).SingleOrDefault();
-                return Demand;
+                var data = Conn.Query<Demand, User, Demand>(query, (demand, user) => { demand.User = user; return demand; }, new { Id = id });
+                return data.FirstOrDefault();
             }
         }
 
