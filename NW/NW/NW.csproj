@@ -396,7 +396,7 @@
     <Content Include="Scripts\ckplayer\style.swf" />
     <Content Include="Scripts\codeqiaokeli.js" />
     <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\ForumBase.js" />
+    <Content Include="Scripts\forumbase.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\ueditor\asp\action_config.asp" />

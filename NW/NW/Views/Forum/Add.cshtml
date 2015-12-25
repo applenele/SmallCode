@@ -9,31 +9,31 @@
             {
         @Html.AntiForgeryToken()
         <div style="margin-top:100px;width:500px;height:auto">
-            <input type="text" placeholder="标题" name="title" id="posttitle">
+            <input type="text" placeholder="标题" name="title" id="platetitle">
             <select name="classify" id="plateforumId" class="classify">
                 @*@if (ViewBag.plateforumId != 0)
-                      {
-                         <option value="@ViewBag.plateforumId">@ViewBag.ptitle</option>
-                     }
-                     else
-                    {*@
-                <option value="请选择模块">请选择模块</option>
-                @foreach (var plateforumlist in ViewBag.plateforumlist)
                 {
-                    <option value="@plateforumlist.Id">@plateforumlist.Title</option>
+                    <option value="@ViewBag.plateforumId">@ViewBag.ptitle</option>
                 }
+                else
+                {*@
+                    <option value="">请选择模块</option>
+                    @foreach (var plateforumlist in ViewBag.plateforumlist)
+                    {
+                        <option value="@plateforumlist.Id">@plateforumlist.Title</option>
+                    }
                 @*}*@
             </select>
         </div>
+            <!-- 加载编辑器的容器 -->
+        <script id="container" name="content" type="text/plain">
+
+        </script>
         <div>
             <span>@Html.ValidationSummary(true)</span>
-            <input type="button" onclick="validateEditor" value="发布帖子">
+            <input type="button" onclick="submitForm()" value="发布帖子">
         </div>
     }
-    <!-- 加载编辑器的容器 -->
-    <script id="container" name="content" type="text/plain">
-        这里写你的初始化内容
-    </script>
     <!-- 配置文件 -->
     <script type="text/javascript" src="~/Scripts/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -49,10 +49,10 @@
         </script>
     }
     @*<script>
-        var user = $("#hdusername").val();
-        if (user == undefined) {
-            alert("请先登录，再进行发布！")
-            CastMsg("请先登录，再进行发布！");
-        }
-    </script>*@
+            var user = $("#hdusername").val();
+            if (user == undefined) {
+                alert("请先登录，再进行发布！")
+                CastMsg("请先登录，再进行发布！");
+            }
+        </script>*@
 </div>
