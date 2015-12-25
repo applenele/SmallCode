@@ -19,7 +19,6 @@ namespace NW.Controllers
         {
             List<Topicforum> topicforums = new List<Topicforum>();
             List<Plateforum> plateforums = new List<Plateforum>();
-            topicforums = bllSession.ITopicforumBLL.GetList("").ToList();
             plateforums = bllSession.IPlateforumBLL.GetList("").ToList();
             ViewBag.plateforums = plateforums;
 
@@ -32,7 +31,15 @@ namespace NW.Controllers
                 string userName = CurrentUser.Username;
                 log.Info(new LogContent("游客访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
-            return View(bllSession.ITopicforumBLL.GetList("").ToPagedList(page, 10));
+            var query = bllSession.ITopicforumBLL.GetList("");
+            int totalCount = 0;
+            PagerHelper.DoPage(ref query, page, 20, ref totalCount);
+            foreach (var item in query)
+            {
+                topicforums.Add(item);
+            }
+            var plateforumsAsPageList = new StaticPagedList<Topicforum>(topicforums, page, 20, totalCount);
+            return View(plateforumsAsPageList);
         }
 
         /// <summary>
@@ -98,14 +105,19 @@ namespace NW.Controllers
                 {
                     topicForum.Title = title;
                     topicForum.Content = content;
-                    topicForum.PlateforumId = classify;
+                    topicForum.Top = false;
                     topicForum.Time = DateTime.Now;
+                    topicForum.LastReply = DateTime.Now;
                     topicForum.UserId = userId;
+                    topicForum.Reward = 0;
+                    topicForum.IsShow = true;
+                    topicForum.IsClose = false;
+                    topicForum.IsOfficeIdentified = false;
+                    topicForum.PlateforumId = classify;
+                    
 
                     bllSession.ITopicforumBLL.Insert(topicForum);
-
                     log.Info(new LogContent(userName + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
-                    return RedirectToAction("Index", "Forum");
                 }
             }
             catch
@@ -113,7 +125,7 @@ namespace NW.Controllers
                 log.Error(new LogContent("用户发布主题出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 ModelState.AddModelError("", "用户发布主题出错！");
             }
-           return View();
+            return RedirectToAction("Index","Forum");
         }
 
         /// <summary>
