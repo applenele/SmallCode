@@ -5,43 +5,39 @@
 }
 
 <div class="container">
-    <header id="header">
-        <hgroup>
-            <h1 id="h1">codeqiaokeli 编程学习</h1>
-            <h3 id="h3">感谢关注！</h3>
-        </hgroup>
-    </header>
-    <form class="form-horizontal">
-        <div class="form-group">
-            <label for="Title" class="col-sm-2 control-label">标题</label>
-            <div class="col-sm-7">
-                <input type="email" class="form-control" id="Title" placeholder="标题">
+    <div class="row" style="margin-top: 80px;">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label for="Title" class="col-sm-2 control-label">标题</label>
+                <div class="col-sm-7">
+                    <input type="email" class="form-control" id="Title" placeholder="标题">
+                </div>
+                <div class="col-sm-3">
+                    <p class="text-primary" id="title-warning-text">标题最多25个字</p>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <p class="text-primary" id="title-warning-text">标题最多25个字</p>
+            <div class="form-group">
+                <label for="Text" class="col-sm-2 control-label">需求</label>
+                <div class="col-sm-7">
+                    <textarea class="form-control" rows="3" id="Text"></textarea>
+                </div>
+                <div class="col-sm-3">
+                    <p class="text-primary" id="text-warning-text"></p>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="Text" class="col-sm-2 control-label">需求</label>
-            <div class="col-sm-7">
-                <textarea class="form-control" rows="3" id="Text"></textarea>
+            <div class="form-group">
+                <div class="col-sm-1 col-sm-offset-2">
+                    <button type="button" class="btn btn-success" id="sumbit">提交</button>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-info" id="reset">重置</button>
+                </div>
+                <div class="col-sm-4">
+                    <p id="warning-text"></p>
+                </div>
             </div>
-            <div class="col-sm-3">
-                <p class="text-primary" id="text-warning-text"></p>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-1 col-sm-offset-2">
-                <button type="button" class="btn btn-success" id="sumbit">提交</button>
-            </div>
-            <div class="col-sm-1">
-                <button type="button" class="btn btn-info" id="reset">重置</button>
-            </div>
-            <div class="col-sm-4">
-                <p id="warning-text"></p>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 <script>
     $("#sumbit").click(function () {

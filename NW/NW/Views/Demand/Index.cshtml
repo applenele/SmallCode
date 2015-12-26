@@ -7,58 +7,167 @@
     }
 <link href="~/Styles/demand.css" rel="stylesheet" />
     <div class="container">
-        <header id="header">
-            <hgroup>
-                <h1 id="h1">codeqiaokeli 编程学习</h1>
-                <h3 id="h3">感谢关注！</h3>
-            </hgroup>
-        </header>
-        <div class="demand-header row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <a href="/Demand/Push" class="btn btn-primary">提交课程需求</a>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 demand-info-text">
-                <p></p>
-                <p></p>
-            </div>
-        </div>
-        <div class="demand-body row">
-            @foreach (var item in Model)
-            {
-                <div class="col-lg-3 col-md-4 col-sm-5">
-                    <div class="demand-body-one">
-                        <p class="demand-title text-primary">
-                            <span class="col-lg-8 col-md-7 col-sm-6 text-left demand-info-title">
-                                <a href="/Demand/show/@item.Id">@item.Title</a>
-                            </span>
-                            @if (item.State == 0)
-                            {
-                                <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-1">讨论中</span>
-                            }
-                            else if (item.State == 1)
-                            {
-                                <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-2">制作中</span>
-                            }
-                            else if (item.State == 2)
-                            {
-                                <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-3">完成</span>
-                            }
-                        </p>
-                        <p class="demand-info text-muted">
-
-                            <span class="col-lg-6 col-md-6 col-sm-6 text-left demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
-                            <span class="col-lg-6 col-md-6 col-sm-6 text-center glyphicon glyphicon-thumbs-up demand-info-vote-up"  id="demand-info-vote-up-@item.Id">
-                                <strong class="demand-info-vote" id="demand-info-vote-@item.Id">@item.Vote</strong>
-                            </span>
-                        </p>
-                        <p class="demand-text text-warning">@NW.Utility.String.SubString(@item.Text,120,"...")</p>
-                    </div>
+            <div class="demand-header row" style="margin-top: 80px;">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#PushModal">提交课程需求</a>
                 </div>
-            }
+                <div class="col-lg-6 col-md-6 col-sm-12 demand-info-text">
+                    <p></p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="demand-body row">
+                @foreach (var item in Model)
+            {
+                    <div class="col-lg-3 col-md-4 col-sm-5">
+                        <div class="demand-body-one inner-box">
+                            <p class="demand-title text-primary">
+                                <span class="col-lg-8 col-md-7 col-sm-6 text-left demand-info-title">
+                                    <a href="/Demand/show/@item.Id">@item.Title</a>
+                                </span>
+                                @if (item.State == 0)
+                                {
+                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-1">讨论中</span>
+                                }
+                                else if (item.State == 1)
+                                {
+                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-2">制作中</span>
+                                }
+                                else if (item.State == 2)
+                                {
+                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-3">完成</span>
+                                }
+                            </p>
+                            <p class="demand-info text-muted">
+
+                                <span class="col-lg-6 col-md-6 col-sm-6 text-left demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
+                                <span class="col-lg-6 col-md-6 col-sm-6 text-center glyphicon glyphicon-thumbs-up demand-info-vote-up" id="demand-info-vote-up-@item.Id">
+                                    <strong class="demand-info-vote" id="demand-info-vote-@item.Id">@item.Vote</strong>
+                                </span>
+                            </p>
+                            <p class="demand-text text-warning">@NW.Utility.String.SubString(@item.Text, 120, "...")</p>
+                        </div>
+                    </div>
+                }
+            </div>
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
-        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    <!-- Modal -->
+<div class="modal fade" id="PushModal" tabindex="-1" role="dialog" aria-labelledby="PushModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提交课程需求</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="Title" class="col-sm-2 control-label">标题</label>
+                        <div class="col-sm-7">
+                            <input type="email" class="form-control" id="demand-title" placeholder="标题">
+                        </div>
+                        <div class="col-sm-3">
+                            <p class="text-primary" id="demand-title-warning-text">标题最多25个字</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Text" class="col-sm-2 control-label">需求</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" rows="5" id="demand-text"></textarea>
+                        </div>
+                        <div class="col-sm-3">
+                            <p class="text-primary" id="demand-text-warning-text"></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <span id="demand-warning-text" class="warning"></span>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-warning" id="demand_reset">重置</button>
+                <button type="button" class="btn btn btn-primary" id="demand_sumbit">提交</button>
+            </div>
+        </div>
     </div>
+</div>
 <script>
+    $("#demand_reset").click(function () {
+        $("#demand-title").val("");
+        $("#demand-text").val("");
+    });
+    $("#demand_sumbit").click(function () {
+        if ($("#user_info").length==0)
+        {
+            alert("请先登录");
+            $("#PushModal").modal('hide');
+            $('#loginModal').modal('show');
+        }
+        else
+        {
+            var title = $("#demand-title").val();
+            var text = $("#demand-text").val();
+            var tf = 1;
+            $("#demand-title-warning-text").html("");
+            $("#demand-text-warning-text").html("");
+            if (title.length == 0) {
+                $("#demand-title-warning-text").attr("class", "text-warning");
+                $("#demand-title-warning-text").html("请输入标题");
+                tf = 0;
+            }
+            else if (title.length > 25) {
+                $("#demand-title-warning-text").attr("class", "text-warning");
+                $("#demand-title-warning-text").html("标题过长，请重新输入");
+                tf = 0;
+            }
+            else if (text.length == 0) {
+                $("#demand-text-warning-text").attr("class", "text-warning");
+                $("#demand-text-warning-text").html("请填写需求");
+                tf = 0;
+            }
+            else {
+                if (tf == 1) {
+                    $("#demand-title-warning-text").attr("class", "text-primary");
+                    $("#demand-title-warning-text").html("标题最多25个字");
+                    $("#demand-text-warning-text").attr("class", "text-primary");
+                    $.ajax({
+                        type: 'POST',
+                        url: "/Demand/Save",
+                        data: { Title: title, Text: text },
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.Statu == "ok") {
+                                $("#demand-warning-text").attr("class", "text-success");
+                                location.href = data.BackUrl;
+                            }
+                            else if (data.Statu == "err") {
+                                $("#demand-warning-text").attr("class", "text-warning");
+                            }
+                            else if (data.Statu == "go_login") {
+                                $("#demand-warning-text").attr("class", "text-danger");
+                                $("#PushModal").modal('hide');
+                                $('#loginModal').modal('show');
+                            }
+                            else if (data.Statu == "text") {
+                                $("#demand-text-warning-text").attr("class", "text-warning");
+                                $("#demand-text-warning-text").html(data.Data);
+                            }
+                            else if (data.Statu == "title") {
+                                $("#demand-title-warning-text").attr("class", "text-warning");
+                                $("#demand-title-warning-text").html(data.Data);
+                            }
+                            $("#demand-warning-text").html(data.Msg);
+                        },
+                        error: function () {
+                            $("#demand-warning-text").addClass("text-danger");
+                            $("#demand-warning-text").html("网络异常，请稍后重试");
+                        }
+                    });
+                }
+            }
+        }
+       
+    });
     $(".demand-info-vote-up").click(function () {
         var this_demand = $(this).attr("id");
         var this_demand_arr = this_demand.split("-");

@@ -22,11 +22,6 @@ namespace NW.Controllers
             demands = bllSession.IDemandBLL.GetList("").ToList();
             return View(bllSession.IDemandBLL.GetList("").ToPagedList(page,10));
         }
-        //提交我要约要求页面
-        public ActionResult Push()
-        {
-            return View();
-        }
         //提交我要约要求处理
         [HttpPost]
         public ActionResult Save(string Title, string Text)
