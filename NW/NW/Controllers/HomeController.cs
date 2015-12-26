@@ -18,7 +18,10 @@ namespace NW.Controllers
             List<Notification> notifications = new List<Notification>();
             string str = "IsShow = true";
             notifications = bllSession.INotificationBLL.GetList(str).Take(5).ToList();
+            List<Carousel> carousels = new List<Carousel>();
+            carousels = bllSession.ICarouselBLL.GetList("").Take(5).ToList();
             ViewBag.Notifications = notifications;
+            ViewBag.Carousels = carousels;
             return View();
         }
     }

@@ -70,7 +70,7 @@ namespace NW.DAL
                 }
                 else
                 {
-                    query = "SELECT * FROM Carousel order by CreateDate desc where IsShow=1 and IsDelete=0";
+                    query = "SELECT * FROM Carousel order by Top desc where IsShow=1 and IsDelete=0";
                 }
 
                 return Conn.Query<Carousel>(query);

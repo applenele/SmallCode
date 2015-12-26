@@ -253,5 +253,22 @@ namespace NW.BLL
             }
         }
         #endregion
+
+        #region 得到Carousel业务逻辑层
+        ICarouselBLL iCarouselBLL;
+        public ICarouselBLL ICarouselBLL
+        {
+            get
+            {
+                if (iCarouselBLL == null)
+                    iCarouselBLL = new CarouselBLL();
+                return iCarouselBLL;
+            }
+            set
+            {
+                iCarouselBLL = value;
+            }
+        }
+        #endregion
     }
 }

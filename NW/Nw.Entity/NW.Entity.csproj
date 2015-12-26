@@ -53,6 +53,7 @@
     <Compile Include="DataModels\CommonEnum.cs" />
     <Compile Include="Demand.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="Carousel.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="Plateforum.cs" />
