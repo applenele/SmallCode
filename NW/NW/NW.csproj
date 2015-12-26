@@ -522,11 +522,6 @@
     <Compile Include="Log4net\ObjectPatternConverter.cs" />
     <Compile Include="Models\PromptMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WordFilter\WordEntity.cs" />
-    <Compile Include="WordFilter\WordFilter.cs" />
-    <Compile Include="WordFilter\WordFilterEnum.cs" />
-    <Compile Include="WordFilter\WordFilterTypeIds.cs" />
-    <Compile Include="WordFilter\WordGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
