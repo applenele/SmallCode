@@ -253,5 +253,22 @@ namespace NW.DAL
             }
         }
         #endregion
+
+        #region iCarouselDAL
+        ICarouselDAL iCarouselDAL;
+        public ICarouselDAL CarouselDAL
+        {
+            get
+            {
+                if (iCarouselDAL == null)
+                    iCarouselDAL = new CarouselDAL();
+                return iCarouselDAL;
+            }
+            set
+            {
+                iCarouselDAL = value;
+            }
+        }
+        #endregion
     }
 }

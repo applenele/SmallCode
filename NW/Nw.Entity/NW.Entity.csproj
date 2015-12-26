@@ -53,6 +53,7 @@
     <Compile Include="DataModels\CommonEnum.cs" />
     <Compile Include="Demand.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="Carousel.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="Plateforum.cs" />
@@ -66,6 +67,7 @@
     <Compile Include="ViewModels\SideArticleCalendar.cs" />
     <Compile Include="ViewModels\SideArticleCategory.cs" />
     <Compile Include="ViewModels\vArticle.cs" />
+    <Compile Include="ViewModels\vDemand.cs" />
     <Compile Include="ViewModels\vForum.cs" />
   </ItemGroup>
   <ItemGroup>

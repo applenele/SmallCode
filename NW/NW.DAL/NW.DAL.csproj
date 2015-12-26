@@ -53,6 +53,7 @@
     <Compile Include="DBSessionFactory.cs" />
     <Compile Include="DemandDAL.cs" />
     <Compile Include="ImageDAL.cs" />
+    <Compile Include="CarouselDAL.cs" />
     <Compile Include="LogDAL.cs" />
     <Compile Include="NotificationDAL.cs" />
     <Compile Include="PlateforumDAL.cs" />

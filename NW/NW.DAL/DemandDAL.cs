@@ -66,14 +66,15 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Demand where " + whereStr + " order by DateTime desc";
+                    query = "SELECT * FROM Demand d LEFT JOIN user u on u.Id = d.UserId where " + whereStr + " order by d.DateTime desc";
                 }
                 else
                 {
-                    query = "SELECT * FROM Demand order by DateTime desc";
+                    query = "SELECT * FROM Demand d LEFT JOIN user u on u.Id = d.UserId order by d.DateTime desc";
                 }
+                var data = Conn.Query<Demand, User, Demand>(query, (demand, user) => { demand.User = user; return demand; });
 
-                return Conn.Query<Demand>(query);
+                return data;
             }
         }
         public IEnumerable<Demand> GetListByPage(int page, int size, string whereStr)
@@ -93,7 +94,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,CourseId=@CourseId,Vote=@Vote WHERE Id =@Id";
+                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,CourseId=@CourseId WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }
