@@ -5,30 +5,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container">
-    <header id="header">
-        <hgroup>
-            <h1 id="h1">SmallCode 编程学习</h1>
-            <h3 id="h3">感谢关注！</h3>
-        </hgroup>
-    </header>
-    <select>
-        <option value="">请选择模块</option>
-        @foreach (var item in ViewBag.plateforums)
-        {
-            <option value="@item.Title">@item.Title</option>
-        }
-    </select>
-    <a href="/Forum/Add">我要发布</a>
-    @foreach (var item in Model)
-    {
-        <div class="inner-box">
-            <div>
-                <h2><a href="/Forum/Show/@item.Id">@item.Title</a></h2>
-                发表时间：@item.Time  浏览量： @item.Browses  举报：@item.Report
+    <div class="row" style="margin-top: 80px;">
+        <div class="col-md-9">
+            <div class="inner-box">
+                <span>热门板块：</span>
+                @foreach (var item in ViewBag.Plateforums)
+                {
+                    <a href="#">@item.Title</a>
+                }
             </div>
-            <div class="top-info-wrap">
-                @item.Content
-            </div>
+            <a href="/Forum/Add"><strong>我要发布</strong></a>
+            @foreach (var item in Model)
+            {
+                <div class="inner-box">
+                    <div>
+                        <h2><a href="/Forum/Show/@item.Id">@item.Title</a></h2>
+                        作者：@item.User.Username 所属板块：@item.Plateforum.Title  发表时间：@item.Time  浏览量： @item.Browses  举报：@item.Report
+                    </div>
+                    <div class="top-info-wrap">
+                        @Html.Raw(@item.Content)
+                    </div>
+                </div>
+            }
+            @Html.PagedListPager(Model, page => Url.Action("Index?" + @ViewBag.AttachUrl, new { page }))
         </div>
-    }
+        <aside class="col-md-3">
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>签到</strong></h3>
+                </div>
+                <div id="categories" class="list-group">
+                </div>
+            </section>
+            <section class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><strong>板块列表</strong></h3>
+                </div>
+                <div id="recent_posts" class="list-group">
+                    @foreach (var item in ViewBag.plateforums)
+                    {
+                        <a class="list-group-item" href="#">@item.Title</a>
+                    }
+                </div>
+            </section>
+        </aside>
+    </div>
 </div>

@@ -191,6 +191,9 @@
     <Content Include="Areas\Admin\Views\Forum\TopicEdit.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\TopicDetail.cshtml" />
     <Content Include="Areas\Admin\Views\Forum\ReplyManage.cshtml" />
+    <Content Include="Areas\Admin\Views\Demand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Demand\DemandShow.cshtml" />
+    <Content Include="Areas\Admin\Views\Demand\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
@@ -393,7 +396,7 @@
     <Content Include="Scripts\ckplayer\style.swf" />
     <Content Include="Scripts\codeqiaokeli.js" />
     <Content Include="Scripts\common.js" />
-    <Content Include="Scripts\ForumBase.js" />
+    <Content Include="Scripts\forumbase.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\ueditor\asp\action_config.asp" />
@@ -488,6 +491,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Areas\Admin\Controllers\DbController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DemandController.cs" />
     <Compile Include="Areas\Admin\Controllers\ForumController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
