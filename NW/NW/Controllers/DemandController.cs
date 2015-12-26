@@ -1,6 +1,7 @@
 ﻿using NW.BLL;
 using NW.Entity;
 using NW.Entity.DataModels;
+using NW.Entity.ViewModels;
 using NW.Log4net;
 using NW.Utility;
 using PagedList;
@@ -19,8 +20,16 @@ namespace NW.Controllers
         public ActionResult Index(int page = 1)
         {
             List<Demand> demands = new List<Demand>();
-            demands = bllSession.IDemandBLL.GetList("").ToList();
-            return View(bllSession.IDemandBLL.GetList("").ToPagedList(page,10));
+            List<vDemand> vdemands = new List<vDemand>();
+            var query = bllSession.IDemandBLL.GetList("");
+            int totalCount = 0;
+            PagerHelper.DoPage(ref query, page, 20, ref totalCount);
+            foreach (var item in query)
+            {
+                vdemands.Add(new vDemand(item));
+            }
+            var demandAsIPagedList = new StaticPagedList<vDemand>(vdemands, page, 20, totalCount);
+            return View(demandAsIPagedList);
         }
         //提交我要约要求处理
         [HttpPost]

@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<NW.Entity.Demand>
+﻿@model PagedList.IPagedList<NW.Entity.ViewModels.vDemand>
 @using PagedList.Mvc;
     @using NW.Utility;
     @{
@@ -39,9 +39,9 @@
                                 }
                             </p>
                             <p class="demand-info text-muted">
-
-                                <span class="col-lg-6 col-md-6 col-sm-6 text-left demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
-                                <span class="col-lg-6 col-md-6 col-sm-6 text-center glyphicon glyphicon-thumbs-up demand-info-vote-up" id="demand-info-vote-up-@item.Id">
+                                <span class="col-lg-4 col-md-4 col-sm-4 text-left demand-info-username text-danger">@item.Username</span>
+                                <span class="col-lg-4 col-md-4 col-sm-4 text-left demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
+                                <span class="col-lg-4 col-md-4 col-sm-4 text-center glyphicon glyphicon-thumbs-up demand-info-vote-up" id="demand-info-vote-up-@item.Id">
                                     <strong class="demand-info-vote" id="demand-info-vote-@item.Id">@item.Vote</strong>
                                 </span>
                             </p>

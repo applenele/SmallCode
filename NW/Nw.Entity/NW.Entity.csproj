@@ -67,6 +67,7 @@
     <Compile Include="ViewModels\SideArticleCalendar.cs" />
     <Compile Include="ViewModels\SideArticleCategory.cs" />
     <Compile Include="ViewModels\vArticle.cs" />
+    <Compile Include="ViewModels\vDemand.cs" />
     <Compile Include="ViewModels\vForum.cs" />
   </ItemGroup>
   <ItemGroup>
