@@ -194,6 +194,7 @@
     <Content Include="Areas\Admin\Views\Demand\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Demand\DemandShow.cshtml" />
     <Content Include="Areas\Admin\Views\Demand\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Test\Index2.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
@@ -498,6 +499,7 @@
     <Compile Include="Areas\Admin\Controllers\LogController.cs" />
     <Compile Include="Areas\Admin\Controllers\NotificationController.cs" />
     <Compile Include="Areas\Admin\Controllers\ReplyController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Controllers\VideoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -509,6 +511,7 @@
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
+    <Compile Include="Filter\AutoLogAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

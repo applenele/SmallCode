@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NW.Filter;
 
 namespace NW.Areas.Admin.Controllers
 {
@@ -38,6 +39,7 @@ namespace NW.Areas.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
+        [AutoLog(Description = "删除日志")]
         public ActionResult Delete(int id)
         {
             try
@@ -47,7 +49,6 @@ namespace NW.Areas.Admin.Controllers
             }
             catch
             {
-                log.Error(new LogContent("删除图片出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 return Content("err");
             }
         }
@@ -66,6 +67,7 @@ namespace NW.Areas.Admin.Controllers
         /// <param name="ids"></param>
         /// <returns></returns>
         [HttpPost]
+        [AutoLog(Description = "批量删除日志")]
         public ContentResult MutiDelete(string ids)
         {
             try
@@ -75,12 +77,10 @@ namespace NW.Areas.Admin.Controllers
                 {
                     bllSession.ILogBLL.Delete(Convert.ToInt32(id));
                 }
-                log.Info(new LogContent(CurrentUser.Username + "批量删除日志" + ids, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
                 return Content("ok");
             }
             catch (Exception)
             {
-                log.Error(new LogContent(CurrentUser.Username + "批量删除日志出错" + ids, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 throw;
             }
         }
