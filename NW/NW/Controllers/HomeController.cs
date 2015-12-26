@@ -22,6 +22,7 @@ namespace NW.Controllers
             carousels = bllSession.ICarouselBLL.GetList("").Take(5).ToList();
             ViewBag.Notifications = notifications;
             ViewBag.Carousels = carousels;
+            ViewBag.CarouselsNum = carousels.Count();
             return View();
         }
     }
