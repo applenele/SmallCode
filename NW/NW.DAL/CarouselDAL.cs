@@ -11,7 +11,7 @@ using Dapper;
 
 namespace NW.DAL
 {
-    class DemandDAL : IBaseDAL<Demand>, IDemandDAL
+    class CarouselDAL : IBaseDAL<Carousel>, ICarouselDAL
     {
         #region 得到数据库链接对象
         private IDbConnection _conn;
@@ -29,79 +29,71 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "DELETE FROM Demand WHERE Id = @Id";
+                string query = "DELETE FROM Carousel WHERE Id = @Id";
                 return Conn.Execute(query, new { Id = id });
             }
         }
 
-        public int Delete(Demand model)
+        public int Delete(Carousel model)
         {
             using (Conn)
             {
-                string query = "DELETE FROM Demand WHERE Id = @Id";
+                string query = "DELETE FROM Carousel WHERE Id = @Id";
                 return Conn.Execute(query, model);
             }
         }
 
-        public Demand GetEntity(int id)
+        public Carousel GetEntity(int id)
         {
-            string query = "SELECT * FROM Demand d LEFT JOIN user u on u.Id = d.UserId where d.Id=@Id";
+            string query = "SELECT * FROM Carousel i LEFT JOIN user u on u.Id = d.CreateBy where d.Id=@Id";
             using (Conn)
             {
-                var data = Conn.Query<Demand, User, Demand>(query, (demand, user) => { demand.User = user; return demand; }, new { Id = id });
+                var data = Conn.Query<Carousel, User, Carousel>(query, (carousel, user) => { carousel.User = user; return carousel; }, new { Id = id });
                 return data.FirstOrDefault();
             }
         }
 
 
-        public Demand GetEntityWithRefence(int id)
+        public Carousel GetEntityWithRefence(int id)
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<Demand> GetList(string whereStr)
+        //不传参数，默认显示没有软删除，可以显示的列表；传参，可以自定义状态
+        public IEnumerable<Carousel> GetList(string whereStr)
         {
             using (Conn)
             {
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Demand where " + whereStr + " order by DateTime desc";
+                    query = "SELECT * FROM Carousel where " + whereStr + " order by CreateDate desc";
                 }
                 else
                 {
-                    query = "SELECT * FROM Demand order by DateTime desc";
+                    query = "SELECT * FROM Carousel order by CreateDate desc where IsShow=1 and IsDelete=0";
                 }
 
-                return Conn.Query<Demand>(query);
+                return Conn.Query<Carousel>(query);
             }
         }
-        public IEnumerable<Demand> GetListByPage(int page, int size, string whereStr)
+        public IEnumerable<Carousel> GetListByPage(int page, int size, string whereStr)
         {
             throw new NotImplementedException();
         }
 
-        public int Insert(Demand model)
+        public int Insert(Carousel model)
         {
             using (Conn)
             {
-                string query = "INSERT INTO Demand(Title,Text,UserId,DateTime,State) VALUES(@Title,@Text,@UserId,@DateTime,0)";
+                string query = "INSERT INTO Carousel(Herf,Description,CreateDate,CreateBy,ImagePath) VALUES(@Herf,@Description,@CreateDate,CreateBy,@ImagePath)";
                 return Conn.Execute(query, model);
             }
         }
-        public int Update(Demand model)
+        public int Update(Carousel model)
         {
             using (Conn)
             {
-                string query = "UPDATE Demand SET State=@State,Price=@Price,ReviewTime=@ReviewTime,CourseId=@CourseId WHERE Id =@Id";
-                return Conn.Execute(query, model);
-            }
-        }
-        public int UpdateVote(Demand model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Demand SET Vote=@Vote WHERE Id =@Id";
+                string query = "UPDATE Carousel SET Herf=@Herf,Top=@Top,Description=@Description,IsShow=@IsShow,IsDelete=@IsDelete,ImagePath=@ImagePath WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }
