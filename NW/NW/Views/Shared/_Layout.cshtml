@@ -1,12 +1,10 @@
 ﻿@{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>@ViewBag.Title - SmallCode</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/markdown.css" rel="stylesheet" />
@@ -23,11 +21,17 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="/">
                     SmallCode
                 </a>
             </div>
-            <nav id="bs-navbar" class="collapse navbar-collapse">
+            <div id="bs-navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="/Blog">博客</a>
@@ -60,7 +64,7 @@
                         <li><a href="/User/Logout">退出</a></li>
                     }
                 </ul>
-            </nav>
+            </div>
         </div>
     </nav>
     <!-- Modal -->
