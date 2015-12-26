@@ -510,6 +510,7 @@
     <Compile Include="Controllers\DemandController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Filter\AutoLogAttribute.cs" />
@@ -521,6 +522,11 @@
     <Compile Include="Log4net\ObjectPatternConverter.cs" />
     <Compile Include="Models\PromptMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WordFilter\WordEntity.cs" />
+    <Compile Include="WordFilter\WordFilter.cs" />
+    <Compile Include="WordFilter\WordFilterEnum.cs" />
+    <Compile Include="WordFilter\WordFilterTypeIds.cs" />
+    <Compile Include="WordFilter\WordGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -552,6 +558,8 @@
     <Content Include="Views\Forum\PlateList.cshtml" />
     <Content Include="Views\Demand\Index.cshtml" />
     <Content Include="Views\Demand\Show.cshtml" />
+    <Content Include="Views\Test\TestPost.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
