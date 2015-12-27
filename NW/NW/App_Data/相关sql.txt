@@ -1,0 +1,2 @@
+﻿1.去掉重复的的敏感词
+delete from `sensitive` where Id in (select b.Id from (select Max(Id) as Id from `sensitive` group by Name having COUNT(*)>1) as b)
