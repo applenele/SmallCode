@@ -125,6 +125,7 @@
   <ItemGroup>
     <Content Include="App_Data\css_iamge_code.txt" />
     <Content Include="App_Data\todo.txt" />
+    <Content Include="App_Data\相关文档.txt" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -558,6 +559,7 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Test\ShowTest.cshtml" />
     <Content Include="Views\Test\ListTest.cshtml" />
+    <Content Include="Views\Test\TextTest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

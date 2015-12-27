@@ -1,0 +1,14 @@
+﻿一。过滤相关
+1。WordFilterHelper 该类用于 通过方法 过滤敏感词的操作
+    1.LoadSensitiveWords() 加载全部的敏感词（从数据库里面查找） 该方法可放在Application_Start 里面 随着项目的运行执行一次即可
+	2.TextFilter(string body, out bool isBanned)  简单的字符串过滤
+	3.public static T TextFilter(T model, out bool isBanned) 单个对象的过滤
+	4. public static IEnumerable<T> TextFilter(IEnumerable<T> list, out bool isBanned) 对象集合的过滤
+2。WordFilterHelperExtension  该类用于拓展方法 过滤敏感词的操作
+   1.ToTextFilter(this string text, out bool result)  简单的字符串的扩展 过滤
+   2.ToTextFilter<T>(this T obj, out bool result)   单个对象的的扩展 过滤
+   3.ToTextFilter<T>(this IEnumerable<T> list, out bool result) 对象集合扩展 的过滤
+
+二。自动记录日志
+  在需要记录的Action上面直接使用[AutoLog]特性 即可完成操作的日志和异常信息的记录
+  这个特性有个可选参数Description

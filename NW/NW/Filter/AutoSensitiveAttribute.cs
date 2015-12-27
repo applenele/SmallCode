@@ -20,9 +20,10 @@ namespace NW.Filter
             bool result = false;
             ViewResult v = filterContext.Result as ViewResult;
             object obj = v.Model;
+            
             if (obj != null)
             {
-                v.Model = WordFilterHelper<object>.TextFilter(v.Model, out result);
+                //v.Model = WordFilterHelper<object>.TextFilter(v.Model, out result);
             }
             // v.Model
         }

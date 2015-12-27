@@ -9,7 +9,7 @@ using NW.BLL;
 
 namespace NW.Utility
 {
-    public class WordFilterHelper<T>
+    public static class WordFilterHelper<T>
     {
         /// <summary>
         /// 内容过滤
@@ -37,9 +37,15 @@ namespace NW.Utility
             return body;
         }
 
-        public static object TextFilter(T model, out bool result)
+        /// <summary>
+        ///将对象对应字段过滤
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="isBanned"></param>
+        /// <returns></returns>
+        public static T TextFilter(T model, out bool isBanned)
         {
-            result = false;
+            isBanned = false;
             Type type = model.GetType();
             PropertyInfo[] PropertyInfos = type.GetProperties();
             foreach (var property in PropertyInfos)
@@ -50,7 +56,7 @@ namespace NW.Utility
                     if (attribute.GetType() == typeof(SensitiveAttribute))
                     {
                         string val = property.GetValue(model, null).ToString();
-                        val = TextFilter(val, out result);
+                        val = TextFilter(val, out isBanned);
                         property.SetValue(model, val);
                     }
                 }
@@ -58,17 +64,27 @@ namespace NW.Utility
             return model;
         }
 
-        public static object TextFilter(IEnumerable<T> list, out bool result)
+        /// <summary>
+        ///  将集合中对象对应字段过滤
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="isBanned"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> TextFilter(IEnumerable<T> list, out bool isBanned)
         {
-            result = false;
+            isBanned = false;
             foreach (T obj in list)
             {
-                TextFilter(obj, out result);
+                TextFilter(obj, out isBanned);
             }
             return list;
         }
 
 
+
+        /// <summary>
+        /// 加载敏感词
+        /// </summary>
         public static void LoadSensitiveWords()
         {
             BLL.BLLSession bllSession = BLLSessionFactory.GetBLLSession();

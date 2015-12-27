@@ -59,6 +59,17 @@ namespace NW.Controllers
             return View(list);
         }
 
+        /// <summary>
+        ///  单个字符串的过滤
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TextTest()
+        {
+            bool result = false;
+            ViewBag.Text = WordFilterHelperExtension.ToTextFilter("sb ,我们,挨了一炮", out result);
+            return View();
+        }
+
 
         /// <summary>
         /// 内容过滤
@@ -85,6 +96,8 @@ namespace NW.Controllers
             body = temBody;
             return body;
         }
+
+
 
     }
 }
