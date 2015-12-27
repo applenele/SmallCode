@@ -70,7 +70,7 @@ namespace NW.DAL
                 }
                 else
                 {
-                    query = "SELECT * FROM Carousel where IsShow=1 and IsDelete=0 order by Top desc";
+                    query = "SELECT * FROM Carousel  order by Top desc,CreateDate  desc";
                 }
 
                 return Conn.Query<Carousel>(query);
@@ -85,7 +85,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Carousel(Herf,Description,CreateDate,CreateBy,ImagePath) VALUES(@Herf,@Description,@CreateDate,CreateBy,@ImagePath)";
+                string query = "INSERT INTO Carousel(Href,Description,CreateDate,CreateBy,ImagePath,Top,IsShow,IsDelete) VALUES(@Href,@Description,@CreateDate,CreateBy,@ImagePath,@Top,@IsShow,@IsDelete)";
                 return Conn.Execute(query, model);
             }
         }
