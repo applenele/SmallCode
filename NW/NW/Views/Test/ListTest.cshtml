@@ -1,0 +1,19 @@
+﻿@model IEnumerable<NW.Entity.Article>
+@{
+    ViewBag.Title = "ListTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>ListTest</h2>
+    <div>
+         @foreach (var item in @Model)
+         {
+             <div class="inner-box">
+                  @item.Description
+             </div>
+         }
+    </div>
+</div>
+
+

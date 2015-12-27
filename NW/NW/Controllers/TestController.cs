@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NW.Entity;
 
 namespace NW.Controllers
 {
@@ -12,10 +13,10 @@ namespace NW.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            Dictionary<string,string> badWords =new Dictionary<string, string>();
-            badWords.Add("sb","*");
-            badWords.Add("傻逼","#");
-            WordFilter.Add(1,badWords);
+            Dictionary<string, string> badWords = new Dictionary<string, string>();
+            badWords.Add("sb", "*");
+            badWords.Add("傻逼", "#");
+            WordFilter.Add(1, badWords);
             return View();
         }
 
@@ -32,6 +33,32 @@ namespace NW.Controllers
             string str = TextFilter(TestStr, out result);
             return View();
         }
+
+        /// <summary>
+        /// 单个对象过滤
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ShowTest()
+        {
+            bllSession.IArticleBLL.GetEntity(3);
+            bool result = false;
+            Article article = bllSession.IArticleBLL.GetEntity(3);
+            article = WordFilterHelper<Article>.TextFilter(article, out result) as Article;
+            return View(article);
+        }
+
+        /// <summary>
+        ///   集合的过滤
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ListTest()
+        {
+            List<Article> list = bllSession.IArticleBLL.GetList("").ToList();
+            bool result = false;
+            list = WordFilterHelper<Article>.TextFilter(list, out result) as List<Article>;
+            return View(list);
+        }
+
 
         /// <summary>
         /// 内容过滤

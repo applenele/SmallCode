@@ -555,6 +555,8 @@
     <Content Include="Views\Demand\Show.cshtml" />
     <Content Include="Views\Test\TestPost.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Test\ShowTest.cshtml" />
+    <Content Include="Views\Test\ListTest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
