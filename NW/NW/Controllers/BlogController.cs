@@ -15,6 +15,7 @@ namespace NW.Controllers
         // GET: Blog
         public ActionResult Index(int page = 1, string Category = "", string Date = "")
         {
+            bool result = false;
             string attachUrl = "";
             List<vArticle> articles = new List<vArticle>();
             string whereStr = "";
@@ -31,11 +32,11 @@ namespace NW.Controllers
             var query = bllSession.IArticleBLL.GetList(whereStr);
             int totalCount = 0;
             PagerHelper.DoPage(ref query, page, 20, ref totalCount);
-            foreach (var item in query)
+            foreach (var item in query.ToTextFilter(out result))
             {
                 articles.Add(new vArticle(item));
             }
-            var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 20, totalCount);
+            var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 20, totalCount).ToTextFilter(out result);
             List<SideArticleCategory> Categories = SideHelper.GetSideCategoryCategories();
             List<SideArticleCalendar> Calendars = SideHelper.GetSideArticleCalendars();
             ViewBag.Categories = Categories;
@@ -54,7 +55,9 @@ namespace NW.Controllers
             List<Reply> replies = new List<Entity.Reply>();
             replies = bllSession.IReplyBLL.GetList("r.BlogId = " + id).ToList();
             ViewBag.Replies = replies;
-            return View(new vArticle(article));
+            bool result = false;
+            //vArticle _article = WordFilterHelper<vArticle>.TextFilter(new vArticle(article), out result) as vArticle;
+            return View(new vArticle(article).ToTextFilter(out result));
         }
 
         [ValidateAntiForgeryToken]

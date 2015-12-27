@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NW.Entity;
 
 namespace NW.Areas.Admin.Controllers
 {
-    public class TestController : Controller
+    public class TestController : BaseController
     {
         [AutoLog(Description = "查看用户")]
         // GET: Admin/Test
@@ -19,7 +20,8 @@ namespace NW.Areas.Admin.Controllers
         [AutoLog(Description = "删除用户")]
         public ActionResult Index2()
         {
-            return View();
+            Article article = bllSession.IArticleBLL.GetEntity(3);
+            return View(article);
         }
     }
 }

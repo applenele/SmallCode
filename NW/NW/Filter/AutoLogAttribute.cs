@@ -27,7 +27,7 @@ namespace NW.Filter
                 user = "匿名用户";
             }
             string url = filterContext.RequestContext.HttpContext.Request.Url.AbsoluteUri;
-            log.Error(new LogContent("action exception log record:" + user + "," + url + "," + Description, LogType.异常.ToString(), HttpHelper.GetIPAddress()),filterContext.Exception);
+            log.Error(new LogContent("action exception log record:" + user + "," + url + "," + Description, LogType.异常.ToString(), HttpHelper.GetIPAddress()), filterContext.Exception);
         }
 
         /// <summary>
@@ -45,7 +45,9 @@ namespace NW.Filter
         /// <param name="filterContext"></param>
         public void OnResultExecuting(ResultExecutingContext filterContext)
         {
+            //filterContext.Result.ExecuteResult();
             string user = filterContext.RequestContext.HttpContext.User.Identity.Name;
+            ViewResult v = filterContext.Result as ViewResult;
             if (string.IsNullOrEmpty(user))
             {
                 user = "匿名用户";

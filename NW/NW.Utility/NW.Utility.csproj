@@ -71,6 +71,13 @@
     <Compile Include="SideHelper.cs" />
     <Compile Include="String.cs" />
     <Compile Include="Time.cs" />
+    <Compile Include="WordFilter\WordEntity.cs" />
+    <Compile Include="WordFilter\WordFilter.cs" />
+    <Compile Include="WordFilter\WordFilterEnum.cs" />
+    <Compile Include="WordFilter\WordFilterHelper.cs" />
+    <Compile Include="WordFilter\WordFilterHelperExtension.cs" />
+    <Compile Include="WordFilter\WordFilterTypeIds.cs" />
+    <Compile Include="WordFilter\WordGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

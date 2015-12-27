@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Article.cs" />
+    <Compile Include="Attribute\SensitiveAttribute.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="DataModels\AjaxModel.cs" />
