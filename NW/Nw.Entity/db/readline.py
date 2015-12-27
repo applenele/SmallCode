@@ -9,13 +9,16 @@ file_object = open('sensitive.txt')
 str=""
 for line in file_object.read().split('\n'):
     name=line.decode("GBK").encode("utf-8")
-    cursor.execute("select * from `sensitive` where Name = '" + name + "'");
-    result = cursor.fetchall()
-    if (len(result) == 0):
-        str+="('"+name+"',0),"
-        print name
+    if(len(name)!=0):
+        cursor.execute("select * from `sensitive` where Name = '" + name + "'");
+        result = cursor.fetchall()
+        if (len(result) == 0):
+            str+="('"+name+"',0),"
+            print name
+        else:
+            print "Is have"
     else:
-        print "Is have"
+        print "Null"
 try:
     if(len(str)!=0):
         insert_sql = "INSERT INTO `sensitive`(`Name`,`Lock`) VALUES "+str[0:-1];
