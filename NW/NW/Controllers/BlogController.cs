@@ -35,12 +35,14 @@ namespace NW.Controllers
             {
                 articles.Add(new vArticle(item));
             }
+            bool result = false;
             var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 20, totalCount);
             List<SideArticleCategory> Categories = SideHelper.GetSideCategoryCategories();
             List<SideArticleCalendar> Calendars = SideHelper.GetSideArticleCalendars();
             ViewBag.Categories = Categories;
             ViewBag.Calendars = Calendars;
             ViewBag.AttachUrl = attachUrl;
+            articleAsIPagedList = WordFilterHelper<vArticle>.TextFilter(articleAsIPagedList, out result) as StaticPagedList<vArticle>;
             return View(articleAsIPagedList);
         }
 
@@ -54,6 +56,8 @@ namespace NW.Controllers
             List<Reply> replies = new List<Entity.Reply>();
             replies = bllSession.IReplyBLL.GetList("r.BlogId = " + id).ToList();
             ViewBag.Replies = replies;
+            bool result = false;
+            vArticle _article = WordFilterHelper<vArticle>.TextFilter(new vArticle(article), out result) as vArticle;
             return View(new vArticle(article));
         }
 

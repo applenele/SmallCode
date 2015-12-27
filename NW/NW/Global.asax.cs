@@ -19,6 +19,8 @@ namespace NW
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            WordFilterHelper<object>.LoadSensitiveWords();
         }
 
         /// <summary>

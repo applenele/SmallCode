@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using NW.Entity;
+using NW.BLL;
 
 namespace NW.Utility
 {
@@ -57,7 +58,7 @@ namespace NW.Utility
             return model;
         }
 
-        public static object TextFilter(List<T> list, out bool result)
+        public static object TextFilter(IEnumerable<T> list, out bool result)
         {
             result = false;
             foreach (T obj in list)
@@ -65,6 +66,20 @@ namespace NW.Utility
                 TextFilter(obj, out result);
             }
             return list;
+        }
+
+
+        public static void LoadSensitiveWords()
+        {
+            BLL.BLLSession bllSession = BLLSessionFactory.GetBLLSession();
+            List<Sensitive> words = new List<Sensitive>();
+            words = bllSession.ISensitiveBLL.GetList(" `Lock` =0 ").ToList();
+            Dictionary<string, string> badWords = new Dictionary<string, string>();
+            foreach (var word in words)
+            {
+                badWords.Add(word.Name, "*");
+            }
+            WordFilter.Add(1, badWords);
         }
     }
 }

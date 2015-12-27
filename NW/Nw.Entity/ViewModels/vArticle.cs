@@ -13,6 +13,7 @@ namespace NW.Entity.ViewModels
 
         public string Title { set; get; }
 
+        [Sensitive]
         public string Description { set; get; }
 
         public DateTime Time { set; get; }

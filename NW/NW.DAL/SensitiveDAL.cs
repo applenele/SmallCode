@@ -67,11 +67,11 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Sensitive where " + whereStr + " order by Name desc";
+                    query = "SELECT * FROM `Sensitive` where " + whereStr + " order by Name desc";
                 }
                 else
                 {
-                    query = "SELECT * FROM Sensitive order by Name desc";
+                    query = "SELECT * FROM `Sensitive` order by Name desc";
                 }
 
                 return Conn.Query<Sensitive>(query);
