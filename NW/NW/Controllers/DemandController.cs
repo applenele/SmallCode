@@ -2,6 +2,7 @@
 using NW.Entity;
 using NW.Entity.DataModels;
 using NW.Entity.ViewModels;
+using NW.Filter;
 using NW.Log4net;
 using NW.Utility;
 using PagedList;
@@ -17,6 +18,7 @@ namespace NW.Controllers
     {
         // GET: Demand
         //提交我要约首页
+        [AutoLog(Description = "我要约首页")]
         public ActionResult Index(int page = 1)
         {
             List<Demand> demands = new List<Demand>();
@@ -33,6 +35,7 @@ namespace NW.Controllers
         }
         //提交我要约要求处理
         [HttpPost]
+        [AutoLog(Description = "我要约需求处理")]
         public ActionResult Save(string Title, string Text)
         {
             AjaxModel model = new AjaxModel();
@@ -61,24 +64,34 @@ namespace NW.Controllers
                     model.Data = "请填写需求！";
                     model.Msg = "请填写需求！";
                 }
-                try
+                bool isBanned=false;
+                WordFilterHelper<Demand>.TextFilter(Text,out isBanned);
+                if(isBanned)
                 {
-                    demand.Title = Title.Trim();
-                    demand.Text = Text.Trim();
-                    demand.State = 0;
-                    demand.UserId = user_id;
-                    demand.DateTime = DateTime.Now;
-                    bll.Insert(demand);
-                    model.Statu = "ok";
-                    model.Msg = "提交成功！";
-                    model.BackUrl = "/Demand";
-                    log.Info(new LogContent(user.Username+"用户提交需求", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    model.Statu = "isBanned";
+                    model.Data = "文章内容包含敏感词，请修改后重新提交！";
                 }
-                catch(Exception e)
+                else
                 {
-                    model.Statu = "err";
-                    model.Msg = "提交出错请重试！";
-                    log.Error(new LogContent(user.Username + "用户提交需求出错" + e.Message, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    try
+                    {
+                        demand.Title = Title.Trim();
+                        demand.Text = Text.Trim();
+                        demand.State = 0;
+                        demand.UserId = user_id;
+                        demand.DateTime = DateTime.Now;
+                        bll.Insert(demand);
+                        model.Statu = "ok";
+                        model.Msg = "提交成功！";
+                        model.BackUrl = "/Demand";
+                        log.Info(new LogContent(user.Username + "用户提交需求", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    }
+                    catch (Exception e)
+                    {
+                        model.Statu = "err";
+                        model.Msg = "提交出错请重试！";
+                        log.Error(new LogContent(user.Username + "用户提交需求出错" + e.Message, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    }
                 }
             }
             else
@@ -91,6 +104,7 @@ namespace NW.Controllers
         }
         //显示我要约详细信息页面
         [HttpGet]
+        [AutoLog(Description = "我要约详细信息")]
         public ActionResult Show(int id)
         {
             Demand demand = new Demand();
@@ -99,6 +113,7 @@ namespace NW.Controllers
         }
         //点赞
         [HttpPost]
+        [AutoLog(Description = "我要约点赞")]
         public ActionResult Up_Vote(int Id)
         {
             AjaxModel model = new AjaxModel();

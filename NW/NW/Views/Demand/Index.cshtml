@@ -156,6 +156,11 @@
                                 $("#demand-title-warning-text").attr("class", "text-warning");
                                 $("#demand-title-warning-text").html(data.Data);
                             }
+                            else if (data, Statu == "isBanned")
+                            {
+                                $("#demand-title-warning-text").attr("class", "text-warning");
+                                $("#demand-title-warning-text").html(data.Data);
+                            }
                             $("#demand-warning-text").html(data.Msg);
                         },
                         error: function () {
