@@ -1,5 +1,11 @@
 ﻿
-    function submitForm() {
+function submitForm() {
+    if ($("#user_name").length == 0) {
+        alert("请先登录");
+        $("#PushModal").modal('hide');
+        $('#loginModal').modal('show');
+    }
+    else {
         var title = $("#platetitle").val();
         var classify = $("#plateforumId").val();
         var content = ue.getContent();
@@ -20,3 +26,4 @@
             $("#myform").submit();
         }
     }
+}

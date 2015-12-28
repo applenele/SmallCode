@@ -17,9 +17,12 @@
                         <h2>
                             <a href="/Blog/Show/@item.Id">@item.Title</a>
                         </h2>
-                        <div>
-                            作者:<span>@item.Username</span> | 发表时间:<span>@item.Time</span> | 分类:<span>@item.Category</span> | 点击率:<span>@item.Browses</span>
-                        </div>
+                        <p class="text-muted entry-header-info">
+                            <span class="col-md-2 text-danger">作者:@item.Username</span>
+                            <span class="col-md-4">发表时间:@item.Time</span>
+                            <span class="col-md-3 text-success">分类:@item.Category</span>
+                            <span class="col-md-3">点击量:@item.Browses</span>
+                        </p>
                     </div>
                     <div class="entry-content">
                         @Html.Sanitized(@item.Sumamry)
@@ -29,9 +32,9 @@
             @Html.PagedListPager(Model, page => Url.Action("Index?" + @ViewBag.AttachUrl, new { page }))
         </div>
         <aside class="col-md-3">
-            <section class="panel panel-default">
+            <section class="panel panel-success">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Category</h3>
+                    <h3 class="panel-title">标签</h3>
                 </div>
                 <div id="categories" class="list-group">
                     @foreach (var item in ViewBag.Categories as List<SideArticleCategory>)
@@ -40,9 +43,9 @@
                     }
                 </div>
             </section>
-            <section class="panel panel-default">
+            <section class="panel panel-info">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Calendar</h3>
+                    <h3 class="panel-title">日程表</h3>
                 </div>
                 <div id="recent_posts" class="list-group">
                     @foreach (var item in ViewBag.Calendars as List<SideArticleCalendar>)

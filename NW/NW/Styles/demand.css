@@ -1,6 +1,7 @@
 ﻿.demand-header
 {
-    margin-bottom：10px;
+    margin-bottom:10px;
+    margin-top: 80px;
 }
 .demand-body
 {
@@ -33,6 +34,7 @@
 .demand-body .demand-body-one .demand-text
 {
     padding:0 5px;
+    text-indent: 2em;
 }
 .demand-body .demand-body-one .demand-title .demand-info-state
 {
