@@ -61,5 +61,39 @@ namespace NW.Areas.Admin.Controllers
             bllSession.ICarouselBLL.Delete(id);
             return Content("ok");
         }
+
+        /// <summary>
+        ///  修改轮播
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var model = bllSession.ICarouselBLL.GetEntity(id);
+            return View(model);
+        }
+
+        /// <summary>
+        /// 修改轮播
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        [AutoLog]
+        public ActionResult Edit(Carousel model)
+        {
+
+            var old = bllSession.ICarouselBLL.GetEntity(model.Id);
+            old.Href = model.Href;
+            old.ImagePath = model.ImagePath;
+            old.IsDelete = model.IsDelete;
+            old.IsShow = model.IsShow;
+            old.Top = model.Top;
+            old.Description = model.Description;
+            bllSession.ICarouselBLL.Update(old);
+            return Redirect("/Admin/Carousel/Index");
+        }
     }
 }

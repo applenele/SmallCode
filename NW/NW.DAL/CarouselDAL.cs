@@ -45,7 +45,7 @@ namespace NW.DAL
 
         public Carousel GetEntity(int id)
         {
-            string query = "SELECT * FROM Carousel i LEFT JOIN user u on u.Id = d.CreateBy where d.Id=@Id";
+            string query = "SELECT * FROM Carousel c LEFT JOIN user u on u.Id = c.CreateBy where c.Id=@Id";
             using (Conn)
             {
                 var data = Conn.Query<Carousel, User, Carousel>(query, (carousel, user) => { carousel.User = user; return carousel; }, new { Id = id });
@@ -93,7 +93,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Carousel SET Herf=@Herf,Top=@Top,Description=@Description,IsShow=@IsShow,IsDelete=@IsDelete,ImagePath=@ImagePath WHERE Id =@Id";
+                string query = "UPDATE Carousel SET Href=@Href,Top=@Top,Description=@Description,IsShow=@IsShow,IsDelete=@IsDelete,ImagePath=@ImagePath WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }

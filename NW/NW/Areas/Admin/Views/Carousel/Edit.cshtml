@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "轮播管理";
+﻿@model NW.Entity.Carousel
+@{
+    ViewBag.Title = "轮播修改";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
@@ -7,37 +8,38 @@
     <div class="crumb-list">
         <i class="icon-font">
         </i><a href="/Admin/Home/Index/">首页</a>
-        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Carousel/Index">轮播管理</a><span class="crumb-step">&gt;</span><span>新增轮播</span>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/Carousel/Index">轮播管理</a><span class="crumb-step">&gt;</span><span>修改轮播</span>
     </div>
 </div>
 <div class="result-wrap">
     <div class="result-content">
-        <form action="/Admin/Carousel/Add" method="post" name="frmAddNotification">
+        <form action="/Admin/Carousel/Edit" method="post" name="frmAddNotification">
             @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" value="@Model.Id" />
             <table class="insert-tab" width="100%">
                 <tbody>
                     <tr>
                         <th>描述：</th>
-                        <td><textarea name="Description" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"></textarea></td>
+                        <td><textarea name="Description" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10">@Model.Description</textarea></td>
                     </tr>
                     <tr>
                         <th>链接：</th>
                         <td>
-                            <input class="common-text required" id="Href" name="Href" size="50" type="text">
+                            <input class="common-text required" id="Href" name="Href" value="@Model.Href" size="50" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th>图片地址：</th>
                         <td>
-                            <input class="common-text required" id="ImagePath" name="ImagePath" size="50" type="text">
+                            <input class="common-text required" id="ImagePath" value="@Model.ImagePath" name="ImagePath" size="50" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th>是否显示：</th>
                         <td>
                             <select name="IsShow">
-                                <option value="1">是</option>
-                                <option value="0">否</option>
+                                <option value="1" @(Model.IsShow == 1 ? "selected" : "")>是</option>
+                                <option value="0" @(Model.IsShow == 0 ? "selected" : "")>否</option>
                             </select>
                         </td>
                     </tr>
@@ -45,8 +47,8 @@
                         <th>是否删除：</th>
                         <td>
                             <select name="IsDelete">
-                                <option value="1">是</option>
-                                <option value="0">否</option>
+                                <option value="1" @(Model.IsDelete==1?"selected":"")>是</option>
+                                <option value="0" @(Model.IsDelete==0?"selected":"")>否</option>
                             </select>
                         </td>
                     </tr>
@@ -54,8 +56,8 @@
                         <th>是否置顶：</th>
                         <td>
                             <select name="Top">
-                                <option value="1">是</option>
-                                <option value="0">否</option>
+                                <option value="1" @(Model.Top==1?"selected":"")>是</option>
+                                <option value="0" @(Model.Top==0?"selected":"")>否</option>
                             </select>
                         </td>
                     </tr>
@@ -71,4 +73,3 @@
         </form>
     </div>
 </div>
-
