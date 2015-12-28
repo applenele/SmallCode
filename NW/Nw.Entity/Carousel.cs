@@ -11,7 +11,7 @@ namespace NW.Entity
         public int Id { get; set; }
 
         //跳转Url
-        public string Herf { set; get; }
+        public string Href { set; get; }
 
         //排名
         public int Top { set; get; }
