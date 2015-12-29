@@ -231,3 +231,7 @@ table {
     margin-top: 20px;
     line-height: 30px;
 }
+.carousel-image
+{
+    width:100%;
+}
