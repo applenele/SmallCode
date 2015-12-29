@@ -51,10 +51,9 @@
     border: 1px solid #e6e6e6;
     border-radius: 4px;
 }
-.inner-box .entry-header .entry-header-info
+.inner-box .article-header .article-header-info
 {
-    line-height:20px;
-    height:20px
+    padding-left:10px;
 }
 .inner-box .entry-header .plate-name
 {
@@ -81,10 +80,11 @@
     background-image: none;
     border: 1px solid transparent;
 }
-.inner-box .entry-content
+.inner-box .article-content
 {
     text-indent: 2em;margin-top:10px;
 }
+
 .article-header-sub {
     list-style: none;
     height: 30px;
@@ -234,4 +234,8 @@ table {
 .carousel-image
 {
     width:100%;
+}
+.reply-content .reply-content-sub
+{
+
 }

@@ -3,7 +3,7 @@
 @using NW.Entity.ViewModels
 @using PagedList.Mvc;
 @{
-    ViewBag.Title = "博客首页";
+    ViewBag.Title = "博客";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,18 +13,32 @@
             @foreach (var item in Model)
             {
                 <article class="inner-box">
-                    <div class="entry-header">
+                    <div class="article-header">
                         <h2>
                             <a href="/Blog/Show/@item.Id">@item.Title</a>
                         </h2>
-                        <p class="text-muted entry-header-info">
-                            <span class="col-md-2 text-danger">作者:@item.Username</span>
-                            <span class="col-md-4">发表时间:@item.Time</span>
-                            <span class="col-md-3 text-success">分类:@item.Category</span>
-                            <span class="col-md-3">点击量:@item.Browses</span>
-                        </p>
+                        <div class="article-header-info">
+                            <ul class="article-header-sub text-muted">
+                                <li>
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span class="text-success">@item.Username</span>
+                                </li>
+                                <li>
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                    <span class="text-info">@item.Time</span>
+                                </li>
+                                <li>
+                                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                                    <span class="text-success">@item.Category</span>
+                                </li>
+                                <li>
+                                    <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                                    <span class="text-info">@item.Browses</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="entry-content">
+                    <div class="article-content markdown-body">
                         @Html.Sanitized(@item.Sumamry)
                     </div>
                 </article>

@@ -6,28 +6,35 @@
 
 <div class="container">
     <div class="inner-box top-1-8">
-        <div>
+        <div class="article-header">
             <h2>@Model.Title</h2>
-            <div>发表时间：@Model.Time  浏览量： @Model.Browses  主讲人：@Model.Lecturer</div>
+            <div class="article-header-info">
+                <ul class="article-header-sub">
+                    <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="text-success">@Model.Lecturer</span></li>
+                    <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span class="text-info">@Model.Time</span></li>
+                    <li><span class="glyphicon glyphicon-filter" aria-hidden="true"></span><span class="text-success">@Model.Category</span></li>
+                    <li><span class="glyphicon glyphicon-fire" aria-hidden="true"></span><span class="text-info">@Model.Browses</span></li>
+                </ul>
+            </div>
         </div>
-        <div>
+        <div class="article-content markdown-body">
             @Model.Description
         </div>
-
-        <div class="videoList">
-            @if (Model.Videos.Count > 0)
+    </div>
+    <div class="videoList">
+    @if (Model.Videos.Count > 0)
             {
                 foreach (var item in Model.Videos)
                 {
-                    <div>
-                        <a href="/Video/Play/@item.Id">@item.Title</a> <span>发布时间：@item.Time</span> <span>查看次数：@item.Browses</span>
-                    </div>
-                }
-            }
-            else
-            {
-                <text>暂无视屏</text>
-            }
-        </div>
-    </div>
+            <div>
+                <a href="/Video/Play/@item.Id">@item.Title</a> <span>发布时间：@item.Time</span> <span>查看次数：@item.Browses</span>
+            </div>
+        }
+    }
+    else
+    {
+        <text>暂无视屏</text>
+    }
+</div>
+
 </div>

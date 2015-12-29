@@ -10,14 +10,13 @@
         <div class="article-header">
             <input type="hidden" value="@Model.Id" id="blogId" />
             <h2> <a href="/Blog/Show/@Model.Id">@Model.Title</a></h2>
-            <div>
+            <div class="article-header-info">
                 <ul class="article-header-sub">
-                    <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span>@Model.Username</span></li>
-                    <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span>@Model.Time</span></li>
-                    <li><span class="glyphicon glyphicon-filter" aria-hidden="true"></span><span>@Model.Category</span></li>
-                    <li><span class="glyphicon glyphicon-fire" aria-hidden="true"></span><span>@Model.Browses</span></li>
+                    <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="text-success">@Model.Username</span></li>
+                    <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span class="text-info">@Model.Time</span></li>
+                    <li><span class="glyphicon glyphicon-filter" aria-hidden="true"></span><span class="text-success">@Model.Category</span></li>
+                    <li><span class="glyphicon glyphicon-fire" aria-hidden="true"></span><span class="text-info">@Model.Browses</span></li>
                 </ul>
-                <div class="clear"></div>
             </div>
         </div>
         <div class="article-content markdown-body">
@@ -43,14 +42,22 @@
                 {
                         <tr>
                             <td class="reply-user">
-                                <div><a href="/User/Show/@item.UserId">@item.User.Username</div>
+                                <div><a href="/User/Show/@item.UserId">@item.User.Username</a></div>
                                 <div>
-                                    <img src="@item.User.Photo" class="face face-1" alt="@item.User.Username" /> <br />
+                                    @if (string.IsNullOrEmpty(item.User.Photo))
+                                    {
+                                        <img src="~/Images/user-default.png" class="face face-1-1" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.User.Photo" class="face face-1-1" alt="@item.User.Username" />
+                                    }
                                 </div>
                             </td>
                             <td class="reply-content">
                                 <div class="reply-content-sub">
-                                    时间:@item.Time
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                    <span class="text-info">@item.Time</span>
                                 </div>
                                 <div class="reply-content-description">@Html.Raw(@item.Description)</div>
                                 @if (item.Children.Count > 0)
@@ -68,13 +75,16 @@
                                                             }
                                                             else
                                                             {
-                                                                <img src="@_item.User.Photo" class="face face-1-1" alt="@_item.User.Username" /> <br />
+                                                                <img src="@_item.User.Photo" class="face face-1-1" alt="@_item.User.Username" />
                                                             }
                                                         </a>
                                                     </td>
                                                     <td>
-                                                        <span class="user">@_item.User.Username</span> 时间：@_item.Time <br />
-                                                        @_item.Description
+                                                        <p class="text-muted" style="margin:0">
+                                                            <span class="glyphicon glyphicon-user" aria-hidden="true" style="margin-right: 3px;"></span><span class="text-success user">@_item.User.Username</span>
+                                                            <span class="glyphicon glyphicon-time" aria-hidden="true" style="margin-left:20px;margin-right: 3px;"></span><span class="text-info">@_item.Time </span>
+                                                        </p>
+                                                        <p>@_item.Description</p>
                                                     </td>
                                                 </tr>
                                             }
