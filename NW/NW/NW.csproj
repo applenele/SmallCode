@@ -200,6 +200,7 @@
     <Content Include="Areas\Admin\Views\Test\Index2.cshtml" />
     <Content Include="Areas\Admin\Views\Carousel\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Carousel\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Carousel\Edit.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
