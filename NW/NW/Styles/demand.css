@@ -7,36 +7,7 @@
 {
     margin:15px 0px;
 }
-.demand-body .demand-body-one
-{
-    min-height:187px;   
-}
-.demand-body .demand-body-one .demand-title
-{
-    line-height:25px;
-    height:25px;
-}
-.demand-body .demand-body-one .demand-title .demand-info-title
-{
-    font-size:18px;
-    overflow:hidden;
-    max-height:25px;
-}
-.demand-body .demand-body-one .demand-info
-{
-    line-height:20px;
-    height:20px;
-}
-.demand-body .demand-body-one .demand-info .demand-info-vote-up
-{
-    cursor:pointer;
-}
-.demand-body .demand-body-one .demand-text
-{
-    padding:0 5px;
-    text-indent: 2em;
-}
-.demand-body .demand-body-one .demand-title .demand-info-state
+.demand-info-state
 {
     display: inline-block;
     padding: 1px 12px;
@@ -57,54 +28,26 @@
     border: 1px solid transparent;
     border-radius: 4px;
 }
-    .demand-body .demand-body-one .demand-title .state-1 {
+    .state-1 {
         color: #fff;
     background-color: #c9302c;
     border-color: #ac2925;
     }
-    .demand-body .demand-body-one .demand-title .state-2 {
+    .state-2 {
        color: #fff;
         background-color: #5bc0de;
     border-color: #46b8da;
     }
-    .demand-body .demand-body-one .demand-title .state-3 {
+    .state-3 {
        color: #fff;
     background-color: #ec971f;
     border-color: #d58512;
     }
-    .demand_show .demand-info-state
+.form-group p
 {
-    display: inline-block;
-    padding: 1px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
+    margin: 7px 0 7px;
 }
-    .demand_show .state-1 {
-        color: #fff;
-    background-color: #c9302c;
-    border-color: #ac2925;
-    }
-    .demand_show .state-2 {
-       color: #fff;
-        background-color: #5bc0de;
-    border-color: #46b8da;
-    }
-    .demand_show .state-3 {
-       color: #fff;
-    background-color: #ec971f;
-    border-color: #d58512;
-    }
+.demand-info-vote-up
+{
+   cursor: pointer;
+}

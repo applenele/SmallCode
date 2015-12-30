@@ -35,6 +35,7 @@ namespace NW.Controllers
         }
         //提交我要约要求处理
         [HttpPost]
+        [ValidateInput(false)]
         [AutoLog(Description = "我要约需求处理")]
         public ActionResult Save(string Title, string Text)
         {
@@ -109,7 +110,8 @@ namespace NW.Controllers
         {
             Demand demand = new Demand();
             demand = bllSession.IDemandBLL.GetEntity(id);
-            return View(demand);
+            vDemand vdemands = new vDemand(demand);
+            return View(vdemands);
         }
         //点赞
         [HttpPost]

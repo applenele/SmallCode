@@ -18,36 +18,44 @@
             </div>
             <div class="demand-body row">
                 @foreach (var item in Model)
-            {
-                    <div class="col-lg-3 col-md-4 col-sm-5">
-                        <div class="demand-body-one inner-box">
-                            <p class="demand-title text-primary">
-                                <span class="col-lg-8 col-md-7 col-sm-6 text-left demand-info-title">
-                                    <a href="/Demand/show/@item.Id">@item.Title</a>
-                                </span>
-                                @if (item.State == 0)
-                                {
-                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-1">讨论中</span>
-                                }
-                                else if (item.State == 1)
-                                {
-                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-2">制作中</span>
-                                }
-                                else if (item.State == 2)
-                                {
-                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-3">完成</span>
-                                }
-                            </p>
-                            <p class="demand-info text-muted">
-                                <span class="col-lg-4 col-md-4 col-sm-4 text-left demand-info-username text-danger">@item.Username</span>
-                                <span class="col-lg-4 col-md-4 col-sm-4 text-left demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
-                                <span class="col-lg-4 col-md-4 col-sm-4 text-center glyphicon glyphicon-thumbs-up demand-info-vote-up" id="demand-info-vote-up-@item.Id">
-                                    <strong class="demand-info-vote" id="demand-info-vote-@item.Id">@item.Vote</strong>
-                                </span>
-                            </p>
-                            <p class="demand-text">@NW.Utility.String.SubString(@item.Text, 110, "...")</p>
+                {
+                    <article class="inner-box">
+                        <div class="article-header">
+                            <h2><a href="/Demand/Show/@item.Id">@NW.Utility.String.SubString(@item.Title, 45, "...")</a>
+                            @if (item.State == 0)
+                            {
+                                <span class="pull-right col-lg-1 col-md-2 col-sm-3 text-center demand-info-state state-1">讨论中</span>
+                            }
+                            else if (item.State == 1)
+                            {
+                                <span class="pull-right col-lg-1 col-md-2 col-sm-3 text-center demand-info-state state-2">制作中</span>
+                            }
+                            else if (item.State == 2)
+                            {
+                                <span class="pull-right col-lg-1 col-md-2 col-sm-3 text-center demand-info-state state-3">完成</span>
+                            }
+                            </h2>
+                            <div class="article-header-info">
+                                <ul class="sub-item-ul text-muted">
+                                    <li>
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                        <span class="text-success">@item.Username</span>
+                                    </li>
+                                    <li>
+                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                        <span class="text-info">@item.DateTime</span>
+                                    </li>
+                                    <li>
+                                        <span class="glyphicon glyphicon-thumbs-up demand-info-vote-up" aria-hidden="true" id="demand-info-vote-up-@item.Id"></span>
+                                        <span class="text-success demand-info-vote-up" id="demand-info-vote-@item.Id">@item.Vote</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                        <div class="article-content markdown-body">
+                            @(new HtmlString(item.Text))
+                        </div>
+                    </article>
                 }
             </div>
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
@@ -68,13 +76,13 @@
                             <input type="text" class="form-control" id="demand-title" placeholder="标题">
                         </div>
                         <div class="col-sm-3">
-                            <p class="text-primary" id="demand-title-warning-text">标题最多25个字</p>
+                            <p class="text-muted" id="demand-title-warning-text">(0/30)</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="Text" class="col-sm-2 control-label">需求</label>
                         <div class="col-sm-7">
-                            <script id="container" name="content" type="text/plain">
+                            <script id="container" name="text" type="text/plain">
                             </script>
                         </div>
                         <div class="col-sm-3">
@@ -98,6 +106,6 @@
 <script type="text/javascript" src="~/Scripts/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-        var ue = UE.getEditor('container', { initialFrameHeight: 280 });
+    var ue = UE.getEditor('container', { initialFrameHeight: 280 });
 </script>
 <script type="text/javascript" src="~/Scripts/demand.js"></script>

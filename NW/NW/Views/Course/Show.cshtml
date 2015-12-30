@@ -9,7 +9,7 @@
         <div class="article-header">
             <h2>@Model.Title</h2>
             <div class="article-header-info">
-                <ul class="article-header-sub">
+                <ul class="sub-item-ul">
                     <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="text-success">@Model.Lecturer</span></li>
                     <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span class="text-info">@Model.Time</span></li>
                     <li><span class="glyphicon glyphicon-filter" aria-hidden="true"></span><span class="text-success">@Model.Category</span></li>
@@ -22,19 +22,28 @@
         </div>
     </div>
     <div class="videoList">
-    @if (Model.Videos.Count > 0)
+        <h2>课程视频</h2>
+        @if (Model.Videos.Count > 0)
+        {
+        <div class="col-md-6 col-sm-12 col-lg-6 list-group">
+            @foreach (var item in Model.Videos)
             {
-                foreach (var item in Model.Videos)
-                {
-            <div>
-                <a href="/Video/Play/@item.Id">@item.Title</a> <span>发布时间：@item.Time</span> <span>查看次数：@item.Browses</span>
-            </div>
+            <a href="/Video/Play/@item.Id" class="list-group-item">
+                <h4>@item.Title</h4>
+                <ul class="sub-item-ul">
+                    <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span><span class="text-success">@item.Time</span></li>
+                    <li><span class="glyphicon glyphicon-filter" aria-hidden="true"></span><span class="text-info">@item.Category</span></li>
+                    <li><span class="glyphicon glyphicon-fire" aria-hidden="true"></span><span class="text-success">@item.Browses</span></li>
+                </ul>
+                <p>@item.Description</p>
+            </a>
+            }
+        </div>
         }
-    }
-    else
-    {
-        <text>暂无视屏</text>
-    }
+        else
+        {
+            <text>暂无视屏</text>
+        }
 </div>
 
 </div>

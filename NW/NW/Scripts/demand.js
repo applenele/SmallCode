@@ -10,7 +10,7 @@ $("#demand_sumbit").click(function () {
     }
     else {
         var title = $("#demand-title").val();
-        var text = $("#demand-text").val();
+        var content = ue.getContent();
         var tf = 1;
         $("#demand-title-warning-text").html("");
         $("#demand-text-warning-text").html("");
@@ -19,25 +19,25 @@ $("#demand_sumbit").click(function () {
             $("#demand-title-warning-text").html("请输入标题");
             tf = 0;
         }
-        else if (title.length > 25) {
+        else if (title.length > 30) {
             $("#demand-title-warning-text").attr("class", "text-warning");
             $("#demand-title-warning-text").html("标题过长，请重新输入");
             tf = 0;
         }
-        else if (text.length == 0) {
+        if (content == "" || content == null || hascontent == "我想说点什么...") {
             $("#demand-text-warning-text").attr("class", "text-warning");
             $("#demand-text-warning-text").html("请填写需求");
             tf = 0;
         }
         else {
             if (tf == 1) {
-                $("#demand-title-warning-text").attr("class", "text-primary");
-                $("#demand-title-warning-text").html("标题最多25个字");
-                $("#demand-text-warning-text").attr("class", "text-primary");
+                $("#demand-title-warning-text").attr("class", "text-muted");
+                $("#demand-title-warning-text").html(title.length+"/30");
+                $("#demand-text-warning-text").attr("class", "text-muted");
                 $.ajax({
                     type: 'POST',
                     url: "/Demand/Save",
-                    data: { Title: title, Text: text },
+                    data: { Title: title, Text: content },
                     dataType: "json",
                     success: function (data) {
                         if (data.Statu == "ok") {
@@ -104,5 +104,30 @@ $(".demand-info-vote-up").click(function () {
                 alert("网络异常，请稍后重试");
             }
         });
+    }
+});
+$("#demand-title").keyup(function ()
+{
+    var title = $("#demand-title").val();
+    if (title.length > 30)
+    {
+        $("#demand-title").val(title.substring(0, 30));
+        title = $("#demand-title").val();
+    }
+    else if (title.length == 30)
+    {
+        $("#demand-title-warning-text").attr("class", "text-danger");
+        $("#demand-title-warning-text").html(title.length + "/30");
+    }
+    $("#demand-title-warning-text").attr("class", "text-muted");
+    $("#demand-title-warning-text").html(title.length + "/30");
+});
+$("#demand-title").blur(function ()
+{
+    var title = $("#demand-title").val();
+    if (title.length==0)
+    {
+        $("#demand-title-warning-text").attr("class", "text-warning");
+        $("#demand-title-warning-text").html("请输入标题");
     }
 });

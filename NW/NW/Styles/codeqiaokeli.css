@@ -85,19 +85,19 @@
     text-indent: 2em;margin-top:10px;
 }
 
-.article-header-sub {
+.sub-item-ul {
     list-style: none;
     height: 30px;
     margin-left: -40px;
 }
 
-    .article-header-sub li {
+    .sub-item-ul li {
         float: left;
         margin-right: 20px;
     }
 
 
-        .article-header-sub li span:first-child {
+        .sub-item-ul li span:first-child {
             margin-right: 3px;
         }
 
@@ -234,8 +234,4 @@ table {
 .carousel-image
 {
     width:100%;
-}
-.reply-content .reply-content-sub
-{
-
 }
