@@ -30,11 +30,11 @@ namespace NW.Areas.Admin.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult DemandDelete(int id)
+        public ActionResult Delete(int id)
         {
             try
             {
-                bllSession.ITopicforumBLL.Delete(id);
+                bllSession.IDemandBLL.Delete(id);
                 log.Info(new LogContent(CurrentUser.Username + ":删除约课" + id, LogType.记录.ToString(), HttpHelper.GetIPAddress()));
                 return Content("ok");
             }
