@@ -7,47 +7,57 @@
     }
 <link href="~/Styles/demand.css" rel="stylesheet" />
     <div class="container">
-            <div class="demand-header row" style="margin-top: 80px;">
-                <div class="col-lg-6 col-md-6 col-sm-12">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#PushModal">提交课程需求</a>
+            <div class="demand-header row">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-muted">
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-muted">总数：<a href="/Demand/Index?State=3">@ViewBag.StateNum</a></p>
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-danger">讨论中：<a href="/Demand/Index?State=0">@ViewBag.StateNum1</a></p>
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-info">制作中：<a href="/Demand/Index?State=1">@ViewBag.StateNum2</a></p>
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-success">完成：<a href="/Demand/Index?State=2">@ViewBag.StateNum3</a></p>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-12 demand-info-text">
-                    <p></p>
-                    <p></p>
+                <div class="col-lg-4 col-md-2 col-sm-12 demand-info-text">
+                    <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#PushModal">提交课程需求</a>
                 </div>
             </div>
             <div class="demand-body row">
                 @foreach (var item in Model)
-            {
-                    <div class="col-lg-3 col-md-4 col-sm-5">
-                        <div class="demand-body-one inner-box">
-                            <p class="demand-title text-primary">
-                                <span class="col-lg-8 col-md-7 col-sm-6 text-left demand-info-title">
-                                    <a href="/Demand/show/@item.Id">@item.Title</a>
-                                </span>
-                                @if (item.State == 0)
-                                {
-                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-1">讨论中</span>
-                                }
-                                else if (item.State == 1)
-                                {
-                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-2">制作中</span>
-                                }
-                                else if (item.State == 2)
-                                {
-                                    <span class="col-lg-4 col-md-5 col-sm-6 text-center demand-info-state state-3">完成</span>
-                                }
-                            </p>
-                            <p class="demand-info text-muted">
-                                <span class="col-lg-4 col-md-4 col-sm-4 text-left demand-info-username text-danger">@item.Username</span>
-                                <span class="col-lg-4 col-md-4 col-sm-4 text-left demand-info-time">@Time.ToTimeTip(@item.DateTime)</span>
-                                <span class="col-lg-4 col-md-4 col-sm-4 text-center glyphicon glyphicon-thumbs-up demand-info-vote-up" id="demand-info-vote-up-@item.Id">
-                                    <strong class="demand-info-vote" id="demand-info-vote-@item.Id">@item.Vote</strong>
-                                </span>
-                            </p>
-                            <p class="demand-text text-warning">@NW.Utility.String.SubString(@item.Text, 120, "...")</p>
+                {
+                    <article class="inner-box">
+                        <div class="article-header">
+                            <h2><a href="/Demand/Show/@item.Id">@NW.Utility.String.SubString(@item.Title, 45, "...")</a>
+                            @if (item.State == 0)
+                            {
+                                <span class="pull-right col-lg-1 col-md-2 col-sm-3 text-center demand-info-state state-1">讨论中</span>
+                            }
+                            else if (item.State == 1)
+                            {
+                                <span class="pull-right col-lg-1 col-md-2 col-sm-3 text-center demand-info-state state-2">制作中</span>
+                            }
+                            else if (item.State == 2)
+                            {
+                                <span class="pull-right col-lg-1 col-md-2 col-sm-3 text-center demand-info-state state-3">完成</span>
+                            }
+                            </h2>
+                            <div class="article-header-info">
+                                <ul class="sub-item-ul text-muted">
+                                    <li>
+                                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                        <span class="text-success">@item.Username</span>
+                                    </li>
+                                    <li>
+                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                        <span class="text-info">@item.DateTime</span>
+                                    </li>
+                                    <li>
+                                        <span class="glyphicon glyphicon-thumbs-up demand-info-vote-up" aria-hidden="true" id="demand-info-vote-up-@item.Id"></span>
+                                        <span class="text-success demand-info-vote-up" id="demand-info-vote-@item.Id">@item.Vote</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
+                        <div class="article-content markdown-body">
+                            @(new HtmlString(item.Text))
+                        </div>
+                    </article>
                 }
             </div>
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
@@ -65,16 +75,17 @@
                     <div class="form-group">
                         <label for="Title" class="col-sm-2 control-label">标题</label>
                         <div class="col-sm-7">
-                            <input type="email" class="form-control" id="demand-title" placeholder="标题">
+                            <input type="text" class="form-control" id="demand-title" placeholder="标题">
                         </div>
                         <div class="col-sm-3">
-                            <p class="text-primary" id="demand-title-warning-text">标题最多25个字</p>
+                            <p class="text-muted" id="demand-title-warning-text">(0/30)</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="Text" class="col-sm-2 control-label">需求</label>
                         <div class="col-sm-7">
-                            <textarea class="form-control" rows="5" id="demand-text"></textarea>
+                            <script id="container" name="text" type="text/plain">
+                            </script>
                         </div>
                         <div class="col-sm-3">
                             <p class="text-primary" id="demand-text-warning-text"></p>
@@ -91,105 +102,12 @@
         </div>
     </div>
 </div>
-<script>
-    $("#demand_reset").click(function () {
-        $("#demand-title").val("");
-        $("#demand-text").val("");
-    });
-    $("#demand_sumbit").click(function () {
-        if ($("#user_name").length == 0)
-        {
-            alert("请先登录");
-            $("#PushModal").modal('hide');
-            $('#loginModal').modal('show');
-        }
-        else
-        {
-            var title = $("#demand-title").val();
-            var text = $("#demand-text").val();
-            var tf = 1;
-            $("#demand-title-warning-text").html("");
-            $("#demand-text-warning-text").html("");
-            if (title.length == 0) {
-                $("#demand-title-warning-text").attr("class", "text-warning");
-                $("#demand-title-warning-text").html("请输入标题");
-                tf = 0;
-            }
-            else if (title.length > 25) {
-                $("#demand-title-warning-text").attr("class", "text-warning");
-                $("#demand-title-warning-text").html("标题过长，请重新输入");
-                tf = 0;
-            }
-            else if (text.length == 0) {
-                $("#demand-text-warning-text").attr("class", "text-warning");
-                $("#demand-text-warning-text").html("请填写需求");
-                tf = 0;
-            }
-            else {
-                if (tf == 1) {
-                    $("#demand-title-warning-text").attr("class", "text-primary");
-                    $("#demand-title-warning-text").html("标题最多25个字");
-                    $("#demand-text-warning-text").attr("class", "text-primary");
-                    $.ajax({
-                        type: 'POST',
-                        url: "/Demand/Save",
-                        data: { Title: title, Text: text },
-                        dataType: "json",
-                        success: function (data) {
-                            if (data.Statu == "ok") {
-                                $("#demand-warning-text").attr("class", "text-success");
-                                location.href = data.BackUrl;
-                            }
-                            else if (data.Statu == "err") {
-                                $("#demand-warning-text").attr("class", "text-warning");
-                            }
-                            else if (data.Statu == "go_login") {
-                                $("#demand-warning-text").attr("class", "text-danger");
-                                $("#PushModal").modal('hide');
-                                $('#loginModal').modal('show');
-                            }
-                            else if (data.Statu == "text") {
-                                $("#demand-text-warning-text").attr("class", "text-warning");
-                                $("#demand-text-warning-text").html(data.Data);
-                            }
-                            else if (data.Statu == "title") {
-                                $("#demand-title-warning-text").attr("class", "text-warning");
-                                $("#demand-title-warning-text").html(data.Data);
-                            }
-                            $("#demand-warning-text").html(data.Msg);
-                        },
-                        error: function () {
-                            $("#demand-warning-text").addClass("text-danger");
-                            $("#demand-warning-text").html("网络异常，请稍后重试");
-                        }
-                    });
-                }
-            }
-        }
-       
-    });
-    $(".demand-info-vote-up").click(function () {
-        var this_demand = $(this).attr("id");
-        var this_demand_arr = this_demand.split("-");
-        var demand_id=this_demand_arr[4];
-       $.ajax({
-            type: 'POST',
-            url: "/Demand/Up_Vote",
-            data: { Id: demand_id},
-            dataType: "json",
-            success: function (data) {
-                if (data.Statu == "ok") {
-                    var num = $("#demand-info-vote-" + demand_id).html();
-                    $("#demand-info-vote-" + demand_id).html(parseInt(num) + 1);
-                }
-                else if (data.Statu == "err") {
-                    alert(data.Msg)
-                }
-            },
-            error: function () {
-                alert("网络异常，请稍后重试");
-            }
-        });
-        //alert(this_demand_arr[3]);
-    });
+ <!-- 配置文件 -->
+<script type="text/javascript" src="~/Scripts/ueditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="~/Scripts/ueditor/ueditor.all.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container', { initialFrameHeight: 280 });
 </script>
+<script type="text/javascript" src="~/Scripts/demand.js"></script>

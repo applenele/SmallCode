@@ -51,20 +51,53 @@
     border: 1px solid #e6e6e6;
     border-radius: 4px;
 }
+.inner-box .article-header .article-header-info
+{
+    padding-left:10px;
+}
+.inner-box .entry-header .plate-name
+{
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #eea236;
+    display: inline-block;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+}
+.inner-box .article-content
+{
+    text-indent: 2em;margin-top:10px;
+}
 
-.article-header-sub {
+.sub-item-ul {
     list-style: none;
     height: 30px;
     margin-left: -40px;
 }
 
-    .article-header-sub li {
+    .sub-item-ul li {
         float: left;
         margin-right: 20px;
     }
 
 
-        .article-header-sub li span:first-child {
+        .sub-item-ul li span:first-child {
             margin-right: 3px;
         }
 
@@ -197,4 +230,8 @@ table {
 .videoList {
     margin-top: 20px;
     line-height: 30px;
+}
+.carousel-image
+{
+    width:100%;
 }

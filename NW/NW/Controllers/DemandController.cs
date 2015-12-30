@@ -2,6 +2,7 @@
 using NW.Entity;
 using NW.Entity.DataModels;
 using NW.Entity.ViewModels;
+using NW.Filter;
 using NW.Log4net;
 using NW.Utility;
 using PagedList;
@@ -17,22 +18,37 @@ namespace NW.Controllers
     {
         // GET: Demand
         //提交我要约首页
-        public ActionResult Index(int page = 1)
+        [AutoLog(Description = "我要约首页")]
+        public ActionResult Index(int page = 1,int State=3)
         {
             List<Demand> demands = new List<Demand>();
             List<vDemand> vdemands = new List<vDemand>();
-            var query = bllSession.IDemandBLL.GetList("");
+            string whereStr = "";
+            if(State==0||State==1||State==2)
+            {
+                whereStr = "State="+ State;
+            }
+            var query = bllSession.IDemandBLL.GetList(whereStr);
+            int state_num_1 = bllSession.IDemandBLL.GetList("State=0").Count();
+            int state_num_2 = bllSession.IDemandBLL.GetList("State=1").Count();
+            int state_num_3 = bllSession.IDemandBLL.GetList("State=2").Count();
             int totalCount = 0;
             PagerHelper.DoPage(ref query, page, 20, ref totalCount);
             foreach (var item in query)
             {
                 vdemands.Add(new vDemand(item));
             }
+            ViewBag.StateNum = state_num_1 + state_num_2 + state_num_3;
+            ViewBag.StateNum1 = state_num_1;
+            ViewBag.StateNum2 = state_num_2;
+            ViewBag.StateNum3 = state_num_3;
             var demandAsIPagedList = new StaticPagedList<vDemand>(vdemands, page, 20, totalCount);
             return View(demandAsIPagedList);
         }
         //提交我要约要求处理
         [HttpPost]
+        [ValidateInput(false)]
+        [AutoLog(Description = "我要约需求处理")]
         public ActionResult Save(string Title, string Text)
         {
             AjaxModel model = new AjaxModel();
@@ -61,24 +77,34 @@ namespace NW.Controllers
                     model.Data = "请填写需求！";
                     model.Msg = "请填写需求！";
                 }
-                try
+                bool isBanned=false;
+                WordFilterHelper<Demand>.TextFilter(Text,out isBanned);
+                if(isBanned)
                 {
-                    demand.Title = Title.Trim();
-                    demand.Text = Text.Trim();
-                    demand.State = 0;
-                    demand.UserId = user_id;
-                    demand.DateTime = DateTime.Now;
-                    bll.Insert(demand);
-                    model.Statu = "ok";
-                    model.Msg = "提交成功！";
-                    model.BackUrl = "/Demand";
-                    log.Info(new LogContent(user.Username+"用户提交需求", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    model.Statu = "isBanned";
+                    model.Data = "文章内容包含敏感词，请修改后重新提交！";
                 }
-                catch(Exception e)
+                else
                 {
-                    model.Statu = "err";
-                    model.Msg = "提交出错请重试！";
-                    log.Error(new LogContent(user.Username + "用户提交需求出错" + e.Message, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    try
+                    {
+                        demand.Title = Title.Trim();
+                        demand.Text = Text.Trim();
+                        demand.State = 0;
+                        demand.UserId = user_id;
+                        demand.DateTime = DateTime.Now;
+                        bll.Insert(demand);
+                        model.Statu = "ok";
+                        model.Msg = "提交成功！";
+                        model.BackUrl = "/Demand";
+                        log.Info(new LogContent(user.Username + "用户提交需求", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+                    }
+                    catch (Exception e)
+                    {
+                        model.Statu = "err";
+                        model.Msg = "提交出错请重试！";
+                        log.Error(new LogContent(user.Username + "用户提交需求出错" + e.Message, LogType.异常.ToString(), HttpHelper.GetIPAddress()));
+                    }
                 }
             }
             else
@@ -91,14 +117,17 @@ namespace NW.Controllers
         }
         //显示我要约详细信息页面
         [HttpGet]
+        [AutoLog(Description = "我要约详细信息")]
         public ActionResult Show(int id)
         {
             Demand demand = new Demand();
             demand = bllSession.IDemandBLL.GetEntity(id);
-            return View(demand);
+            vDemand vdemands = new vDemand(demand);
+            return View(vdemands);
         }
         //点赞
         [HttpPost]
+        [AutoLog(Description = "我要约点赞")]
         public ActionResult Up_Vote(int Id)
         {
             AjaxModel model = new AjaxModel();
