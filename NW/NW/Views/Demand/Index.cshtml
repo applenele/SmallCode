@@ -8,12 +8,14 @@
 <link href="~/Styles/demand.css" rel="stylesheet" />
     <div class="container">
             <div class="demand-header row">
-                <div class="col-lg-10 col-md-8 col-sm-12">
-                    <p></p>
-                    <p></p>
+                <div class="col-lg-8 col-md-10 col-sm-12 text-muted">
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-muted">总数：<a href="/Demand/Index?State=3">@ViewBag.StateNum</a></p>
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-danger">讨论中：<a href="/Demand/Index?State=0">@ViewBag.StateNum1</a></p>
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-info">制作中：<a href="/Demand/Index?State=1">@ViewBag.StateNum2</a></p>
+                    <p class="col-lg-2 col-md-3 col-sm-6 text-success">完成：<a href="/Demand/Index?State=2">@ViewBag.StateNum3</a></p>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-12 demand-info-text">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#PushModal">提交课程需求</a>
+                <div class="col-lg-4 col-md-2 col-sm-12 demand-info-text">
+                    <a class="btn btn-primary pull-right" data-toggle="modal" data-target="#PushModal">提交课程需求</a>
                 </div>
             </div>
             <div class="demand-body row">

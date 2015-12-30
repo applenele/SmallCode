@@ -19,17 +19,29 @@ namespace NW.Controllers
         // GET: Demand
         //提交我要约首页
         [AutoLog(Description = "我要约首页")]
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1,int State=3)
         {
             List<Demand> demands = new List<Demand>();
             List<vDemand> vdemands = new List<vDemand>();
-            var query = bllSession.IDemandBLL.GetList("");
+            string whereStr = "";
+            if(State==0||State==1||State==2)
+            {
+                whereStr = "State="+ State;
+            }
+            var query = bllSession.IDemandBLL.GetList(whereStr);
+            int state_num_1 = bllSession.IDemandBLL.GetList("State=0").Count();
+            int state_num_2 = bllSession.IDemandBLL.GetList("State=1").Count();
+            int state_num_3 = bllSession.IDemandBLL.GetList("State=2").Count();
             int totalCount = 0;
             PagerHelper.DoPage(ref query, page, 20, ref totalCount);
             foreach (var item in query)
             {
                 vdemands.Add(new vDemand(item));
             }
+            ViewBag.StateNum = state_num_1 + state_num_2 + state_num_3;
+            ViewBag.StateNum1 = state_num_1;
+            ViewBag.StateNum2 = state_num_2;
+            ViewBag.StateNum3 = state_num_3;
             var demandAsIPagedList = new StaticPagedList<vDemand>(vdemands, page, 20, totalCount);
             return View(demandAsIPagedList);
         }
