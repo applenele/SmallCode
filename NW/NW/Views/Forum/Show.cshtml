@@ -5,12 +5,31 @@
 }
 <div class="container">
     <div class="inner-box top-1-8">
-        <div>
+        <div class="article-header">
             <h2>@Model.Title</h2>
-            <div>发表时间：@Model.Time  浏览量： @Model.Browses  举报：@Model.Report</div>
+            <div class="article-header-info">
+                <ul class="sub-item-ul text-muted">
+                    <li>
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        <span class="text-success">@Model.User.Username</span>
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <span class="text-info">@Model.Time</span>
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                        <span class="text-info">@Model.Browses</span>
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+                        <span class="text-danger">@Model.Report</span>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div>
-            @Model.Content
+        <div class="article-content markdown-body">
+            @Html.Raw(@Model.Content)
         </div>
     </div>
 </div>
