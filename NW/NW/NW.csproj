@@ -579,7 +579,6 @@
     <Folder Include="Areas\Admin\Views\Db\" />
     <Folder Include="Videos\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Base\" />
     <Folder Include="Views\Image\" />
   </ItemGroup>
   <ItemGroup>

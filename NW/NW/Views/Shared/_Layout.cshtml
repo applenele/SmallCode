@@ -9,13 +9,15 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/markdown.css" rel="stylesheet" />
     <link href="~/Styles/codeqiaokeli.css" rel="stylesheet" />
-    
+
     <script src="~/Scripts/jquery-1.9.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/common.js"></script>
     <script src="~/Scripts/codeqiaokeli.js"></script>
     <script src="~/Scripts/forumbase.js"></script>
-
+    <script type="text/javascript">
+        
+    </script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -81,7 +83,7 @@
                         <input type="text" name="Username" id="txtUsername" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label> 密  码：</label>
+                        <label> 密 码：</label>
                         <input type="password" name="Password" id="txtPassword" class="form-control" />
                     </div>
                 </div>
@@ -104,8 +106,33 @@
                 <a href="http://www.51newren.com/" title="牛人网">牛人网</a> |
                 <a href="http://www.51newren.com/" title="牛人网" target="_blank">牛人网</a>
             </p>
-            <p>Powered By <a target="_blank" href="http://www.bootcss.com/" title="Bootstrap中文网">Bootstrap</a> | <a href="http://www.phpcms.cn/" target="_blank" title="nele">SmallCode</a></p>
+            <p>
+                Powered By <a target="_blank" href="http://www.bootcss.com/" title="Bootstrap中文网">Bootstrap</a> | <a href="http://www.phpcms.cn/" target="_blank" title="nele">SmallCode</a>
+            </p>
         </div>
     </footer>
+    <script>
+        //var DispClose = true;
+        //function CloseEvent() {
+        //    if (DispClose) {
+        //        return "是否离开当前页面?";
+        //    }
+        //}
+        //function UnLoadEvent() {
+        //    DispClose = false;
+        //}
+
+        window.onbeforeunload = onbeforeunload_handler;
+        //window.onunload = onunload_handler;
+        function onbeforeunload_handler() {
+            var warning = "确认退出?";
+            return warning;
+        }
+
+        //function onunload_handler() {
+        //    var warning = "谢谢光临";
+        //    alert(warning);
+        //}
+    </script>
 </body>
 </html>

@@ -40,28 +40,34 @@ namespace NW
             Response.Clear();
 
             var routeData = new RouteData();
+            routeData.Values.Add("area", "");
             routeData.Values.Add("controller", "BaseController");
             routeData.Values.Add("fromAppErrorEvent", true);
-            switch (httpException.GetHttpCode())
+            int HttpCode = httpException.GetHttpCode();
+            string action = "";
+            switch (HttpCode)
             {
                 case 404:
-                    routeData.Values.Add("action", "NotFound");
+                    action = "NotFound";
                     break;
 
                 case 500:
-                    routeData.Values.Add("action", "Error");
+                    action = "Error";
                     break;
 
                 default:
-                    routeData.Values.Add("action", "Error");
-                    routeData.Values.Add("httpStatusCode", httpException.GetHttpCode());
+                    action = "Error";
                     break;
             }
 
+            routeData.Values.Add("action", action);
+            routeData.Values.Add("httpStatusCode", HttpCode.ToString());
             Server.ClearError();
 
             IController controller = new BaseController();
-            controller.Execute(new RequestContext(new HttpContextWrapper(Context), routeData)); //执行构造的访问
+            HttpContextWrapper httpContext = new HttpContextWrapper(Context);
+            httpContext.Response.ContentType = "text/html";
+            controller.Execute(new RequestContext(httpContext,routeData)); //执行构造的访问
         }
 
         protected void Session_Start(object sender, EventArgs e)
