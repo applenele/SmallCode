@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using NW.Web.Helper;
 
 namespace NW.Controllers
 {
@@ -31,12 +32,12 @@ namespace NW.Controllers
             }
             var query = bllSession.IArticleBLL.GetList(whereStr);
             int totalCount = 0;
-            PagerHelper.DoPage(ref query, page, 20, ref totalCount);
+            PagerHelper.DoPage(ref query, page, 5, ref totalCount);
             foreach (var item in query.ToTextFilter(out result))
             {
                 articles.Add(new vArticle(item));
             }
-            var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 20, totalCount).ToTextFilter(out result);
+            var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 5, totalCount);//.ToTextFilter(out result);
             List<SideArticleCategory> Categories = SideHelper.GetSideCategoryCategories();
             List<SideArticleCalendar> Calendars = SideHelper.GetSideArticleCalendars();
             ViewBag.Categories = Categories;

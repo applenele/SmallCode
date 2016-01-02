@@ -58,8 +58,24 @@
       <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JiebaNet.Analyser, Version=0.37.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jieba.NET.0.37.1\lib\net45\JiebaNet.Analyser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="JiebaNet.Segmenter, Version=0.37.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jieba.NET.0.37.1\lib\net45\JiebaNet.Segmenter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Lucene.Net, Version=3.0.3.0, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MarkdownSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -73,6 +89,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.9.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.6.9.7\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
@@ -174,6 +194,9 @@
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Images\loading.gif" />
+    <Content Include="Resources\dict.txt" />
+    <Content Include="Resources\idf.txt" />
+    <Content Include="Resources\stopwords.txt" />
     <Content Include="Scripts\ckeditor\CHANGES.md" />
     <Content Include="Scripts\ckeditor\LICENSE.md" />
     <Content Include="Scripts\ckeditor\plugins\scayt\LICENSE.md" />
@@ -201,6 +224,12 @@
     <Content Include="Areas\Admin\Views\Carousel\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Carousel\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Carousel\Edit.cshtml" />
+    <Content Include="Resources\char_state_tab.json" />
+    <Content Include="Resources\pos_prob_emit.json" />
+    <Content Include="Resources\pos_prob_start.json" />
+    <Content Include="Resources\pos_prob_trans.json" />
+    <Content Include="Resources\prob_emit.json" />
+    <Content Include="Resources\prob_trans.json" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
@@ -489,7 +518,9 @@
     <Content Include="Styles\common.css" />
     <Content Include="Styles\demand.css" />
     <Content Include="Styles\main.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -528,8 +559,17 @@
     <Compile Include="Log4net\CustomLayout.cs" />
     <Compile Include="Log4net\LogContent.cs" />
     <Compile Include="Log4net\ObjectPatternConverter.cs" />
+    <Compile Include="Lucene\BlogSearcher.cs" />
+    <Compile Include="Lucene\JiebaAnalyzer.cs" />
+    <Compile Include="Lucene\JiebaTokenizer.cs" />
+    <Compile Include="Lucene\NewsData.cs" />
+    <Compile Include="Lucene\NewsSearcher.cs" />
+    <Compile Include="Lucene\SearcherBase.cs" />
     <Compile Include="Models\PromptMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helper\SideHelper.cs" />
+    <Compile Include="Helper\WordFilterHelper.cs" />
+    <Compile Include="Helper\WordFilterHelperExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -566,6 +606,8 @@
     <Content Include="Views\Test\ShowTest.cshtml" />
     <Content Include="Views\Test\ListTest.cshtml" />
     <Content Include="Views\Test\TextTest.cshtml" />
+    <Content Include="Views\Test\TestSearch.cshtml" />
+    <Content Include="Views\Test\BlogSearchTest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

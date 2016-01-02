@@ -30,18 +30,8 @@ namespace NW.Entity.ViewModels
         {
             get
             {
-                var tmp = Description.Split('\n');
-                if (tmp.Count() > 4)
-                {
-                    var ret = "";
-                    for (var i = 0; i < 3; i++)
-                    {
-                        ret += tmp[i];
-                    }
-                    ret += "<p>……</p>";
-                    return ret;
-                }
-                else return Description;
+                return NW.Utility.StringHelper.SubString(NW.Utility.StringHelper.CleanHTML(this.Description), 100,
+                    "......");
             }
         }
 

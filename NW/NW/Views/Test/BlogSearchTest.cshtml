@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "BlogSearchTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>BlogSearchTest</h2>
+    <div class="inner-box">
+        <form action="/Test/BlogSearchTest" method="POST">
+            <input type="text" name="key" />
+            <input type="submit" name="name" value="搜索" />
+        </form>
+    </div>
+    <div class="inner-box">
+        @if (ViewBag.Result != null)
+        {
+            foreach (var item in ViewBag.Result as List<NW.Entity.Article>)
+            {
+                <div class="top-0-1">
+                    @item.Title <br/>
+                    @Html.Raw(HttpUtility.HtmlDecode(@item.Description))
+                </div>
+            }
+        }
+        else
+        {<text></text>
+        }
+    </div>
+</div>
+
+
+
