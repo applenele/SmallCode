@@ -1,0 +1,17 @@
+﻿@model IEnumerable<NW.Lucene.News>
+@{
+    ViewBag.Title = "TestSearch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>TestSearch</h2>
+    @foreach (var item in Model)
+    {
+        <text>@item.Id</text>
+        <text>@Html.Raw(HttpUtility.HtmlDecode(@item.Title)) </text>
+        <br/>
+        <text>@Html.Raw(HttpUtility.HtmlDecode(@item.Content))</text>
+        <br/>
+    }
+</div>

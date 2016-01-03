@@ -20,7 +20,7 @@ namespace System.Web.Mvc
         public static MvcHtmlString CleanHtml<TModel>(this HtmlHelper<TModel> self, string html)
         {
             if (html == null) return new MvcHtmlString("");
-            return new MvcHtmlString(NW.Utility.String.CleanHTML(html));
+            return new MvcHtmlString(NW.Utility.StringHelper.CleanHTML(html));
         }
 
         public static MvcHtmlString AntiForgerySID<TModel>(this HtmlHelper<TModel> self)

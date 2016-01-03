@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JiebaNet.Segmenter;
 using NW.Entity;
+using NW.Lucene;
+using System.Diagnostics;
+using NW.Web.Helper;
 
 namespace NW.Controllers
 {
@@ -98,6 +102,54 @@ namespace NW.Controllers
         }
 
 
+        public ActionResult TestSearch()
+        {
+            var seg = new JiebaSegmenter();
+            seg.AddWord("机器学习");
+
+            NewsSearcher.ClearLuceneIndex();
+
+            var data = NewsRepository.GetAll();
+            NewsSearcher.UpdateLuceneIndex(data);
+
+            var results = NewsSearcher.Search("方法研究");
+
+
+            return View(results);
+        }
+
+        [HttpGet]
+        public ActionResult BlogSearchTest()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 创建索引
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult CreateIndex()
+        {
+            var seg = new JiebaSegmenter();
+            seg.AddWord("Bolg");
+
+            BlogSearcher.ClearLuceneIndex();
+            Stopwatch st = new Stopwatch();//实例化类
+            st.Start();//开始计时
+            var data = bllSession.IArticleBLL.GetList("");
+            BlogSearcher.UpdateLuceneIndex(data);
+            st.Stop();//终止计时
+            System.Diagnostics.Debug.WriteLine("执行时间：" +st.ElapsedMilliseconds );
+            return Redirect("/Test/BlogSearchTest");
+        }
+
+        [HttpPost]
+        public ActionResult BlogSearchTest(string Key)
+        {
+            var results = BlogSearcher.Search(Key, 1, 10);
+            ViewBag.Result = results;
+            return View();
+        }
 
     }
 }

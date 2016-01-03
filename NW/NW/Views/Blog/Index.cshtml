@@ -43,7 +43,7 @@
                     </div>
                 </article>
             }
-            @Html.PagedListPager(Model, page => Url.Action("Index?" + @ViewBag.AttachUrl, new { page }))
+            @Html.PagedListPager(Model, page => Url.Action("Index" + @ViewBag.AttachUrl, new { page }))
         </div>
         <aside class="col-md-3">
             <section class="panel panel-success">

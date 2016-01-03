@@ -5,6 +5,7 @@ using NW.Entity.ViewModels;
 using NW.Filter;
 using NW.Log4net;
 using NW.Utility;
+using NW.Web.Helper;
 using PagedList;
 using System;
 using System.Collections.Generic;

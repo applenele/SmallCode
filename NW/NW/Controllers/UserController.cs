@@ -175,7 +175,7 @@ namespace NW.Controllers
 
             WebMail.Send(to: email,
                          subject: "注册验证信息",
-                         body: Utility.String.EmailHtml(email));
+                         body: Utility.StringHelper.EmailHtml(email));
             return Prompt(x =>
             {
                 x.Title = "注册通知！";
