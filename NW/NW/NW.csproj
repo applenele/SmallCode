@@ -436,6 +436,7 @@
     <Content Include="Scripts\forumbase.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery.smallcode.js" />
     <Content Include="Scripts\ueditor\asp\action_config.asp" />
     <Content Include="Scripts\ueditor\asp\action_crawler.asp" />
     <Content Include="Scripts\ueditor\asp\action_list.asp" />
@@ -608,6 +609,7 @@
     <Content Include="Views\Test\TextTest.cshtml" />
     <Content Include="Views\Test\TestSearch.cshtml" />
     <Content Include="Views\Test\BlogSearchTest.cshtml" />
+    <Content Include="Views\Test\UrlTest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

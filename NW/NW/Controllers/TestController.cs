@@ -151,5 +151,9 @@ namespace NW.Controllers
             return View();
         }
 
+        public ActionResult UrlTest()
+        {
+            return View();
+        }
     }
 }
