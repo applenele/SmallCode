@@ -72,7 +72,7 @@ namespace NW.Controllers
                 {
                     x.Title = "请先登录";
                     x.RedirectText = "返回上一页";
-                    x.Details = "返回上一页";
+                    x.Details = "你只有登录之后才能进行评论";
                     x.RedirectUrl = "/Blog/Show/" + id;
                 });
             }

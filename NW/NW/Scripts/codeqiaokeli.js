@@ -4,7 +4,8 @@ $(document).ready(function () {
     $("#btnLogin").click(function () {
         var username = $("#txtUsername").val();
         var password = $("#txtPassword").val();
-        $.post("/User/Login", { username: username, password: password }, function (data) {
+        var returnUrl = $.getUrlParam('ReturnUrl');
+        $.post("/User/Login", { username: username, password: password, returnUrl: returnUrl }, function (data) {
             if (data.Statu == "ok") {
                 window.location.href = data.BackUrl;
             }
@@ -35,7 +36,7 @@ $(document).ready(function () {
             $(".warning").html("两次输入密码不一致！");
             return;
         }
-        $.post("/User/RegisterDetail", { username: username, password: password,email:email }, function (data) {
+        $.post("/User/RegisterDetail", { username: username, password: password, email: email }, function (data) {
             if (data.Statu == "ok") {
                 window.location.href = "/Home/Index";
             }
