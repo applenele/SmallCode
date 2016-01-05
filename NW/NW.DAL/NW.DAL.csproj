@@ -47,11 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArticleDAL.cs" />
+    <Compile Include="BaseDAL.cs" />
     <Compile Include="CategoryDAL.cs" />
     <Compile Include="CourseDAL.cs" />
     <Compile Include="DBSession.cs" />
     <Compile Include="DBSessionFactory.cs" />
     <Compile Include="DemandDAL.cs" />
+    <Compile Include="EXArticleDAL.cs" />
+    <Compile Include="EXArticleTempDAL.cs" />
     <Compile Include="ImageDAL.cs" />
     <Compile Include="CarouselDAL.cs" />
     <Compile Include="LogDAL.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="ReplyDAL.cs" />
     <Compile Include="ReplyforumDAL.cs" />
     <Compile Include="SensitiveDAL.cs" />
+    <Compile Include="SourceWebDAL.cs" />
     <Compile Include="TopicforumDAL.cs" />
     <Compile Include="UserDAL.cs" />
     <Compile Include="VideoDAL.cs" />

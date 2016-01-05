@@ -46,11 +46,14 @@
     <Compile Include="ICategoryBLL.cs" />
     <Compile Include="ICourseBLL.cs" />
     <Compile Include="IDemandBLL.cs" />
+    <Compile Include="IEXArticleBLL.cs" />
+    <Compile Include="IEXArticleTempBLL.cs" />
     <Compile Include="IImageBLL.cs" />
     <Compile Include="ILogBLL.cs" />
     <Compile Include="IReplyBLL.cs" />
     <Compile Include="IReplyforumBLL.cs" />
     <Compile Include="ISensitiveBLL.cs" />
+    <Compile Include="ISourceWebBLL.cs" />
     <Compile Include="ITopicforumBLL.cs" />
     <Compile Include="IUserBLL.cs" />
     <Compile Include="IVideoBLL.cs" />
