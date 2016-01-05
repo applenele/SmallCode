@@ -41,8 +41,8 @@
             <div class="sidebar-content">
                 <ul class="sidebar-list">
                     <li>
-                        <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
-                        <ul class="sub-menu">
+                        <a id="OperateManager" style="cursor:pointer"><i class="icon-font">&#xe003;</i>常用操作</a>
+                        <ul class="sub-menu hide" id="ulOperateManager">
                             <li><a href="/Admin/Blog/Index"><i class="icon-font">&#xe005;</i>博文管理</a></li>
                             <li><a href="/Admin/Course/Index"><i class="icon-font">&#xe006;</i>课程管理</a></li>
                             <li><a href="/Admin/Category/Index"><i class="icon-font">&#xe006;</i>分类管理</a></li>
@@ -56,9 +56,19 @@
                             <li><a href="/Admin/Carousel/Index"><i class="icon-font">&#xe033;</i>轮播管理</a></li>
                         </ul>
                     </li>
+                    <script>
+                        $("#OperateManager").click(function () {
+                            if ($("#ulOperateManager").css("display") == "none") {
+                                $("#ulOperateManager").show();
+                            }
+                            else {
+                                $("#ulOperateManager").hide();
+                            }
+                        });
+                    </script>
                     <li>
-                        <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
-                        <ul class="sub-menu">
+                        <a id="SysManager" style="cursor:pointer"><i class="icon-font">&#xe018;</i>系统管理</a>
+                        <ul class="sub-menu hide" id="ulSysManager">
                             <li><a href="/Admin/Log/Index"><i class="icon-font">&#xe008;</i>日志管理</a></li>
                             <li><a href="system.html"><i class="icon-font">&#xe017;</i>系统设置</a></li>
                             <li><a href="system.html"><i class="icon-font">&#xe037;</i>清理缓存</a></li>
@@ -66,6 +76,32 @@
                             <li><a href="system.html"><i class="icon-font">&#xe045;</i>数据还原</a></li>
                         </ul>
                     </li>
+                    <script>
+                        $("#SysManager").click(function () {
+                            if ($("#ulSysManager").css("display") == "none") {
+                                $("#ulSysManager").show();
+                                }
+                                else {
+                                $("#ulSysManager").hide();
+                                }
+                            });
+                    </script>
+                    <li>
+                        <a id="DataManager" style="cursor:pointer"><i class="icon-font">&#xe018;</i>数据管理</a>
+                        <ul class="sub-menu hide" id="ulDataManager">
+                            <li><a href="/Admin/EXArticle/Index"><i class="icon-font">&#xe008;</i>博文管理</a></li>
+                        </ul>
+                    </li>
+                    <script>
+                        $("#DataManager").click(function () {
+                            if ($("#ulDataManager").css("display") == "none") {
+                                    $("#ulDataManager").show();
+                                }
+                                else {
+                                    $("#ulDataManager").hide();
+                                }
+                            });
+                    </script>
                 </ul>
             </div>
         </div>

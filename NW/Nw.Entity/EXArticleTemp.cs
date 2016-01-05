@@ -59,5 +59,10 @@ namespace NW.Entity
         /// 是否删除
         /// </summary>
         public bool IsDelete { set; get; }
+
+        /// <summary>
+        ///   时间
+        /// </summary>
+        public DateTime CreateDate { set; get; }
     }
 }

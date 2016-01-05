@@ -11,7 +11,7 @@ using Dapper;
 
 namespace NW.DAL
 {
-    public class LogDAL : BaseDAL<Log>, IBaseDAL<Log>, ILogDAL
+    public class LogDAL : BaseDAL<Log>, ILogDAL
     {
 
         public int Delete(int id)
@@ -88,7 +88,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "INSERT INTO Logs (Time,Thread,Level,Type,Description,Exception,Ip) VALUES (@Time,@Thread,@Level,@Type,@Description,@Exception,@Ip)";
+                string query = "INSERT INTO Log (Time,Thread,Level,Type,Description,Exception,Ip) VALUES (@Time,@Thread,@Level,@Type,@Description,@Exception,@Ip)";
                 return Conn.Execute(query, model);
             }
         }
