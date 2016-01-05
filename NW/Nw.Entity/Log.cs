@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NW.Entity.Attribute;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace NW.Entity
 {
     public class Log
     {
+        [AutoKey]
         public int Id { set; get; }
 
         public DateTime Time { set; get; }
