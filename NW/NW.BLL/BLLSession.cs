@@ -270,5 +270,56 @@ namespace NW.BLL
             }
         }
         #endregion
+
+        #region 得到SourceWeb业务逻辑层
+        ISourceWebBLL iSourceWebBLL;
+        public ISourceWebBLL ISourceWebBLL
+        {
+            get
+            {
+                if (iSourceWebBLL == null)
+                    iSourceWebBLL = new SourceWebBLL();
+                return iSourceWebBLL;
+            }
+            set
+            {
+                iSourceWebBLL = value;
+            }
+        }
+        #endregion
+
+        #region 得到EXArticle业务逻辑层
+        IEXArticleBLL iEXArticleBLL;
+        public IEXArticleBLL IEXArticleBLL
+        {
+            get
+            {
+                if (iEXArticleBLL == null)
+                    iEXArticleBLL = new EXArticleBLL();
+                return iEXArticleBLL;
+            }
+            set
+            {
+                iEXArticleBLL = value;
+            }
+        }
+        #endregion
+
+        #region 得到EXArticleTemp业务逻辑层
+        IEXArticleTempBLL iEXArticleTempBLL;
+        public IEXArticleTempBLL IEXArticleTempBLL
+        {
+            get
+            {
+                if (iEXArticleTempBLL == null)
+                    iEXArticleTempBLL = new EXArticleTempBLL();
+                return iEXArticleTempBLL;
+            }
+            set
+            {
+                iEXArticleTempBLL = value;
+            }
+        }
+        #endregion
     }
 }

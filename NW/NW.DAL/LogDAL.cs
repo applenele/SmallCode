@@ -11,26 +11,14 @@ using Dapper;
 
 namespace NW.DAL
 {
-    public class LogDAL : IBaseDAL<Log>, ILogDAL
+    public class LogDAL : BaseDAL<Log>, IBaseDAL<Log>, ILogDAL
     {
-
-        #region 得到数据库链接对象
-        private IDbConnection _conn;
-        public IDbConnection Conn
-        {
-            get
-            {
-                return _conn = ConnectionFactory.CreateConnection();
-            }
-        }
-        #endregion
-
 
         public int Delete(int id)
         {
             using (Conn)
             {
-                string query = "DELETE FROM Logs WHERE Id = @Id";
+                string query = "DELETE FROM Log WHERE Id = @Id";
                 return Conn.Execute(query, new { Id = id });
             }
         }
@@ -39,7 +27,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "DELETE FROM Logs WHERE Id = @Id";
+                string query = "DELETE FROM Log WHERE Id = @Id";
                 return Conn.Execute(query, model);
             }
         }
@@ -47,7 +35,7 @@ namespace NW.DAL
         public Log GetEntity(int id)
         {
             Log log;
-            string query = "SELECT * FROM Logs WHERE Id = @Id";
+            string query = "SELECT * FROM Log WHERE Id = @Id";
             using (Conn)
             {
                 log = Conn.Query<Log>(query, new { Id = id }).SingleOrDefault();
@@ -67,11 +55,11 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Logs where " + whereStr + " order by Time desc";
+                    query = "SELECT * FROM Log where " + whereStr + " order by Time desc";
                 }
                 else
                 {
-                    query = "SELECT * FROM Logs order by Time desc";
+                    query = "SELECT * FROM Log order by Time desc";
                 }
 
                 return Conn.Query<Log>(query);
@@ -86,17 +74,17 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Logs where " + whereStr + " order by Time desc limit " + index + "," + size;
+                    query = "SELECT * FROM Log where " + whereStr + " order by Time desc limit " + index + "," + size;
                 }
                 else
                 {
-                    query = "SELECT * FROM Logs order by Time desc limit " + index + "," + size;
+                    query = "SELECT * FROM Log order by Time desc limit " + index + "," + size;
                 }
                 return Conn.Query<Log>(query);
             }
         }
 
-        public int Insert(Log model)
+        public new int Insert(Log model)
         {
             using (Conn)
             {
@@ -109,7 +97,7 @@ namespace NW.DAL
         {
             using (Conn)
             {
-                string query = "UPDATE Logs SET  Time=@Time,Thread=@Thread,Level=@Level,Type=@Type,Description=@Description,Exception=@Exception,Ip=@Ip WHERE Id =@Id";
+                string query = "UPDATE Log SET  Time=@Time,Thread=@Thread,Level=@Level,Type=@Type,Description=@Description,Exception=@Exception,Ip=@Ip WHERE Id =@Id";
                 return Conn.Execute(query, model);
             }
         }

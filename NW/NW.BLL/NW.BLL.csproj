@@ -47,6 +47,8 @@
     <Compile Include="CategoryBLL.cs" />
     <Compile Include="CourseBLL.cs" />
     <Compile Include="DemandBLL.cs" />
+    <Compile Include="EXArticleBLL.cs" />
+    <Compile Include="EXArticleTempBLL.cs" />
     <Compile Include="ImageBLL.cs" />
     <Compile Include="CarouselBLL.cs" />
     <Compile Include="LogBLL.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="ReplyBLL.cs" />
     <Compile Include="ReplyforumBLL.cs" />
     <Compile Include="SensitiveBLL.cs" />
+    <Compile Include="SourceWebBLL.cs" />
     <Compile Include="TopicforumBLL.cs" />
     <Compile Include="UserBLL.cs" />
     <Compile Include="VideoBLL.cs" />
