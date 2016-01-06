@@ -15,7 +15,7 @@ namespace NW.DAL
     public class LogDAL : BaseDAL<Log>, ILogDAL
     {
 
-        public int Delete(int id)
+        public new int Delete(int id)
         {
             using (Conn)
             {
@@ -24,7 +24,7 @@ namespace NW.DAL
             }
         }
 
-        public int Delete(Log model)
+        public new int Delete(Log model)
         {
             using (Conn)
             {
@@ -33,7 +33,7 @@ namespace NW.DAL
             }
         }
 
-        public Log GetEntity(int id)
+        public new Log GetEntity(int id)
         {
             Log log;
             string query = "SELECT * FROM Log WHERE Id = @Id";
@@ -90,22 +90,5 @@ namespace NW.DAL
             }
         }
 
-        public new int Insert(Log model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Log (Time,Thread,Level,Type,Description,Exception,Ip) VALUES (@Time,@Thread,@Level,@Type,@Description,@Exception,@Ip)";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public int Update(Log model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Log SET  Time=@Time,Thread=@Thread,Level=@Level,Type=@Type,Description=@Description,Exception=@Exception,Ip=@Ip WHERE Id =@Id";
-                return Conn.Execute(query, model);
-            }
-        }
     }
 }

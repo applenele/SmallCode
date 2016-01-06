@@ -7,10 +7,10 @@ namespace NW.Pager
 {
     public static class PageHelper
     {
-        public static PagedList<T> ToPagedList<T>(this IEnumerable<T> superset, int pageIndex, int pageSize,int total)
+        public static PagedList<T> ToPagedList<T>(this IEnumerable<T> superset, int pageIndex, int pageSize, int total)
         {
             PagedList<T> data = new PagedList<T>();
-            if (total % pageSize == 0)
+            if (total % pageSize == 0 && total > pageSize)
             {
                 data.PageCount = total / pageSize;
             }
