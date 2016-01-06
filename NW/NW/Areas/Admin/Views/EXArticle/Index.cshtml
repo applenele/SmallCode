@@ -1,5 +1,5 @@
-﻿@model PagedList.IPagedList<NW.Entity.EXArticle>
-@using PagedList.Mvc;
+﻿@model NW.Pager.PagedList<NW.Entity.EXArticle>
+@using NW.Pager;
 @{
     ViewBag.Title = "博文数据管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -51,7 +51,7 @@
                     <th>分类</th>
                     <th>操作</th>
                 </tr>
-                @foreach (var item in Model)
+                @foreach (var item in Model.PageListData)
                 {
                     <tr id="@item.Id">
                         <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
@@ -69,7 +69,7 @@
                     </tr>
                 }
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            @Html.PagedListPager(Model.PageIndex, Model.PageCount)
         </div>
     </form>
 </div>

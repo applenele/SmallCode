@@ -11,48 +11,11 @@ using Dapper;
 
 namespace NW.DAL
 {
-    public class ImageDAL : IBaseDAL<Image>, IImageDAL
+    public class ImageDAL : BaseDAL<Image>, IBaseDAL<Image>, IImageDAL
     {
-
-        #region 得到数据库链接对象
-        private IDbConnection _conn;
-        public IDbConnection Conn
+        public ImageDAL()
         {
-            get
-            {
-                return _conn = ConnectionFactory.CreateConnection();
-            }
-        }
-
-        #endregion
-
-        public int Delete(int id)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Image WHERE Id = @Id";
-                return Conn.Execute(query, new { Id = id });
-            }
-        }
-
-        public int Delete(Image model)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Image WHERE Id = @Id";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public Image GetEntity(int id)
-        {
-            Image image;
-            string query = "SELECT * FROM Image WHERE Id = @Id";
-            using (Conn)
-            {
-                image = Conn.Query<Image>(query, new { Id = id }).SingleOrDefault();
-                return image;
-            }
+            base.t = new Image();
         }
 
         public Image GetEntityWithRefence(int id)
@@ -60,7 +23,7 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Image> GetList(string whereStr)
+        public new IEnumerable<Image> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -96,22 +59,5 @@ namespace NW.DAL
             }
         }
 
-        public int Insert(Image model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Image(Title,Description,Path,Time)VALUES(@Title,@Description,@Path,@Time)";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public int Update(Image model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Image SET  Title=@Title,Description=@Description,Time=@Time,Path=@Path WHERE Id =@Id";
-                return Conn.Execute(query, model);
-            }
-        }
     }
 }

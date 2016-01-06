@@ -11,46 +11,12 @@ using Dapper;
 
 namespace NW.DAL
 {
-    public class PlateforumDAL : IBaseDAL<Plateforum>, IPlateforumDAL
+    public class PlateforumDAL : BaseDAL<Plateforum>, IBaseDAL<Plateforum>, IPlateforumDAL
     {
-        #region   得到数据库连接对象
-        private IDbConnection _conn;
-        public IDbConnection Conn
-        {
-            get
-            {
-                return _conn = ConnectionFactory.CreateConnection();
-            }
-        }
-        #endregion
 
-        public int Delete(int id)
+        public PlateforumDAL()
         {
-            using (Conn)
-            {
-                string query = "DELETE FROM Plateforum WHERE Id=@Id";
-                return Conn.Execute(query, new { Id = id });
-            }
-        }
-
-        public int Delete(Plateforum model)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Plateforum WHERE Id=@Id";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public Plateforum GetEntity(int id)
-        {
-            Plateforum plateforum;
-            string query = "SELECT * FROM Plateforum WHERE Id=@Id";
-            using (Conn)
-            {
-                plateforum = Conn.Query<Plateforum>(query, new { Id = id }).FirstOrDefault();
-                return plateforum;
-            }
+            base.t = new Plateforum();
         }
 
         public Plateforum GetEntityWithRefence(int id)
@@ -58,7 +24,7 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Plateforum> GetList(string whereStr)
+        public new IEnumerable<Plateforum> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -75,27 +41,5 @@ namespace NW.DAL
             }
         }
 
-        public IEnumerable<Plateforum> GetListByPage(int page, int size, string whereStr)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int Insert(Plateforum model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Plateforum(Title,Picture,Description,Time,Report,IsClose,Browses)VALUES(@Title,@Picture,@Description,@Time,@Report,@IsClose,@Browses)";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public int Update(Plateforum model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Plateforum SET Title=@Title,Picture=@Picture,Description=@Description,Time=@Time,Report=@Report,IsClose=@IsClose,Browses=@Browses WHERE Id=@Id";
-                return Conn.Execute(query, model);
-            }
-        }
     }
 }

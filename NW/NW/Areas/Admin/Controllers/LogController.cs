@@ -2,7 +2,7 @@
 using NW.Entity.DataModels;
 using NW.Log4net;
 using NW.Utility;
-using PagedList;
+using NW.Pager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,8 @@ namespace NW.Areas.Admin.Controllers
                 }
                 where = where + "Description LIKE '%" + Key + "%'";
             }
-            return View(bllSession.ILogBLL.GetList(where).ToPagedList(page, 20));
+            int total = 0;
+            return View(bllSession.ILogBLL.GetListByPage(page, 20, "", out total).ToPagedList(page, 20, total));
         }
 
         /// <summary>

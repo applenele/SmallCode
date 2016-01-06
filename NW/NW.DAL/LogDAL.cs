@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using NW.Entity.DataModels;
 
 namespace NW.DAL
 {
@@ -48,7 +49,7 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Log> GetList(string whereStr)
+        public new IEnumerable<Log> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -66,7 +67,7 @@ namespace NW.DAL
             }
         }
 
-        public IEnumerable<Log> GetListByPage(int page, int size, string whereStr)
+        public new IEnumerable<Log> GetListByPage(int page, int size, string whereStr, out int total)
         {
             int index = size * (page - 1);
             using (Conn)
@@ -74,13 +75,18 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Log where " + whereStr + " order by Time desc limit " + index + "," + size;
+                    query = "SELECT * FROM Log where " + whereStr + " order by Time desc limit " + index + "," + size + ";select count(1) as total from Log";
                 }
                 else
                 {
-                    query = "SELECT * FROM Log order by Time desc limit " + index + "," + size;
+                    query = "SELECT * FROM Log order by Time desc limit " + index + "," + size + ";select count(1) as total from Log";
                 }
-                return Conn.Query<Log>(query);
+                var multi = Conn.QueryMultiple(query);
+                var result = multi.Read<Log>();
+                var dapperPage = multi.Read<DapperPage>().AsList()[0];
+
+                total = dapperPage.Total;
+                return result;
             }
         }
 

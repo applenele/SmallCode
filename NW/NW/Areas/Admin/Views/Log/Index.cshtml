@@ -1,5 +1,5 @@
-﻿@model PagedList.IPagedList<NW.Entity.Log>
-@using PagedList.Mvc;
+﻿@model NW.Pager.PagedList<NW.Entity.Log>
+@using NW.Pager;
 @{
     ViewBag.Title = "日志管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
@@ -38,7 +38,7 @@
             <div class="result-list">
                 <a id="batchDel" href="javascript:void(0)" data-del="/Admin/Log/MutiDelete"><i class="icon-font"></i>批量删除</a>
                 <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
-                共：@Model.TotalItemCount 条数据
+                共：@Model.Total 条数据
             </div>
         </div>
         <div class="result-content">
@@ -53,7 +53,7 @@
                     <th style="width: 55%;">描述</th>
                     <th>操作</th>
                 </tr>
-                @foreach (var item in Model)
+                @foreach (var item in Model.PageListData)
                 {
                     <tr id="@item.Id">
                         <td class="tc"><input name="id" class="choose" value="@item.Id" type="checkbox"></td>
@@ -72,8 +72,7 @@
                     </tr>
                 }
             </table>
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-
+            @Html.PagedListPager(Model.PageIndex, Model.PageCount)
         </div>
     </form>
 </div>

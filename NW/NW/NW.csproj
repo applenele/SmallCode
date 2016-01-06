@@ -521,6 +521,7 @@
     <Content Include="Styles\common.css" />
     <Content Include="Styles\demand.css" />
     <Content Include="Styles\main.css" />
+    <Content Include="Styles\page.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -570,6 +571,9 @@
     <Compile Include="Lucene\NewsSearcher.cs" />
     <Compile Include="Lucene\SearcherBase.cs" />
     <Compile Include="Models\PromptMessage.cs" />
+    <Compile Include="Pager\HtmlPageHelper.cs" />
+    <Compile Include="Pager\PagedList.cs" />
+    <Compile Include="Pager\PageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\SideHelper.cs" />
     <Compile Include="Helper\WordFilterHelper.cs" />

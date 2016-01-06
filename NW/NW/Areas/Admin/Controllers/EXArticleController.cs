@@ -1,5 +1,5 @@
 ﻿using NW.Entity;
-using PagedList;
+using NW.Pager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +13,16 @@ namespace NW.Areas.Admin.Controllers
         // GET: Admin/EXArticle
         public ActionResult Index(int page = 1)
         {
-            IEnumerable<EXArticle> articles = bllSession.IEXArticleBLL.GetListByPage(page,20,"");
-            return View(articles.ToPagedList(page, 20));
+            int total = 0;
+            IEnumerable<EXArticle> articles = bllSession.IEXArticleBLL.GetListByPage(page, 20, "", out total);
+            return View(articles.ToPagedList(page, 20, total));
         }
 
         public ActionResult TempIndex(int page = 1)
         {
-            IEnumerable<EXArticleTemp> articleTemps = bllSession.IEXArticleTempBLL.GetListByPage(page, 20, "");
-            return View(articleTemps.ToPagedList(page, 20));
+            int total = 0;
+            IEnumerable<EXArticleTemp> articleTemps = bllSession.IEXArticleTempBLL.GetListByPage(page, 20, "", out total);
+            return View(articleTemps.ToPagedList(page, 20,total));
         }
     }
 }
