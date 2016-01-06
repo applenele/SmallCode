@@ -40,7 +40,7 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id left join Plateforum p on p.Id = t.PlateforumId WHERE" + whereStr + "order by t.Time desc";
+                    query = "SELECT * FROM Topicforum t left join User u on t.UserId = u.Id left join Plateforum p on p.Id = t.PlateforumId WHERE " + whereStr + " order by t.Time desc";
                 }
                 else
                 {

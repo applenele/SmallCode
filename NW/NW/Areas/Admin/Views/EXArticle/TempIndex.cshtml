@@ -14,7 +14,7 @@
 </div>
 <div class="search-wrap">
     <div class="search-content">
-        <form action="/Admin/Blog/Index" method="get">
+        <form action="/Admin/EXArticle/TempIndex" method="get">
             <table class="search-tab">
                 <tr>
                     <th width="120">选择分类:</th>
@@ -35,8 +35,9 @@
     <form name="myform" id="myform" method="post">
         <div class="result-title">
             <div class="result-list">
-                <a href="/Admin/Blog/Add"><i class="icon-font"></i>新增博文</a>
-                <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                <a id="batchDel" href="javascript:void(0)" data-del="/Admin/EXArticle/TempMutiDelete"><i class="icon-font"></i>批量删除</a>
+                <a id="batchImport" href="javascript:void(0)" data-imp="/Admin/EXArticle/TempMutiImport"><i class="icon-font"></i>批量导入</a>
+                共：@Model.Total 条数据
             </div>
         </div>
         <div class="result-content">
@@ -53,26 +54,27 @@
                 @foreach (var item in Model.PageListData)
                 {
                     <tr id="@item.Id">
-                        <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
+                        <td class="tc"><input name="id[]" class="choose" value="@item.Id" type="checkbox"></td>
                         <td>@item.Id</td>
                         <td title="@item.Title">
-                            <a href="/Admin/Blog/Show/@item.Id" title="@item.Title">@item.Title</a>
+                            <a href="/Admin/EXArticle/TempShow/@item.Id" title="@item.Title">@item.Title</a>
                         </td>
                         <td>@item.CreateDate</td>
                         <td>@item.Source</td>
                         <td>@item.Category</td>
                         <td>
-                            <a class="link-update" href="/Admin/Blog/Edit/@item.Id">修改</a>
-                            <a class="link-del" href="javascript:deleteDialog('/Admin/Blog/Delete/@item.Id',@item.Id)">删除</a>
+                            <a class="link-update" href="/Admin/EXArticle/TempEdit/@item.Id">修改</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/EXArticle/TempDelete/@item.Id',@item.Id)">删除</a>
+                            <a class="link-update"  href="javascript:importDialog('/Admin/EXArticle/TempImport/@item.Id',@item.Id)">入库</a>
                         </td>
                     </tr>
                 }
             </table>
-                <div class="paginator">
-                    <span>
-                        @Html.PagedListPager(Model.PageIndex, Model.PageCount)
-                    </span>
-                </div>
+            <div class="paginator">
+                <span>
+                    @Html.PagedListPager(Model.PageIndex, Model.PageCount)
+                </span>
+            </div>
         </div>
     </form>
 </div>

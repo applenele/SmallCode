@@ -232,6 +232,8 @@
     <Content Include="Resources\prob_trans.json" />
     <Content Include="Areas\Admin\Views\EXArticle\TempIndex.cshtml" />
     <Content Include="Areas\Admin\Views\EXArticle\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\EXArticle\TempShow.cshtml" />
+    <Content Include="Areas\Admin\Views\EXArticle\Show.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />

@@ -61,5 +61,27 @@ namespace NW.Entity
         ///  文章状态
         /// </summary>
         public EXArticleStatus Status { set; get; }
+
+        /// <summary>
+        /// 临时表id
+        /// </summary>
+        public int TempId { set; get; }
+            
+        public static implicit operator EXArticle(EXArticleTemp temp)
+        {
+            EXArticle article = new EXArticle();
+            article.Label = temp.Label;
+            article.ReplyCount = temp.ReplyCount;
+            article.Source = temp.Source;
+            article.OldBrowses = temp.OldBrowses;
+            article.Title = temp.Title;
+            article.URL = temp.URL;
+            article.Description = temp.Description;
+            article.Category = temp.Category;
+            article.TempId = temp.Id;
+            return article;
+        }
     }
+
+
 }
