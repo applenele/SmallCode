@@ -29,7 +29,7 @@ namespace NW.Pager
 
                 int start = ((pageIndex - 1) / 10) * 10;
                 start = (pageIndex > totalPages ? 1 : start);
-                int end = ((totalPages - pageIndex) >= 10 ? start + 10 : totalPages);
+                int end = ((totalPages - start) >= 10 ? start + 10 : totalPages);
                 for (int i = start + 1; i <= end; i++)
                 {
                     output.AppendFormat("<li {0}><a href='{1}?page={2}'>{3}</a></li> ", (pageIndex == i ? "class='active'" : ""), redirectTo, i, i);
