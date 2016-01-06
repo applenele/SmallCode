@@ -47,12 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Article.cs" />
+    <Compile Include="Attribute\AutoKeyAttribute.cs" />
     <Compile Include="Attribute\SensitiveAttribute.cs" />
+    <Compile Include="BaseEntity.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="DataModels\AjaxModel.cs" />
     <Compile Include="DataModels\CommonEnum.cs" />
     <Compile Include="Demand.cs" />
+    <Compile Include="EXArticle.cs" />
+    <Compile Include="EXArticleTemp.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Carousel.cs" />
     <Compile Include="Log.cs" />
@@ -62,6 +66,7 @@
     <Compile Include="Reply.cs" />
     <Compile Include="Replyforum.cs" />
     <Compile Include="Sensitive.cs" />
+    <Compile Include="SourceWeb.cs" />
     <Compile Include="Topicforum.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Video.cs" />

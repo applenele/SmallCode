@@ -46,6 +46,8 @@
     <Compile Include="ICategoryDAL.cs" />
     <Compile Include="ICourseDAL.cs" />
     <Compile Include="IDemandDAL.cs" />
+    <Compile Include="IEXArticleDAL.cs" />
+    <Compile Include="IEXArticleTempDAL.cs" />
     <Compile Include="IImageDAL.cs" />
     <Compile Include="ILogDAL.cs" />
     <Compile Include="INotificationDAL.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="IReplyDAL.cs" />
     <Compile Include="IReplyforumDAL.cs" />
     <Compile Include="ISensitiveDAL.cs" />
+    <Compile Include="ISourceWebDAL.cs" />
     <Compile Include="ITopicforumDAL.cs" />
     <Compile Include="IUserDAL.cs" />
     <Compile Include="IVideoDAL.cs" />

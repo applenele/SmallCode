@@ -270,5 +270,56 @@ namespace NW.DAL
             }
         }
         #endregion
+
+        #region iEXArticleDAL
+        IEXArticleDAL iEXArticleDAL;
+        public IEXArticleDAL EXArticleDAL
+        {
+            get
+            {
+                if (iEXArticleDAL == null)
+                    iEXArticleDAL = new EXArticleDAL();
+                return iEXArticleDAL;
+            }
+            set
+            {
+                iEXArticleDAL = value;
+            }
+        }
+        #endregion
+
+        #region iEXArticleTempDAL
+        IEXArticleTempDAL iEXArticleTempDAL;
+        public IEXArticleTempDAL EXArticleTempDAL
+        {
+            get
+            {
+                if (iEXArticleTempDAL == null)
+                    iEXArticleTempDAL = new EXArticleTempDAL();
+                return iEXArticleTempDAL;
+            }
+            set
+            {
+                iEXArticleTempDAL = value;
+            }
+        }
+        #endregion
+
+        #region iSourceWebDAL
+        ISourceWebDAL iSourceWebDAL;
+        public ISourceWebDAL SourceWebDAL
+        {
+            get
+            {
+                if (iSourceWebDAL == null)
+                    iSourceWebDAL = new SourceWebDAL();
+                return iSourceWebDAL;
+            }
+            set
+            {
+                iSourceWebDAL = value;
+            }
+        }
+        #endregion
     }
 }
