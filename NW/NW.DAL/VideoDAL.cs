@@ -11,42 +11,18 @@ using Dapper;
 
 namespace NW.DAL
 {
-    public class VideoDAL : IBaseDAL<Video>, IVideoDAL
+    public class VideoDAL : BaseDAL<Video>, IVideoDAL
     {
 
-        #region 得到数据库链接对象
-        private IDbConnection _conn;
-        public IDbConnection Conn
+        public VideoDAL()
         {
-            get
-            {
-                return _conn = ConnectionFactory.CreateConnection();
-            }
+            base.t = new Video();
         }
 
-        #endregion
 
-        public int Delete(int id)
+        public new Video GetEntity(int id)
         {
-            using (Conn)
-            {
-                string query = "DELETE FROM Video WHERE Id = @Id";
-                return Conn.Execute(query, new { Id = id });
-            }
-        }
-
-        public int Delete(Video model)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Video WHERE Id = @Id";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public Video GetEntity(int id)
-        {
-            Video video =null;
+            Video video = null;
             string query = "SELECT * FROM Video as v left join Course as c on v.CourseId =c.Id WHERE v.Id = @Id";
             using (Conn)
             {
@@ -64,7 +40,7 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Video> GetList(string whereStr)
+        public new IEnumerable<Video> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -77,29 +53,11 @@ namespace NW.DAL
                 {
                     query = "SELECT * FROM Video as v left join Course  as c on v.CourseId =c.Id  order by v.Time";
                 }
-                return Conn.Query<Video,Course,Video>(query,(video,course)=>
-                {
-                    video.Course = course;
-                    return video; 
-                }).Distinct();
-            }
-        }
-
-        public int Insert(Video model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Video(CourseId,Title,Description,Time,Browses,Category,UserId,Path,AuthorityAsInt,ContentType)VALUES(@CourseId,@Title,@Description,@Time,@Browses,@Category,@UserId,@Path,@AuthorityAsInt,@ContentType)";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public int Update(Video model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Video SET CourseId=@CourseId ,Title=@Title,Description=@Description,Time=@Time,Browses=@Browses,Category=@Category,UserId=@UserId,Path=@Path,AuthorityAsInt=@AuthorityAsInt,ContentType =@ContentType WHERE Id =@Id";
-                return Conn.Execute(query, model);
+                return Conn.Query<Video, Course, Video>(query, (video, course) =>
+                   {
+                       video.Course = course;
+                       return video;
+                   }).Distinct();
             }
         }
 

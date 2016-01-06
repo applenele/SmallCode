@@ -1,27 +1,26 @@
-﻿@model NW.Pager.PagedList<NW.Entity.Log>
+﻿@model NW.Pager.PagedList<NW.Entity.EXArticle>
 @using NW.Pager;
 @{
-    ViewBag.Title = "日志管理";
+    ViewBag.Title = "博文数据管理";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+
 
 <div class="crumb-wrap">
     <div class="crumb-list">
         <i class="icon-font"></i>
-        <a href="/Admin/Home/Index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">日志管理</span>
+        <a href="/Admin/EXArticle/Index">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">数据管理</span>
     </div>
 </div>
 <div class="search-wrap">
     <div class="search-content">
-        <form action="/Admin/Log/Index" method="get">
+        <form action="/Admin/Blog/Index" method="get">
             <table class="search-tab">
                 <tr>
-                    <th width="120">选择类型:</th>
+                    <th width="120">选择分类:</th>
                     <td>
-                        <select name="Type" id="">
+                        <select name="Category" id="">
                             <option value="">全部</option>
-                            <option value="记录">记录</option>
-                            <option value="异常">异常</option>
                         </select>
                     </td>
                     <th width="70">关键字:</th>
@@ -36,9 +35,9 @@
     <form name="myform" id="myform" method="post">
         <div class="result-title">
             <div class="result-list">
-                <a id="batchDel" href="javascript:void(0)" data-del="/Admin/Log/MutiDelete"><i class="icon-font"></i>批量删除</a>
-                <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
-                共：@Model.Total 条数据
+                <a href="/Admin/EXArticle/Add"><i class="icon-font"></i>新增博文</a>
+                <a href="/Admin/EXArticle/TempIndex"><i class="icon-font"></i>临时博文</a>
+                <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
             </div>
         </div>
         <div class="result-content">
@@ -46,28 +45,26 @@
                 <tr>
                     <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
                     <th>ID</th>
+                    <th>标题</th>
                     <th>时间</th>
-                    <th>线程</th>
-                    <th>级别</th>
-                    <th>类型</th>
-                    <th style="width: 55%;">描述</th>
+                    <th>网站</th>
+                    <th>分类</th>
                     <th>操作</th>
                 </tr>
                 @foreach (var item in Model.PageListData)
                 {
                     <tr id="@item.Id">
-                        <td class="tc"><input name="id" class="choose" value="@item.Id" type="checkbox"></td>
+                        <td class="tc"><input name="id[]" value="59" type="checkbox"></td>
                         <td>@item.Id</td>
-                        <td title="@item.Time">
-                            <a href="/Admin/Log/Show/@item.Id" title="@item.Time">@item.Time</a>
+                        <td title="@item.Title">
+                            <a href="/Admin/EXArticle/Show/@item.Id" title="@item.Title">@item.Title</a>
                         </td>
-                        <td>@item.Thread</td>
-                        <td>@item.Level</td>
-                        <td>@item.Type</td>
-                        <td>@item.Description</td>
+                        <td>@item.CreateDate</td>
+                        <td>@item.Source</td>
+                        <td>@item.Category</td>
                         <td>
-                            <a class="link-update" href="/Admin/Log/Show/@item.Id">详情</a>
-                            <a class="link-del" href="javascript:deleteDialog('/Admin/Log/Delete/@item.Id',@item.Id)">删除</a>
+                            <a class="link-update" href="/Admin/EXArticle/Edit/@item.Id">修改</a>
+                            <a class="link-del" href="javascript:deleteDialog('/Admin/EXArticle/Delete/@item.Id',@item.Id)">删除</a>
                         </td>
                     </tr>
                 }
@@ -76,4 +73,3 @@
         </div>
     </form>
 </div>
-

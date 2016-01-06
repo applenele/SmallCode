@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using NW.Entity.Attribute;
+using NW.Entity.DataModels;
 using NW.Factory;
 using System;
 using System.Collections.Generic;
@@ -75,7 +76,7 @@ namespace NW.DAL
         /// <param name="size"></param>
         /// <param name="whereStr"></param>
         /// <returns></returns>
-        public IEnumerable<T> GetListByPage(int page, int size, string whereStr)
+        public IEnumerable<T> GetListByPage(int page, int size, string whereStr, out int total)
         {
             int index = size * (page - 1);
             using (Conn)
@@ -83,13 +84,20 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM " + t.GetType().Name + " where " + whereStr + " order by CreateDate desc limit " + index + "," + size;
+                    query = @"SELECT * FROM " + t.GetType().Name + " where " + whereStr + " order by CreateDate desc limit " + index + "," + size +
+                        ";select count(1) from " + t.GetType().Name;
                 }
                 else
                 {
-                    query = "SELECT * FROM " + t.GetType().Name + " order by CreateDate desc limit " + index + "," + size;
+                    query = @" SELECT * FROM " + t.GetType().Name + " order by CreateDate desc limit " + index + "," + size +
+                        ";select count(1) as total from " + t.GetType().Name;
                 }
-                return Conn.Query<T>(query);
+                var multi = Conn.QueryMultiple(query);
+                var result = multi.Read<T>();
+                var dapperPage = multi.Read<DapperPage>().AsList()[0];
+
+                total = dapperPage.Total;
+                return result;
             }
         }
 
