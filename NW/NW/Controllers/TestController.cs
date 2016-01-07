@@ -139,7 +139,7 @@ namespace NW.Controllers
             var data = bllSession.IArticleBLL.GetList("");
             BlogSearcher.UpdateLuceneIndex(data);
             st.Stop();//终止计时
-            System.Diagnostics.Debug.WriteLine("执行时间：" +st.ElapsedMilliseconds );
+            System.Diagnostics.Debug.WriteLine("执行时间：" + st.ElapsedMilliseconds);
             return Redirect("/Test/BlogSearchTest");
         }
 
@@ -152,6 +152,15 @@ namespace NW.Controllers
         }
 
         public ActionResult UrlTest()
+        {
+            return View();
+        }
+
+        /// <summary>
+        ///  http://echarts.baidu.com/  测试
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult ChartTest()
         {
             return View();
         }
