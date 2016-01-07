@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NW.Entity.DataModels;
 
 namespace NW.BLL
 {
@@ -20,6 +21,15 @@ namespace NW.BLL
         public int GetAddRecordsCountByDate(DateTime begin, DateTime end)
         {
             return DBSessionFactory.GetDBSession().EXArticleTempDAL.GetAddRecordsCountByDate(begin, end);
+        }
+
+        /// <summary>
+        /// 得到 分类数量
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DapperDict> GetCategoryCount()
+        {
+            return DBSessionFactory.GetDBSession().EXArticleTempDAL.GetCategoryCount();
         }
 
         /// <summary>

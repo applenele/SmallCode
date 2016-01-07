@@ -164,5 +164,11 @@ namespace NW.Controllers
         {
             return View();
         }
+
+        [HttpGet]
+        public JsonResult GetJson()
+        {
+            return Json(bllSession.IEXArticleTempBLL.GetCategoryCount(),JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -79,5 +79,18 @@ namespace NW.DAL
             }
             return total;
         }
+
+        /// <summary>
+        ///  得到分类数量
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<DapperDict> GetCategoryCount()
+        {
+            string query = "select category as `Key`,count(category) as `Value` from exarticletemp  GROUP BY category ";
+            using (Conn)
+            {
+                return Conn.Query<DapperDict>(query);
+            }
+        }
     }
 }
