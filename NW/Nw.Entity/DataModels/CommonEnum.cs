@@ -13,9 +13,17 @@ namespace NW.Entity.DataModels
     /// </summary>
     public enum EXArticleStatus
     {
+        显示,
         热门,
         推荐,
         关闭,
+        弃用
+    }
+
+    public enum EXArticleTempStatus
+    {
+        未导入,
+        导入,
         弃用
     }
 

@@ -11,39 +11,14 @@ using Dapper;
 
 namespace NW.DAL
 {
-    class CarouselDAL : IBaseDAL<Carousel>, ICarouselDAL
+    class CarouselDAL : BaseDAL<Carousel>, IBaseDAL<Carousel>, ICarouselDAL
     {
-        #region 得到数据库链接对象
-        private IDbConnection _conn;
-        public IDbConnection Conn
+        public CarouselDAL()
         {
-            get
-            {
-                return _conn = ConnectionFactory.CreateConnection();
-            }
+            base.t = new Carousel();
         }
 
-        #endregion
-
-        public int Delete(int id)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Carousel WHERE Id = @Id";
-                return Conn.Execute(query, new { Id = id });
-            }
-        }
-
-        public int Delete(Carousel model)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Carousel WHERE Id = @Id";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public Carousel GetEntity(int id)
+        public new Carousel GetEntity(int id)
         {
             string query = "SELECT * FROM Carousel c LEFT JOIN user u on u.Id = c.CreateBy where c.Id=@Id";
             using (Conn)
@@ -53,13 +28,12 @@ namespace NW.DAL
             }
         }
 
-
         public Carousel GetEntityWithRefence(int id)
         {
             throw new NotImplementedException();
         }
         //不传参数，默认显示没有软删除，可以显示的列表；传参，可以自定义状态
-        public IEnumerable<Carousel> GetList(string whereStr)
+        public new IEnumerable<Carousel> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -76,26 +50,6 @@ namespace NW.DAL
                 return Conn.Query<Carousel>(query);
             }
         }
-        public IEnumerable<Carousel> GetListByPage(int page, int size, string whereStr)
-        {
-            throw new NotImplementedException();
-        }
 
-        public int Insert(Carousel model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Carousel(Href,Description,CreateDate,CreateBy,ImagePath,Top,IsShow,IsDelete) VALUES(@Href,@Description,@CreateDate,CreateBy,@ImagePath,@Top,@IsShow,@IsDelete)";
-                return Conn.Execute(query, model);
-            }
-        }
-        public int Update(Carousel model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Carousel SET Href=@Href,Top=@Top,Description=@Description,IsShow=@IsShow,IsDelete=@IsDelete,ImagePath=@ImagePath WHERE Id =@Id";
-                return Conn.Execute(query, model);
-            }
-        }
     }
 }

@@ -230,6 +230,10 @@
     <Content Include="Resources\pos_prob_trans.json" />
     <Content Include="Resources\prob_emit.json" />
     <Content Include="Resources\prob_trans.json" />
+    <Content Include="Areas\Admin\Views\EXArticle\TempIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\EXArticle\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\EXArticle\TempShow.cshtml" />
+    <Content Include="Areas\Admin\Views\EXArticle\Show.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
@@ -519,6 +523,7 @@
     <Content Include="Styles\common.css" />
     <Content Include="Styles\demand.css" />
     <Content Include="Styles\main.css" />
+    <Content Include="Styles\page.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -533,6 +538,7 @@
     <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Areas\Admin\Controllers\DbController.cs" />
     <Compile Include="Areas\Admin\Controllers\DemandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EXArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ForumController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageController.cs" />
@@ -567,6 +573,9 @@
     <Compile Include="Lucene\NewsSearcher.cs" />
     <Compile Include="Lucene\SearcherBase.cs" />
     <Compile Include="Models\PromptMessage.cs" />
+    <Compile Include="Pager\HtmlPageHelper.cs" />
+    <Compile Include="Pager\PagedList.cs" />
+    <Compile Include="Pager\PageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\SideHelper.cs" />
     <Compile Include="Helper\WordFilterHelper.cs" />

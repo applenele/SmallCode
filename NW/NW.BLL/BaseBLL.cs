@@ -54,9 +54,9 @@ namespace NW.BLL
             return idal.Update(model) > 0 ? true : false;
         }
 
-        public IEnumerable<T> GetListByPage(int page, int size,string whereStr)
+        public IEnumerable<T> GetListByPage(int page, int size,string whereStr,out int total)
         {
-            return idal.GetListByPage(page, size,whereStr);
+            return idal.GetListByPage(page, size,whereStr,out total);
         }
     }
 }

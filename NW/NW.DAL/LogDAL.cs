@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using NW.Entity.DataModels;
 
 namespace NW.DAL
 {
-    public class LogDAL : BaseDAL<Log>, IBaseDAL<Log>, ILogDAL
+    public class LogDAL : BaseDAL<Log>, ILogDAL
     {
 
-        public int Delete(int id)
+        public new int Delete(int id)
         {
             using (Conn)
             {
@@ -23,7 +24,7 @@ namespace NW.DAL
             }
         }
 
-        public int Delete(Log model)
+        public new int Delete(Log model)
         {
             using (Conn)
             {
@@ -32,7 +33,7 @@ namespace NW.DAL
             }
         }
 
-        public Log GetEntity(int id)
+        public new Log GetEntity(int id)
         {
             Log log;
             string query = "SELECT * FROM Log WHERE Id = @Id";
@@ -48,7 +49,7 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Log> GetList(string whereStr)
+        public new IEnumerable<Log> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -66,7 +67,7 @@ namespace NW.DAL
             }
         }
 
-        public IEnumerable<Log> GetListByPage(int page, int size, string whereStr)
+        public new IEnumerable<Log> GetListByPage(int page, int size, string whereStr, out int total)
         {
             int index = size * (page - 1);
             using (Conn)
@@ -74,32 +75,20 @@ namespace NW.DAL
                 string query = "";
                 if (!string.IsNullOrEmpty(whereStr))
                 {
-                    query = "SELECT * FROM Log where " + whereStr + " order by Time desc limit " + index + "," + size;
+                    query = "SELECT * FROM Log where " + whereStr + " order by Time desc limit " + index + "," + size + ";select count(1) as total from Log";
                 }
                 else
                 {
-                    query = "SELECT * FROM Log order by Time desc limit " + index + "," + size;
+                    query = "SELECT * FROM Log order by Time desc limit " + index + "," + size + ";select count(1) as total from Log";
                 }
-                return Conn.Query<Log>(query);
+                var multi = Conn.QueryMultiple(query);
+                var result = multi.Read<Log>();
+                var dapperPage = multi.Read<DapperPage>().AsList()[0];
+
+                total = dapperPage.Total;
+                return result;
             }
         }
 
-        public new int Insert(Log model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Logs (Time,Thread,Level,Type,Description,Exception,Ip) VALUES (@Time,@Thread,@Level,@Type,@Description,@Exception,@Ip)";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public int Update(Log model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Log SET  Time=@Time,Thread=@Thread,Level=@Level,Type=@Type,Description=@Description,Exception=@Exception,Ip=@Ip WHERE Id =@Id";
-                return Conn.Execute(query, model);
-            }
-        }
     }
 }

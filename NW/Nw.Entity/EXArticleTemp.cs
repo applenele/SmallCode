@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NW.Entity.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,5 +60,28 @@ namespace NW.Entity
         /// 是否删除
         /// </summary>
         public bool IsDelete { set; get; }
+
+        /// <summary>
+        ///   时间
+        /// </summary>
+        public DateTime CreateDate { set; get; }
+
+        /// <summary>
+        ///  修改时间
+        /// </summary>
+        public DateTime? ModifyDate { set; get; }
+
+        /// <summary>
+        /// 分词
+        /// </summary>
+        public string FenCi { set; get; }
+
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public EXArticleTempStatus Status
+        {
+            set; get;
+        }
     }
 }

@@ -11,31 +11,14 @@ using Dapper;
 
 namespace NW.DAL
 {
-    public class ReplyforumDAL : IBaseDAL<Replyforum>, IReplyforumDAL
+    public class ReplyforumDAL : BaseDAL<Replyforum>, IBaseDAL<Replyforum>, IReplyforumDAL
     {
-        private IDbConnection _conn;
-        public IDbConnection Conn
+        public ReplyforumDAL()
         {
-            get
-            {
-                return _conn = ConnectionFactory.CreateConnection();
-            }
-        }
-        public int Delete(int id)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Replyforum WHERE Id=@Id";
-                return Conn.Execute(query, new { Id = id });
-            }
+            base.t = new Replyforum();
         }
 
-        public int Delete(Replyforum model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Replyforum GetEntity(int id)
+        public new Replyforum GetEntity(int id)
         {
             using (Conn)
             {
@@ -50,7 +33,7 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Replyforum> GetList(string whereStr)
+        public new IEnumerable<Replyforum> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -61,7 +44,7 @@ namespace NW.DAL
                 }
                 else
                 {
-                    query = "SELECT * FROM Replyforum r join User u on r.UserId = u.Id left join Replyforum rr on u.Id = rr.FatherId left join User uu on rr.UserId = uu.Id where r.FatherId is null and "+ whereStr +"order by r.Time desc";
+                    query = "SELECT * FROM Replyforum r join User u on r.UserId = u.Id left join Replyforum rr on u.Id = rr.FatherId left join User uu on rr.UserId = uu.Id where r.FatherId is null and " + whereStr + "order by r.Time desc";
                 }
                 Replyforum lookup = null;
                 var data = Conn.Query<Replyforum, User, Replyforum, User, Replyforum>(query,
@@ -82,11 +65,6 @@ namespace NW.DAL
                 ).Distinct();
                 return data;
             }
-        }
-
-        public IEnumerable<Replyforum> GetListByPage(int page, int size, string whereStr)
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<Replyforum> GetReplyforumAllFather(string whereStr)
@@ -123,22 +101,5 @@ namespace NW.DAL
             }
         }
 
-        public int Insert(Replyforum model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Replyforum(TopicId,Content,Time,UserId,FatherId)VALUES(@TopicId,@Content,@Time,@UserId,@FatherId)";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public int Update(Replyforum model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Replyforum SET TopicId=@TopicId,Content=@Content,Time=@Time,UserId=@UserId,FatherId=@FatherId";
-                return Conn.Execute(query, model);
-            }
-        }
     }
 }

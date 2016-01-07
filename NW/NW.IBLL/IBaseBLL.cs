@@ -22,6 +22,6 @@ namespace NW.IBLL
 
         T GetEntityWithRefence(int id);
 
-        IEnumerable<T> GetListByPage(int page,int size,string whereStr);
+        IEnumerable<T> GetListByPage(int page,int size,string whereStr, out int total);
     }
 }

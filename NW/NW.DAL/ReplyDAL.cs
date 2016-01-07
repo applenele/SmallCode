@@ -11,40 +11,19 @@ using Dapper;
 
 namespace NW.DAL
 {
-    public class ReplyDAL : IBaseDAL<Reply>, IReplyDAL
+    public class ReplyDAL : BaseDAL<Reply>, IBaseDAL<Reply>, IReplyDAL
     {
-
-        #region 得到数据库链接对象
-        private IDbConnection _conn;
-        public IDbConnection Conn
+        public ReplyDAL()
         {
-            get
-            {
-                return _conn = ConnectionFactory.CreateConnection();
-            }
-        }
-        #endregion
-
-        public int Delete(int id)
-        {
-            using (Conn)
-            {
-                string query = "DELETE FROM Reply WHERE Id = @Id";
-                return Conn.Execute(query, new { Id = id });
-            }
+            base.t = new Reply();
         }
 
-        public int Delete(Reply model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Reply GetEntity(int id)
+        public new Reply GetEntity(int id)
         {
             string query = "SELECT * FROM Reply r left join User u on r.UserId = u.Id where r.Id = @Id";
             using (Conn)
             {
-                var data = Conn.Query<Reply, User,Reply>(query, (reply, user) => { reply.User = user; return reply; }, new { Id = id });
+                var data = Conn.Query<Reply, User, Reply>(query, (reply, user) => { reply.User = user; return reply; }, new { Id = id });
                 return data.FirstOrDefault();
             }
         }
@@ -54,7 +33,7 @@ namespace NW.DAL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Reply> GetList(string whereStr)
+        public new IEnumerable<Reply> GetList(string whereStr)
         {
             using (Conn)
             {
@@ -86,11 +65,6 @@ namespace NW.DAL
 
                 return data;
             }
-        }
-
-        public IEnumerable<Reply> GetListByPage(int page, int size, string whereStr)
-        {
-            throw new NotImplementedException();
         }
 
         public IEnumerable<Reply> GetReplyAllFather(string whereStr)
@@ -127,22 +101,5 @@ namespace NW.DAL
             }
         }
 
-        public int Insert(Reply model)
-        {
-            using (Conn)
-            {
-                string query = "INSERT INTO Reply(UserId,BlogId,Description,FatherId,Time)VALUES(@UserId,@BlogId,@Description,@FatherId,@Time)";
-                return Conn.Execute(query, model);
-            }
-        }
-
-        public int Update(Reply model)
-        {
-            using (Conn)
-            {
-                string query = "UPDATE Reply SET  UserId=@UserId,BlogId = @BlogId,Description=@Description,FatherId=@FatherId,Time=@Time WHERE Id =@Id";
-                return Conn.Execute(query, model);
-            }
-        }
     }
 }

@@ -1,0 +1,94 @@
+﻿@model NW.Entity.EXArticleTemp
+@{
+    ViewBag.Title = "临时文章展示";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font">
+        </i><a href="/Admin/Log/Index">首页</a>
+        <span class="crumb-step">&gt;</span><a class="crumb-name" href="/Admin/EXArticle/TempIndex">临时文章管理</a><span class="crumb-step">&gt;</span><span>临时文章预览</span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <table class="detail-table">
+            <tbody>
+                <tr>
+                    <td class="row-title">标题：</td>
+                    <td>
+                        @Model.Title
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">网站：</td>
+                    <td>
+                        @Model.Source
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">网址：</td>
+                    <td>
+                        @Model.URL
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">描述：</td>
+                    <td>
+                        @Html.Sanitized(@Model.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">增加时间</td>
+                    <td>
+                        @Model.CreateDate
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">类型</td>
+                    <td>
+                        @Model.Category
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">标签</td>
+                    <td>
+                        @Model.Label
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">浏览量</td>
+                    <td>
+                        @Model.OldBrowses
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">评论数</td>
+                    <td>
+                        @Model.ReplyCount
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">状态</td>
+                    <td>
+                        @Model.Status
+                    </td>
+                </tr>
+                <tr>
+                    <td class="row-title">修改时间</td>
+                    <td>
+                        @Model.ModifyDate
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
