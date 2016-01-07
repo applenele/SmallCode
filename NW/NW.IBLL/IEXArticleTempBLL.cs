@@ -9,5 +9,8 @@ namespace NW.IBLL
 {
     public interface IEXArticleTempBLL:IBaseBLL<EXArticleTemp>
     {
+        int GetAddRecordsCountByDate(DateTime begin, DateTime end);
+
+        int GetUpdateRecordsCountByDate(DateTime begin, DateTime end);
     }
 }
