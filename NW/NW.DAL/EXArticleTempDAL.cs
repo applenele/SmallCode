@@ -92,5 +92,25 @@ namespace NW.DAL
                 return Conn.Query<DapperDict>(query);
             }
         }
+
+        /// <summary>
+        /// 得到一段时间内的增加的和修改的数量
+        /// </summary>
+        /// <param name="begin"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public IEnumerable<DapperAddAndUpdateRecord> GetAddAndUpdateRecordsByDate(DateTime begin, DateTime end)
+        {
+            string query = @"select AddDate,AddCount,coalesce(UpdateDate,AddDate) UpdateDate,coalesce(UpdateCount,0) UpdateCount
+                from(select DATE_FORMAT(`CreateDate`, '%Y-%m-%d') AddDate, COUNT(1) AddCount from exarticletemp GROUP BY to_days(CreateDate)) as A
+                left JOIN
+                (select  DATE_FORMAT(`ModifyDate`, '%Y-%m-%d') UpdateDate, COUNT(1) UpdateCount from exarticletemp GROUP BY to_days(ModifyDate)) as B
+                on DATEDIFF(A.AddDate, B.UpdateDate) = 0
+                where DATEDIFF(AddDate, @Begin)>= 0 and DATEDIFF(UpdateDate, @End) <= 0";
+            using (Conn)
+            {
+                return Conn.Query<DapperAddAndUpdateRecord>(query, new { Begin = begin, End = end });
+            }
+        }
     }
 }

@@ -15,5 +15,7 @@ namespace NW.IDAL
         int GetUpdateRecordsCountByDate(DateTime begin, DateTime end);
 
         IEnumerable<DapperDict> GetCategoryCount();
+
+        IEnumerable<DapperAddAndUpdateRecord> GetAddAndUpdateRecordsByDate(DateTime begin,DateTime end);
     }
 }
