@@ -68,7 +68,7 @@
                             trigger: 'axis'
                         },
                         legend: {
-                            data: ['数量统计']
+                            data: ['增加数量', '修改数量']
                         },
                         toolbox: {
                             show: true,
@@ -120,7 +120,7 @@
                         ],
                         series: [
                             {
-                                name: '数量统计',
+                                name: '增加数量',
                                 type: 'line',
                                 data: (function () {
                                     var arr = [];
@@ -156,7 +156,45 @@
                                         { type: 'average', name: '平均值' }
                                     ]
                                 }
-                            }
+                            },
+                              {
+                                  name: '修改数量',
+                                  type: 'line',
+                                  data: (function () {
+                                      var arr = [];
+                                      $.ajax({
+                                          type: "get",
+                                          async: false, //同步执行
+                                          url: "/Admin/EXArticle/GetTempDataByDate",
+                                          data: { Begin: $("#Begin").val(), End: $("#End").val() },
+                                          dataType: "json", //返回数据形式为json
+                                          success: function (result) {
+                                              if (result) {
+                                                  for (var i = 0; i < result.length; i++) {
+                                                      console.log(result[i].UpdateCount);
+                                                      arr.push(result[i].UpdateCount);
+                                                  }
+                                              }
+                                          },
+                                          error: function (errorMsg) {
+                                              alert("不好意思，大爷，图表请求数据失败啦!");
+                                              myChart.hideLoading();
+                                          }
+                                      })
+                                      return arr;
+                                  })(),
+                                  markPoint: {
+                                      data: [
+                                          { type: 'max', name: '最大值' },
+                                          { type: 'min', name: '最小值' }
+                                      ]
+                                  },
+                                  markLine: {
+                                      data: [
+                                          { type: 'average', name: '平均值' }
+                                      ]
+                                  }
+                              }
                         ]
                     };
                     // 为echarts对象加载数据
