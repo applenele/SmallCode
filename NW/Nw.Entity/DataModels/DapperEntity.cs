@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace NW.Entity.DataModels
 {
-    public class DapperPage
+    public class DapperDict
     {
-        public int Total { set; get; }
+        public string Key { set; get; }
+
+        public object Value { set; get; }
     }
 
-    public class DapperCount
-    {
-        public int Total { set; get; }
-    }
 }

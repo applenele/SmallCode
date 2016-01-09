@@ -54,6 +54,7 @@
     <Compile Include="Course.cs" />
     <Compile Include="DataModels\AjaxModel.cs" />
     <Compile Include="DataModels\CommonEnum.cs" />
+    <Compile Include="DataModels\DapperEntity.cs" />
     <Compile Include="DataModels\DapperPage.cs" />
     <Compile Include="Demand.cs" />
     <Compile Include="EXArticle.cs" />
