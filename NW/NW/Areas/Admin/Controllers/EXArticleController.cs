@@ -264,13 +264,14 @@ namespace NW.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult GetTempDataByDate(DateTime? Begin, DateTime? End)
         {
-            if (Begin == null)
+            if (!Begin.HasValue)
             {
-                Begin = DateTime.Now;
+                Begin = DateTime.Now.AddDays(-7);
+                
             }
-            if (End == null)
+            if (!End.HasValue)
             {
-                End = DateTime.Now;
+                End = DateTime.Now.AddDays(7);
             }
             return Json(bllSession.IEXArticleTempBLL.GetAddAndUpdateRecordsByDate(Convert.ToDateTime(Begin), Convert.ToDateTime(End)), JsonRequestBehavior.AllowGet);
         }

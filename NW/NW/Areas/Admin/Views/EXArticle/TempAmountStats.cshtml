@@ -3,11 +3,32 @@
     ViewBag.Title = "TempAmountStats";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/echart/echartbuild/dist/echarts-all.js"></script>
 <script src="~/Scripts/echart/echartbuild/dist/echarts.js"></script>
+<script src="~/Scripts/echart/echartbuild/dist/codemirror.js"></script>
+<script>
+ 
+
+    function refresh(isBtnRefresh) {
+        if (isBtnRefresh) {
+            needRefresh = true;
+            return;
+        }
+        needRefresh = false;
+        if (myChart && myChart.dispose) {
+            myChart.dispose();
+        }
+        myChart = echarts.init(domMain, curTheme);
+        window.onresize = myChart.resize;
+        (new Function(editor.doc.getValue()))();
+        myChart.setOption(option, true)
+        domMessage.innerHTML = '';
+    }
+</script>
 <div class="crumb-wrap">
     <div class="crumb-list">
         <i class="icon-font"></i>
-        <a href="/Admin/EXArticle/Index">首页</a><span class="crumb-step">&gt;</span><a href="/Admin/EXArticle/TempIndex"><span class="crumb-name">临时数据管理</span></a><span class="crumb-name">数量统计</span>
+        <a href="/Admin/EXArticle/Index">首页</a><span class="crumb-step">&gt;</span><a href="/Admin/EXArticle/TempIndex"><span class="crumb-name">临时数据管理</span></a><span class="crumb-step">&gt;</span><span class="crumb-name">数量统计</span>
     </div>
 </div>
 <div class="search-wrap">
@@ -27,7 +48,7 @@
                         <input type="text" name="Begin" id="Begin" class="datetime nullable" placeholder="发布时间(大于)" value="@Request.QueryString["Begin"]" />
                     </th>
                     <th width="120"><input type="text" name="End" id="End" class="datetime nullable" placeholder="发布时间(小于)" value="@Request.QueryString["End"]" /></th>
-                    <td><input class="btn btn-primary btn2" name="sub" type="submit"></td>
+                    <td><input class="btn btn-primary btn2" name="sub" onclick="refresh(true)" type="button" value="刷新"></td>
                 </tr>
             </table>
         </form>
@@ -35,12 +56,6 @@
 </div>
 <div class="result-wrap">
     <form name="myform" id="myform" method="post">
-        <div class="result-title">
-            <div class="result-list">
-                <a href="/Admin/EXArticle/TempIndex"><i class="icon-font"></i>临时博文</a>
-                <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
-            </div>
-        </div>
         <div class="result-content">
             <div id="main" style="height:400px"></div>
             <script type="text/javascript">
@@ -200,6 +215,7 @@
                     // 为echarts对象加载数据
                     myChart.setOption(option);
                 }
+               
             );
             </script>
         </div>

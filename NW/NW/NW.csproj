@@ -455,8 +455,10 @@
     <Content Include="Scripts\echart\echartbuild\dist\chart\treemap.js" />
     <Content Include="Scripts\echart\echartbuild\dist\chart\venn.js" />
     <Content Include="Scripts\echart\echartbuild\dist\chart\wordCloud.js" />
+    <Content Include="Scripts\echart\echartbuild\dist\codemirror.js" />
     <Content Include="Scripts\echart\echartbuild\dist\echarts-all.js" />
     <Content Include="Scripts\echart\echartbuild\dist\echarts.js" />
+    <Content Include="Scripts\echart\echartbuild\dist\javascript.js" />
     <Content Include="Scripts\echart\echartbuild\echarts-optimize-conf.js" />
     <Content Include="Scripts\echart\echartbuild\source\chart\bar.js" />
     <Content Include="Scripts\echart\echartbuild\source\chart\chord.js" />
