@@ -253,6 +253,28 @@ namespace NW.Areas.Admin.Controllers
                 bllSession.IEXArticleTempBLL.Update(temp);
             }
         }
+
+
+        [HttpGet]
+        public ActionResult TempAmountStats()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetTempDataByDate(DateTime? Begin, DateTime? End)
+        {
+            if (!Begin.HasValue)
+            {
+                Begin = DateTime.Now.AddDays(-7);
+                
+            }
+            if (!End.HasValue)
+            {
+                End = DateTime.Now.AddDays(7);
+            }
+            return Json(bllSession.IEXArticleTempBLL.GetAddAndUpdateRecordsByDate(Convert.ToDateTime(Begin), Convert.ToDateTime(End)), JsonRequestBehavior.AllowGet);
+        }
         #endregion
     }
 }

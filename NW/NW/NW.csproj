@@ -234,6 +234,7 @@
     <Content Include="Areas\Admin\Views\EXArticle\Index.cshtml" />
     <Content Include="Areas\Admin\Views\EXArticle\TempShow.cshtml" />
     <Content Include="Areas\Admin\Views\EXArticle\Show.cshtml" />
+    <Content Include="Areas\Admin\Views\EXArticle\TempAmountStats.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Images\user-default.png" />
     <Content Include="Scripts\admin.js" />
@@ -454,8 +455,10 @@
     <Content Include="Scripts\echart\echartbuild\dist\chart\treemap.js" />
     <Content Include="Scripts\echart\echartbuild\dist\chart\venn.js" />
     <Content Include="Scripts\echart\echartbuild\dist\chart\wordCloud.js" />
+    <Content Include="Scripts\echart\echartbuild\dist\codemirror.js" />
     <Content Include="Scripts\echart\echartbuild\dist\echarts-all.js" />
     <Content Include="Scripts\echart\echartbuild\dist\echarts.js" />
+    <Content Include="Scripts\echart\echartbuild\dist\javascript.js" />
     <Content Include="Scripts\echart\echartbuild\echarts-optimize-conf.js" />
     <Content Include="Scripts\echart\echartbuild\source\chart\bar.js" />
     <Content Include="Scripts\echart\echartbuild\source\chart\chord.js" />
@@ -479,6 +482,7 @@
     <Content Include="Scripts\forumbase.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.smallcode.js" />
     <Content Include="Scripts\ueditor\asp\action_config.asp" />
     <Content Include="Scripts\ueditor\asp\action_crawler.asp" />
@@ -560,6 +564,7 @@
     <Content Include="Scripts\ueditor\ueditor.parse.min.js" />
     <Content Include="Styles\codeqiaokeli.css" />
     <Content Include="Styles\common.css" />
+    <Content Include="Styles\datetimepicker.css" />
     <Content Include="Styles\demand.css" />
     <Content Include="Styles\main.css" />
     <Content Include="Styles\page.css" />

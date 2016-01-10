@@ -144,7 +144,7 @@ namespace NW.DAL
         public int Update(T model)
         {
             StringBuilder query = new StringBuilder("Update " + model.GetType().Name + " set ");
-            foreach (System.Reflection.PropertyInfo p in model.GetType().GetProperties())
+            foreach (System.Reflection.PropertyInfo p in model.GetType().GetProperties().Where(p => !p.GetMethod.IsVirtual))
             {
                 if (p.Name != "Id")
                 {
@@ -171,7 +171,7 @@ namespace NW.DAL
             StringBuilder keys = new StringBuilder();
             StringBuilder values = new StringBuilder();
             string _sql = "Insert into " + model.GetType().Name + "({0}) values({1})";
-            foreach (System.Reflection.PropertyInfo p in model.GetType().GetProperties())
+            foreach (System.Reflection.PropertyInfo p in model.GetType().GetProperties().Where(p => !p.GetMethod.IsVirtual))
             {
                 if (p.Name != "Id")
                 {

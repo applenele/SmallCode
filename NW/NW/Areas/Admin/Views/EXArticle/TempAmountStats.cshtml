@@ -1,0 +1,224 @@
+﻿
+@{
+    ViewBag.Title = "TempAmountStats";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/echart/echartbuild/dist/echarts-all.js"></script>
+<script src="~/Scripts/echart/echartbuild/dist/echarts.js"></script>
+<script src="~/Scripts/echart/echartbuild/dist/codemirror.js"></script>
+<script>
+ 
+
+    function refresh(isBtnRefresh) {
+        if (isBtnRefresh) {
+            needRefresh = true;
+            return;
+        }
+        needRefresh = false;
+        if (myChart && myChart.dispose) {
+            myChart.dispose();
+        }
+        myChart = echarts.init(domMain, curTheme);
+        window.onresize = myChart.resize;
+        (new Function(editor.doc.getValue()))();
+        myChart.setOption(option, true)
+        domMessage.innerHTML = '';
+    }
+</script>
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font"></i>
+        <a href="/Admin/EXArticle/Index">首页</a><span class="crumb-step">&gt;</span><a href="/Admin/EXArticle/TempIndex"><span class="crumb-name">临时数据管理</span></a><span class="crumb-step">&gt;</span><span class="crumb-name">数量统计</span>
+    </div>
+</div>
+<div class="search-wrap">
+    <div class="search-content">
+        <form action="/Admin/EXArticle/TempAmountStats" method="get">
+            <table class="search-tab">
+                <tr>
+                    <th width="120">选择分类:</th>
+                    <td>
+                        <select name="Category" id="">
+                            <option value="">全部</option>
+                        </select>
+                    </td>
+                    <th width="70">关键字:</th>
+                    <td><input class="common-text" placeholder="关键字" name="Key" type="text"></td>
+                    <th width="120">
+                        <input type="text" name="Begin" id="Begin" class="datetime nullable" placeholder="发布时间(大于)" value="@Request.QueryString["Begin"]" />
+                    </th>
+                    <th width="120"><input type="text" name="End" id="End" class="datetime nullable" placeholder="发布时间(小于)" value="@Request.QueryString["End"]" /></th>
+                    <td><input class="btn btn-primary btn2" name="sub" onclick="refresh(true)" type="button" value="刷新"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="result-wrap">
+    <form name="myform" id="myform" method="post">
+        <div class="result-content">
+            <div id="main" style="height:400px"></div>
+            <script type="text/javascript">
+            // 路径配置
+            require.config({
+                paths: {
+                    echarts: '/Scripts/echart/echartbuild/dist'
+                }
+            });
+            // 使用
+            require(
+                [
+                    'echarts',
+                    'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                    'echarts/chart/line',
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById('main'));
+                    option = {
+                        title: {
+                            text: '数量统计',
+                        },
+                        tooltip: {
+                            trigger: 'axis'
+                        },
+                        legend: {
+                            data: ['增加数量', '修改数量']
+                        },
+                        toolbox: {
+                            show: true,
+                            feature: {
+                                mark: { show: true },
+                                dataView: { show: true, readOnly: false },
+                                magicType: { show: true, type: ['line', 'bar'] },
+                                restore: { show: true },
+                                saveAsImage: { show: true }
+                            }
+                        },
+                        calculable: true,
+                        xAxis: [
+                            {
+                                type: 'category',
+                                boundaryGap: false,
+                                data: (function () {
+                                    var arr = [];
+                                    $.ajax({
+                                        type: "get",
+                                        async: false, //同步执行
+                                        url: "/Admin/EXArticle/GetTempDataByDate",
+                                        data: { Begin: $("#Begin").val(),End:$("#End").val() },
+                                        dataType: "json", //返回数据形式为json
+                                        success: function (result) {
+                                            if (result) {
+                                                for (var i = 0; i < result.length; i++) {
+                                                    console.log(result[i].AddDate);
+                                                    arr.push(result[i].AddDate);
+                                                }
+                                            }
+                                        },
+                                        error: function (errorMsg) {
+                                            alert("不好意思，大爷，图表请求数据失败啦!");
+                                            myChart.hideLoading();
+                                        }
+                                    })
+                                    return arr;
+                                })()
+                            }
+                        ],
+                        yAxis: [
+                            {
+                                type: 'value',
+                                axisLabel: {
+                                    formatter: '{value}'
+                                }
+                            }
+                        ],
+                        series: [
+                            {
+                                name: '增加数量',
+                                type: 'line',
+                                data: (function () {
+                                    var arr = [];
+                                    $.ajax({
+                                        type: "get",
+                                        async: false, //同步执行
+                                        url: "/Admin/EXArticle/GetTempDataByDate",
+                                        data: { Begin: $("#Begin").val(), End: $("#End").val() },
+                                        dataType: "json", //返回数据形式为json
+                                        success: function (result) {
+                                            if (result) {
+                                                for (var i = 0; i < result.length; i++) {
+                                                    console.log(result[i].AddCount);
+                                                    arr.push(result[i].AddCount);
+                                                }
+                                            }
+                                        },
+                                        error: function (errorMsg) {
+                                            alert("不好意思，大爷，图表请求数据失败啦!");
+                                            myChart.hideLoading();
+                                        }
+                                    })
+                                    return arr;
+                                })(),
+                                markPoint: {
+                                    data: [
+                                        { type: 'max', name: '最大值' },
+                                        { type: 'min', name: '最小值' }
+                                    ]
+                                },
+                                markLine: {
+                                    data: [
+                                        { type: 'average', name: '平均值' }
+                                    ]
+                                }
+                            },
+                              {
+                                  name: '修改数量',
+                                  type: 'line',
+                                  data: (function () {
+                                      var arr = [];
+                                      $.ajax({
+                                          type: "get",
+                                          async: false, //同步执行
+                                          url: "/Admin/EXArticle/GetTempDataByDate",
+                                          data: { Begin: $("#Begin").val(), End: $("#End").val() },
+                                          dataType: "json", //返回数据形式为json
+                                          success: function (result) {
+                                              if (result) {
+                                                  for (var i = 0; i < result.length; i++) {
+                                                      console.log(result[i].UpdateCount);
+                                                      arr.push(result[i].UpdateCount);
+                                                  }
+                                              }
+                                          },
+                                          error: function (errorMsg) {
+                                              alert("不好意思，大爷，图表请求数据失败啦!");
+                                              myChart.hideLoading();
+                                          }
+                                      })
+                                      return arr;
+                                  })(),
+                                  markPoint: {
+                                      data: [
+                                          { type: 'max', name: '最大值' },
+                                          { type: 'min', name: '最小值' }
+                                      ]
+                                  },
+                                  markLine: {
+                                      data: [
+                                          { type: 'average', name: '平均值' }
+                                      ]
+                                  }
+                              }
+                        ]
+                    };
+                    // 为echarts对象加载数据
+                    myChart.setOption(option);
+                }
+               
+            );
+            </script>
+        </div>
+    </form>
+</div>
+

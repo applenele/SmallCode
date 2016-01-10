@@ -13,4 +13,18 @@ namespace NW.Entity.DataModels
         public object Value { set; get; }
     }
 
+    /// <summary>
+    /// 两个键值对
+    /// </summary>
+    public class DapperAddAndUpdateRecord
+    {
+        public string AddDate { set; get; }
+
+        public object AddCount { set; get; }
+
+        public string UpdateDate { set; get; }
+
+        public object UpdateCount { set; get; }
+    }
+
 }
