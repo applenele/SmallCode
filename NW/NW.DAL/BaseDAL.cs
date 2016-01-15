@@ -175,6 +175,7 @@ namespace NW.DAL
             {
                 if (p.Name != "Id")
                 {
+
                     keys.Append(p.Name);
                     string temp = string.Format("{0}{1}", "@", p.Name);
                     values.Append(temp);
