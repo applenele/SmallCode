@@ -28,6 +28,9 @@ namespace NW.Areas.Admin.Controllers
                 whereStr += " Title like '%" + Key + "%' ";
             }
             IEnumerable<EXArticle> articles = bllSession.IEXArticleBLL.GetListByPage(page, 20, whereStr, out total);
+            DateTime now = DateTime.Now;
+            ViewBag.TodayAddCount = bllSession.IEXArticleBLL.GetAddRecordsCountByDate(now, now);
+            ViewBag.TodayUpdateCount = bllSession.IEXArticleBLL.GetUpdateRecordsCountByDate(now, now);
             return View(articles.ToPagedList(page, 20, total));
         }
 
@@ -104,6 +107,9 @@ namespace NW.Areas.Admin.Controllers
                 whereStr += " Title like '%" + Key + "%' ";
             }
             IEnumerable<EXArticleTemp> articleTemps = bllSession.IEXArticleTempBLL.GetListByPage(page, 20, whereStr, out total);
+            DateTime now = DateTime.Now;
+            ViewBag.TodayAddCount = bllSession.IEXArticleTempBLL.GetAddRecordsCountByDate(now, now);
+            ViewBag.TodayUpdateCount = bllSession.IEXArticleTempBLL.GetUpdateRecordsCountByDate(now, now);
             return View(articleTemps.ToPagedList(page, 20, total));
         }
 
@@ -246,6 +252,28 @@ namespace NW.Areas.Admin.Controllers
                 temp.Status = EXArticleTempStatus.导入;
                 bllSession.IEXArticleTempBLL.Update(temp);
             }
+        }
+
+
+        [HttpGet]
+        public ActionResult TempAmountStats()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetTempDataByDate(DateTime? Begin, DateTime? End)
+        {
+            if (!Begin.HasValue)
+            {
+                Begin = DateTime.Now.AddDays(-7);
+                
+            }
+            if (!End.HasValue)
+            {
+                End = DateTime.Now.AddDays(7);
+            }
+            return Json(bllSession.IEXArticleTempBLL.GetAddAndUpdateRecordsByDate(Convert.ToDateTime(Begin), Convert.ToDateTime(End)), JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

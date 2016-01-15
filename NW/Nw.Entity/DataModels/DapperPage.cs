@@ -10,4 +10,9 @@ namespace NW.Entity.DataModels
     {
         public int Total { set; get; }
     }
+
+    public class DapperCount
+    {
+        public int Total { set; get; }
+    }
 }

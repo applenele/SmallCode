@@ -7,7 +7,10 @@ using NW.Entity;
 
 namespace NW.IDAL
 {
-    public interface IEXArticleDAL:IBaseDAL<EXArticle>
+    public interface IEXArticleDAL : IBaseDAL<EXArticle>
     {
+        int GetAddRecordsCountByDate(DateTime begin, DateTime end);
+
+        int GetUpdateRecordsCountByDate(DateTime begin, DateTime end);
     }
 }

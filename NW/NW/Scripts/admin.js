@@ -69,6 +69,7 @@ function importDialog(url, id) {
 
 
 $(document).ready(function () {
+    $('.datetime').datetimepicker();
     $(".allChoose").click(function () {
         if ($('.allChoose').is(':checked')) {
             $(".choose").prop("checked", true);

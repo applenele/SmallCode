@@ -120,7 +120,7 @@ namespace NW.Controllers
                     log.Info(new LogContent(userName + "用户发布了新的帖子", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 log.Error(new LogContent("用户发布主题出错", LogType.异常.ToString(), HttpHelper.GetIPAddress()));
                 ModelState.AddModelError("", "用户发布主题出错！");
