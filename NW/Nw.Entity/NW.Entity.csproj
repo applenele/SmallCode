@@ -61,6 +61,7 @@
     <Compile Include="EXArticleTemp.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Carousel.cs" />
+    <Compile Include="ImageTheme.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="Plateforum.cs" />

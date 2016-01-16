@@ -17,5 +17,10 @@ namespace NW.Entity
         public string Path { set; get; }
 
         public DateTime Time { set; get; }
+
+        /// <summary>
+        ///  对应主题的ID
+        /// </summary>
+        public int? ImageThemeId { set; get; }
     }
 }

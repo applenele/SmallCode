@@ -57,6 +57,7 @@
     <Compile Include="EXArticleTempDAL.cs" />
     <Compile Include="ImageDAL.cs" />
     <Compile Include="CarouselDAL.cs" />
+    <Compile Include="ImageThemeDAL.cs" />
     <Compile Include="LogDAL.cs" />
     <Compile Include="NotificationDAL.cs" />
     <Compile Include="PlateforumDAL.cs" />
