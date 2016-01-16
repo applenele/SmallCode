@@ -15,11 +15,11 @@
                         <input type="text" placeholder="标题" name="title" id="platetitle" class="form-control">
                     </div>
                     <div class="col-sm-3 col-md-3">
-                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="PlateForumMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             请选择模块
                             <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <ul class="dropdown-menu" aria-labelledby="PlateForumMenu">
                             @foreach (var plateforumlist in ViewBag.plateforumlist)
                             {
                                 <li>
@@ -69,6 +69,7 @@
     <script>
         $(".plate_li").click(function () {
             $("#plateforumId").val($(this).attr("Id"));
+            $("#PlateForumMenu").html($(this).html());
         });
     </script>
 </div>
