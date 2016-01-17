@@ -9,6 +9,8 @@ using NW.Entity.DataModels;
 using NW.Log4net;
 using NW.Utility;
 using NW.Web.Helper;
+using NW.Helper;
+using System.Threading.Tasks;
 
 namespace NW
 {
@@ -21,6 +23,10 @@ namespace NW
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            Task.Factory.StartNew(() =>
+            {
+                new CacheManager();
+            });
             WordFilterHelper<object>.LoadSensitiveWords();
         }
 
@@ -68,7 +74,7 @@ namespace NW
             IController controller = new BaseController();
             HttpContextWrapper httpContext = new HttpContextWrapper(Context);
             httpContext.Response.ContentType = "text/html";
-            controller.Execute(new RequestContext(httpContext,routeData)); //执行构造的访问
+            controller.Execute(new RequestContext(httpContext, routeData)); //执行构造的访问
         }
 
         protected void Session_Start(object sender, EventArgs e)

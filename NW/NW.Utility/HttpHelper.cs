@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -65,21 +66,12 @@ namespace NW.Utility
         }
 
         /// <summary>
-        /// 穿过代理服务器获取真实IP
+        ///  获取服务器IP
         /// </summary>
         /// <returns></returns>
         public static string GetServerIP()
         {
-            string user_IP = null;
-            if (HttpContext.Current.Request.ServerVariables["HTTP_VIA"] != null)
-            {
-                user_IP = HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"].ToString();
-            }
-            else
-            {
-                user_IP = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
-            }
-            return user_IP;
+            return Utility.ConfigurationHelper.GetValue("ServerIp");
         }
     }
 }

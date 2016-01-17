@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NW.Web.Helper;
+using NW.Helper;
 
 namespace NW.Controllers
 {
@@ -38,8 +39,10 @@ namespace NW.Controllers
                 articles.Add(new vArticle(item));
             }
             var articleAsIPagedList = new StaticPagedList<vArticle>(articles, page, 5, totalCount);//.ToTextFilter(out result);
-            List<SideArticleCategory> Categories = SideHelper.GetSideCategoryCategories();
-            List<SideArticleCalendar> Calendars = SideHelper.GetSideArticleCalendars();
+
+            object Categories = CacheHelper.GetCacheValue("ArticleCategories");
+            object Calendars = CacheHelper.GetCacheValue("ArticleCalendars");
+
             ViewBag.Categories = Categories;
             ViewBag.Calendars = Calendars;
             ViewBag.AttachUrl = attachUrl;

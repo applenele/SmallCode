@@ -1,11 +1,13 @@
 ﻿using NW.Entity;
 using NW.Entity.DataModels;
 using NW.Filter;
+using NW.Helper;
 using NW.Pager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.Mvc;
 
 namespace NW.Areas.Admin.Controllers
@@ -108,11 +110,16 @@ namespace NW.Areas.Admin.Controllers
             }
             IEnumerable<EXArticleTemp> articleTemps = bllSession.IEXArticleTempBLL.GetListByPage(page, 20, whereStr, out total);
             DateTime now = DateTime.Now;
-            ViewBag.TodayAddCount = bllSession.IEXArticleTempBLL.GetAddRecordsCountByDate(now, now);
-            ViewBag.TodayUpdateCount = bllSession.IEXArticleTempBLL.GetUpdateRecordsCountByDate(now, now);
+
+            object AddRecordValue = CacheHelper.GetCacheValue("AddExArticleRecordCount");
+            object UpdateRecordValue = CacheHelper.GetCacheValue("UpdateExArticleRecordCount");
+
+            ViewBag.TodayAddCount = AddRecordValue;
+            ViewBag.TodayUpdateCount = UpdateRecordValue;
             return View(articleTemps.ToPagedList(page, 20, total));
         }
 
+       
         /// <summary>
         /// 批量删除临时的博客
         /// </summary>
@@ -267,7 +274,7 @@ namespace NW.Areas.Admin.Controllers
             if (!Begin.HasValue)
             {
                 Begin = DateTime.Now.AddDays(-7);
-                
+
             }
             if (!End.HasValue)
             {
