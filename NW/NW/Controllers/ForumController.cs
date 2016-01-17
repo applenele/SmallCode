@@ -15,7 +15,7 @@ namespace NW.Controllers
     public class ForumController : BaseController
     {
         [HttpGet]
-        public ActionResult Index(int page = 1)
+        public ActionResult Index(int page = 1,int plate=0)
         {
             List<Topicforum> topicforums = new List<Topicforum>();
             List<Plateforum> plateforums = new List<Plateforum>();
@@ -31,8 +31,12 @@ namespace NW.Controllers
                 string userName = CurrentUser.Username;
                 log.Info(new LogContent("游客访问了论坛", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
             }
-            var query = bllSession.ITopicforumBLL.GetList("");
             int totalCount = 0;
+            var query = bllSession.ITopicforumBLL.GetList("");
+            if(plate!=0)
+            {
+                query = bllSession.ITopicforumBLL.GetList("PlateforumId = " + plate);
+            }
             PagerHelper.DoPage(ref query, page, 20, ref totalCount);
             foreach (var item in query)
             {
@@ -153,7 +157,7 @@ namespace NW.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ActionResult ForumShow(int id, int Time = 0, string Publish = "", int Rule = 0, int p = 0)
+        public ActionResult ForumShow(int id, int Time = 0, string Publish = "", int Rule = 0, int page = 0)
         {
             return View();
         }
