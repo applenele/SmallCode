@@ -11,7 +11,7 @@
                 <span>热门板块：</span>
                 @foreach (var item in ViewBag.Plateforums)
                 {
-                    <a href="#" style="margin-right:10px;">@item.Title</a>
+                    <a href="/Forum/Index?plate=@item.Id" style="margin-right:10px;">@item.Title</a>
                 }
                 <a href="/Forum/Add" class="pull-right btn btn-primary"><strong>我要发布</strong></a>
             </div>
@@ -56,13 +56,13 @@
             @Html.PagedListPager(Model, page => Url.Action("Index?" + @ViewBag.AttachUrl, new { page }))
         </div>
         <aside class="col-md-3">
-            <section class="panel  panel-success">
+            <!--<section class="panel  panel-success">
                 <div class="panel-heading">
                     <h3 class="panel-title"><strong>签到</strong></h3>
                 </div>
                 <div id="categories" class="list-group">
                 </div>
-            </section>
+            </section>-->
             <section class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title"><strong>板块列表</strong></h3>
@@ -70,7 +70,7 @@
                 <div id="recent_posts" class="list-group">
                     @foreach (var item in ViewBag.plateforums)
                     {
-                        <a class="list-group-item" href="#">@item.Title</a>
+                        <a class="list-group-item" href="/Forum/Index?plate=@item.Id">@item.Title</a>
                     }
                 </div>
             </section>
