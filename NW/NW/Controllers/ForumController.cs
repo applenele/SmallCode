@@ -42,7 +42,6 @@ namespace NW.Controllers
             {
                 topicforums.Add(item);
             }
-            ViewBag.Page = page;
             var plateforumsAsPageList = new StaticPagedList<Topicforum>(topicforums, page, 20, totalCount);
             return View(plateforumsAsPageList);
         }
