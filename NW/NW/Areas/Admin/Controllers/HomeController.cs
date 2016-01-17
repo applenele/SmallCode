@@ -15,6 +15,8 @@ namespace NW.Areas.Admin.Controllers
         public ActionResult Index()
         {
             // log.Info(new LogContent("admin area test", LogType.记录.ToString(), HttpHelper.GetIPAddress()));
+            ViewBag.ServerIP = Utility.HttpHelper.GetServerIP();
+            ViewBag.OS = Environment.OSVersion.ToString();
             return View();
         }
     }

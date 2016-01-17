@@ -1,2 +1,6 @@
 ﻿1.去掉重复的的敏感词
 delete from `sensitive` where Id in (select b.Id from (select Max(Id) as Id from `sensitive` group by Name having COUNT(*)>1) as b)
+
+2.按照日期查找
+select count(*) from exarticle where TO_DAYS(CreateDate) =TO_DAYS('2015-01-06')
+select count(*) from exarticle where DATEDIFF(CreateDate,'2016-01-06')=0

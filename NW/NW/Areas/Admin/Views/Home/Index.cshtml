@@ -26,7 +26,7 @@
     <div class="result-content">
         <ul class="sys-info-list">
             <li>
-                <label class="res-lab">操作系统</label><span class="res-info">WINNT</span>
+                <label class="res-lab">操作系统</label><span class="res-info">@ViewBag.OS</span>
             </li>
             <li>
                 <label class="res-lab">运行环境</label><span class="res-info">IIS/7+ (Win64) .Net/4.5+</span>
@@ -44,10 +44,10 @@
                 <label class="res-lab">北京时间</label><span class="res-info">@DateTime.Now</span>
             </li>
             <li>
-                <label class="res-lab">服务器域名/IP</label><span class="res-info">localhost [ 127.0.0.1 ]</span>
+                <label class="res-lab">服务器域名/IP</label><span class="res-info">@ViewBag.ServerIP</span>
             </li>
             <li>
-                <label class="res-lab">Host</label><span class="res-info">127.0.0.1</span>
+                <label class="res-lab">Host</label><span class="res-info">@ViewBag.ServerIP</span>
             </li>
         </ul>
     </div>

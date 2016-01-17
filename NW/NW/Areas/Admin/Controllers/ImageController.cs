@@ -16,14 +16,14 @@ namespace NW.Areas.Admin.Controllers
     public class ImageController : BaseController
     {
         // GET: Admin/Image
-        public ActionResult Index(string Key)
+        public ActionResult Index(string Key,int page=1)
         {
             string where = "";
             if (!string.IsNullOrEmpty(Key))
             {
                 where = where + "Description LIKE '%" + Key + "%'";
             }
-            return View(bllSession.IImageBLL.GetList(where).ToPagedList(1, 20));
+            return View(bllSession.IImageBLL.GetList(where).ToPagedList(page, 20));
         }
 
         /// <summary>

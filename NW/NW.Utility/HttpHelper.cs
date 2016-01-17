@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace NW.Utility
 {
@@ -61,6 +63,15 @@ namespace NW.Utility
             string regformat = @"^\d{1,3}[\.]\d{1,3}[\.]\d{1,3}[\.]\d{1,3}$";
             Regex regex = new Regex(regformat, RegexOptions.IgnoreCase);
             return regex.IsMatch(str1);
+        }
+
+        /// <summary>
+        ///  获取服务器IP
+        /// </summary>
+        /// <returns></returns>
+        public static string GetServerIP()
+        {
+            return Utility.ConfigurationHelper.GetValue("ServerIp");
         }
     }
 }
