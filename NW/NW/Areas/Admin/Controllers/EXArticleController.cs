@@ -230,7 +230,8 @@ namespace NW.Areas.Admin.Controllers
             EXArticleTemp temp = new EXArticleTemp();
             temp = bllSession.IEXArticleTempBLL.GetEntity(id);
             EXArticle article = new EXArticle();
-            article = bllSession.IEXArticleBLL.GetEntity(temp.Id);
+            string str = " TempId ="+id;
+            article = bllSession.IEXArticleBLL.GetList(str).FirstOrDefault();
             if (article == null)
             {
                 article = temp;
